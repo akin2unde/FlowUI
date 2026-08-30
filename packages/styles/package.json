@@ -1,0 +1,13 @@
+{
+  "name": "@flowui/internal-styles",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tailwindcss -i src/index.css -o dist/flowui.css --minify && node copy-styles.mjs"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "tailwindcss": "^4.1.0"
+  }
+}

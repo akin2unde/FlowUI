@@ -1,0 +1,290 @@
+<main class="fui-page">
+  <fui-vc
+    maxWidth="80rem"
+    marginX="auto"
+    [padding]="{ default: 'md', md: 'xl' }"
+    gap="lg"
+  >
+    <fui-vc gap="xs">
+      <fui-label fontSize="3xl" fontWeight="bold">
+        FlowUI Angular Gallery
+      </fui-label>
+      <fui-label textColor="textMuted">
+        Every FlowUI component in one working example.
+      </fui-label>
+    </fui-vc>
+
+    <ng-template #cardHeader>
+      <fui-label fontSize="xl" fontWeight="bold">
+        Card, layout, label, icon, badge and image
+      </fui-label>
+    </ng-template>
+
+    <ng-template #cardFooter>
+      <fui-label textColor="textMuted">Reusable card footer</fui-label>
+    </ng-template>
+
+    <fui-card variant="elevated" [header]="cardHeader" [footer]="cardFooter">
+      <fui-hc
+        [direction]="{ default: 'column', md: 'row' }"
+        align="center"
+        gap="lg"
+      >
+        <fui-image
+          src="https://picsum.photos/320/180"
+          alt="Sample landscape"
+          [width]="{ default: 'full', md: 320 }"
+          [height]="180"
+          cornerRadius="lg"
+        />
+
+        <fui-vc gap="sm" [flex]="1">
+          <fui-hc gap="sm" align="center">
+            <fui-icon icon="fa-solid fa-layer-group" textColor="primary.600" />
+            <fui-label>Horizontal container</fui-label>
+            <fui-badge icon="fa-solid fa-check">Ready</fui-badge>
+          </fui-hc>
+
+          <fui-label [lines]="1">
+            This deliberately long label demonstrates single-line truncation
+            when its available width becomes limited.
+          </fui-label>
+
+          <fui-divider label="or" />
+
+          <fui-hc [height]="30" gap="md">
+            <span>Left</span>
+            <fui-divider orientation="vertical" />
+            <span>Right</span>
+          </fui-hc>
+        </fui-vc>
+      </fui-hc>
+    </fui-card>
+
+    <section class="fui-demo-card">
+      <fui-vc gap="md">
+        <fui-label fontSize="xl" fontWeight="bold">
+          Buttons, groups and tooltips
+        </fui-label>
+
+        <fui-hc wrap="wrap" gap="sm">
+          <fui-button icon="fa-solid fa-floppy-disk">Save</fui-button>
+          <fui-button
+            variant="outline"
+            color="secondary"
+            icon="fa-solid fa-arrow-right"
+            iconPosition="right"
+          >
+            Continue
+          </fui-button>
+          <fui-button variant="soft" color="success" [badge]="3">
+            Approved
+          </fui-button>
+          <fui-button
+            variant="ghost"
+            color="danger"
+            icon="fa-solid fa-trash"
+            iconPosition="center"
+            ariaLabel="Delete"
+          />
+        </fui-hc>
+
+        <fui-button-group>
+          <fui-button>Day</fui-button>
+          <fui-button variant="outline">Week</fui-button>
+          <fui-button variant="outline">Month</fui-button>
+        </fui-button-group>
+
+        <fui-hc wrap="wrap" gap="lg">
+          <fui-tooltip text="Shown on top" location="top">
+            <fui-button variant="outline">top</fui-button>
+          </fui-tooltip>
+          <fui-tooltip text="Shown on right" location="right">
+            <fui-button variant="outline">right</fui-button>
+          </fui-tooltip>
+          <fui-tooltip text="Shown at bottom" location="bottom">
+            <fui-button variant="outline">bottom</fui-button>
+          </fui-tooltip>
+          <fui-tooltip text="Shown on left" location="left">
+            <fui-button variant="outline">left</fui-button>
+          </fui-tooltip>
+        </fui-hc>
+      </fui-vc>
+    </section>
+
+    <section class="fui-demo-card">
+      <fui-vc gap="md">
+        <fui-label fontSize="xl" fontWeight="bold"> Form controls </fui-label>
+
+        <fui-label htmlFor="product-name" [required]="true">
+          Product name
+        </fui-label>
+        <fui-input
+          id="product-name"
+          [value]="name"
+          placeholder="Enter product name"
+          (valueChange)="name = $event"
+        />
+        <fui-password-input
+          [value]="password"
+          placeholder="Enter password"
+          (valueChange)="password = $event"
+        />
+        <fui-textarea
+          [value]="notes"
+          placeholder="Notes"
+          (valueChange)="notes = $event"
+        />
+
+        <fui-hc wrap="wrap" gap="lg">
+          <fui-checkbox
+            label="Available for sale"
+            [checked]="checked"
+            (checkedChange)="checked = $event"
+          />
+          <fui-switch
+            label="Enable notifications"
+            [checked]="notifications"
+            (checkedChange)="notifications = $event"
+          />
+          <fui-color-picker [value]="color" (valueChange)="color = $event" />
+        </fui-hc>
+
+        <fui-radio-group
+          name="status"
+          [value]="status"
+          orientation="horizontal"
+          [options]="[
+            { label: 'Active', value: 'active' },
+            { label: 'Inactive', value: 'inactive' },
+          ]"
+          (valueChange)="status = $event"
+        />
+
+        <fui-slider [value]="volume" (valueChange)="volume = $event" />
+
+        <fui-dropdown
+          [value]="country"
+          [options]="countries"
+          (selected)="selectCountry($event)"
+        />
+
+        <fui-tree-dropdown
+          [value]="location"
+          [options]="tree"
+          (selected)="selectLocation($event)"
+        />
+      </fui-vc>
+    </section>
+
+    <section class="fui-demo-card">
+      <fui-vc gap="md">
+        <fui-label fontSize="xl" fontWeight="bold">
+          Menu, tabs, section and tree
+        </fui-label>
+
+        <fui-hc
+          [direction]="{ default: 'column', md: 'row' }"
+          align="start"
+          gap="lg"
+        >
+          <fui-menu [items]="menuItems" (selected)="name = $event.label" />
+
+          <fui-vc [flex]="1" gap="md">
+            <fui-tabs>
+              <fui-tab
+                id="details"
+                label="Details"
+                icon="fa-solid fa-circle-info"
+              >
+                <p>Product details appear here.</p>
+              </fui-tab>
+              <fui-tab
+                id="history"
+                label="History"
+                icon="fa-solid fa-clock-rotate-left"
+              >
+                <p>Change history appears here.</p>
+              </fui-tab>
+            </fui-tabs>
+
+            <fui-section title="Advanced settings" [defaultOpen]="true">
+              <p>Accordion content can contain any Angular component.</p>
+            </fui-section>
+
+            <fui-tree
+              [nodes]="tree"
+              [value]="treeValue"
+              [defaultExpanded]="true"
+              (selected)="treeValue = $event.value"
+            />
+          </fui-vc>
+        </fui-hc>
+      </fui-vc>
+    </section>
+
+    <section class="fui-demo-card">
+      <fui-vc gap="md">
+        <fui-label fontSize="xl" fontWeight="bold"> Sortable table </fui-label>
+        <fui-table
+          [data]="data"
+          [columns]="columns"
+          [sort]="sort"
+          (sortChange)="sortChanged($event)"
+        />
+      </fui-vc>
+    </section>
+
+    <section class="fui-demo-card">
+      <fui-vc gap="md">
+        <fui-label fontSize="xl" fontWeight="bold">
+          Dialog positions
+        </fui-label>
+        <fui-hc wrap="wrap" gap="sm">
+          <fui-button
+            *ngFor="let position of positions"
+            variant="outline"
+            (pressed)="dialog = position"
+          >
+            {{ position }}
+          </fui-button>
+        </fui-hc>
+      </fui-vc>
+    </section>
+
+    <ng-template #dialogHeader>
+      <fui-label fontSize="lg" fontWeight="bold">
+        {{ dialog }} dialog
+      </fui-label>
+    </ng-template>
+
+    <ng-template #dialogBody>
+      <fui-vc gap="md">
+        <p>
+          The header, body and footer are Angular templates containing
+          components.
+        </p>
+        <fui-input placeholder="Dialog input" />
+      </fui-vc>
+    </ng-template>
+
+    <ng-template #dialogFooter>
+      <fui-hc justify="end" gap="sm" width="full">
+        <fui-button variant="ghost" (pressed)="dialog = null">
+          Cancel
+        </fui-button>
+        <fui-button (pressed)="dialog = null">Confirm</fui-button>
+      </fui-hc>
+    </ng-template>
+
+    <fui-dialog
+      [open]="dialog !== null"
+      [position]="dialog ?? 'center'"
+      [header]="dialogHeader"
+      [body]="dialogBody"
+      [footer]="dialogFooter"
+      (opened)="dialogOpened()"
+      (closed)="dialog = null"
+    />
+  </fui-vc>
+</main>

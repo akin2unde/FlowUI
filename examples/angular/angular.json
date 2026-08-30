@@ -1,0 +1,35 @@
+{
+  "$schema": "../../node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "projects": {
+    "flowui-angular-example": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "styles": [
+              "@fortawesome/fontawesome-free/css/all.min.css",
+              "@akin2unde/flowui-angular/styles.css",
+              "src/styles.css"
+            ]
+          }
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "development": { "buildTarget": "flowui-angular-example:build" }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  },
+  "cli": { "analytics": false }
+}

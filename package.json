@@ -1,0 +1,44 @@
+{
+  "name": "flowui-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "build:styles": "npm run build -w @flowui/internal-styles",
+    "build:core": "npm run build -w @akin2unde/flowui-core",
+    "build:react": "npm run build -w @akin2unde/flowui-react",
+    "build:angular": "npm run build -w @akin2unde/flowui-angular",
+    "build:packages": "npm run build:styles && npm run build:core && npm run build:react && npm run build:angular",
+    "build:examples": "npm run build -w @akin2unde/flowui-react-example && npm run build -w @akin2unde/flowui-angular-example",
+    "build": "npm run build:packages && npm run build:examples",
+    "typecheck": "npm run typecheck -w @akin2unde/flowui-core && npm run typecheck -w @akin2unde/flowui-react && npm run typecheck -w @akin2unde/flowui-angular",
+    "test": "npm run test -w @akin2unde/flowui-core && npm run test -w @akin2unde/flowui-react",
+    "format": "prettier --write . --ignore-path .gitignore",
+    "format:check": "prettier --check . --ignore-path .gitignore",
+    "release:check": "npm run build && npm run typecheck && npm test && npm run format:check",
+    "publish:packages": "npm publish -w @akin2unde/flowui-core --access public && npm publish -w @akin2unde/flowui-react --access public && npm publish -w @akin2unde/flowui-angular --access public",
+    "dev:react": "npm run dev -w @akin2unde/flowui-react-example",
+    "dev:angular": "npm run start -w @akin2unde/flowui-angular-example"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.2.0",
+    "@angular/cli": "^20.2.0",
+    "@angular/compiler-cli": "^20.2.0",
+    "@tailwindcss/cli": "^4.1.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "jsdom": "^26.1.0",
+    "ng-packagr": "^20.2.0",
+    "prettier": "^3.9.6",
+    "tailwindcss": "^4.1.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0",
+    "vitest": "^3.2.0"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "name": "@akin2unde/flowui-angular",
+  "version": "0.1.0",
+  "description": "Angular components for FlowUI.",
+  "author": "Akintunde Morakinyo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akin2unde/FlowUI.git",
+    "directory": "packages/angular"
+  },
+  "homepage": "https://github.com/akin2unde/FlowUI#readme",
+  "bugs": "https://github.com/akin2unde/FlowUI/issues",
+  "keywords": [
+    "flowui",
+    "angular",
+    "components",
+    "tailwind",
+    "typescript"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/fesm2022/akin2unde-flowui-angular.mjs"
+    },
+    "./styles.css": "./dist/flowui.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "ng-packagr -p ng-package.json && cp ../styles/dist/flowui.css dist/flowui.css",
+    "typecheck": "tsc -p tsconfig.lib.json --noEmit"
+  },
+  "dependencies": {
+    "@akin2unde/flowui-core": "0.1.0",
+    "tslib": "^2.8.0"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=18",
+    "@angular/core": ">=18",
+    "@fortawesome/fontawesome-free": ">=6"
+  },
+  "devDependencies": {
+    "@angular/common": "^20.2.0",
+    "@angular/core": "^20.2.0",
+    "@angular/compiler-cli": "^20.2.0",
+    "ng-packagr": "^20.2.0",
+    "typescript": "^5.9.0"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}
