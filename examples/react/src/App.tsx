@@ -1,11 +1,15 @@
 import { useMemo, useState } from "react";
 import {
+  Autocomplete,
   Badge,
+  Breadcrumb,
   Button,
   ButtonGroup,
   Card,
+  Carousel,
   Checkbox,
   ColorPicker,
+  DateTime,
   Dialog,
   Divider,
   Dropdown,
@@ -15,9 +19,12 @@ import {
   Image,
   Input,
   Label,
+  Listbox,
   Menu,
   PasswordInput,
+  Popover,
   RadioGroup,
+  Rating,
   Section,
   Slider,
   Switch,
@@ -25,16 +32,21 @@ import {
   Table,
   Tabs,
   TextArea,
+  Timeline,
   Tooltip,
   Tree,
   TreeDropdown,
   VC,
+  FileUpload,
+  Notification,
   createTheme,
+  type BreadcrumbItem,
   type DialogPosition,
   type DropdownModel,
   type MenuItem,
   type SortState,
   type TableColumn,
+  type TimelineItem,
   type TreeModel,
 } from "@akin2unde/flowui-react";
 
@@ -133,6 +145,7 @@ const columns: TableColumn<Record<string, unknown>>[] = [
     field: "category",
     header: "Category",
     sortable: true,
+    defaultVisible: false,
   },
   {
     field: "price",
@@ -141,6 +154,39 @@ const columns: TableColumn<Record<string, unknown>>[] = [
     align: "right",
     format: (value) => `₦${Number(value).toLocaleString()}`,
   },
+];
+
+const timelineItems: TimelineItem[] = [
+  {
+    id: 1,
+    title: "Order created",
+    description: "The customer placed an order.",
+    date: "09:00",
+    icon: "fa-solid fa-cart-plus",
+  },
+  {
+    id: 2,
+    title: "Payment confirmed",
+    description: "Payment was received successfully.",
+    date: "09:10",
+    icon: "fa-solid fa-credit-card",
+  },
+  {
+    id: 3,
+    title: "Ready to dispatch",
+    date: "10:15",
+    icon: "fa-solid fa-truck",
+  },
+];
+
+const breadcrumbs: BreadcrumbItem[] = [
+  { id: 1, text: "Home", icon: "fa-solid fa-house" },
+  {
+    id: 2,
+    text: "Products",
+    image: "https://picsum.photos/40/40?category",
+  },
+  { id: 3, text: "Rice" },
 ];
 
 export function App() {
@@ -160,6 +206,20 @@ export function App() {
     direction: "asc",
   });
   const [dialog, setDialog] = useState<DialogPosition | null>(null);
+  const [period, setPeriod] = useState<string | number>("week");
+  const [dateTime, setDateTime] = useState("2026-09-01T09:30");
+  const [autocomplete, setAutocomplete] = useState<string | number>("ng");
+  const [rating, setRating] = useState(4);
+  const [listboxValues, setListboxValues] = useState<DropdownModel[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<
+    Record<string, unknown> | undefined
+  >();
+  // Save this array in the user's preferences and restore it at login.
+  const [visibleProductColumns, setVisibleProductColumns] = useState([
+    "name",
+    "price",
+  ]);
+  const [noticeOpen, setNoticeOpen] = useState(false);
 
   const sorted = useMemo(() => {
     return [...products].sort((first, second) => {
@@ -269,10 +329,14 @@ export function App() {
                 />
               </HC>
 
-              <ButtonGroup>
-                <Button>Day</Button>
-                <Button variant="outline">Week</Button>
-                <Button variant="outline">Month</Button>
+              <ButtonGroup selectable value={period} onChange={setPeriod}>
+                <Button value="day">Day</Button>
+                <Button value="week" variant="outline">
+                  Week
+                </Button>
+                <Button value="month" variant="outline">
+                  Month
+                </Button>
               </ButtonGroup>
 
               <HC wrap="wrap" gap="lg">
@@ -362,6 +426,87 @@ export function App() {
           </section>
 
           <section className="fui-demo-card">
+            <VC gap="lg">
+              <Label fontSize="xl" fontWeight="bold">
+                Advanced controls
+              </Label>
+
+              <DateTime
+                value={dateTime}
+                mode="datetime"
+                onChange={setDateTime}
+              />
+
+              <Autocomplete
+                options={countries}
+                value={autocomplete}
+                placeholder="Search for a country"
+                onChange={(option) => setAutocomplete(option.value)}
+              />
+
+              <Rating value={rating} onChange={setRating} />
+
+              <Listbox
+                options={countries}
+                values={listboxValues.map((option) => option.value)}
+                multiple
+                onValuesChange={setListboxValues}
+                renderOption={(option, selected) => (
+                  <HC justify="between" width="full">
+                    <span>{option.display}</span>
+                    <small>
+                      {selected ? "Selected" : option.other.phoneCode}
+                    </small>
+                  </HC>
+                )}
+              />
+
+              <Timeline items={timelineItems} orientation="vertical" />
+              <Timeline items={timelineItems} orientation="horizontal" />
+
+              <Popover
+                trigger={<Button variant="outline">Open popover</Button>}
+                placement="right"
+              >
+                <VC gap="sm">
+                  <strong>Templated content</strong>
+                  <Input placeholder="Popover input" />
+                </VC>
+              </Popover>
+
+              <FileUpload accept="image/*,.pdf" multiple preview />
+
+              <Carousel>
+                {[1, 2, 3].map((slide) => (
+                  <Image
+                    key={slide}
+                    src={`https://picsum.photos/900/360?slide=${slide}`}
+                    alt={`Carousel slide ${slide}`}
+                    width="full"
+                    height={300}
+                  />
+                ))}
+              </Carousel>
+
+              <Breadcrumb items={breadcrumbs} />
+
+              <Button color="success" onClick={() => setNoticeOpen(true)}>
+                Show notification
+              </Button>
+              <Notification
+                open={noticeOpen}
+                title="Product saved"
+                type="success"
+                horizontal="center"
+                vertical="top"
+                onClose={() => setNoticeOpen(false)}
+              >
+                <p>The product was saved successfully.</p>
+              </Notification>
+            </VC>
+          </section>
+
+          <section className="fui-demo-card">
             <VC gap="md">
               <Label fontSize="xl" fontWeight="bold">
                 Menu, tabs, section and tree
@@ -420,6 +565,15 @@ export function App() {
                 columns={columns}
                 sort={sort}
                 onSortChange={setSort}
+                alternateRows
+                columnsConfigurable
+                visibleColumnFields={visibleProductColumns}
+                onVisibleColumnsChange={setVisibleProductColumns}
+                exportable
+                exportFileName="products"
+                selectionEnabled
+                selectedRow={selectedProduct}
+                onSelectionChange={setSelectedProduct}
               />
             </VC>
           </section>

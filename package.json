@@ -1,6 +1,6 @@
 {
   "name": "flowui-workspace",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "workspaces": [
     "packages/*",
@@ -10,9 +10,9 @@
     "clean": "node scripts/clean.mjs",
     "build:styles": "npm run build -w @flowui/internal-styles",
     "build:core": "npm run build -w @akin2unde/flowui-core",
-    "build:react": "npm run build -w @akin2unde/flowui-react",
-    "build:angular": "npm run build -w @akin2unde/flowui-angular",
-    "build:packages": "npm run build:styles && npm run build:core && npm run build:react && npm run build:angular",
+    "build:react": "npm run build:core && npm run build:styles && npm run build -w @akin2unde/flowui-react",
+    "build:angular": "npm run build:core && npm run build:styles && npm run build -w @akin2unde/flowui-angular",
+    "build:packages": "npm run build:core && npm run build:styles && npm run build -w @akin2unde/flowui-react && npm run build -w @akin2unde/flowui-angular",
     "build:examples": "npm run build -w @akin2unde/flowui-react-example && npm run build -w @akin2unde/flowui-angular-example",
     "build": "npm run build:packages && npm run build:examples",
     "typecheck": "npm run typecheck -w @akin2unde/flowui-core && npm run typecheck -w @akin2unde/flowui-react && npm run typecheck -w @akin2unde/flowui-angular",

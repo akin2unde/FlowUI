@@ -1,5 +1,7 @@
 # FlowUI
 
+Current release: **0.1.1**
+
 FlowUI is a Tailwind-styled component library with native React and Angular adapters over one framework-independent TypeScript core.
 
 ## Packages
@@ -46,6 +48,10 @@ Run the galleries:
 npm run dev:react
 npm run dev:angular
 ```
+
+Framework packages can also be built independently from a clean checkout.
+`npm run build:react` and `npm run build:angular` automatically build their
+core and stylesheet dependencies first.
 
 ## React setup
 
@@ -95,15 +101,15 @@ All Angular components are standalone and are imported only where they are used.
 
 ## Included components
 
-| Area       | Components                                                                                                       |
-| ---------- | ---------------------------------------------------------------------------------------------------------------- |
-| Layout     | `HC`/`HStack`, `VC`/`VStack`, `Divider`, `Card`                                                                  |
-| Display    | `Label`, `Badge`, `Icon`, `Image`, `Tooltip`                                                                     |
-| Actions    | `Button`, `ButtonGroup`                                                                                          |
-| Forms      | `Input`, `PasswordInput`, `TextArea`, `Checkbox`, `RadioButton`, `RadioGroup`, `ColorPicker`, `Slider`, `Switch` |
-| Navigation | `Menu`, `Dropdown`, `TreeDropdown`, `Tree`, `Tabs`, `Tab`, `Section`                                             |
-| Data       | `Table` with unsorted/ascending/descending states                                                                |
-| Overlay    | `Dialog` at center, left, right, top or bottom                                                                   |
+| Area       | Components                                                                                                                                                                      |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Layout     | `HC`/`HStack`, `VC`/`VStack`, `Divider`, `Card`, `Timeline`                                                                                                                     |
+| Display    | `Label`, `Badge`, `Icon`, `Image`, `Tooltip`, `Carousel`, `Breadcrumb`                                                                                                          |
+| Actions    | `Button`, selectable `ButtonGroup`, `Popover`, `Notification`                                                                                                                   |
+| Forms      | `Input`, `PasswordInput`, `DateTime`, `Autocomplete`, `TextArea`, `Checkbox`, `RadioButton`, `RadioGroup`, `ColorPicker`, `Slider`, `Switch`, `Rating`, `Listbox`, `FileUpload` |
+| Navigation | `Menu`, `Dropdown`, `TreeDropdown`, `Tree`, `Tabs`, `Tab`, `Section`                                                                                                            |
+| Data       | `Table` with sorting, alternating rows, user-selectable columns, row selection, Excel export and PDF export                                                                     |
+| Overlay    | `Dialog` at center, left, right, top or bottom                                                                                                                                  |
 
 ## Styling precedence
 
@@ -138,3 +144,20 @@ adds an optional `children` array containing objects with the same shape.
 Angular element selectors and generated CSS classes use the short `fui-`
 prefix, for example `<fui-vc>`, `<fui-card>` and `.fui-control`. TypeScript
 package and provider names keep the full FlowUI product name.
+
+## Date and time values
+
+`DateTime` supports `date`, `time`, and `datetime` modes. Combined mode also
+provides **Start of day** and **End of day** buttons. Values stay in native local
+formats (`YYYY-MM-DD`, `HH:mm`, or `YYYY-MM-DDTHH:mm`) and are never passed
+through `Date.prototype.toISOString()`. This prevents the common one-hour UTC
+shift.
+
+## Version 0.1.1
+
+- Added DateTime, Autocomplete, Rating, templatable Listbox, Timeline,
+  templatable Popover, FileUpload with previews, Carousel, Breadcrumb and
+  positioned Notification.
+- Added single selection and selected styling to ButtonGroup.
+- Added optional alternating table columns and row selection events.
+- Updated both example galleries with all new controls.

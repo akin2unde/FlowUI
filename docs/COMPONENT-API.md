@@ -27,6 +27,42 @@ Every visible component supports the applicable shared FlowUI properties: dimens
 - `Card`: outline, elevated and filled variants with optional header and footer content.
 - `Tree`: expandable hierarchical navigation with selection events.
 - `Tooltip`: text positioned at the top, right, bottom or left, with a configurable delay.
+- `DateTime`: local date, time or combined input; combined mode can select the start or end of day without UTC conversion.
+- `Autocomplete`: filters `{ display, value, other }` options and emits the complete selected object.
+- `Rating`: configurable maximum, whole or half-step precision, disabled and read-only modes.
+- `Listbox`: single or multiple selection with a render function in React and `TemplateRef` in Angular.
+- `Timeline`: horizontal or vertical events with icons/images and templatable item content.
+- `Popover`: controlled or internal open state, four placements and templatable content.
+- `FileUpload`: accept, multiple, maximum-size and image/file preview support.
+- `Carousel`: controlled or internal slide index, looping, controls and indicators.
+- `Breadcrumb`: image, icon and text items with an optional custom item template.
+- `Notification`: top/bottom and left/center/right placement with success, error, warning and info types.
+
+`DateTime` uses a FlowUI calendar instead of the browser calendar. Its Today,
+Start-of-day and End-of-day actions are circular icon buttons inside the field.
+The chosen calendar day uses a round highlight. Date values continue to use
+local calendar parts, avoiding UTC conversion and the one-hour-behind problem.
+
+## Selection enhancements
+
+`ButtonGroup` accepts `selectable`, `value`, and a change callback/event. Each
+child button supplies a `value`; the matching button exposes `aria-pressed` and
+uses the selected visual state.
+
+`Table` uses alternating rows by default. Set `alternateRows={false}` in React
+or `[alternateRows]="false"` in Angular to disable it. It also accepts
+`selectionEnabled` and `selectedRow`. React emits `onSelectionChange`; Angular
+emits `selectionChange`. Selectable rows also respond to Enter and Space.
+
+Set `columnsConfigurable` to display the column picker. The controlled
+`visibleColumnFields` array contains the selected field names and can be saved
+as a per-user preference. React emits `onVisibleColumnsChange`; Angular supports
+`[(visibleColumnFields)]`. A column with `defaultVisible: false` starts hidden
+when no saved preference has been supplied.
+
+Set `exportable` to display Excel and PDF buttons. `exportFileName` controls the
+download filename. Both exports contain the current data and only the currently
+visible columns.
 
 ## Angular prefix
 

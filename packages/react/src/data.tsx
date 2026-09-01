@@ -3,6 +3,7 @@ import type {
   SortState,
   TableColumn,
 } from "@akin2unde/flowui-core";
+import { exportTableToExcel, exportTableToPdf } from "@akin2unde/flowui-core";
 import { useFlowProps } from "./helpers";
 import { Icon } from "./primitives";
 
@@ -16,6 +17,15 @@ export interface TableProps<
   emptyText?: string;
   onSortChange?: (sort: SortState) => void;
   onRowClick?: (row: T) => void;
+  alternateRows?: boolean;
+  columnsConfigurable?: boolean;
+  visibleColumnFields?: string[];
+  onVisibleColumnsChange?: (fields: string[]) => void;
+  exportable?: boolean;
+  exportFileName?: string;
+  selectionEnabled?: boolean;
+  selectedRow?: T;
+  onSelectionChange?: (row: T) => void;
 }
 export function Table<T extends Record<string, unknown>>({
   data,
@@ -25,9 +35,32 @@ export function Table<T extends Record<string, unknown>>({
   emptyText = "No records found",
   onSortChange,
   onRowClick,
+  alternateRows = true,
+  columnsConfigurable = false,
+  visibleColumnFields,
+  onVisibleColumnsChange,
+  exportable = false,
+  exportFileName = "table",
+  selectionEnabled = false,
+  selectedRow,
+  onSelectionChange,
   ...props
 }: TableProps<T>) {
   const flow = useFlowProps("fui-table-wrap", props);
+  const selectedFields =
+    visibleColumnFields ??
+    columns
+      .filter((column) => column.defaultVisible !== false)
+      .map((column) => column.field);
+  const visibleColumns = columns.filter((column) =>
+    selectedFields.includes(column.field),
+  );
+  const changeColumns = (field: string, checked: boolean) => {
+    const fields = checked
+      ? [...selectedFields, field]
+      : selectedFields.filter((selected) => selected !== field);
+    onVisibleColumnsChange?.(fields);
+  };
   const changeSort = (field: string) => {
     const direction =
       sort?.field !== field
@@ -41,10 +74,57 @@ export function Table<T extends Record<string, unknown>>({
   };
   return (
     <div {...flow}>
-      <table className="fui-table">
+      {(columnsConfigurable || exportable) && (
+        <div className="fui-table-tools">
+          {columnsConfigurable && (
+            <details className="fui-column-picker">
+              <summary>Columns</summary>
+              <div className="fui-column-picker-menu">
+                {columns.map((column) => (
+                  <label key={column.field}>
+                    <input
+                      type="checkbox"
+                      checked={selectedFields.includes(column.field)}
+                      onChange={(event) =>
+                        changeColumns(column.field, event.target.checked)
+                      }
+                    />
+                    {column.header}
+                  </label>
+                ))}
+              </div>
+            </details>
+          )}
+          {exportable && (
+            <div className="fui-table-export">
+              <button
+                type="button"
+                onClick={() =>
+                  exportTableToExcel(data, visibleColumns, exportFileName)
+                }
+              >
+                Excel
+              </button>
+              <button
+                type="button"
+                onClick={() =>
+                  exportTableToPdf(data, visibleColumns, exportFileName)
+                }
+              >
+                PDF
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+      <table
+        className="fui-table"
+        data-alternate-rows={alternateRows}
+        data-selection-enabled={selectionEnabled}
+      >
         <thead>
           <tr>
-            {columns.map((column) => (
+            {visibleColumns.map((column) => (
               <th
                 key={column.field}
                 style={{ width: column.width, textAlign: column.align }}
@@ -74,16 +154,33 @@ export function Table<T extends Record<string, unknown>>({
         <tbody>
           {loading ? (
             <tr>
-              <td colSpan={columns.length}>Loading…</td>
+              <td colSpan={visibleColumns.length}>Loading…</td>
             </tr>
           ) : data.length === 0 ? (
             <tr>
-              <td colSpan={columns.length}>{emptyText}</td>
+              <td colSpan={visibleColumns.length}>{emptyText}</td>
             </tr>
           ) : (
             data.map((row, index) => (
-              <tr key={index} onClick={() => onRowClick?.(row)}>
-                {columns.map((column) => {
+              <tr
+                key={index}
+                data-selected={selectionEnabled && selectedRow === row}
+                tabIndex={selectionEnabled ? 0 : undefined}
+                onClick={() => {
+                  onRowClick?.(row);
+                  if (selectionEnabled) onSelectionChange?.(row);
+                }}
+                onKeyDown={(event) => {
+                  if (
+                    selectionEnabled &&
+                    (event.key === "Enter" || event.key === " ")
+                  ) {
+                    event.preventDefault();
+                    onSelectionChange?.(row);
+                  }
+                }}
+              >
+                {visibleColumns.map((column) => {
                   const value = row[column.field];
                   return (
                     <td key={column.field} style={{ textAlign: column.align }}>

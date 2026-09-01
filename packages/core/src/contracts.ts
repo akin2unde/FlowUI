@@ -65,6 +65,8 @@ export interface ButtonGroupProps extends BaseUIProps {
   orientation?: Orientation;
   attached?: boolean;
   align?: AlignValue;
+  selectable?: boolean;
+  value?: string | number;
 }
 export interface InputProps
   extends
@@ -135,6 +137,8 @@ export interface SortState {
 export interface TableColumn<T> {
   field: keyof T & string;
   header: string;
+  /** False hides this column until the user selects it. */
+  defaultVisible?: boolean;
   sortable?: boolean;
   width?: string | number;
   align?: "left" | "center" | "right";
@@ -170,4 +174,85 @@ export interface TooltipProps extends BaseUIProps {
   text: string;
   location?: TooltipLocation;
   delay?: number;
+}
+
+export type DateTimeMode = "date" | "time" | "datetime";
+export interface DateTimeProps extends BaseUIProps, DisableableProps {
+  value?: string;
+  mode?: DateTimeMode;
+  name?: string;
+  min?: string;
+  max?: string;
+  showDayBoundaryButtons?: boolean;
+}
+export interface AutocompleteProps extends BaseUIProps, DisableableProps {
+  options: DropdownModel[];
+  value?: string | number;
+  placeholder?: string;
+  minCharacters?: number;
+}
+export interface RatingProps extends BaseUIProps, DisableableProps {
+  value?: number;
+  maximum?: number;
+  precision?: 1 | 0.5;
+  readOnly?: boolean;
+}
+export interface ListboxProps extends BaseUIProps, DisableableProps {
+  options: DropdownModel[];
+  value?: string | number;
+  multiple?: boolean;
+}
+export interface TimelineItem {
+  id: string | number;
+  title: string;
+  description?: string;
+  date?: string;
+  icon?: string;
+  image?: string;
+  other?: any;
+}
+export interface TimelineProps extends BaseUIProps {
+  items: TimelineItem[];
+  orientation?: Orientation;
+}
+export interface PopoverProps extends BaseUIProps {
+  open?: boolean;
+  placement?: TooltipLocation;
+  closeOnOutsideClick?: boolean;
+}
+export interface FileUploadProps extends BaseUIProps, DisableableProps {
+  accept?: string;
+  multiple?: boolean;
+  preview?: boolean;
+  maxSize?: number;
+}
+export interface CarouselProps extends BaseUIProps {
+  activeIndex?: number;
+  loop?: boolean;
+  showIndicators?: boolean;
+  showControls?: boolean;
+}
+export interface BreadcrumbItem {
+  id: string | number;
+  text?: string;
+  image?: string;
+  icon?: string;
+  href?: string;
+  disabled?: boolean;
+  other?: any;
+}
+export interface BreadcrumbProps extends BaseUIProps {
+  items: BreadcrumbItem[];
+  separatorIcon?: string;
+}
+export type NotificationType = "success" | "error" | "warning" | "info";
+export type NotificationHorizontal = "left" | "center" | "right";
+export type NotificationVertical = "top" | "bottom";
+export interface NotificationProps extends BaseUIProps {
+  open?: boolean;
+  type?: NotificationType;
+  horizontal?: NotificationHorizontal;
+  vertical?: NotificationVertical;
+  duration?: number;
+  dismissible?: boolean;
 }

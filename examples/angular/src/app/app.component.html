@@ -89,10 +89,14 @@
           />
         </fui-hc>
 
-        <fui-button-group>
-          <fui-button>Day</fui-button>
-          <fui-button variant="outline">Week</fui-button>
-          <fui-button variant="outline">Month</fui-button>
+        <fui-button-group
+          [selectable]="true"
+          [value]="period"
+          (valueChange)="period = $event"
+        >
+          <fui-button value="day">Day</fui-button>
+          <fui-button value="week" variant="outline">Week</fui-button>
+          <fui-button value="month" variant="outline">Month</fui-button>
         </fui-button-group>
 
         <fui-hc wrap="wrap" gap="lg">
@@ -109,6 +113,107 @@
             <fui-button variant="outline">left</fui-button>
           </fui-tooltip>
         </fui-hc>
+      </fui-vc>
+    </section>
+
+    <section class="fui-demo-card">
+      <fui-vc gap="lg">
+        <fui-label fontSize="xl" fontWeight="bold">
+          Advanced controls
+        </fui-label>
+
+        <fui-date-time
+          [value]="dateTime"
+          mode="datetime"
+          (valueChange)="dateTime = $event"
+        />
+
+        <fui-autocomplete
+          [options]="countries"
+          [value]="autocomplete"
+          placeholder="Search for a country"
+          (selected)="autocomplete = $event.value"
+        />
+
+        <fui-rating [value]="rating" (valueChange)="rating = $event" />
+
+        <ng-template #countryOption let-option let-selected="selected">
+          <fui-hc justify="between" width="full">
+            <span>{{ option.display }}</span>
+            <small>
+              {{ selected ? "Selected" : option.other.phoneCode }}
+            </small>
+          </fui-hc>
+        </ng-template>
+        <fui-listbox
+          [options]="countries"
+          [values]="listboxValues"
+          [multiple]="true"
+          [optionTemplate]="countryOption"
+          (valuesChange)="listboxChanged($event)"
+        />
+
+        <fui-timeline [items]="timelineItems" orientation="vertical" />
+        <fui-timeline [items]="timelineItems" orientation="horizontal" />
+
+        <ng-template #popoverContent>
+          <fui-vc gap="sm">
+            <strong>Templated content</strong>
+            <fui-input placeholder="Popover input" />
+          </fui-vc>
+        </ng-template>
+        <fui-popover [content]="popoverContent" placement="right">
+          <fui-button variant="outline">Open popover</fui-button>
+        </fui-popover>
+
+        <fui-file-upload
+          accept="image/*,.pdf"
+          [multiple]="true"
+          [preview]="true"
+        />
+
+        <fui-carousel>
+          <ng-template>
+            <fui-image
+              src="https://picsum.photos/900/360?slide=1"
+              alt="Carousel slide 1"
+              width="full"
+              [height]="300"
+            />
+          </ng-template>
+          <ng-template>
+            <fui-image
+              src="https://picsum.photos/900/360?slide=2"
+              alt="Carousel slide 2"
+              width="full"
+              [height]="300"
+            />
+          </ng-template>
+          <ng-template>
+            <fui-image
+              src="https://picsum.photos/900/360?slide=3"
+              alt="Carousel slide 3"
+              width="full"
+              [height]="300"
+            />
+          </ng-template>
+        </fui-carousel>
+
+        <fui-breadcrumb [items]="breadcrumbs" />
+
+        <fui-button color="success" (pressed)="noticeOpen = true">
+          Show notification
+        </fui-button>
+        <fui-notification
+          [open]="noticeOpen"
+          title="Product saved"
+          type="success"
+          horizontal="center"
+          vertical="top"
+          (closed)="noticeOpen = false"
+        >
+          <p>The product was saved successfully.</p>
+        </fui-notification>
       </fui-vc>
     </section>
 
@@ -230,7 +335,15 @@
           [data]="data"
           [columns]="columns"
           [sort]="sort"
+          [alternateRows]="true"
+          [columnsConfigurable]="true"
+          [(visibleColumnFields)]="visibleProductColumns"
+          [exportable]="true"
+          exportFileName="products"
+          [selectionEnabled]="true"
+          [selectedRow]="selectedProduct"
           (sortChange)="sortChanged($event)"
+          (selectionChange)="selectedProduct = $event"
         />
       </fui-vc>
     </section>

@@ -1,5 +1,15 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import {
+  AfterContentInit,
+  Component,
+  ContentChildren,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
+  QueryList,
+} from "@angular/core";
+import type { Subscription } from "rxjs";
 import type {
   ComponentSize,
   ComponentVariant,
@@ -22,6 +32,8 @@ import { FlowBadgeComponent, FlowIconComponent } from "./primitives";
     [attr.data-variant]="variant"
     [attr.data-color]="color"
     [attr.data-size]="size"
+    [attr.data-selected]="selected"
+    [attr.aria-pressed]="selected"
     [attr.aria-label]="ariaLabel"
     [attr.aria-busy]="loading"
     (click)="pressed.emit($event)"
@@ -56,6 +68,8 @@ export class FlowButtonComponent extends FlowComponentBase {
   @Input() loadingText?: string;
   @Input() disabled = false;
   @Input() ariaLabel?: string;
+  @Input() value?: string | number;
+  @Input() selected = false;
   @Output() pressed = new EventEmitter<MouseEvent>();
   view = () => this.resolved("fui-button");
 }
@@ -74,8 +88,45 @@ export class FlowButtonComponent extends FlowComponentBase {
     <ng-content />
   </div>`,
 })
-export class FlowButtonGroupComponent extends FlowComponentBase {
+export class FlowButtonGroupComponent
+  extends FlowComponentBase
+  implements AfterContentInit, OnDestroy
+{
   @Input() orientation: Orientation = "horizontal";
   @Input() attached = true;
+  @Input() selectable = false;
+  @Input() value?: string | number;
+  @Output() valueChange = new EventEmitter<string | number>();
+  @ContentChildren(FlowButtonComponent)
+  buttons!: QueryList<FlowButtonComponent>;
+
+  private subscriptions: Subscription[] = [];
+
+  ngAfterContentInit(): void {
+    this.connectButtons();
+    this.buttons.changes.subscribe(() => this.connectButtons());
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+  }
+
+  private connectButtons(): void {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.subscriptions = [];
+    this.buttons.forEach((button) => {
+      button.selected = this.selectable && button.value === this.value;
+      this.subscriptions.push(
+        button.pressed.subscribe(() => {
+          if (!this.selectable || button.value === undefined) return;
+          this.value = button.value;
+          this.buttons.forEach(
+            (item) => (item.selected = item.value === this.value),
+          );
+          this.valueChange.emit(button.value);
+        }),
+      );
+    });
+  }
   view = () => this.resolved("fui-button-group");
 }

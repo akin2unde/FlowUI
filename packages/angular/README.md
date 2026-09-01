@@ -12,3 +12,8 @@ import only the standalone `fui-*` components it uses.
 
 See the [FlowUI repository](https://github.com/akin2unde/FlowUI) for the full
 component gallery and API documentation.
+
+Version 0.1.1 adds DateTime, Autocomplete, Rating, templatable Listbox,
+Timeline, Popover, FileUpload previews, Carousel, Breadcrumb, Notification,
+selectable ButtonGroup, alternating table rows, configurable visible columns,
+row selection, and Excel/PDF table export.

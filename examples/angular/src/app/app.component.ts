@@ -1,12 +1,16 @@
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import {
+  FlowAutocompleteComponent,
   FlowBadgeComponent,
+  FlowBreadcrumbComponent,
   FlowButtonComponent,
   FlowButtonGroupComponent,
   FlowCardComponent,
+  FlowCarouselComponent,
   FlowCheckboxComponent,
   FlowColorPickerComponent,
+  FlowDateTimeComponent,
   FlowDialogComponent,
   FlowDividerComponent,
   FlowDropdownComponent,
@@ -15,9 +19,12 @@ import {
   FlowImageComponent,
   FlowInputComponent,
   FlowLabelComponent,
+  FlowListboxComponent,
   FlowMenuComponent,
   FlowPasswordInputComponent,
+  FlowPopoverComponent,
   FlowRadioGroupComponent,
+  FlowRatingComponent,
   FlowSectionComponent,
   FlowSliderComponent,
   FlowSwitchComponent,
@@ -25,15 +32,20 @@ import {
   FlowTableComponent,
   FlowTabsComponent,
   FlowTextAreaComponent,
+  FlowTimelineComponent,
   FlowTooltipComponent,
   FlowTreeComponent,
   FlowTreeDropdownComponent,
   FlowVStackComponent,
+  FlowFileUploadComponent,
+  FlowNotificationComponent,
+  type BreadcrumbItem,
   type DialogPosition,
   type DropdownModel,
   type MenuItem,
   type SortState,
   type TableColumn,
+  type TimelineItem,
   type TreeModel,
 } from "@akin2unde/flowui-angular";
 
@@ -42,12 +54,16 @@ import {
   standalone: true,
   imports: [
     CommonModule,
+    FlowAutocompleteComponent,
     FlowBadgeComponent,
+    FlowBreadcrumbComponent,
     FlowButtonComponent,
     FlowButtonGroupComponent,
     FlowCardComponent,
+    FlowCarouselComponent,
     FlowCheckboxComponent,
     FlowColorPickerComponent,
+    FlowDateTimeComponent,
     FlowDialogComponent,
     FlowDividerComponent,
     FlowDropdownComponent,
@@ -56,9 +72,12 @@ import {
     FlowImageComponent,
     FlowInputComponent,
     FlowLabelComponent,
+    FlowListboxComponent,
     FlowMenuComponent,
     FlowPasswordInputComponent,
+    FlowPopoverComponent,
     FlowRadioGroupComponent,
+    FlowRatingComponent,
     FlowSectionComponent,
     FlowSliderComponent,
     FlowSwitchComponent,
@@ -66,10 +85,13 @@ import {
     FlowTableComponent,
     FlowTabsComponent,
     FlowTextAreaComponent,
+    FlowTimelineComponent,
     FlowTooltipComponent,
     FlowTreeComponent,
     FlowTreeDropdownComponent,
     FlowVStackComponent,
+    FlowFileUploadComponent,
+    FlowNotificationComponent,
   ],
   templateUrl: "./app.component.html",
 })
@@ -86,6 +108,15 @@ export class AppComponent {
   location: string | number = "lagos";
   treeValue: string | number = "lagos";
   dialog: DialogPosition | null = null;
+  period: string | number = "week";
+  dateTime = "2026-09-01T09:30";
+  autocomplete: string | number = "ng";
+  rating = 4;
+  listboxValues: Array<string | number> = [];
+  selectedProduct?: Record<string, unknown>;
+  // Persist this value per user and restore it when the screen opens.
+  visibleProductColumns = ["name", "price"];
+  noticeOpen = false;
 
   readonly menuItems: MenuItem[] = [
     {
@@ -172,6 +203,7 @@ export class AppComponent {
       field: "category",
       header: "Category",
       sortable: true,
+      defaultVisible: false,
     },
     {
       field: "price",
@@ -195,12 +227,49 @@ export class AppComponent {
     "right",
   ];
 
+  readonly timelineItems: TimelineItem[] = [
+    {
+      id: 1,
+      title: "Order created",
+      description: "The customer placed an order.",
+      date: "09:00",
+      icon: "fa-solid fa-cart-plus",
+    },
+    {
+      id: 2,
+      title: "Payment confirmed",
+      description: "Payment was received successfully.",
+      date: "09:10",
+      icon: "fa-solid fa-credit-card",
+    },
+    {
+      id: 3,
+      title: "Ready to dispatch",
+      date: "10:15",
+      icon: "fa-solid fa-truck",
+    },
+  ];
+
+  readonly breadcrumbs: BreadcrumbItem[] = [
+    { id: 1, text: "Home", icon: "fa-solid fa-house" },
+    {
+      id: 2,
+      text: "Products",
+      image: "https://picsum.photos/40/40?category",
+    },
+    { id: 3, text: "Rice" },
+  ];
+
   selectCountry(model: DropdownModel): void {
     this.country = model.value;
   }
 
   selectLocation(model: TreeModel): void {
     this.location = model.value;
+  }
+
+  listboxChanged(options: DropdownModel[]): void {
+    this.listboxValues = options.map((option) => option.value);
   }
 
   sortChanged(next: SortState): void {

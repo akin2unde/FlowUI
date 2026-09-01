@@ -1,4 +1,11 @@
-import type { ButtonHTMLAttributes, PropsWithChildren } from "react";
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  type ButtonHTMLAttributes,
+  type PropsWithChildren,
+  type ReactElement,
+} from "react";
 import type {
   ButtonGroupProps as CoreButtonGroupProps,
   ButtonProps as CoreButtonProps,
@@ -12,7 +19,9 @@ export interface ButtonProps
     Omit<
       ButtonHTMLAttributes<HTMLButtonElement>,
       "color" | "style" | "children"
-    > {}
+    > {
+  selected?: boolean;
+}
 export function Button({
   children,
   type = "button",
@@ -27,6 +36,7 @@ export function Button({
   ariaLabel,
   disabled,
   onClick,
+  selected,
   ...props
 }: ButtonProps) {
   const flow = useFlowProps("fui-button", props);
@@ -38,6 +48,8 @@ export function Button({
       data-variant={variant}
       data-color={color}
       data-size={size}
+      data-selected={selected}
+      aria-pressed={selected}
       disabled={disabled || loading}
       aria-label={ariaLabel}
       aria-busy={loading}
@@ -59,11 +71,16 @@ export function Button({
   );
 }
 
-export interface ButtonGroupProps extends PropsWithChildren<CoreButtonGroupProps> {}
+export interface ButtonGroupProps extends PropsWithChildren<CoreButtonGroupProps> {
+  onChange?: (value: string | number) => void;
+}
 export function ButtonGroup({
   children,
   orientation = "horizontal",
   attached = true,
+  selectable = false,
+  value,
+  onChange,
   ...props
 }: ButtonGroupProps) {
   const flow = useFlowProps("fui-button-group", props);
@@ -74,7 +91,25 @@ export function ButtonGroup({
       data-orientation={orientation}
       data-attached={attached}
     >
-      {children}
+      {selectable
+        ? Children.map(children, (child) => {
+            if (!isValidElement(child)) return child;
+            const button = child as ReactElement<ButtonProps>;
+            const childValue = button.props.value;
+            return cloneElement(button, {
+              selected: childValue === value,
+              onClick: (event) => {
+                button.props.onClick?.(event);
+                if (
+                  typeof childValue === "string" ||
+                  typeof childValue === "number"
+                ) {
+                  onChange?.(childValue);
+                }
+              },
+            });
+          })
+        : children}
     </div>
   );
 }
