@@ -21,6 +21,7 @@ import {
   Label,
   Listbox,
   Menu,
+  MultiSelect,
   PasswordInput,
   Popover,
   RadioGroup,
@@ -36,6 +37,7 @@ import {
   Tooltip,
   Tree,
   TreeDropdown,
+  TreeMultiSelect,
   VC,
   FileUpload,
   Notification,
@@ -89,11 +91,26 @@ const countries: DropdownModel[] = [
     display: "Nigeria",
     value: "ng",
     other: { phoneCode: "+234" },
+    group: "Africa",
   },
   {
     display: "United Kingdom",
     value: "uk",
     other: { phoneCode: "+44" },
+    group: "Europe",
+  },
+  {
+    display: "Ghana",
+    value: "gh",
+    other: { phoneCode: "+233" },
+    group: "Africa",
+  },
+  {
+    display: "South Africa",
+    value: "za",
+    other: { phoneCode: "+27" },
+    group: "Africa",
+    disabled: true,
   },
 ];
 
@@ -200,6 +217,15 @@ export function App() {
   const [color, setColor] = useState("#6d28d9");
   const [country, setCountry] = useState<string | number>("ng");
   const [location, setLocation] = useState<string | number>("lagos");
+  const [selectedCountries, setSelectedCountries] = useState<
+    Array<string | number>
+  >(["ng", "gh"]);
+  const [selectedTreeValues, setSelectedTreeValues] = useState<
+    Array<string | number>
+  >(["lagos", "london"]);
+  const [expandedTreeValues, setExpandedTreeValues] = useState<
+    Array<string | number>
+  >(["ng", "uk"]);
   const [treeValue, setTreeValue] = useState<string | number>("lagos");
   const [sort, setSort] = useState<SortState>({
     field: "name",
@@ -414,13 +440,44 @@ export function App() {
               <Dropdown
                 value={country}
                 options={countries}
+                searchable
+                grouped
+                hasMore
+                loadMoreText="Load more countries"
                 onChange={(model) => setCountry(model.value)}
+                onLoadMore={() => console.info("Load the next country page")}
+              />
+
+              <MultiSelect
+                value={selectedCountries}
+                options={countries}
+                searchable
+                grouped
+                chipTextColor="primary.700"
+                chipBackgroundColor="primary.100"
+                chipCloseIconColor="textInverse"
+                onChange={setSelectedCountries}
               />
 
               <TreeDropdown
                 value={location}
                 options={tree}
                 onChange={(model) => setLocation(model.value)}
+              />
+
+              <TreeMultiSelect
+                nodes={tree}
+                value={selectedTreeValues}
+                expandedValues={expandedTreeValues}
+                searchable
+                cascadeSelection
+                onChange={setSelectedTreeValues}
+                onExpandedValuesChange={setExpandedTreeValues}
+                renderNode={(node) => (
+                  <span>
+                    {node.display} — {node.other.type}
+                  </span>
+                )}
               />
             </VC>
           </section>

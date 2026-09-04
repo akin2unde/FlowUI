@@ -1,5 +1,11 @@
 import { CommonModule } from "@angular/common";
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  TemplateRef,
+} from "@angular/core";
 import type { DropdownModel, SelectOption } from "@akin2unde/flowui-core";
 import { FlowComponentBase } from "./base";
 import { FlowIconComponent } from "./primitives";
@@ -271,20 +277,84 @@ export class FlowColorPickerComponent extends FlowComponentBase {
 @Component({
   selector: "fui-dropdown",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FlowIconComponent],
   template: `
-    <select
-      [class]="view().className"
-      [ngStyle]="view().style"
-      [value]="value ?? ''"
-      [disabled]="disabled"
-      (change)="selectValue($any($event.target).value)"
-    >
-      <option value="" disabled>{{ placeholder }}</option>
-      <option *ngFor="let option of options" [value]="option.value">
-        {{ option.display }}
-      </option>
-    </select>
+    <div [class]="view().className" [ngStyle]="view().style">
+      <button
+        class="fui-select-trigger"
+        type="button"
+        [disabled]="disabled"
+        [attr.aria-expanded]="open"
+        (click)="open = !open"
+      >
+        <span [class.fui-select-placeholder]="!selectedOption">
+          <ng-container
+            *ngIf="selectedOption && valueTemplate; else plainValue"
+            [ngTemplateOutlet]="valueTemplate"
+            [ngTemplateOutletContext]="{ $implicit: selectedOption }"
+          />
+          <ng-template #plainValue>
+            {{ selectedOption?.display ?? placeholder }}
+          </ng-template>
+        </span>
+        <fui-icon [icon]="'fa-solid fa-chevron-' + (open ? 'up' : 'down')" />
+      </button>
+
+      <div *ngIf="open" class="fui-select-menu">
+        <label *ngIf="searchable" class="fui-select-search">
+          <fui-icon icon="fa-solid fa-magnifying-glass" />
+          <input
+            [value]="query"
+            [placeholder]="searchPlaceholder"
+            (input)="search($any($event.target).value)"
+          />
+        </label>
+        <div class="fui-select-options" role="listbox">
+          <ng-container *ngIf="matches.length; else empty">
+            <ng-container *ngFor="let group of groups">
+              <div *ngIf="grouped" class="fui-select-group">{{ group }}</div>
+              <button
+                *ngFor="let option of optionsForGroup(group)"
+                class="fui-select-option"
+                type="button"
+                role="option"
+                [disabled]="option.disabled"
+                [attr.aria-selected]="option.value === value"
+                (click)="choose(option)"
+              >
+                <span>
+                  <ng-container
+                    *ngIf="optionTemplate; else plainOption"
+                    [ngTemplateOutlet]="optionTemplate"
+                    [ngTemplateOutletContext]="{
+                      $implicit: option,
+                      selected: option.value === value,
+                    }"
+                  />
+                  <ng-template #plainOption>{{ option.display }}</ng-template>
+                </span>
+                <fui-icon
+                  *ngIf="option.value === value"
+                  icon="fa-solid fa-check"
+                />
+              </button>
+            </ng-container>
+          </ng-container>
+          <ng-template #empty>
+            <div class="fui-select-empty">{{ emptyText }}</div>
+          </ng-template>
+        </div>
+        <button
+          *ngIf="hasMore || loading"
+          class="fui-select-load-more"
+          type="button"
+          [disabled]="loading"
+          (click)="loadMore.emit()"
+        >
+          {{ loading ? "Loading…" : loadMoreText }}
+        </button>
+      </div>
+    </div>
   `,
 })
 export class FlowDropdownComponent extends FlowComponentBase {
@@ -292,8 +362,63 @@ export class FlowDropdownComponent extends FlowComponentBase {
   @Input() options: DropdownModel[] = [];
   @Input() placeholder = "Select an option";
   @Input() disabled = false;
+  @Input() searchable = false;
+  @Input() grouped = false;
+  @Input() searchPlaceholder = "Search…";
+  @Input() emptyText = "No options found";
+  @Input() loading = false;
+  @Input() hasMore = false;
+  @Input() loadMoreText = "Load more";
+  @Input() optionTemplate?: TemplateRef<{
+    $implicit: DropdownModel;
+    selected: boolean;
+  }>;
+  @Input() valueTemplate?: TemplateRef<{ $implicit: DropdownModel }>;
 
   @Output() selected = new EventEmitter<DropdownModel>();
+  @Output() valueChange = new EventEmitter<string | number>();
+  @Output() searchChange = new EventEmitter<string>();
+  @Output() loadMore = new EventEmitter<void>();
+
+  open = false;
+  query = "";
+
+  get selectedOption(): DropdownModel | undefined {
+    return this.options.find((option) => option.value === this.value);
+  }
+
+  get matches(): DropdownModel[] {
+    return this.options.filter((option) =>
+      String(option.display).toLowerCase().includes(this.query.toLowerCase()),
+    );
+  }
+
+  get groups(): Array<string | number | undefined> {
+    return this.grouped
+      ? Array.from(
+          new Set(this.matches.map((option) => option.group ?? "Other")),
+        )
+      : [undefined];
+  }
+
+  optionsForGroup(group: string | number | undefined): DropdownModel[] {
+    return this.matches.filter(
+      (option) => !this.grouped || (option.group ?? "Other") === group,
+    );
+  }
+
+  search(query: string): void {
+    this.query = query;
+    this.searchChange.emit(query);
+  }
+
+  choose(model: DropdownModel): void {
+    this.value = model.value;
+    this.valueChange.emit(model.value);
+    this.selected.emit(model);
+    this.open = false;
+    this.query = "";
+  }
 
   selectValue(value: string): void {
     const model = this.options.find((option) => String(option.value) === value);
@@ -303,5 +428,5 @@ export class FlowDropdownComponent extends FlowComponentBase {
     }
   }
 
-  view = () => this.resolved("fui-control");
+  view = () => this.resolved("fui-select");
 }

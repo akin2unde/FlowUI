@@ -269,16 +269,48 @@
         <fui-slider [value]="volume" (valueChange)="volume = $event" />
 
         <fui-dropdown
-          [value]="country"
+          [(value)]="country"
           [options]="countries"
+          [searchable]="true"
+          [grouped]="true"
+          [hasMore]="true"
+          loadMoreText="Load more countries"
           (selected)="selectCountry($event)"
         />
+
+        <fui-multi-select
+          [options]="countries"
+          [(value)]="selectedCountries"
+          [searchable]="true"
+          [grouped]="true"
+          chipTextColor="primary.700"
+          chipBackgroundColor="primary.100"
+          chipCloseIconColor="textInverse"
+          [optionTemplate]="countryOption"
+        />
+
+        <ng-template #countryOption let-option let-selected="selected">
+          <span> {{ option.display }} — {{ option.other.phoneCode }} </span>
+        </ng-template>
 
         <fui-tree-dropdown
           [value]="location"
           [options]="tree"
           (selected)="selectLocation($event)"
         />
+
+        <fui-tree-multi-select
+          [nodes]="tree"
+          [(value)]="selectedTreeValues"
+          [(expandedValues)]="expandedTreeValues"
+          [searchable]="true"
+          [cascadeSelection]="true"
+          [nodeTemplate]="treeNode"
+        />
+
+        <ng-template #treeNode let-node let-selected="selected">
+          <span>{{ node.display }} — {{ node.other.type }}</span>
+        </ng-template>
       </fui-vc>
     </section>
 

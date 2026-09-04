@@ -3,6 +3,7 @@ import type {
   BaseUIProps,
   ComponentSize,
   ComponentVariant,
+  ColorValue,
   DisableableProps,
   FlexContainerProps,
   FocusableProps,
@@ -119,9 +120,49 @@ export interface DropdownModel {
   display: string | number;
   value: string | number;
   other: any;
+  disabled?: boolean;
+  group?: string | number;
 }
 export interface TreeModel extends DropdownModel {
   children?: TreeModel[];
+  selectable?: boolean;
+  hasChildren?: boolean;
+}
+
+export interface DropdownBehaviorProps extends BaseUIProps, DisableableProps {
+  options: DropdownModel[];
+  searchable?: boolean;
+  searchPlaceholder?: string;
+  emptyText?: string;
+  loading?: boolean;
+  hasMore?: boolean;
+  loadMoreText?: string;
+  grouped?: boolean;
+}
+
+export interface MultiSelectProps extends DropdownBehaviorProps {
+  value?: Array<string | number>;
+  placeholder?: string;
+  maxVisibleChips?: number;
+  showCheckboxes?: boolean;
+  chipTextColor?: ColorValue;
+  chipBackgroundColor?: ColorValue;
+  chipCloseIconColor?: ColorValue;
+}
+
+export interface TreeMultiSelectProps extends BaseUIProps, DisableableProps {
+  nodes: TreeModel[];
+  value?: Array<string | number>;
+  expandedValues?: Array<string | number>;
+  searchable?: boolean;
+  searchPlaceholder?: string;
+  placeholder?: string;
+  emptyText?: string;
+  cascadeSelection?: boolean;
+  maxVisibleChips?: number;
+  chipTextColor?: ColorValue;
+  chipBackgroundColor?: ColorValue;
+  chipCloseIconColor?: ColorValue;
 }
 export interface TabItem {
   id: string;

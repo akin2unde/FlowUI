@@ -6,6 +6,11 @@ import {
   setLocalDayBoundary,
   themeToCSS,
 } from "./index";
+import {
+  enabledSelectableDescendants,
+  filterTree,
+  selectedTreeModels,
+} from "./selection";
 
 describe("FlowUI core", () => {
   it("uses default as the all-screen value", () => {
@@ -44,5 +49,32 @@ describe("FlowUI core", () => {
     expect(setLocalDayBoundary("2026-09-01T09:30", "end")).toBe(
       "2026-09-01T23:59",
     );
+  });
+});
+
+describe("tree selection helpers", () => {
+  const nodes = [
+    {
+      display: "Food",
+      value: "food",
+      other: null,
+      children: [
+        { display: "Noodles", value: "noodles", other: null },
+        {
+          display: "Cereal",
+          value: "cereal",
+          other: null,
+          disabled: true,
+        },
+      ],
+    },
+  ];
+
+  it("selects enabled descendants and preserves parents while filtering", () => {
+    expect(
+      enabledSelectableDescendants(nodes[0]).map((node) => node.value),
+    ).toEqual(["noodles"]);
+    expect(filterTree(nodes, "noodles")[0].children?.[0].value).toBe("noodles");
+    expect(selectedTreeModels(nodes, ["noodles"])[0].display).toBe("Noodles");
   });
 });

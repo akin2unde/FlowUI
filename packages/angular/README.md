@@ -17,3 +17,6 @@ Version 0.1.1 adds DateTime, Autocomplete, Rating, templatable Listbox,
 Timeline, Popover, FileUpload previews, Carousel, Breadcrumb, Notification,
 selectable ButtonGroup, alternating table rows, configurable visible columns,
 row selection, and Excel/PDF table export.
+
+Version 0.1.4 redesigns Dropdown and adds searchable, templatable MultiSelect
+and TreeMultiSelect controls with grouping, load-more and removable chips.

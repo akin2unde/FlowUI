@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-react",
-  "version": "0.1.1",
+  "version": "0.1.4",
   "description": "React components for FlowUI.",
   "author": "Akintunde Morakinyo",
   "repository": {
@@ -41,7 +41,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@akin2unde/flowui-core": "0.1.1"
+    "@akin2unde/flowui-core": "0.1.4"
   },
   "peerDependencies": {
     "react": ">=18",

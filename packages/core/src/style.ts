@@ -32,7 +32,7 @@ const spacing = (value: SpacingValue, theme: FlowUITheme): string | number =>
   value in theme.spacing
     ? `var(--fui-spacing-${String(value)})`
     : length(value);
-const color = (value: ColorValue): string => {
+export const resolveColorValue = (value: ColorValue): string => {
   if (
     [
       "canvas",
@@ -60,6 +60,7 @@ const color = (value: ColorValue): string => {
   }
   return value;
 };
+const color = resolveColorValue;
 const justify = (value: unknown) =>
   ({
     start: "flex-start",

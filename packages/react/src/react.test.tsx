@@ -7,8 +7,10 @@ import {
   FlowUIProvider,
   HC,
   Listbox,
+  MultiSelect,
   Timeline,
   Table,
+  TreeMultiSelect,
 } from "./index";
 
 describe("FlowUI React", () => {
@@ -24,7 +26,7 @@ describe("FlowUI React", () => {
     expect(html).toContain("Save");
   });
 
-  it("renders the 0.1.1 controls and selection state", () => {
+  it("renders advanced controls and selection state", () => {
     const html = renderToStaticMarkup(
       <FlowUIProvider>
         <DateTime value="2026-09-01T09:30" />
@@ -37,6 +39,25 @@ describe("FlowUI React", () => {
           value="ng"
         />
         <Timeline items={[{ id: 1, title: "Created" }]} />
+        <MultiSelect
+          options={[
+            { display: "Nigeria", value: "ng", other: null },
+            { display: "Ghana", value: "gh", other: null },
+          ]}
+          value={["ng"]}
+          searchable
+        />
+        <TreeMultiSelect
+          nodes={[
+            {
+              display: "Food",
+              value: "food",
+              other: null,
+              children: [{ display: "Noodles", value: "noodles", other: null }],
+            },
+          ]}
+          value={["noodles"]}
+        />
         <Table
           data={[{ name: "Rice", price: 10 }]}
           columns={[
@@ -55,6 +76,8 @@ describe("FlowUI React", () => {
     expect(html).toContain('aria-pressed="true"');
     expect(html).toContain("Nigeria");
     expect(html).toContain("Created");
+    expect(html).toContain("Remove Nigeria");
+    expect(html).toContain("Remove Noodles");
     expect(html).toContain('data-alternate-rows="true"');
     expect(html).toContain("Excel");
     expect(html).not.toContain("<th>Price</th>");

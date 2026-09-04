@@ -21,6 +21,7 @@ import {
   FlowLabelComponent,
   FlowListboxComponent,
   FlowMenuComponent,
+  FlowMultiSelectComponent,
   FlowPasswordInputComponent,
   FlowPopoverComponent,
   FlowRadioGroupComponent,
@@ -36,6 +37,7 @@ import {
   FlowTooltipComponent,
   FlowTreeComponent,
   FlowTreeDropdownComponent,
+  FlowTreeMultiSelectComponent,
   FlowVStackComponent,
   FlowFileUploadComponent,
   FlowNotificationComponent,
@@ -74,6 +76,7 @@ import {
     FlowLabelComponent,
     FlowListboxComponent,
     FlowMenuComponent,
+    FlowMultiSelectComponent,
     FlowPasswordInputComponent,
     FlowPopoverComponent,
     FlowRadioGroupComponent,
@@ -89,6 +92,7 @@ import {
     FlowTooltipComponent,
     FlowTreeComponent,
     FlowTreeDropdownComponent,
+    FlowTreeMultiSelectComponent,
     FlowVStackComponent,
     FlowFileUploadComponent,
     FlowNotificationComponent,
@@ -106,6 +110,9 @@ export class AppComponent {
   color = "#6d28d9";
   country: string | number = "ng";
   location: string | number = "lagos";
+  selectedCountries: Array<string | number> = ["ng", "gh"];
+  selectedTreeValues: Array<string | number> = ["lagos", "london"];
+  expandedTreeValues: Array<string | number> = ["ng", "uk"];
   treeValue: string | number = "lagos";
   dialog: DialogPosition | null = null;
   period: string | number = "week";
@@ -147,11 +154,26 @@ export class AppComponent {
       display: "Nigeria",
       value: "ng",
       other: { phoneCode: "+234" },
+      group: "Africa",
     },
     {
       display: "United Kingdom",
       value: "uk",
       other: { phoneCode: "+44" },
+      group: "Europe",
+    },
+    {
+      display: "Ghana",
+      value: "gh",
+      other: { phoneCode: "+233" },
+      group: "Africa",
+    },
+    {
+      display: "South Africa",
+      value: "za",
+      other: { phoneCode: "+27" },
+      group: "Africa",
+      disabled: true,
     },
   ];
 

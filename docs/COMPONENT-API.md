@@ -7,8 +7,10 @@ Every visible component supports the applicable shared FlowUI properties: dimens
 - `Button`: five variants, seven semantic colors, five sizes, loading state, left/right/center icon and badge.
 - `ButtonGroup`: horizontal or vertical, attached or separated.
 - `Menu`: icons, badges, disabled items and separators.
-- `Dropdown`: flat options using `{ display, value, other }`; emits the complete selected object.
-- `TreeDropdown`: nested `{ display, value, other, children? }` objects rendered at their depth.
+- `Dropdown`: styled single selection with optional search, grouping, templates and load-more.
+- `MultiSelect`: checkbox selection with removable chips and option/chip templates.
+- `TreeDropdown`: single selection from nested models.
+- `TreeMultiSelect`: nested checkbox selection with search, cascading, indeterminate parents, templates and lazy children.
 - `Tabs` and `Tab`: controlled or internal selection with arbitrary content.
 - `Input` and `TextArea`: native attributes and change events.
 - `PasswordInput`: password entry with an optional show/hide button and controlled or internal visibility.
@@ -85,13 +87,32 @@ export interface DropdownModel {
   display: string | number;
   value: string | number;
   other: any;
+  disabled?: boolean;
+  group?: string | number;
 }
 
 export interface TreeModel extends DropdownModel {
   children?: TreeModel[];
+  selectable?: boolean;
+  hasChildren?: boolean;
 }
 ```
 
 React receives the selected model through `onChange`. Angular emits it through
 `selected`. Keeping `other` unrestricted lets an application attach the full
 domain object without changing the control's display and identity contract.
+
+`MultiSelect` and `TreeMultiSelect` bind to `Array<string | number>`. Their
+change APIs also return the corresponding full models. Removing a chip removes
+its exact value and emits the updated selection. Chip text, background, and
+close-icon colours accept FlowUI theme colours or CSS colours.
+
+`searchable` enables local display-text filtering and emits search changes for
+server filtering. `hasMore` displays a load-more action; loading and pagination
+remain controlled by the application. `grouped` reads the optional `group`
+field on flat dropdown options.
+
+With `cascadeSelection`, selecting a tree parent selects its enabled,
+selectable leaf descendants. Parent checked and indeterminate states are
+derived from the bound values. `hasChildren` and `loadChildren` support lazy
+branches without changing the node model.

@@ -51,6 +51,17 @@ export interface DropdownProps extends BaseUIProps {
   options: DropdownModel[];
   placeholder?: string;
   disabled?: boolean;
+  searchable?: boolean;
+  grouped?: boolean;
+  searchPlaceholder?: string;
+  emptyText?: string;
+  loading?: boolean;
+  hasMore?: boolean;
+  loadMoreText?: string;
+  renderOption?: (model: DropdownModel, selected: boolean) => ReactNode;
+  renderValue?: (model: DropdownModel) => ReactNode;
+  onSearchChange?: (query: string) => void;
+  onLoadMore?: () => void;
   onChange?: (model: DropdownModel) => void;
 }
 
@@ -59,31 +70,115 @@ export function Dropdown({
   options,
   placeholder = "Select an option",
   disabled,
+  searchable = false,
+  grouped = false,
+  searchPlaceholder = "Search…",
+  emptyText = "No options found",
+  loading = false,
+  hasMore = false,
+  loadMoreText = "Load more",
+  renderOption,
+  renderValue,
+  onSearchChange,
+  onLoadMore,
   onChange,
   ...props
 }: DropdownProps) {
-  const flow = useFlowProps("fui-control", props);
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const selected = options.find((option) => option.value === value);
+  const matches = options.filter((option) =>
+    String(option.display).toLowerCase().includes(query.toLowerCase()),
+  );
+  const groups = grouped
+    ? Array.from(new Set(matches.map((option) => option.group ?? "Other")))
+    : [undefined];
+  const flow = useFlowProps("fui-select", props);
   return (
-    <select
-      {...flow}
-      value={value ?? ""}
-      disabled={disabled}
-      onChange={(event) => {
-        const selected = options.find(
-          (option) => String(option.value) === event.target.value,
-        );
-        if (selected) onChange?.(selected);
-      }}
-    >
-      <option value="" disabled>
-        {placeholder}
-      </option>
-      {options.map((option) => (
-        <option key={option.value} value={option.value}>
-          {option.display}
-        </option>
-      ))}
-    </select>
+    <div {...flow}>
+      <button
+        className="fui-select-trigger"
+        type="button"
+        disabled={disabled}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        onClick={() => setOpen((current) => !current)}
+      >
+        <span className={selected ? undefined : "fui-select-placeholder"}>
+          {selected
+            ? (renderValue?.(selected) ?? selected.display)
+            : placeholder}
+        </span>
+        <Icon icon={`fa-solid fa-chevron-${open ? "up" : "down"}`} />
+      </button>
+      {open && (
+        <div className="fui-select-menu">
+          {searchable && (
+            <label className="fui-select-search">
+              <Icon icon="fa-solid fa-magnifying-glass" />
+              <input
+                value={query}
+                placeholder={searchPlaceholder}
+                autoFocus
+                onChange={(event) => {
+                  setQuery(event.target.value);
+                  onSearchChange?.(event.target.value);
+                }}
+              />
+            </label>
+          )}
+          <div className="fui-select-options" role="listbox">
+            {matches.length ? (
+              groups.map((group) => (
+                <div key={String(group)}>
+                  {grouped && <div className="fui-select-group">{group}</div>}
+                  {matches
+                    .filter(
+                      (option) =>
+                        !grouped || (option.group ?? "Other") === group,
+                    )
+                    .map((option) => (
+                      <button
+                        key={option.value}
+                        className="fui-select-option"
+                        type="button"
+                        role="option"
+                        aria-selected={option.value === value}
+                        disabled={option.disabled}
+                        onClick={() => {
+                          onChange?.(option);
+                          setOpen(false);
+                          setQuery("");
+                        }}
+                      >
+                        <span>
+                          {renderOption?.(option, option.value === value) ??
+                            option.display}
+                        </span>
+                        {option.value === value && (
+                          <Icon icon="fa-solid fa-check" />
+                        )}
+                      </button>
+                    ))}
+                </div>
+              ))
+            ) : (
+              <div className="fui-select-empty">{emptyText}</div>
+            )}
+          </div>
+          {(hasMore || loading) && (
+            <button
+              className="fui-select-load-more"
+              type="button"
+              disabled={loading}
+              onClick={onLoadMore}
+            >
+              {loading ? "Loading…" : loadMoreText}
+            </button>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 

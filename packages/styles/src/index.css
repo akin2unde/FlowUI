@@ -143,6 +143,131 @@
   .fui-control:hover {
     border-color: var(--fui-color-borderStrong);
   }
+  .fui-select,
+  .fui-multi-select,
+  .fui-tree-multi-select {
+    @apply relative block w-full;
+  }
+  .fui-select-trigger,
+  .fui-multi-select-trigger {
+    @apply flex min-h-11 w-full items-center justify-between gap-2 rounded-lg border px-3 py-2 text-left text-sm;
+    border-color: var(--fui-color-border);
+    color: var(--fui-color-text);
+    background: var(--fui-color-surface);
+  }
+  .fui-select-trigger:hover,
+  .fui-multi-select-trigger:hover {
+    border-color: var(--fui-color-borderStrong);
+  }
+  .fui-select-trigger:disabled,
+  .fui-multi-select-toggle:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+  .fui-select-placeholder {
+    color: var(--fui-color-textMuted);
+  }
+  .fui-select-menu {
+    @apply absolute left-0 top-full z-50 mt-1 w-full min-w-56 overflow-hidden rounded-xl border shadow-xl;
+    border-color: var(--fui-color-border);
+    color: var(--fui-color-text);
+    background: var(--fui-color-surfaceRaised);
+  }
+  .fui-select-search {
+    @apply flex items-center gap-2 border-b px-3 py-2;
+    border-color: var(--fui-color-border);
+    color: var(--fui-color-textMuted);
+  }
+  .fui-select-search input {
+    @apply min-w-0 flex-1 bg-transparent py-1 text-sm outline-none;
+    color: var(--fui-color-text);
+  }
+  .fui-select-options,
+  .fui-tree-multi {
+    @apply max-h-72 overflow-auto p-1.5;
+  }
+  .fui-select-option {
+    @apply flex w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm;
+  }
+  .fui-select-option:hover:not(:disabled),
+  .fui-select-option[aria-selected="true"] {
+    background: color-mix(
+      in srgb,
+      var(--fui-palette-primary-600) 10%,
+      var(--fui-color-surface)
+    );
+  }
+  .fui-select-option:disabled {
+    @apply cursor-not-allowed opacity-45;
+  }
+  .fui-select-group {
+    @apply border-t px-3 pb-1 pt-3 text-xs font-semibold first:border-t-0 first:pt-2;
+    border-color: var(--fui-color-border);
+    color: var(--fui-color-textMuted);
+  }
+  .fui-select-empty {
+    @apply px-3 py-5 text-center text-sm;
+    color: var(--fui-color-textMuted);
+  }
+  .fui-select-load-more {
+    @apply w-full cursor-pointer border-t px-3 py-2 text-center text-sm font-semibold;
+    border-color: var(--fui-color-border);
+    color: var(--fui-palette-primary-600);
+  }
+  .fui-select-load-more:hover:not(:disabled) {
+    background: var(--fui-color-surfaceSunken);
+  }
+  .fui-chip-list {
+    @apply flex min-w-0 flex-1 flex-wrap items-center gap-1.5;
+  }
+  .fui-select-chip,
+  .fui-select-chip-overflow {
+    @apply inline-flex items-center gap-1.5 rounded-full border py-1 pl-2.5 text-xs font-medium;
+    border-color: color-mix(
+      in srgb,
+      var(--fui-palette-primary-600) 28%,
+      transparent
+    );
+    color: var(--fui-palette-primary-700);
+    background: color-mix(
+      in srgb,
+      var(--fui-palette-primary-600) 12%,
+      var(--fui-color-surface)
+    );
+  }
+  .fui-select-chip-overflow {
+    @apply px-2.5;
+  }
+  .fui-select-chip-close {
+    @apply grid size-5 cursor-pointer place-items-center rounded-full text-[10px];
+    color: var(--fui-color-textInverse);
+    background: var(--fui-palette-primary-600);
+  }
+  .fui-select-chip-close:hover:not(:disabled) {
+    background: var(--fui-palette-primary-700);
+  }
+  .fui-multi-select-toggle {
+    @apply grid size-8 shrink-0 cursor-pointer place-items-center rounded-md;
+    color: var(--fui-color-textMuted);
+  }
+  .fui-tree-multi-row {
+    @apply flex min-h-10 items-center gap-2 rounded-lg pr-2 text-sm;
+  }
+  .fui-tree-multi-row:hover {
+    background: var(--fui-color-surfaceSunken);
+  }
+  .fui-tree-multi-toggle {
+    @apply grid size-8 shrink-0 cursor-pointer place-items-center rounded-md text-xs;
+    color: var(--fui-color-textMuted);
+  }
+  .fui-tree-multi-toggle:disabled {
+    @apply cursor-default;
+  }
+  .fui-tree-multi-label {
+    @apply min-w-0 flex-1 cursor-pointer py-2 text-left;
+  }
+  .fui-tree-multi-label:disabled {
+    @apply cursor-not-allowed opacity-45;
+  }
   .fui-textarea {
     @apply min-h-24 resize-y;
   }
