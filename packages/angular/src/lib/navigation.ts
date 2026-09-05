@@ -3,7 +3,9 @@ import {
   AfterContentInit,
   Component,
   ContentChildren,
+  ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   Output,
   QueryList,
@@ -59,43 +61,67 @@ interface FlatTreeModel extends TreeModel {
 @Component({
   selector: "fui-tree-dropdown",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FlowIconComponent],
   template: `
     <div [class]="view().className" [ngStyle]="view().style">
       <button
-        class="fui-control"
+        class="fui-select-trigger"
         type="button"
+        [disabled]="disabled"
         (click)="open = !open"
         [attr.aria-expanded]="open"
       >
-        {{ selectedDisplay }}
+        <span>{{ selectedDisplay }}</span>
+        <fui-icon [icon]="'fa-solid fa-chevron-' + (open ? 'up' : 'down')" />
       </button>
 
-      <div *ngIf="open" class="fui-tree">
-        <label
-          *ngFor="let option of flatOptions"
-          class="fui-check-label"
-          [style.padding-left.rem]="option.depth"
-        >
+      <div *ngIf="open" class="fui-select-menu">
+        <label *ngIf="searchable" class="fui-select-search">
+          <fui-icon icon="fa-solid fa-magnifying-glass" />
           <input
-            class="fui-check"
-            type="radio"
-            [checked]="value === option.value"
-            (change)="choose(option)"
+            [value]="query"
+            [placeholder]="searchPlaceholder"
+            (input)="query = $any($event.target).value"
           />
-          <span>{{ option.display }}</span>
         </label>
+        <div class="fui-tree fui-tree-single">
+          <label
+            *ngFor="let option of flatOptions"
+            class="fui-check-label"
+            [style.padding-left.rem]="option.depth"
+          >
+            <input
+              class="fui-check"
+              type="radio"
+              [checked]="value === option.value"
+              (change)="choose(option)"
+            />
+            <span>{{ option.display }}</span>
+          </label>
+          <div *ngIf="!flatOptions.length" class="fui-select-empty">
+            {{ emptyText }}
+          </div>
+        </div>
       </div>
     </div>
   `,
 })
 export class FlowTreeDropdownComponent extends FlowComponentBase {
+  constructor(private readonly element: ElementRef<HTMLElement>) {
+    super();
+  }
   @Input() value?: string | number;
   @Input() options: TreeModel[] = [];
+  @Input() placeholder = "Select from tree";
+  @Input() searchable = false;
+  @Input() searchPlaceholder = "Search tree…";
+  @Input() emptyText = "No options found";
+  @Input() disabled = false;
 
   @Output() selected = new EventEmitter<TreeModel>();
 
   open = false;
+  query = "";
 
   get flatOptions(): FlatTreeModel[] {
     const flatten = (nodes: TreeModel[], depth = 0): FlatTreeModel[] => {
@@ -111,22 +137,35 @@ export class FlowTreeDropdownComponent extends FlowComponentBase {
       return result;
     };
 
-    return flatten(this.options);
+    return flatten(this.options).filter((option) =>
+      String(option.display).toLowerCase().includes(this.query.toLowerCase()),
+    );
   }
 
   get selectedDisplay(): string | number {
     return (
       this.flatOptions.find((option) => option.value === this.value)?.display ??
-      "Select from tree"
+      this.placeholder
     );
   }
 
   choose(model: TreeModel): void {
     this.selected.emit(model);
     this.open = false;
+    this.query = "";
   }
 
-  view = () => this.resolved("");
+  @HostListener("document:pointerdown", ["$event"])
+  closeOutside(event: PointerEvent): void {
+    if (
+      this.open &&
+      !this.element.nativeElement.contains(event.target as Node)
+    ) {
+      this.open = false;
+    }
+  }
+
+  view = () => this.resolved("fui-tree-dropdown");
 }
 
 @Component({

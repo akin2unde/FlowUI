@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import {
   Autocomplete,
   Badge,
@@ -7,6 +7,7 @@ import {
   ButtonGroup,
   Card,
   Carousel,
+  Chart,
   Checkbox,
   ColorPicker,
   DateTime,
@@ -20,6 +21,7 @@ import {
   Input,
   Label,
   Listbox,
+  Knob,
   Menu,
   MultiSelect,
   PasswordInput,
@@ -41,16 +43,49 @@ import {
   VC,
   FileUpload,
   Notification,
+  OTPInput,
+  PhoneInput,
   createTheme,
   type BreadcrumbItem,
   type DialogPosition,
   type DropdownModel,
   type MenuItem,
+  type PhoneCountry,
+  type PhoneNumberValue,
   type SortState,
   type TableColumn,
   type TimelineItem,
   type TreeModel,
 } from "@akin2unde/flowui-react";
+
+function ControlGuide({
+  name,
+  info,
+  code,
+  children,
+}: {
+  name: string;
+  info: string;
+  code: string;
+  children: ReactNode;
+}) {
+  return (
+    <article className="fui-demo-card fui-control-guide">
+      <VC gap="sm">
+        <Label fontSize="lg" fontWeight="bold">
+          {name}
+        </Label>
+        <Label textColor="textMuted" fontSize="sm">
+          {info}
+        </Label>
+        <div className="fui-control-preview">{children}</div>
+        <pre>
+          <code>{code}</code>
+        </pre>
+      </VC>
+    </article>
+  );
+}
 
 const theme = createTheme({
   palette: {
@@ -206,6 +241,270 @@ const breadcrumbs: BreadcrumbItem[] = [
   { id: 3, text: "Rice" },
 ];
 
+const phoneCountries: PhoneCountry[] = [
+  { code: "NG", name: "Nigeria", dialCode: "+234", flag: "🇳🇬" },
+  { code: "GB", name: "United Kingdom", dialCode: "+44", flag: "🇬🇧" },
+  { code: "GH", name: "Ghana", dialCode: "+233", flag: "🇬🇭" },
+];
+
+const salesChart = {
+  labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+  series: [
+    {
+      name: "Sales",
+      data: [18, 32, 27, 46, 39],
+      color: "primary.600" as const,
+    },
+    { name: "Orders", data: [12, 20, 16, 30, 25], color: "info.500" as const },
+  ],
+};
+
+const componentCatalog = [
+  ["Layout", "HC", "Arranges children horizontally.", `<HC gap="sm">...</HC>`],
+  ["Layout", "VC", "Arranges children vertically.", `<VC gap="sm">...</VC>`],
+  [
+    "Layout",
+    "Divider",
+    "Separates content horizontally or vertically.",
+    `<Divider orientation="horizontal" />`,
+  ],
+  [
+    "Layout",
+    "Card",
+    "Groups related content with optional header and footer.",
+    `<Card header={header}>...</Card>`,
+  ],
+  [
+    "Display",
+    "Label",
+    "Displays styled or form-associated text.",
+    `<Label htmlFor="name">Name</Label>`,
+  ],
+  [
+    "Display",
+    "Badge",
+    "Shows compact status or count information.",
+    `<Badge color="success">Ready</Badge>`,
+  ],
+  [
+    "Display",
+    "Icon",
+    "Renders a Font Awesome icon.",
+    `<Icon icon="fa-solid fa-check" />`,
+  ],
+  [
+    "Display",
+    "Image",
+    "Displays an image with fit, lazy load, and fallback.",
+    `<Image src={url} alt="Product" />`,
+  ],
+  [
+    "Display",
+    "Tooltip",
+    "Shows short guidance around a trigger.",
+    `<Tooltip text="Save" location="top">...</Tooltip>`,
+  ],
+  [
+    "Display",
+    "Carousel",
+    "Moves through templated slides.",
+    `<Carousel>{slides}</Carousel>`,
+  ],
+  [
+    "Display",
+    "Breadcrumb",
+    "Shows image, icon, or text navigation ancestry.",
+    `<Breadcrumb items={items} />`,
+  ],
+  [
+    "Display",
+    "Chart",
+    "Paints bar, line, pie, or doughnut series.",
+    `<Chart type="bar" data={data} />`,
+  ],
+  [
+    "Actions",
+    "Button",
+    "Triggers an action with variants, icons, and badges.",
+    `<Button icon="fa-solid fa-save">Save</Button>`,
+  ],
+  [
+    "Actions",
+    "ButtonGroup",
+    "Provides segmented single selection.",
+    `<ButtonGroup selectable value={value}>...</ButtonGroup>`,
+  ],
+  [
+    "Actions",
+    "Popover",
+    "Shows templated floating content.",
+    `<Popover trigger={<Button>Open</Button>}>...</Popover>`,
+  ],
+  [
+    "Actions",
+    "Notification",
+    "Shows positioned success, error, warning, or info feedback.",
+    `<Notification open type="success">Saved</Notification>`,
+  ],
+  [
+    "Forms",
+    "Input",
+    "Accepts text, integer, decimal, money, or alphabet values.",
+    `<Input inputMode="money" currencySymbol="₦" />`,
+  ],
+  [
+    "Forms",
+    "PasswordInput",
+    "Accepts passwords with an optional visibility toggle.",
+    `<PasswordInput value={password} />`,
+  ],
+  [
+    "Forms",
+    "OTPInput",
+    "Captures an OTP using auto-advancing cells.",
+    `<OTPInput length={6} value={otp} />`,
+  ],
+  [
+    "Forms",
+    "PhoneInput",
+    "Captures country code, dial code, and phone number.",
+    `<PhoneInput countries={countries} value={phone} />`,
+  ],
+  [
+    "Forms",
+    "DateTime",
+    "Captures a local date, time, or both without UTC shifting.",
+    `<DateTime mode="datetime" value={date} />`,
+  ],
+  [
+    "Forms",
+    "Autocomplete",
+    "Searches options while the user types.",
+    `<Autocomplete options={options} />`,
+  ],
+  ["Forms", "TextArea", "Captures multiline text.", `<TextArea rows={4} />`],
+  [
+    "Forms",
+    "Checkbox",
+    "Toggles an independent boolean value.",
+    `<Checkbox label="Active" checked={active} />`,
+  ],
+  [
+    "Forms",
+    "RadioButton",
+    "Selects one native radio choice.",
+    `<RadioButton name="status" value="active" />`,
+  ],
+  [
+    "Forms",
+    "RadioGroup",
+    "Selects one choice from several radio options.",
+    `<RadioGroup name="status" options={options} />`,
+  ],
+  [
+    "Forms",
+    "ColorPicker",
+    "Selects a browser-supported colour.",
+    `<ColorPicker value={color} />`,
+  ],
+  [
+    "Forms",
+    "Slider",
+    "Selects a numeric value along a linear range.",
+    `<Slider value={volume} />`,
+  ],
+  [
+    "Forms",
+    "Switch",
+    "Toggles a boolean setting.",
+    `<Switch label="Enabled" checked={enabled} />`,
+  ],
+  [
+    "Forms",
+    "Knob",
+    "Selects a numeric value on a circular range.",
+    `<Knob value={capacity} valueSuffix="%" />`,
+  ],
+  [
+    "Forms",
+    "Rating",
+    "Captures whole or half-step ratings.",
+    `<Rating value={4} maximum={5} />`,
+  ],
+  [
+    "Forms",
+    "Listbox",
+    "Shows a templatable single or multi-selection list.",
+    `<Listbox options={options} multiple />`,
+  ],
+  [
+    "Forms",
+    "FileUpload",
+    "Selects files and optionally previews them.",
+    `<FileUpload accept="image/*" preview />`,
+  ],
+  [
+    "Navigation",
+    "Menu",
+    "Displays actions with icons, badges, and separators.",
+    `<Menu items={items} />`,
+  ],
+  [
+    "Navigation",
+    "Dropdown",
+    "Provides searchable grouped single selection.",
+    `<Dropdown options={options} searchable />`,
+  ],
+  [
+    "Navigation",
+    "MultiSelect",
+    "Selects multiple options using checkboxes and chips.",
+    `<MultiSelect options={options} value={values} />`,
+  ],
+  [
+    "Navigation",
+    "TreeDropdown",
+    "Selects one nested value without chips.",
+    `<TreeDropdown options={tree} searchable />`,
+  ],
+  [
+    "Navigation",
+    "TreeMultiSelect",
+    "Selects nested values with cascading checkboxes.",
+    `<TreeMultiSelect nodes={tree} searchable />`,
+  ],
+  [
+    "Navigation",
+    "Tree",
+    "Displays expandable hierarchical content.",
+    `<Tree nodes={tree} />`,
+  ],
+  [
+    "Navigation",
+    "Tabs / Tab",
+    "Switches between named content panels.",
+    `<Tabs><Tab id="one" label="One">...</Tab></Tabs>`,
+  ],
+  [
+    "Navigation",
+    "Section",
+    "Expands and collapses accordion content.",
+    `<Section title="Settings">...</Section>`,
+  ],
+  [
+    "Data",
+    "Table",
+    "Sorts, selects, configures, and exports tabular data.",
+    `<Table data={rows} columns={columns} />`,
+  ],
+  [
+    "Overlay",
+    "Dialog",
+    "Shows a positioned modal with templatable regions.",
+    `<Dialog open position="right" onClose={close} />`,
+  ],
+] as const;
+
 export function App() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -246,6 +545,13 @@ export function App() {
     "price",
   ]);
   const [noticeOpen, setNoticeOpen] = useState(false);
+  const [knob, setKnob] = useState(68);
+  const [otp, setOtp] = useState("");
+  const [phone, setPhone] = useState<PhoneNumberValue>({
+    countryCode: "NG",
+    dialCode: "+234",
+    number: "",
+  });
 
   const sorted = useMemo(() => {
     return [...products].sort((first, second) => {
@@ -278,6 +584,33 @@ export function App() {
               Every FlowUI component in one working example.
             </Label>
           </VC>
+
+          <section>
+            <VC gap="sm">
+              <Label fontSize="2xl" fontWeight="bold">
+                Component guide
+              </Label>
+              <Label textColor="textMuted">
+                Each FlowUI control has its own named card, purpose, and
+                smallest useful code sample.
+              </Label>
+              <div className="fui-component-catalog">
+                {componentCatalog.map(([category, control, info, code]) => (
+                  <article
+                    className="fui-demo-card fui-catalog-card"
+                    key={control}
+                  >
+                    <small>{category}</small>
+                    <strong>{control}</strong>
+                    <p>{info}</p>
+                    <pre>
+                      <code>{code}</code>
+                    </pre>
+                  </article>
+                ))}
+              </div>
+            </VC>
+          </section>
 
           <Card
             variant="elevated"
@@ -379,6 +712,60 @@ export function App() {
                 )}
               </HC>
             </VC>
+          </section>
+
+          <section className="fui-guide-grid">
+            <ControlGuide
+              name="Input — integer"
+              info="Accepts whole numbers only; use inputMode='decimal', 'money', or 'alphabet' for other validation modes."
+              code={`<Input inputMode="integer" onValueChange={setQuantity} />`}
+            >
+              <Input inputMode="integer" placeholder="Quantity" />
+            </ControlGuide>
+
+            <ControlGuide
+              name="Input — money"
+              info="Accepts decimal money values and displays a configurable currency symbol."
+              code={`<Input inputMode="money" currencySymbol="₦" />`}
+            >
+              <Input inputMode="money" currencySymbol="₦" placeholder="0.00" />
+            </ControlGuide>
+
+            <ControlGuide
+              name="Knob"
+              info="A compact range input for percentages, capacity, volume, and similar values."
+              code={`<Knob value={knob} onChange={setKnob} valueSuffix="%" />`}
+            >
+              <Knob value={knob} onChange={setKnob} valueSuffix="%" />
+            </ControlGuide>
+
+            <ControlGuide
+              name="OTPInput"
+              info="Moves focus automatically, supports paste, numeric-only values, masking, and completion events."
+              code={`<OTPInput value={otp} length={6} onChange={setOtp} />`}
+            >
+              <OTPInput value={otp} length={6} onChange={setOtp} />
+            </ControlGuide>
+
+            <ControlGuide
+              name="PhoneInput"
+              info="Binds the selected ISO country code, dial code, and subscriber number as one value."
+              code={`<PhoneInput countries={phoneCountries} value={phone} onChange={setPhone} />`}
+            >
+              <PhoneInput
+                countries={phoneCountries}
+                value={phone}
+                onChange={setPhone}
+              />
+            </ControlGuide>
+
+            <ControlGuide
+              name="Chart"
+              info="Paints bar, line, pie, or doughnut charts directly from labels and data series."
+              code={`<Chart type="bar" data={salesChart} showValues />`}
+            >
+              <Chart type="bar" data={salesChart} showValues height={220} />
+            </ControlGuide>
           </section>
 
           <section className="fui-demo-card">
@@ -508,12 +895,10 @@ export function App() {
                 values={listboxValues.map((option) => option.value)}
                 multiple
                 onValuesChange={setListboxValues}
-                renderOption={(option, selected) => (
+                renderOption={(option) => (
                   <HC justify="between" width="full">
                     <span>{option.display}</span>
-                    <small>
-                      {selected ? "Selected" : option.other.phoneCode}
-                    </small>
+                    <small>{option.other.phoneCode}</small>
                   </HC>
                 )}
               />

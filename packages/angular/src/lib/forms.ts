@@ -1,12 +1,15 @@
 import { CommonModule } from "@angular/common";
 import {
   Component,
+  ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   Output,
   TemplateRef,
 } from "@angular/core";
 import type { DropdownModel, SelectOption } from "@akin2unde/flowui-core";
+import { sanitizeInputValue } from "@akin2unde/flowui-core";
 import { FlowComponentBase } from "./base";
 import { FlowIconComponent } from "./primitives";
 
@@ -15,21 +18,28 @@ import { FlowIconComponent } from "./primitives";
   standalone: true,
   imports: [CommonModule],
   template: `
-    <input
-      [id]="id"
-      [class]="view().className"
-      [ngStyle]="view().style"
-      [type]="type"
-      [value]="value ?? ''"
-      [name]="name ?? ''"
-      [placeholder]="placeholder ?? ''"
-      [disabled]="disabled"
-      [readOnly]="readOnly"
-      [required]="required"
-      [autofocus]="autoFocus"
-      [tabIndex]="tabIndex"
-      (input)="valueChange.emit($any($event.target).value)"
-    />
+    <span *ngIf="inputMode === 'money'" class="fui-money-input">
+      <span class="fui-money-symbol">{{ currencySymbol }}</span>
+      <ng-container *ngTemplateOutlet="control" />
+    </span>
+    <ng-container *ngIf="inputMode !== 'money'" [ngTemplateOutlet]="control" />
+    <ng-template #control
+      ><input
+        [id]="id"
+        [class]="view().className"
+        [ngStyle]="view().style"
+        [type]="inputMode === 'text' ? type : 'text'"
+        [attr.inputmode]="nativeInputMode"
+        [value]="value ?? ''"
+        [name]="name ?? ''"
+        [placeholder]="placeholder ?? ''"
+        [disabled]="disabled"
+        [readOnly]="readOnly"
+        [required]="required"
+        [autofocus]="autoFocus"
+        [tabIndex]="tabIndex"
+        (input)="handleInput($any($event.target).value)"
+    /></ng-template>
   `,
 })
 export class FlowInputComponent extends FlowComponentBase {
@@ -45,6 +55,9 @@ export class FlowInputComponent extends FlowComponentBase {
     | "time" = "text";
 
   @Input() value?: string | number;
+  @Input() inputMode: "text" | "integer" | "decimal" | "money" | "alphabet" =
+    "text";
+  @Input() currencySymbol = "₦";
   @Input() name?: string;
   @Input() placeholder?: string;
   @Input() disabled = false;
@@ -54,6 +67,17 @@ export class FlowInputComponent extends FlowComponentBase {
   @Input() tabIndex = 0;
 
   @Output() valueChange = new EventEmitter<string>();
+
+  get nativeInputMode(): string | null {
+    if (this.inputMode === "integer") return "numeric";
+    if (this.inputMode === "decimal" || this.inputMode === "money")
+      return "decimal";
+    return null;
+  }
+
+  handleInput(value: string): void {
+    this.valueChange.emit(sanitizeInputValue(value, this.inputMode));
+  }
 
   view = () => this.resolved("fui-control");
 }
@@ -358,6 +382,9 @@ export class FlowColorPickerComponent extends FlowComponentBase {
   `,
 })
 export class FlowDropdownComponent extends FlowComponentBase {
+  constructor(private readonly element: ElementRef<HTMLElement>) {
+    super();
+  }
   @Input() value?: string | number;
   @Input() options: DropdownModel[] = [];
   @Input() placeholder = "Select an option";
@@ -418,6 +445,16 @@ export class FlowDropdownComponent extends FlowComponentBase {
     this.selected.emit(model);
     this.open = false;
     this.query = "";
+  }
+
+  @HostListener("document:pointerdown", ["$event"])
+  closeOutside(event: PointerEvent): void {
+    if (
+      this.open &&
+      !this.element.nativeElement.contains(event.target as Node)
+    ) {
+      this.open = false;
+    }
   }
 
   selectValue(value: string): void {

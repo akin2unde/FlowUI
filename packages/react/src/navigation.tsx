@@ -1,6 +1,7 @@
 import {
   Children,
   isValidElement,
+  useRef,
   useState,
   type PropsWithChildren,
   type ReactElement,
@@ -14,7 +15,8 @@ import type {
   TabItem,
   TreeModel,
 } from "@akin2unde/flowui-core";
-import { useFlowProps } from "./helpers";
+import { filterTree } from "@akin2unde/flowui-core";
+import { useDismissableLayer, useFlowProps } from "./helpers";
 import { Badge, Icon } from "./primitives";
 
 export interface MenuProps extends BaseUIProps {
@@ -86,6 +88,8 @@ export function Dropdown({
 }: DropdownProps) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const root = useRef<HTMLDivElement>(null);
+  useDismissableLayer(root, open, () => setOpen(false));
   const selected = options.find((option) => option.value === value);
   const matches = options.filter((option) =>
     String(option.display).toLowerCase().includes(query.toLowerCase()),
@@ -95,7 +99,7 @@ export function Dropdown({
     : [undefined];
   const flow = useFlowProps("fui-select", props);
   return (
-    <div {...flow}>
+    <div {...flow} ref={root}>
       <button
         className="fui-select-trigger"
         type="button"
@@ -215,16 +219,29 @@ function TreeDropdownNode({ option, value, onChange }: TreeDropdownNodeProps) {
 export interface TreeDropdownProps extends BaseUIProps {
   value?: string | number;
   options: TreeModel[];
+  placeholder?: string;
+  searchable?: boolean;
+  searchPlaceholder?: string;
+  emptyText?: string;
+  disabled?: boolean;
   onChange?: (model: TreeModel) => void;
 }
 
 export function TreeDropdown({
   value,
   options,
+  placeholder = "Select from tree",
+  searchable = false,
+  searchPlaceholder = "Search tree…",
+  emptyText = "No options found",
+  disabled = false,
   onChange,
   ...props
 }: TreeDropdownProps) {
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const root = useRef<HTMLDivElement>(null);
+  useDismissableLayer(root, open, () => setOpen(false));
   const selected = (nodes: TreeModel[]): TreeModel | undefined => {
     for (const node of nodes) {
       if (node.value === value) return node;
@@ -233,30 +250,51 @@ export function TreeDropdown({
     }
     return undefined;
   };
-  const flow = useFlowProps("", props);
+  const visibleOptions = filterTree(options, query);
+  const flow = useFlowProps("fui-tree-dropdown", props);
   return (
-    <div {...flow}>
+    <div {...flow} ref={root}>
       <button
-        className="fui-control"
+        className="fui-select-trigger"
         type="button"
+        disabled={disabled}
         onClick={() => setOpen((current) => !current)}
         aria-expanded={open}
       >
-        {selected(options)?.display ?? "Select from tree"}
+        <span>{selected(options)?.display ?? placeholder}</span>
+        <Icon icon={`fa-solid fa-chevron-${open ? "up" : "down"}`} />
       </button>
       {open && (
-        <div className="fui-tree">
-          {options.map((option) => (
-            <TreeDropdownNode
-              key={option.value}
-              option={option}
-              value={value}
-              onChange={(next) => {
-                onChange?.(next);
-                setOpen(false);
-              }}
-            />
-          ))}
+        <div className="fui-select-menu">
+          {searchable && (
+            <label className="fui-select-search">
+              <Icon icon="fa-solid fa-magnifying-glass" />
+              <input
+                value={query}
+                placeholder={searchPlaceholder}
+                autoFocus
+                onChange={(event) => setQuery(event.target.value)}
+              />
+            </label>
+          )}
+          <div className="fui-tree fui-tree-single">
+            {visibleOptions.length ? (
+              visibleOptions.map((option) => (
+                <TreeDropdownNode
+                  key={option.value}
+                  option={option}
+                  value={value}
+                  onChange={(next) => {
+                    onChange?.(next);
+                    setOpen(false);
+                    setQuery("");
+                  }}
+                />
+              ))
+            ) : (
+              <div className="fui-select-empty">{emptyText}</div>
+            )}
+          </div>
         </div>
       )}
     </div>

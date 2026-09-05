@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-react-example",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build"
   },
   "dependencies": {
-    "@akin2unde/flowui-react": "0.1.4",
+    "@akin2unde/flowui-react": "0.1.5",
     "@fortawesome/fontawesome-free": "^7.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"

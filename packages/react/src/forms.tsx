@@ -11,16 +11,16 @@ import type {
   PasswordInputProps as CorePasswordInputProps,
   SelectOption,
 } from "@akin2unde/flowui-core";
+import { sanitizeInputValue } from "@akin2unde/flowui-core";
 import { useFlowProps } from "./helpers";
 import { Icon } from "./primitives";
 
 export interface InputProps
   extends
     CoreInputProps,
-    Omit<
-      InputHTMLAttributes<HTMLInputElement>,
-      keyof CoreInputProps | "size"
-    > {}
+    Omit<InputHTMLAttributes<HTMLInputElement>, keyof CoreInputProps | "size"> {
+  onValueChange?: (value: string) => void;
+}
 export function Input({
   type = "text",
   value,
@@ -31,14 +31,24 @@ export function Input({
   required,
   autoFocus,
   tabIndex,
+  inputMode = "text",
+  currencySymbol = "₦",
+  onValueChange,
   onChange,
   ...props
 }: InputProps) {
   const flow = useFlowProps("fui-control", props);
-  return (
+  const control = (
     <input
       {...flow}
-      type={type}
+      type={inputMode === "text" ? type : "text"}
+      inputMode={
+        inputMode === "integer"
+          ? "numeric"
+          : inputMode === "decimal" || inputMode === "money"
+            ? "decimal"
+            : undefined
+      }
       value={value}
       name={name}
       placeholder={placeholder}
@@ -47,8 +57,20 @@ export function Input({
       required={required}
       autoFocus={autoFocus}
       tabIndex={tabIndex}
-      onChange={onChange}
+      onChange={(event) => {
+        const next = sanitizeInputValue(event.target.value, inputMode);
+        event.target.value = next;
+        onValueChange?.(next);
+        onChange?.(event);
+      }}
     />
+  );
+  if (inputMode !== "money") return control;
+  return (
+    <span className="fui-money-input">
+      <span className="fui-money-symbol">{currencySymbol}</span>
+      {control}
+    </span>
   );
 }
 

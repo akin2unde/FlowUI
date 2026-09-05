@@ -8,6 +8,7 @@ import {
   FlowButtonGroupComponent,
   FlowCardComponent,
   FlowCarouselComponent,
+  FlowChartComponent,
   FlowCheckboxComponent,
   FlowColorPickerComponent,
   FlowDateTimeComponent,
@@ -20,6 +21,7 @@ import {
   FlowInputComponent,
   FlowLabelComponent,
   FlowListboxComponent,
+  FlowKnobComponent,
   FlowMenuComponent,
   FlowMultiSelectComponent,
   FlowPasswordInputComponent,
@@ -41,10 +43,14 @@ import {
   FlowVStackComponent,
   FlowFileUploadComponent,
   FlowNotificationComponent,
+  FlowOTPInputComponent,
+  FlowPhoneInputComponent,
   type BreadcrumbItem,
   type DialogPosition,
   type DropdownModel,
   type MenuItem,
+  type PhoneCountry,
+  type PhoneNumberValue,
   type SortState,
   type TableColumn,
   type TimelineItem,
@@ -63,6 +69,7 @@ import {
     FlowButtonGroupComponent,
     FlowCardComponent,
     FlowCarouselComponent,
+    FlowChartComponent,
     FlowCheckboxComponent,
     FlowColorPickerComponent,
     FlowDateTimeComponent,
@@ -75,6 +82,7 @@ import {
     FlowInputComponent,
     FlowLabelComponent,
     FlowListboxComponent,
+    FlowKnobComponent,
     FlowMenuComponent,
     FlowMultiSelectComponent,
     FlowPasswordInputComponent,
@@ -96,6 +104,8 @@ import {
     FlowVStackComponent,
     FlowFileUploadComponent,
     FlowNotificationComponent,
+    FlowOTPInputComponent,
+    FlowPhoneInputComponent,
   ],
   templateUrl: "./app.component.html",
 })
@@ -124,6 +134,293 @@ export class AppComponent {
   // Persist this value per user and restore it when the screen opens.
   visibleProductColumns = ["name", "price"];
   noticeOpen = false;
+  knob = 68;
+  otp = "";
+  phone: PhoneNumberValue = {
+    countryCode: "NG",
+    dialCode: "+234",
+    number: "",
+  };
+  readonly phoneCountries: PhoneCountry[] = [
+    { code: "NG", name: "Nigeria", dialCode: "+234", flag: "🇳🇬" },
+    { code: "GB", name: "United Kingdom", dialCode: "+44", flag: "🇬🇧" },
+    { code: "GH", name: "Ghana", dialCode: "+233", flag: "🇬🇭" },
+  ];
+  readonly salesChart = {
+    labels: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+    series: [
+      {
+        name: "Sales",
+        data: [18, 32, 27, 46, 39],
+        color: "primary.600" as const,
+      },
+      {
+        name: "Orders",
+        data: [12, 20, 16, 30, 25],
+        color: "info.500" as const,
+      },
+    ],
+  };
+  readonly componentCatalog = [
+    [
+      "Layout",
+      "HC",
+      "Arranges children horizontally.",
+      `<fui-hc gap="sm">...</fui-hc>`,
+    ],
+    [
+      "Layout",
+      "VC",
+      "Arranges children vertically.",
+      `<fui-vc gap="sm">...</fui-vc>`,
+    ],
+    [
+      "Layout",
+      "Divider",
+      "Separates content horizontally or vertically.",
+      `<fui-divider />`,
+    ],
+    [
+      "Layout",
+      "Card",
+      "Groups content with optional header and footer.",
+      `<fui-card>...</fui-card>`,
+    ],
+    [
+      "Display",
+      "Label",
+      "Displays styled or form-associated text.",
+      `<fui-label>Name</fui-label>`,
+    ],
+    [
+      "Display",
+      "Badge",
+      "Shows compact status or count information.",
+      `<fui-badge>Ready</fui-badge>`,
+    ],
+    [
+      "Display",
+      "Icon",
+      "Renders a Font Awesome icon.",
+      `<fui-icon icon="fa-solid fa-check" />`,
+    ],
+    [
+      "Display",
+      "Image",
+      "Displays an image with fit and fallback.",
+      `<fui-image [src]="url" alt="Product" />`,
+    ],
+    [
+      "Display",
+      "Tooltip",
+      "Shows short guidance around a trigger.",
+      `<fui-tooltip text="Save">...</fui-tooltip>`,
+    ],
+    [
+      "Display",
+      "Carousel",
+      "Moves through templated slides.",
+      `<fui-carousel>...</fui-carousel>`,
+    ],
+    [
+      "Display",
+      "Breadcrumb",
+      "Shows image, icon, or text ancestry.",
+      `<fui-breadcrumb [items]="items" />`,
+    ],
+    [
+      "Display",
+      "Chart",
+      "Paints bar, line, pie, or doughnut series.",
+      `<fui-chart type="bar" [data]="data" />`,
+    ],
+    [
+      "Actions",
+      "Button",
+      "Triggers an action with variants and icons.",
+      `<fui-button>Save</fui-button>`,
+    ],
+    [
+      "Actions",
+      "ButtonGroup",
+      "Provides segmented single selection.",
+      `<fui-button-group [selectable]="true">...</fui-button-group>`,
+    ],
+    [
+      "Actions",
+      "Popover",
+      "Shows templated floating content.",
+      `<fui-popover [content]="content">...</fui-popover>`,
+    ],
+    [
+      "Actions",
+      "Notification",
+      "Shows positioned status feedback.",
+      `<fui-notification type="success">Saved</fui-notification>`,
+    ],
+    [
+      "Forms",
+      "Input",
+      "Accepts text, integer, decimal, money, or alphabet values.",
+      `<fui-input inputMode="money" currencySymbol="₦" />`,
+    ],
+    [
+      "Forms",
+      "PasswordInput",
+      "Accepts passwords with visibility toggle.",
+      `<fui-password-input [(value)]="password" />`,
+    ],
+    [
+      "Forms",
+      "OTPInput",
+      "Captures an OTP using auto-advancing cells.",
+      `<fui-otp-input [(value)]="otp" />`,
+    ],
+    [
+      "Forms",
+      "PhoneInput",
+      "Captures country code and phone number.",
+      `<fui-phone-input [countries]="countries" />`,
+    ],
+    [
+      "Forms",
+      "DateTime",
+      "Captures local date/time without UTC shifting.",
+      `<fui-date-time mode="datetime" [(value)]="date" />`,
+    ],
+    [
+      "Forms",
+      "Autocomplete",
+      "Searches options while typing.",
+      `<fui-autocomplete [options]="options" />`,
+    ],
+    [
+      "Forms",
+      "TextArea",
+      "Captures multiline text.",
+      `<fui-textarea [rows]="4" />`,
+    ],
+    [
+      "Forms",
+      "Checkbox",
+      "Toggles an independent boolean value.",
+      `<fui-checkbox label="Active" />`,
+    ],
+    [
+      "Forms",
+      "RadioButton",
+      "Selects one native radio choice.",
+      `<fui-radio name="status" />`,
+    ],
+    [
+      "Forms",
+      "RadioGroup",
+      "Selects one radio option.",
+      `<fui-radio-group [options]="options" />`,
+    ],
+    [
+      "Forms",
+      "ColorPicker",
+      "Selects a colour.",
+      `<fui-color-picker [(value)]="color" />`,
+    ],
+    [
+      "Forms",
+      "Slider",
+      "Selects a numeric linear range value.",
+      `<fui-slider [(value)]="volume" />`,
+    ],
+    [
+      "Forms",
+      "Switch",
+      "Toggles a boolean setting.",
+      `<fui-switch label="Enabled" />`,
+    ],
+    [
+      "Forms",
+      "Knob",
+      "Selects a circular range value.",
+      `<fui-knob [(value)]="capacity" />`,
+    ],
+    [
+      "Forms",
+      "Rating",
+      "Captures whole or half-step ratings.",
+      `<fui-rating [(value)]="rating" />`,
+    ],
+    [
+      "Forms",
+      "Listbox",
+      "Shows a templatable selection list.",
+      `<fui-listbox [options]="options" />`,
+    ],
+    [
+      "Forms",
+      "FileUpload",
+      "Selects and previews files.",
+      `<fui-file-upload [preview]="true" />`,
+    ],
+    [
+      "Navigation",
+      "Menu",
+      "Shows actions with icons and badges.",
+      `<fui-menu [items]="items" />`,
+    ],
+    [
+      "Navigation",
+      "Dropdown",
+      "Provides searchable grouped selection.",
+      `<fui-dropdown [options]="options" />`,
+    ],
+    [
+      "Navigation",
+      "MultiSelect",
+      "Selects options using checkboxes and chips.",
+      `<fui-multi-select [options]="options" />`,
+    ],
+    [
+      "Navigation",
+      "TreeDropdown",
+      "Selects one nested value without chips.",
+      `<fui-tree-dropdown [options]="tree" />`,
+    ],
+    [
+      "Navigation",
+      "TreeMultiSelect",
+      "Selects nested values with checkboxes.",
+      `<fui-tree-multi-select [nodes]="tree" />`,
+    ],
+    [
+      "Navigation",
+      "Tree",
+      "Displays expandable hierarchical content.",
+      `<fui-tree [nodes]="tree" />`,
+    ],
+    [
+      "Navigation",
+      "Tabs / Tab",
+      "Switches between content panels.",
+      `<fui-tabs><fui-tab id="one">...</fui-tab></fui-tabs>`,
+    ],
+    [
+      "Navigation",
+      "Section",
+      "Expands accordion content.",
+      `<fui-section title="Settings">...</fui-section>`,
+    ],
+    [
+      "Data",
+      "Table",
+      "Sorts, selects, configures, and exports rows.",
+      `<fui-table [data]="rows" [columns]="columns" />`,
+    ],
+    [
+      "Overlay",
+      "Dialog",
+      "Shows a positioned modal.",
+      `<fui-dialog [open]="open" position="right" />`,
+    ],
+  ] as const;
 
   readonly menuItems: MenuItem[] = [
     {

@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-angular",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Angular components for FlowUI.",
   "author": "Akintunde Morakinyo",
   "repository": {
@@ -36,7 +36,7 @@
     "typecheck": "tsc -p tsconfig.lib.json --noEmit"
   },
   "dependencies": {
-    "@akin2unde/flowui-core": "0.1.4",
+    "@akin2unde/flowui-core": "0.1.5",
     "tslib": "^2.8.0"
   },
   "peerDependencies": {

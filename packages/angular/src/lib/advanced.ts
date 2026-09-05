@@ -33,7 +33,7 @@ import { FlowIconComponent } from "./primitives";
     <div [class]="view().className" [ngStyle]="view().style">
       <input
         *ngIf="mode === 'time'"
-        class="fui-control"
+        class="fui-date-time-clock fui-date-time-only"
         type="time"
         [value]="value"
         [name]="name ?? ''"
@@ -126,6 +126,9 @@ import { FlowIconComponent } from "./primitives";
   `,
 })
 export class FlowDateTimeComponent extends FlowComponentBase {
+  constructor(private readonly element: ElementRef<HTMLElement>) {
+    super();
+  }
   @Input() value = "";
   @Input() mode: DateTimeMode = "datetime";
   @Input() name?: string;
@@ -215,6 +218,16 @@ export class FlowDateTimeComponent extends FlowComponentBase {
     this.valueChange.emit(setLocalDayBoundary(this.value, boundary));
   }
 
+  @HostListener("document:pointerdown", ["$event"])
+  closeOutside(event: PointerEvent): void {
+    if (
+      this.open &&
+      !this.element.nativeElement.contains(event.target as Node)
+    ) {
+      this.open = false;
+    }
+  }
+
   view = () => this.resolved("fui-date-time");
 }
 
@@ -256,6 +269,9 @@ export class FlowDateTimeComponent extends FlowComponentBase {
   `,
 })
 export class FlowAutocompleteComponent extends FlowComponentBase {
+  constructor(private readonly element: ElementRef<HTMLElement>) {
+    super();
+  }
   @Input() options: DropdownModel[] = [];
   @Input() value?: string | number;
   @Input() placeholder?: string;
@@ -282,6 +298,16 @@ export class FlowAutocompleteComponent extends FlowComponentBase {
     this.query = String(option.display);
     this.open = false;
     this.selected.emit(option);
+  }
+
+  @HostListener("document:pointerdown", ["$event"])
+  closeOutside(event: PointerEvent): void {
+    if (
+      this.open &&
+      !this.element.nativeElement.contains(event.target as Node)
+    ) {
+      this.open = false;
+    }
   }
 
   view = () => this.resolved("fui-autocomplete");

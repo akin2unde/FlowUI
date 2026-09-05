@@ -14,6 +14,8 @@ export type {
   FlexContainerProps,
   MenuItem,
   PaletteColor,
+  PhoneCountry,
+  PhoneNumberValue,
   ResponsiveValue,
   SelectOption,
   SortState,
@@ -33,3 +35,4 @@ export * from "./dialog";
 export * from "./extras";
 export * from "./advanced";
 export * from "./selection";
+export * from "./controls";

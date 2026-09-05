@@ -27,7 +27,7 @@ import type {
   TimelineProps as CoreTimelineProps,
 } from "@akin2unde/flowui-core";
 import { setLocalDayBoundary } from "@akin2unde/flowui-core";
-import { useFlowProps } from "./helpers";
+import { useDismissableLayer, useFlowProps } from "./helpers";
 import { Icon } from "./primitives";
 
 export interface DateTimeProps extends CoreDateTimeProps {
@@ -64,6 +64,8 @@ export function DateTime({
   const selectedTime = value?.includes("T") ? value.split("T")[1] : "00:00";
   const parsed = selectedDate ? new Date(`${selectedDate}T12:00`) : new Date();
   const [open, setOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+  useDismissableLayer(root, open, () => setOpen(false));
   const [month, setMonth] = useState(
     new Date(parsed.getFullYear(), parsed.getMonth(), 1),
   );
@@ -81,7 +83,7 @@ export function DateTime({
     return (
       <div {...flow}>
         <input
-          className="fui-control"
+          className="fui-date-time-clock fui-date-time-only"
           type="time"
           value={value ?? ""}
           name={name}
@@ -95,7 +97,7 @@ export function DateTime({
   }
 
   return (
-    <div {...flow}>
+    <div {...flow} ref={root}>
       <input type="hidden" name={name} value={value ?? ""} />
       <div className="fui-date-time-field">
         <button
@@ -230,6 +232,8 @@ export function Autocomplete({
   const selected = options.find((option) => option.value === value);
   const [query, setQuery] = useState(selected ? String(selected.display) : "");
   const [open, setOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+  useDismissableLayer(root, open, () => setOpen(false));
   const flow = useFlowProps("fui-autocomplete", props);
   const matches = options.filter((option) =>
     String(option.display).toLowerCase().includes(query.toLowerCase()),
@@ -240,7 +244,7 @@ export function Autocomplete({
   }, [selected?.value]);
 
   return (
-    <div {...flow}>
+    <div {...flow} ref={root}>
       <input
         className="fui-control"
         value={query}

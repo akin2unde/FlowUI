@@ -3,6 +3,7 @@ import {
   createTheme,
   formatLocalDateTime,
   resolveFlowStyle,
+  sanitizeInputValue,
   setLocalDayBoundary,
   themeToCSS,
 } from "./index";
@@ -49,6 +50,14 @@ describe("FlowUI core", () => {
     expect(setLocalDayBoundary("2026-09-01T09:30", "end")).toBe(
       "2026-09-01T23:59",
     );
+  });
+
+  it("filters typed input modes without altering normal text", () => {
+    expect(sanitizeInputValue("Room 12", "text")).toBe("Room 12");
+    expect(sanitizeInputValue("12 bags", "integer")).toBe("12");
+    expect(sanitizeInputValue("12.5.0kg", "decimal")).toBe("12.50");
+    expect(sanitizeInputValue("₦42,500.75", "money")).toBe("42500.75");
+    expect(sanitizeInputValue("Akintunde 2", "alphabet")).toBe("Akintunde ");
   });
 });
 

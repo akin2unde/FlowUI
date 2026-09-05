@@ -1,7 +1,9 @@
 import { CommonModule } from "@angular/common";
 import {
   Component,
+  ElementRef,
   EventEmitter,
+  HostListener,
   Input,
   Output,
   TemplateRef,
@@ -148,6 +150,9 @@ import { FlowIconComponent } from "./primitives";
   `,
 })
 export class FlowMultiSelectComponent extends FlowComponentBase {
+  constructor(private readonly element: ElementRef<HTMLElement>) {
+    super();
+  }
   @Input() options: DropdownModel[] = [];
   @Input() value: Array<string | number> = [];
   @Input() searchable = false;
@@ -249,6 +254,16 @@ export class FlowMultiSelectComponent extends FlowComponentBase {
 
   remove(option: DropdownModel): void {
     this.emit(this.value.filter((item) => item !== option.value));
+  }
+
+  @HostListener("document:pointerdown", ["$event"])
+  closeOutside(event: PointerEvent): void {
+    if (
+      this.open &&
+      !this.element.nativeElement.contains(event.target as Node)
+    ) {
+      this.open = false;
+    }
   }
 
   private emit(values: Array<string | number>): void {
@@ -398,6 +413,9 @@ interface FlatTreeNode extends TreeModel {
   `,
 })
 export class FlowTreeMultiSelectComponent extends FlowComponentBase {
+  constructor(private readonly element: ElementRef<HTMLElement>) {
+    super();
+  }
   @Input() nodes: TreeModel[] = [];
   @Input() value: Array<string | number> = [];
   @Input() expandedValues: Array<string | number> = [];
@@ -527,6 +545,16 @@ export class FlowTreeMultiSelectComponent extends FlowComponentBase {
     this.expandedValuesChange.emit(next);
     if (!node.children?.length && node.hasChildren)
       this.loadChildren.emit(node);
+  }
+
+  @HostListener("document:pointerdown", ["$event"])
+  closeOutside(event: PointerEvent): void {
+    if (
+      this.open &&
+      !this.element.nativeElement.contains(event.target as Node)
+    ) {
+      this.open = false;
+    }
   }
 
   private emit(values: Array<string | number>): void {

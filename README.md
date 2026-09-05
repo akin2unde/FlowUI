@@ -1,6 +1,6 @@
 # FlowUI
 
-Current release: **0.1.4**
+Current release: **0.1.5**
 
 FlowUI is a Tailwind-styled component library with native React and Angular adapters over one framework-independent TypeScript core.
 
@@ -101,15 +101,15 @@ All Angular components are standalone and are imported only where they are used.
 
 ## Included components
 
-| Area       | Components                                                                                                                                                                      |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Layout     | `HC`/`HStack`, `VC`/`VStack`, `Divider`, `Card`, `Timeline`                                                                                                                     |
-| Display    | `Label`, `Badge`, `Icon`, `Image`, `Tooltip`, `Carousel`, `Breadcrumb`                                                                                                          |
-| Actions    | `Button`, selectable `ButtonGroup`, `Popover`, `Notification`                                                                                                                   |
-| Forms      | `Input`, `PasswordInput`, `DateTime`, `Autocomplete`, `TextArea`, `Checkbox`, `RadioButton`, `RadioGroup`, `ColorPicker`, `Slider`, `Switch`, `Rating`, `Listbox`, `FileUpload` |
-| Navigation | `Menu`, searchable/grouped `Dropdown`, `MultiSelect`, `TreeDropdown`, `TreeMultiSelect`, `Tree`, `Tabs`, `Tab`, `Section`                                                       |
-| Data       | `Table` with sorting, alternating rows, user-selectable columns, row selection, Excel export and PDF export                                                                     |
-| Overlay    | `Dialog` at center, left, right, top or bottom                                                                                                                                  |
+| Area       | Components                                                                                                                                                                                                        |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Layout     | `HC`/`HStack`, `VC`/`VStack`, `Divider`, `Card`, `Timeline`                                                                                                                                                       |
+| Display    | `Label`, `Badge`, `Icon`, `Image`, `Tooltip`, `Carousel`, `Breadcrumb`, `Chart`                                                                                                                                   |
+| Actions    | `Button`, selectable `ButtonGroup`, `Popover`, `Notification`                                                                                                                                                     |
+| Forms      | `Input`, `PasswordInput`, `OTPInput`, `PhoneInput`, `Knob`, `DateTime`, `Autocomplete`, `TextArea`, `Checkbox`, `RadioButton`, `RadioGroup`, `ColorPicker`, `Slider`, `Switch`, `Rating`, `Listbox`, `FileUpload` |
+| Navigation | `Menu`, searchable/grouped `Dropdown`, `MultiSelect`, `TreeDropdown`, `TreeMultiSelect`, `Tree`, `Tabs`, `Tab`, `Section`                                                                                         |
+| Data       | `Table` with sorting, alternating rows, user-selectable columns, row selection, Excel export and PDF export                                                                                                       |
+| Overlay    | `Dialog` at center, left, right, top or bottom                                                                                                                                                                    |
 
 ## Styling precedence
 
@@ -173,6 +173,7 @@ while `group` is used only when grouped display is enabled. Tree dropdowns add
 <TreeDropdown
   options={categoryTree}
   value={category}
+  searchable
   onChange={(node) => setCategory(node.value)}
 />
 
@@ -220,6 +221,7 @@ value and emits the updated value and model arrays.
 <fui-tree-dropdown
   [options]="categoryTree"
   [value]="category"
+  [searchable]="true"
   (selected)="category = $event.value"
 />
 
@@ -247,13 +249,55 @@ formats (`YYYY-MM-DD`, `HH:mm`, or `YYYY-MM-DDTHH:mm`) and are never passed
 through `Date.prototype.toISOString()`. This prevents the common one-hour UTC
 shift.
 
-## Version 0.1.4
+The calendar closes after a date is selected, when Escape is pressed, or when
+the user clicks outside it. Dropdown, MultiSelect, TreeDropdown,
+TreeMultiSelect, Autocomplete, PhoneInput, and Popover use the same outside-click
+dismissal rule.
+
+## Validated inputs and new controls
+
+`Input` defaults to normal text and accepts both letters and numbers. Set
+`inputMode` to `integer`, `decimal`, `money`, or `alphabet` when the field must
+filter its value. Money mode accepts decimals and displays `currencySymbol`.
+
+```tsx
+<Input inputMode="integer" onValueChange={setQuantity} />
+<Input inputMode="decimal" onValueChange={setWeight} />
+<Input inputMode="money" currencySymbol="₦" onValueChange={setPrice} />
+<Input inputMode="alphabet" onValueChange={setCustomerName} />
+
+<Knob value={capacity} valueSuffix="%" onChange={setCapacity} />
+<OTPInput value={otp} length={6} onChange={setOtp} onComplete={verifyOtp} />
+<PhoneInput countries={countries} value={phone} onChange={setPhone} />
+<Chart type="bar" data={salesChart} showValues />
+```
+
+```html
+<fui-input inputMode="integer" [(value)]="quantity" />
+<fui-input inputMode="money" currencySymbol="₦" [(value)]="price" />
+<fui-knob [(value)]="capacity" valueSuffix="%" />
+<fui-otp-input [(value)]="otp" [length]="6" (completed)="verifyOtp($event)" />
+<fui-phone-input [countries]="countries" [(value)]="phone" />
+<fui-chart type="bar" [data]="salesChart" [showValues]="true" />
+```
+
+`PhoneInput` binds one object containing `countryCode`, `dialCode`, and
+`number`. `Chart` accepts `labels` and one or more named numeric series and can
+paint `bar`, `line`, `pie`, or `doughnut` views.
+
+## Version 0.1.5
 
 - Redesigned Dropdown with optional search, grouping, templates and load-more.
 - Added checkbox MultiSelect with removable and colour-configurable chips.
 - Added nested TreeMultiSelect with search, cascading and indeterminate
   selection, templates, controlled expansion and lazy child loading.
-- Updated the React and Angular galleries with every dropdown type.
+- Added searchable single-selection TreeDropdown without chips.
+- Added outside-click and Escape dismissal to floating controls.
+- Improved chip close-button padding, checkbox alignment, DateTime time field,
+  Listbox selection, and selectable ButtonGroup styling.
+- Added validated integer, decimal, money and alphabet Input modes.
+- Added Knob, OTPInput, country-code PhoneInput, and data-driven Chart.
+- Added named usage cards and short code samples to both galleries.
 
 ## Version 0.1.1
 

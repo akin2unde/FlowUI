@@ -14,6 +14,27 @@
       </fui-label>
     </fui-vc>
 
+    <section>
+      <fui-vc gap="sm">
+        <fui-label fontSize="2xl" fontWeight="bold">Component guide</fui-label>
+        <fui-label textColor="textMuted"
+          >Each FlowUI control has its own named card, purpose, and smallest
+          useful code sample.</fui-label
+        >
+        <div class="fui-component-catalog">
+          <article
+            *ngFor="let item of componentCatalog"
+            class="fui-demo-card fui-catalog-card"
+          >
+            <small>{{ item[0] }}</small>
+            <strong>{{ item[1] }}</strong>
+            <p>{{ item[2] }}</p>
+            <pre><code>{{ item[3] }}</code></pre>
+          </article>
+        </div>
+      </fui-vc>
+    </section>
+
     <ng-template #cardHeader>
       <fui-label fontSize="xl" fontWeight="bold">
         Card, layout, label, icon, badge and image
@@ -60,6 +81,95 @@
         </fui-vc>
       </fui-hc>
     </fui-card>
+
+    <section class="fui-guide-grid">
+      <article class="fui-demo-card fui-control-guide">
+        <fui-vc gap="sm">
+          <fui-label fontSize="lg" fontWeight="bold">Input — integer</fui-label>
+          <fui-label textColor="textMuted" fontSize="sm"
+            >Accepts whole numbers only. Decimal, money, and alphabet modes are
+            also supported.</fui-label
+          >
+          <div class="fui-control-preview">
+            <fui-input inputMode="integer" placeholder="Quantity" />
+          </div>
+          <pre><code>&lt;fui-input inputMode="integer" /&gt;</code></pre>
+        </fui-vc>
+      </article>
+      <article class="fui-demo-card fui-control-guide">
+        <fui-vc gap="sm">
+          <fui-label fontSize="lg" fontWeight="bold">Input — money</fui-label>
+          <fui-label textColor="textMuted" fontSize="sm"
+            >Accepts decimal money values and displays a configurable currency
+            symbol.</fui-label
+          >
+          <div class="fui-control-preview">
+            <fui-input
+              inputMode="money"
+              currencySymbol="₦"
+              placeholder="0.00"
+            />
+          </div>
+          <pre><code>&lt;fui-input inputMode="money" currencySymbol="₦" /&gt;</code></pre>
+        </fui-vc>
+      </article>
+      <article class="fui-demo-card fui-control-guide">
+        <fui-vc gap="sm">
+          <fui-label fontSize="lg" fontWeight="bold">Knob</fui-label>
+          <fui-label textColor="textMuted" fontSize="sm"
+            >Compact range input for percentage and capacity values.</fui-label
+          >
+          <div class="fui-control-preview">
+            <fui-knob [(value)]="knob" valueSuffix="%" />
+          </div>
+          <pre><code>&lt;fui-knob [(value)]="knob" valueSuffix="%" /&gt;</code></pre>
+        </fui-vc>
+      </article>
+      <article class="fui-demo-card fui-control-guide">
+        <fui-vc gap="sm">
+          <fui-label fontSize="lg" fontWeight="bold">OTPInput</fui-label>
+          <fui-label textColor="textMuted" fontSize="sm"
+            >Supports automatic focus, paste, masking, and a completion
+            event.</fui-label
+          >
+          <div class="fui-control-preview">
+            <fui-otp-input [(value)]="otp" [length]="6" />
+          </div>
+          <pre><code>&lt;fui-otp-input [(value)]="otp" [length]="6" /&gt;</code></pre>
+        </fui-vc>
+      </article>
+      <article class="fui-demo-card fui-control-guide">
+        <fui-vc gap="sm">
+          <fui-label fontSize="lg" fontWeight="bold">PhoneInput</fui-label>
+          <fui-label textColor="textMuted" fontSize="sm"
+            >Binds country code, dial code, and subscriber number
+            together.</fui-label
+          >
+          <div class="fui-control-preview">
+            <fui-phone-input [countries]="phoneCountries" [(value)]="phone" />
+          </div>
+          <pre><code>&lt;fui-phone-input [countries]="phoneCountries" [(value)]="phone" /&gt;</code></pre>
+        </fui-vc>
+      </article>
+      <article class="fui-demo-card fui-control-guide">
+        <fui-vc gap="sm">
+          <fui-label fontSize="lg" fontWeight="bold">Chart</fui-label>
+          <fui-label textColor="textMuted" fontSize="sm"
+            >Paints bar, line, pie, and doughnut charts from labels and series
+            data.</fui-label
+          >
+          <div class="fui-control-preview">
+            <fui-chart
+              type="bar"
+              [data]="salesChart"
+              [showValues]="true"
+              [height]="220"
+            />
+          </div>
+          <pre><code>&lt;fui-chart type="bar" [data]="salesChart" /&gt;</code></pre>
+        </fui-vc>
+      </article>
+    </section>
 
     <section class="fui-demo-card">
       <fui-vc gap="md">
@@ -137,11 +247,11 @@
 
         <fui-rating [value]="rating" (valueChange)="rating = $event" />
 
-        <ng-template #countryOption let-option let-selected="selected">
+        <ng-template #countryOption let-option>
           <fui-hc justify="between" width="full">
             <span>{{ option.display }}</span>
             <small>
-              {{ selected ? "Selected" : option.other.phoneCode }}
+              {{ option.other.phoneCode }}
             </small>
           </fui-hc>
         </ng-template>

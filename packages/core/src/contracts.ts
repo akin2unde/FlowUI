@@ -80,6 +80,10 @@ export interface InputProps
   name?: string;
   value?: string | number;
   placeholder?: string;
+  /** Controls which characters FlowUI accepts without changing the visual input type. */
+  inputMode?: "text" | "integer" | "decimal" | "money" | "alphabet";
+  /** Currency symbol shown when inputMode is money. */
+  currencySymbol?: string;
   type?:
     | "text"
     | "email"
@@ -211,6 +215,14 @@ export interface TreeProps extends BaseUIProps {
   value?: string | number;
   defaultExpanded?: boolean;
 }
+export interface TreeDropdownProps extends BaseUIProps, DisableableProps {
+  nodes: TreeModel[];
+  value?: string | number;
+  placeholder?: string;
+  searchable?: boolean;
+  searchPlaceholder?: string;
+  emptyText?: string;
+}
 export interface TooltipProps extends BaseUIProps {
   text: string;
   location?: TooltipLocation;
@@ -296,4 +308,68 @@ export interface NotificationProps extends BaseUIProps {
   vertical?: NotificationVertical;
   duration?: number;
   dismissible?: boolean;
+}
+
+export interface KnobProps extends BaseUIProps, DisableableProps {
+  value?: number;
+  min?: number;
+  max?: number;
+  step?: number;
+  size?: number;
+  strokeWidth?: number;
+  showValue?: boolean;
+  valueSuffix?: string;
+  color?: ColorValue;
+  trackColor?: ColorValue;
+}
+
+export interface OTPInputProps extends BaseUIProps, DisableableProps {
+  value?: string;
+  length?: number;
+  numericOnly?: boolean;
+  masked?: boolean;
+  name?: string;
+}
+
+export interface PhoneCountry {
+  code: string;
+  name: string;
+  dialCode: string;
+  flag?: string;
+}
+
+export interface PhoneNumberValue {
+  countryCode: string;
+  dialCode: string;
+  number: string;
+}
+
+export interface PhoneInputProps extends BaseUIProps, DisableableProps {
+  value?: PhoneNumberValue;
+  countries: PhoneCountry[];
+  searchable?: boolean;
+  placeholder?: string;
+  name?: string;
+}
+
+export type ChartType = "bar" | "line" | "pie" | "doughnut";
+
+export interface ChartSeries {
+  name: string;
+  data: number[];
+  color?: ColorValue;
+}
+
+export interface ChartData {
+  labels: string[];
+  series: ChartSeries[];
+}
+
+export interface ChartProps extends BaseUIProps {
+  type?: ChartType;
+  data: ChartData;
+  height?: number;
+  showLegend?: boolean;
+  showValues?: boolean;
+  animated?: boolean;
 }

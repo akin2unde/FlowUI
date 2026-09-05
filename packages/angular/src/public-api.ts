@@ -10,3 +10,4 @@ export * from "./lib/dialog";
 export * from "./lib/extras";
 export * from "./lib/advanced";
 export * from "./lib/selection";
+export * from "./lib/controls";

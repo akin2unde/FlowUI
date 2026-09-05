@@ -16,7 +16,7 @@ import {
   type TreeModel,
   type TreeMultiSelectProps as CoreTreeMultiSelectProps,
 } from "@akin2unde/flowui-core";
-import { useFlowProps } from "./helpers";
+import { useDismissableLayer, useFlowProps } from "./helpers";
 import { Icon } from "./primitives";
 
 interface ChipColors {
@@ -81,6 +81,8 @@ export function MultiSelect({
 }: MultiSelectProps) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const root = useRef<HTMLDivElement>(null);
+  useDismissableLayer(root, open, () => setOpen(false));
   const selected = options.filter((option) => value.includes(option.value));
   const visibleChips = selected.slice(0, maxVisibleChips);
   const matches = options.filter((option) =>
@@ -110,7 +112,7 @@ export function MultiSelect({
   };
 
   return (
-    <div {...flow}>
+    <div {...flow} ref={root}>
       <div
         className="fui-multi-select-trigger"
         role="combobox"
@@ -388,6 +390,8 @@ export function TreeMultiSelect({
 }: TreeMultiSelectProps) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const root = useRef<HTMLDivElement>(null);
+  useDismissableLayer(root, open, () => setOpen(false));
   const [internalExpanded, setInternalExpanded] = useState<
     Array<string | number>
   >([]);
@@ -421,7 +425,7 @@ export function TreeMultiSelect({
   };
 
   return (
-    <div {...flow}>
+    <div {...flow} ref={root}>
       <div
         className="fui-multi-select-trigger"
         role="combobox"

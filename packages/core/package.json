@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-core",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Framework-independent contracts, themes and style resolution for FlowUI.",
   "author": "Akintunde Morakinyo",
   "repository": {

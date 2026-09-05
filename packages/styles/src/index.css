@@ -115,21 +115,30 @@
     filter: brightness(0.9);
   }
   .fui-button-group {
-    @apply inline-flex;
+    @apply inline-flex gap-2 rounded-xl p-1.5;
+    background: var(--fui-color-surfaceSunken);
   }
   .fui-button-group[data-orientation="vertical"] {
     @apply flex-col;
   }
   .fui-button-group[data-attached="true"] > .fui-button {
-    @apply rounded-none;
+    @apply rounded-lg border shadow-sm;
+    border-color: transparent;
+    background: var(--fui-color-surface);
+    color: var(--fui-color-text);
   }
   .fui-button-group[data-orientation="horizontal"][data-attached="true"]
     > .fui-button:first-child {
-    @apply rounded-l-lg;
+    @apply rounded-lg;
   }
   .fui-button-group[data-orientation="horizontal"][data-attached="true"]
     > .fui-button:last-child {
-    @apply rounded-r-lg;
+    @apply rounded-lg;
+  }
+  .fui-button-group > .fui-button[data-selected="true"] {
+    border-color: var(--fui-palette-primary-700);
+    box-shadow: 0 0 0 1px var(--fui-palette-primary-700);
+    filter: none;
   }
   .fui-control {
     @apply w-full rounded-lg border px-3 py-2 text-sm outline-none transition;
@@ -145,7 +154,8 @@
   }
   .fui-select,
   .fui-multi-select,
-  .fui-tree-multi-select {
+  .fui-tree-multi-select,
+  .fui-tree-dropdown {
     @apply relative block w-full;
   }
   .fui-select-trigger,
@@ -186,7 +196,10 @@
     @apply max-h-72 overflow-auto p-1.5;
   }
   .fui-select-option {
-    @apply flex w-full cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2 text-left text-sm;
+    @apply flex w-full cursor-pointer items-center justify-start gap-2 rounded-lg px-3 py-2 text-left text-sm;
+  }
+  .fui-select-option > .fui-icon:last-child {
+    @apply ml-auto;
   }
   .fui-select-option:hover:not(:disabled),
   .fui-select-option[aria-selected="true"] {
@@ -238,7 +251,7 @@
     @apply px-2.5;
   }
   .fui-select-chip-close {
-    @apply grid size-5 cursor-pointer place-items-center rounded-full text-[10px];
+    @apply grid size-6 shrink-0 cursor-pointer place-items-center rounded-full p-1 text-xs;
     color: var(--fui-color-textInverse);
     background: var(--fui-palette-primary-600);
   }
@@ -615,9 +628,19 @@
     @apply flex min-w-0 flex-1 cursor-pointer items-center gap-2 px-3 py-2 text-left text-sm;
   }
   .fui-date-time-clock {
-    @apply border-l px-2 py-1 text-sm outline-none;
+    @apply mx-1 min-w-28 rounded-lg border px-3 py-1.5 text-sm font-medium outline-none transition;
     border-color: var(--fui-color-border);
-    background: transparent;
+    color: var(--fui-color-text);
+    background: var(--fui-color-surfaceSunken);
+    color-scheme: light dark;
+  }
+  .fui-date-time-clock:focus {
+    border-color: var(--fui-palette-primary-500);
+    box-shadow: 0 0 0 2px
+      color-mix(in srgb, var(--fui-palette-primary-500) 18%, transparent);
+  }
+  .fui-date-time-only {
+    @apply mx-0 min-h-11 w-full;
   }
   .fui-date-time-actions {
     @apply flex items-center gap-1 px-1;
@@ -700,6 +723,10 @@
       transparent
     );
   }
+  .fui-listbox > button[aria-selected="true"]::after {
+    content: "✓";
+    @apply ml-auto shrink-0 font-bold;
+  }
   .fui-empty {
     @apply block px-3 py-2 text-sm;
     color: var(--fui-color-textMuted);
@@ -717,6 +744,9 @@
   .fui-listbox {
     @apply overflow-hidden rounded-lg border;
     border-color: var(--fui-color-border);
+  }
+  .fui-listbox > button {
+    @apply flex items-center gap-2;
   }
   .fui-timeline {
     @apply flex list-none gap-4;
@@ -872,10 +902,159 @@
     background: var(--fui-color-canvas);
     color: var(--fui-color-text);
   }
+  .fui-tree-single {
+    @apply max-h-72 overflow-auto p-2;
+  }
+  .fui-money-input {
+    @apply flex w-full items-stretch overflow-hidden rounded-lg border;
+    border-color: var(--fui-color-border);
+    background: var(--fui-color-surface);
+  }
+  .fui-money-input .fui-control {
+    @apply rounded-none border-0;
+  }
+  .fui-money-symbol {
+    @apply grid min-w-11 place-items-center border-r px-3 text-sm font-semibold;
+    border-color: var(--fui-color-border);
+    color: var(--fui-color-textMuted);
+    background: var(--fui-color-surfaceSunken);
+  }
+  .fui-knob {
+    @apply relative inline-grid place-items-center rounded-full select-none;
+  }
+  .fui-knob svg,
+  .fui-knob input {
+    @apply absolute inset-0 h-full w-full;
+  }
+  .fui-knob svg {
+    transform: rotate(-90deg);
+  }
+  .fui-knob circle {
+    fill: none;
+  }
+  .fui-knob-value {
+    stroke-linecap: round;
+    transition: stroke-dashoffset 180ms ease;
+  }
+  .fui-knob output {
+    @apply text-lg font-bold;
+    color: var(--fui-color-text);
+  }
+  .fui-knob input {
+    @apply cursor-pointer opacity-0;
+  }
+  .fui-otp {
+    @apply flex flex-wrap gap-2;
+  }
+  .fui-otp > input:not([type="hidden"]) {
+    @apply size-11 rounded-lg border text-center text-lg font-bold outline-none transition;
+    border-color: var(--fui-color-border);
+    background: var(--fui-color-surface);
+  }
+  .fui-otp > input:focus {
+    border-color: var(--fui-palette-primary-500);
+    box-shadow: 0 0 0 3px
+      color-mix(in srgb, var(--fui-palette-primary-500) 18%, transparent);
+  }
+  .fui-phone {
+    @apply relative flex min-h-11 w-full rounded-lg border;
+    border-color: var(--fui-color-border);
+    background: var(--fui-color-surface);
+  }
+  .fui-phone-country {
+    @apply flex shrink-0 cursor-pointer items-center gap-2 border-r px-3 text-sm font-medium;
+    border-color: var(--fui-color-border);
+  }
+  .fui-phone-number {
+    @apply min-w-0 flex-1 bg-transparent px-3 py-2 text-sm outline-none;
+  }
+  .fui-phone-menu {
+    @apply top-full min-w-72;
+  }
+  .fui-phone-menu .fui-select-option span:last-child {
+    @apply ml-auto;
+    color: var(--fui-color-textMuted);
+  }
+  .fui-chart {
+    @apply m-0 block w-full overflow-hidden rounded-xl border p-3;
+    border-color: var(--fui-color-border);
+    background: var(--fui-color-surface);
+  }
+  .fui-chart svg {
+    @apply block h-auto w-full overflow-visible;
+  }
+  .fui-chart text {
+    @apply text-xs;
+    fill: var(--fui-color-textMuted);
+    text-anchor: middle;
+  }
+  .fui-chart figcaption {
+    @apply mt-2 flex flex-wrap justify-center gap-4 text-xs;
+  }
+  .fui-chart figcaption span {
+    @apply flex items-center gap-1.5;
+  }
+  .fui-chart figcaption i {
+    @apply size-2.5 rounded-full;
+  }
+  .fui-chart[data-animated="true"] rect,
+  .fui-chart[data-animated="true"] path,
+  .fui-chart[data-animated="true"] polyline {
+    animation: fui-chart-enter 450ms ease both;
+  }
   .fui-demo-card {
     @apply rounded-xl border p-5 shadow-sm;
     border-color: var(--fui-color-border);
     background: var(--fui-color-surface);
+  }
+  .fui-guide-grid {
+    @apply grid gap-4 md:grid-cols-2;
+  }
+  .fui-component-catalog {
+    @apply grid gap-3 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  .fui-catalog-card {
+    @apply flex min-w-0 flex-col gap-2 p-4;
+  }
+  .fui-catalog-card > small {
+    @apply text-xs font-semibold uppercase tracking-wide;
+    color: var(--fui-palette-primary-600);
+  }
+  .fui-catalog-card > strong {
+    @apply text-base;
+  }
+  .fui-catalog-card > p {
+    @apply m-0 flex-1 text-sm;
+    color: var(--fui-color-textMuted);
+  }
+  .fui-catalog-card pre {
+    @apply m-0 max-w-full overflow-auto rounded-md p-2 text-xs;
+    color: var(--fui-color-textInverse);
+    background: var(--fui-palette-neutral-900);
+  }
+  .fui-control-guide {
+    @apply min-w-0;
+  }
+  .fui-control-preview {
+    @apply min-h-20 rounded-lg border p-4;
+    border-color: var(--fui-color-border);
+    background: var(--fui-color-surfaceSunken);
+  }
+  .fui-control-guide pre {
+    @apply max-w-full overflow-auto rounded-lg p-3 text-xs;
+    color: var(--fui-color-textInverse);
+    background: var(--fui-palette-neutral-900);
+  }
+}
+
+@keyframes fui-chart-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

@@ -5,14 +5,15 @@ Every visible component supports the applicable shared FlowUI properties: dimens
 ## Notable behavior
 
 - `Button`: five variants, seven semantic colors, five sizes, loading state, left/right/center icon and badge.
-- `ButtonGroup`: horizontal or vertical, attached or separated.
+- `ButtonGroup`: horizontal or vertical segmented selection with a raised selected state.
 - `Menu`: icons, badges, disabled items and separators.
 - `Dropdown`: styled single selection with optional search, grouping, templates and load-more.
 - `MultiSelect`: checkbox selection with removable chips and option/chip templates.
-- `TreeDropdown`: single selection from nested models.
+- `TreeDropdown`: searchable single selection from nested models without chips.
 - `TreeMultiSelect`: nested checkbox selection with search, cascading, indeterminate parents, templates and lazy children.
 - `Tabs` and `Tab`: controlled or internal selection with arbitrary content.
-- `Input` and `TextArea`: native attributes and change events.
+- `Input`: text by default, with integer, decimal, money and alphabet-only filtering modes.
+- `TextArea`: native multiline attributes and change events.
 - `PasswordInput`: password entry with an optional show/hide button and controlled or internal visibility.
 - `Checkbox`, `RadioButton`, `RadioGroup`: accessible native controls.
 - `ColorPicker`: native color input using FlowUI dimensions and border.
@@ -39,11 +40,17 @@ Every visible component supports the applicable shared FlowUI properties: dimens
 - `Carousel`: controlled or internal slide index, looping, controls and indicators.
 - `Breadcrumb`: image, icon and text items with an optional custom item template.
 - `Notification`: top/bottom and left/center/right placement with success, error, warning and info types.
+- `Knob`: circular range input with min, max, step, colour and value suffix.
+- `OTPInput`: separate cells with auto-advance, backspace navigation, paste, masking and completion events.
+- `PhoneInput`: searchable country/dial-code selector plus a bound subscriber number.
+- `Chart`: data-driven bar, line, pie and doughnut SVG charts with legends and optional values.
 
 `DateTime` uses a FlowUI calendar instead of the browser calendar. Its Today,
 Start-of-day and End-of-day actions are circular icon buttons inside the field.
 The chosen calendar day uses a round highlight. Date values continue to use
 local calendar parts, avoiding UTC conversion and the one-hour-behind problem.
+The calendar and every dropdown-style floating panel close on outside click;
+keyboard-capable panels also close when Escape is pressed.
 
 ## Selection enhancements
 
