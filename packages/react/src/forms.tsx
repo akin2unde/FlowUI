@@ -1,4 +1,5 @@
 import {
+  useEffect,
   useState,
   type ChangeEventHandler,
   type InputHTMLAttributes,
@@ -14,6 +15,14 @@ import type {
 import { sanitizeInputValue } from "@akin2unde/flowui-core";
 import { useFlowProps } from "./helpers";
 import { Icon } from "./primitives";
+
+function useControllableValue<T>(value: T | undefined, fallback: T) {
+  const [current, setCurrent] = useState(value ?? fallback);
+  useEffect(() => {
+    if (value !== undefined) setCurrent(value);
+  }, [value]);
+  return [current, setCurrent] as const;
+}
 
 export interface InputProps
   extends
@@ -38,6 +47,10 @@ export function Input({
   ...props
 }: InputProps) {
   const flow = useFlowProps("fui-control", props);
+  const [currentValue, setCurrentValue] = useControllableValue<string | number>(
+    value,
+    "",
+  );
   const control = (
     <input
       {...flow}
@@ -49,7 +62,7 @@ export function Input({
             ? "decimal"
             : undefined
       }
-      value={value}
+      value={currentValue}
       name={name}
       placeholder={placeholder}
       disabled={disabled}
@@ -60,6 +73,7 @@ export function Input({
       onChange={(event) => {
         const next = sanitizeInputValue(event.target.value, inputMode);
         event.target.value = next;
+        setCurrentValue(next);
         onValueChange?.(next);
         onChange?.(event);
       }}
@@ -100,6 +114,7 @@ export function PasswordInput({
   ...props
 }: PasswordInputProps) {
   const [internalVisible, setInternalVisible] = useState(false);
+  const [currentValue, setCurrentValue] = useControllableValue(value, "");
   const isVisible = visible ?? internalVisible;
   const flow = useFlowProps("fui-password", props);
 
@@ -114,7 +129,7 @@ export function PasswordInput({
       <input
         className="fui-control fui-password-control"
         type={isVisible ? "text" : "password"}
-        value={value}
+        value={currentValue}
         name={name}
         placeholder={placeholder}
         disabled={disabled}
@@ -122,7 +137,10 @@ export function PasswordInput({
         required={required}
         autoFocus={autoFocus}
         tabIndex={tabIndex}
-        onChange={onChange}
+        onChange={(event) => {
+          setCurrentValue(event.target.value);
+          onChange?.(event);
+        }}
       />
       {showToggle && (
         <button
@@ -155,17 +173,21 @@ export function TextArea({
   ...props
 }: TextAreaProps) {
   const flow = useFlowProps("fui-control fui-textarea", props);
+  const [currentValue, setCurrentValue] = useControllableValue(value, "");
   return (
     <textarea
       {...flow}
-      value={value}
+      value={currentValue}
       name={name}
       placeholder={placeholder}
       disabled={disabled}
       readOnly={readOnly}
       required={required}
       rows={rows}
-      onChange={onChange}
+      onChange={(event) => {
+        setCurrentValue(event.target.value);
+        onChange?.(event);
+      }}
     />
   );
 }
@@ -188,16 +210,23 @@ export function Checkbox({
   ...props
 }: CheckboxProps) {
   const flow = useFlowProps("fui-check-label", props);
+  const [currentChecked, setCurrentChecked] = useControllableValue(
+    checked,
+    false,
+  );
   return (
     <label {...flow}>
       <input
         className="fui-check"
         type="checkbox"
-        checked={checked}
+        checked={currentChecked}
         name={name}
-        value={value}
+        value={value ?? ""}
         disabled={disabled}
-        onChange={onChange}
+        onChange={(event) => {
+          setCurrentChecked(event.target.checked);
+          onChange?.(event);
+        }}
       />
       <span>{label}</span>
     </label>
@@ -215,16 +244,23 @@ export function RadioButton({
   ...props
 }: RadioButtonProps) {
   const flow = useFlowProps("fui-check-label", props);
+  const [currentChecked, setCurrentChecked] = useControllableValue(
+    checked,
+    false,
+  );
   return (
     <label {...flow}>
       <input
         className="fui-check"
         type="radio"
-        checked={checked}
+        checked={currentChecked}
         name={name}
-        value={value}
+        value={value ?? ""}
         disabled={disabled}
-        onChange={onChange}
+        onChange={(event) => {
+          setCurrentChecked(event.target.checked);
+          onChange?.(event);
+        }}
       />
       <span>{label}</span>
     </label>
@@ -281,14 +317,21 @@ export function ColorPicker({
   ...props
 }: ColorPickerProps) {
   const flow = useFlowProps("fui-color", props);
+  const [currentValue, setCurrentValue] = useControllableValue(
+    value,
+    "#000000",
+  );
   return (
     <input
       {...flow}
       type="color"
-      value={value}
+      value={currentValue}
       name={name}
       disabled={disabled}
-      onChange={onChange}
+      onChange={(event) => {
+        setCurrentValue(event.target.value);
+        onChange?.(event);
+      }}
     />
   );
 }

@@ -11,9 +11,22 @@ import {
   Timeline,
   Table,
   TreeMultiSelect,
+  Input,
+  PasswordInput,
+  TextArea,
 } from "./index";
 
 describe("FlowUI React", () => {
+  it("keeps optional text controls controlled from their first render", () => {
+    const html = renderToStaticMarkup(
+      <FlowUIProvider>
+        <Input value={undefined} />
+        <PasswordInput value={undefined} />
+        <TextArea value={undefined} />
+      </FlowUIProvider>,
+    );
+    expect(html).toContain('value=""');
+  });
   it("renders components and default responsive classes", () => {
     const html = renderToStaticMarkup(
       <FlowUIProvider>

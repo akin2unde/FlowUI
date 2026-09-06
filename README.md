@@ -1,6 +1,6 @@
 # FlowUI
 
-Current release: **0.1.5**
+Current release: **0.1.6**
 
 FlowUI is a Tailwind-styled component library with native React and Angular adapters over one framework-independent TypeScript core.
 
@@ -285,7 +285,7 @@ filter its value. Money mode accepts decimals and displays `currencySymbol`.
 `number`. `Chart` accepts `labels` and one or more named numeric series and can
 paint `bar`, `line`, `pie`, or `doughnut` views.
 
-## Version 0.1.5
+## Version 0.1.6
 
 - Redesigned Dropdown with optional search, grouping, templates and load-more.
 - Added checkbox MultiSelect with removable and colour-configurable chips.

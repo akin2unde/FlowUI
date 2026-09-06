@@ -18,5 +18,5 @@ Timeline, Popover, FileUpload previews, Carousel, Breadcrumb, Notification,
 selectable ButtonGroup, alternating table rows, configurable visible columns,
 row selection, and Excel/PDF table export.
 
-Version 0.1.5 redesigns Dropdown and adds searchable, templatable MultiSelect
+Version 0.1.6 redesigns Dropdown and adds searchable, templatable MultiSelect
 and TreeMultiSelect controls with grouping, load-more and removable chips.
