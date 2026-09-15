@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-react-native",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Lightweight Tailwind-styled FlowUI controls for React Native, Expo and React Native Web.",
   "author": "Akintunde Morakinyo",
   "license": "MIT",

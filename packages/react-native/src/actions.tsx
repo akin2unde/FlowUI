@@ -4,7 +4,9 @@ import {
   type GestureResponderEvent,
   type PressableProps,
   type PressableStateCallbackType,
+  type StyleProp,
   type TextStyle,
+  type ViewStyle,
 } from "react-native";
 import { Pressable, Text as RNText, View } from "./nativewind";
 import { useFlowUITheme } from "./theme";
@@ -16,7 +18,7 @@ export interface ButtonProps extends Omit<PressableProps, "children"> {
   children: ReactNode;
   className?: string;
   textClassName?: string;
-  textStyle?: TextStyle;
+  textStyle?: StyleProp<TextStyle>;
   variant?: ButtonVariant;
   icon?: ReactNode;
   iconPosition?: "left" | "right";
@@ -106,6 +108,10 @@ export interface ButtonGroupProps {
   value?: string | number;
   onValueChange?: (value: string | number) => void;
   className?: string;
+  style?: StyleProp<ViewStyle>;
+  optionStyle?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  selectedTextStyle?: StyleProp<TextStyle>;
 }
 
 export function ButtonGroup({
@@ -113,15 +119,22 @@ export function ButtonGroup({
   value,
   onValueChange,
   className,
+  style,
+  optionStyle,
+  textStyle,
+  selectedTextStyle,
 }: ButtonGroupProps) {
   const { colors, theme } = useFlowUITheme();
   return (
     <View
       className={`flex-row gap-1 p-1 ${className ?? ""}`}
-      style={{
-        backgroundColor: colors.surfaceRaised,
-        borderRadius: theme.components.controlRadius,
-      }}
+      style={[
+        {
+          backgroundColor: colors.surfaceRaised,
+          borderRadius: theme.components.controlRadius,
+        },
+        style,
+      ]}
     >
       {options.map((option) => {
         const selected = option.value === value;
@@ -136,17 +149,24 @@ export function ButtonGroup({
             disabled={option.disabled}
             onPress={() => onValueChange?.(option.value)}
             className="min-h-10 flex-1 items-center justify-center px-3"
-            style={{
-              borderRadius: theme.radius.md,
-              backgroundColor: selected ? colors.primary : "transparent",
-              opacity: option.disabled ? 0.45 : 1,
-            }}
+            style={[
+              {
+                borderRadius: theme.radius.md,
+                backgroundColor: selected ? colors.primary : "transparent",
+                opacity: option.disabled ? 0.45 : 1,
+              },
+              optionStyle,
+            ]}
           >
             <RNText
-              style={{
-                color: selected ? colors.primaryText : colors.text,
-                fontWeight: "600",
-              }}
+              style={[
+                {
+                  color: selected ? colors.primaryText : colors.text,
+                  fontWeight: "600",
+                },
+                textStyle,
+                selected ? selectedTextStyle : undefined,
+              ]}
             >
               {option.label}
             </RNText>
@@ -164,6 +184,10 @@ export interface ChipProps {
   onPress?: () => void;
   onRemove?: () => void;
   removeLabel?: string;
+  style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
+  removeStyle?: StyleProp<ViewStyle>;
+  removeTextStyle?: StyleProp<TextStyle>;
 }
 
 export function Chip({
@@ -173,6 +197,10 @@ export function Chip({
   onPress,
   onRemove,
   removeLabel = "Remove",
+  style,
+  textStyle,
+  removeStyle,
+  removeTextStyle,
 }: ChipProps) {
   const { colors, theme } = useFlowUITheme();
   return (
@@ -180,27 +208,39 @@ export function Chip({
       accessibilityRole={onPress ? "button" : undefined}
       onPress={onPress}
       className={`flex-row items-center gap-2 px-3 py-2 ${className ?? ""}`}
-      style={{
-        borderRadius: theme.radius.full,
-        backgroundColor: selected ? colors.primary : colors.surfaceRaised,
-        borderColor: colors.border,
-        borderWidth: 1,
-      }}
+      style={[
+        {
+          borderRadius: theme.radius.full,
+          backgroundColor: selected ? colors.primary : colors.surfaceRaised,
+          borderColor: colors.border,
+          borderWidth: 1,
+        },
+        style,
+      ]}
     >
-      <RNText style={{ color: selected ? colors.primaryText : colors.text }}>
+      <RNText
+        style={[
+          { color: selected ? colors.primaryText : colors.text },
+          textStyle,
+        ]}
+      >
         {children}
       </RNText>
       {onRemove ? (
         <Pressable
           accessibilityLabel={removeLabel}
           hitSlop={8}
+          style={removeStyle}
           onPress={(event: GestureResponderEvent) => {
             event.stopPropagation();
             onRemove();
           }}
         >
           <RNText
-            style={{ color: selected ? colors.primaryText : colors.text }}
+            style={[
+              { color: selected ? colors.primaryText : colors.text },
+              removeTextStyle,
+            ]}
           >
             ×
           </RNText>
@@ -214,9 +254,17 @@ export interface BadgeProps {
   children: ReactNode;
   className?: string;
   tone?: "neutral" | "success" | "warning" | "danger";
+  style?: StyleProp<ViewStyle>;
+  textStyle?: StyleProp<TextStyle>;
 }
 
-export function Badge({ children, className, tone = "neutral" }: BadgeProps) {
+export function Badge({
+  children,
+  className,
+  tone = "neutral",
+  style,
+  textStyle,
+}: BadgeProps) {
   const { colors, theme } = useFlowUITheme();
   const backgroundColor =
     tone === "success"
@@ -229,14 +277,17 @@ export function Badge({ children, className, tone = "neutral" }: BadgeProps) {
   return (
     <View
       className={`self-start px-2 py-1 ${className ?? ""}`}
-      style={{ borderRadius: theme.radius.full, backgroundColor }}
+      style={[{ borderRadius: theme.radius.full, backgroundColor }, style]}
     >
       <RNText
-        style={{
-          color: tone === "neutral" ? colors.text : colors.primaryText,
-          fontSize: 12,
-          fontWeight: "700",
-        }}
+        style={[
+          {
+            color: tone === "neutral" ? colors.text : colors.primaryText,
+            fontSize: 12,
+            fontWeight: "700",
+          },
+          textStyle,
+        ]}
       >
         {children}
       </RNText>

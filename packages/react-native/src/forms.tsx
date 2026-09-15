@@ -1,7 +1,10 @@
 import React, { type PropsWithChildren, type ReactNode, useState } from "react";
 import {
   Switch as RNSwitch,
+  type StyleProp,
+  type TextStyle,
   type TextInputProps,
+  type ViewStyle,
   type ViewProps,
 } from "react-native";
 import { Pressable, Text as RNText, TextInput, View } from "./nativewind";
@@ -15,6 +18,9 @@ export interface FormGroupProps
   title?: string;
   description?: string;
   error?: string;
+  titleStyle?: StyleProp<TextStyle>;
+  descriptionStyle?: StyleProp<TextStyle>;
+  errorStyle?: StyleProp<TextStyle>;
 }
 
 export function FormGroup({
@@ -24,6 +30,9 @@ export function FormGroup({
   children,
   className,
   style,
+  titleStyle,
+  descriptionStyle,
+  errorStyle,
   ...props
 }: FormGroupProps) {
   const { colors, theme } = useFlowUITheme();
@@ -43,12 +52,22 @@ export function FormGroup({
     >
       {title || description ? (
         <VStack className="gap-1">
-          {title ? <Text className="text-lg font-bold">{title}</Text> : null}
-          {description ? <Text muted>{description}</Text> : null}
+          {title ? (
+            <Text className="text-lg font-bold" style={titleStyle}>
+              {title}
+            </Text>
+          ) : null}
+          {description ? (
+            <Text muted style={descriptionStyle}>
+              {description}
+            </Text>
+          ) : null}
         </VStack>
       ) : null}
       {children}
-      {error ? <Text style={{ color: colors.danger }}>{error}</Text> : null}
+      {error ? (
+        <Text style={[{ color: colors.danger }, errorStyle]}>{error}</Text>
+      ) : null}
     </View>
   );
 }
@@ -59,6 +78,10 @@ export interface FormFieldProps extends PropsWithChildren {
   error?: string;
   required?: boolean;
   className?: string;
+  style?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
+  helpTextStyle?: StyleProp<TextStyle>;
+  errorStyle?: StyleProp<TextStyle>;
 }
 
 export function FormField({
@@ -68,12 +91,16 @@ export function FormField({
   required,
   className,
   children,
+  style,
+  labelStyle,
+  helpTextStyle,
+  errorStyle,
 }: FormFieldProps) {
   const { colors } = useFlowUITheme();
   return (
-    <VStack className={`gap-1.5 ${className ?? ""}`}>
+    <VStack className={`gap-1.5 ${className ?? ""}`} style={style}>
       {label ? (
-        <RNText style={{ color: colors.text, fontWeight: "600" }}>
+        <RNText style={[{ color: colors.text, fontWeight: "600" }, labelStyle]}>
           {label}
           {required ? (
             <RNText style={{ color: colors.danger }}> *</RNText>
@@ -82,9 +109,13 @@ export function FormField({
       ) : null}
       {children}
       {error ? (
-        <RNText style={{ color: colors.danger, fontSize: 12 }}>{error}</RNText>
+        <RNText style={[{ color: colors.danger, fontSize: 12 }, errorStyle]}>
+          {error}
+        </RNText>
       ) : helpText ? (
-        <RNText style={{ color: colors.textMuted, fontSize: 12 }}>
+        <RNText
+          style={[{ color: colors.textMuted, fontSize: 12 }, helpTextStyle]}
+        >
           {helpText}
         </RNText>
       ) : null}
@@ -120,25 +151,37 @@ export function Input({ className, invalid, style, ...props }: InputProps) {
 export interface PasswordInputProps extends InputProps {
   showLabel?: string;
   hideLabel?: string;
+  containerStyle?: StyleProp<ViewStyle>;
+  toggleStyle?: StyleProp<ViewStyle>;
+  toggleTextStyle?: StyleProp<TextStyle>;
 }
 
 export function PasswordInput({
   showLabel = "Show",
   hideLabel = "Hide",
+  containerStyle,
+  toggleStyle,
+  toggleTextStyle,
   ...props
 }: PasswordInputProps) {
   const [visible, setVisible] = useState(false);
   const { colors } = useFlowUITheme();
   return (
-    <View className="relative justify-center">
+    <View className="relative justify-center" style={containerStyle}>
       <Input secureTextEntry={!visible} className="pr-16" {...props} />
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={visible ? hideLabel : showLabel}
         className="absolute right-3 p-2"
+        style={toggleStyle}
         onPress={() => setVisible((current) => !current)}
       >
-        <RNText style={{ color: colors.primary, fontWeight: "600" }}>
+        <RNText
+          style={[
+            { color: colors.primary, fontWeight: "600" },
+            toggleTextStyle,
+          ]}
+        >
           {visible ? hideLabel : showLabel}
         </RNText>
       </Pressable>
@@ -212,6 +255,10 @@ export interface CheckboxProps {
   label?: ReactNode;
   disabled?: boolean;
   className?: string;
+  style?: StyleProp<ViewStyle>;
+  indicatorStyle?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
+  checkmarkStyle?: StyleProp<TextStyle>;
 }
 
 export function Checkbox({
@@ -220,6 +267,10 @@ export function Checkbox({
   label,
   disabled,
   className,
+  style,
+  indicatorStyle,
+  labelStyle,
+  checkmarkStyle,
 }: CheckboxProps) {
   const { colors, theme } = useFlowUITheme();
   return (
@@ -229,22 +280,27 @@ export function Checkbox({
       disabled={disabled}
       onPress={() => onCheckedChange?.(!checked)}
       className={`flex-row items-center gap-3 ${className ?? ""}`}
-      style={{ opacity: disabled ? 0.5 : 1 }}
+      style={[{ opacity: disabled ? 0.5 : 1 }, style]}
     >
       <View
         className="h-6 w-6 items-center justify-center border"
-        style={{
-          borderRadius: theme.radius.sm,
-          borderColor: checked ? colors.primary : colors.border,
-          backgroundColor: checked ? colors.primary : "transparent",
-        }}
+        style={[
+          {
+            borderRadius: theme.radius.sm,
+            borderColor: checked ? colors.primary : colors.border,
+            backgroundColor: checked ? colors.primary : "transparent",
+          },
+          indicatorStyle,
+        ]}
       >
         {checked ? (
-          <RNText style={{ color: colors.primaryText }}>✓</RNText>
+          <RNText style={[{ color: colors.primaryText }, checkmarkStyle]}>
+            ✓
+          </RNText>
         ) : null}
       </View>
       {typeof label === "string" || typeof label === "number" ? (
-        <Text>{label}</Text>
+        <Text style={labelStyle}>{label}</Text>
       ) : (
         label
       )}
@@ -264,6 +320,11 @@ export interface RadioGroupProps {
   onValueChange?: (value: string | number) => void;
   horizontal?: boolean;
   className?: string;
+  style?: StyleProp<ViewStyle>;
+  optionStyle?: StyleProp<ViewStyle>;
+  indicatorStyle?: StyleProp<ViewStyle>;
+  selectedIndicatorStyle?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
 }
 
 export function RadioGroup({
@@ -272,6 +333,11 @@ export function RadioGroup({
   onValueChange,
   horizontal,
   className,
+  style,
+  optionStyle,
+  indicatorStyle,
+  selectedIndicatorStyle,
+  labelStyle,
 }: RadioGroupProps) {
   const { colors, theme } = useFlowUITheme();
   const Container = horizontal ? HStack : VStack;
@@ -279,6 +345,7 @@ export function RadioGroup({
     <Container
       accessibilityRole="radiogroup"
       className={`gap-3 ${className ?? ""}`}
+      style={style}
     >
       {options.map((option) => {
         const checked = option.value === value;
@@ -290,26 +357,32 @@ export function RadioGroup({
             disabled={option.disabled}
             onPress={() => onValueChange?.(option.value)}
             className="flex-row items-center gap-2"
-            style={{ opacity: option.disabled ? 0.5 : 1 }}
+            style={[{ opacity: option.disabled ? 0.5 : 1 }, optionStyle]}
           >
             <View
               className="h-6 w-6 items-center justify-center border"
-              style={{
-                borderRadius: theme.radius.full,
-                borderColor: colors.primary,
-              }}
+              style={[
+                {
+                  borderRadius: theme.radius.full,
+                  borderColor: colors.primary,
+                },
+                indicatorStyle,
+              ]}
             >
               {checked ? (
                 <View
                   className="h-3 w-3"
-                  style={{
-                    borderRadius: theme.radius.full,
-                    backgroundColor: colors.primary,
-                  }}
+                  style={[
+                    {
+                      borderRadius: theme.radius.full,
+                      backgroundColor: colors.primary,
+                    },
+                    selectedIndicatorStyle,
+                  ]}
                 />
               ) : null}
             </View>
-            <Text>{option.label}</Text>
+            <Text style={labelStyle}>{option.label}</Text>
           </Pressable>
         );
       })}
@@ -323,6 +396,9 @@ export interface SwitchProps {
   label?: string;
   disabled?: boolean;
   className?: string;
+  style?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
+  switchStyle?: StyleProp<ViewStyle>;
 }
 
 export function Switch({
@@ -331,16 +407,23 @@ export function Switch({
   label,
   disabled,
   className,
+  style,
+  labelStyle,
+  switchStyle,
 }: SwitchProps) {
   const { colors } = useFlowUITheme();
   return (
-    <HStack className={`items-center justify-between gap-3 ${className ?? ""}`}>
-      {label ? <Text>{label}</Text> : null}
+    <HStack
+      className={`items-center justify-between gap-3 ${className ?? ""}`}
+      style={style}
+    >
+      {label ? <Text style={labelStyle}>{label}</Text> : null}
       <RNSwitch
         disabled={disabled}
         value={value}
         onValueChange={onValueChange}
         trackColor={{ false: colors.border, true: colors.primary }}
+        style={switchStyle}
       />
     </HStack>
   );
@@ -382,6 +465,9 @@ export interface PhoneInputProps {
   onCountryCodeChange?: (value: string) => void;
   onNumberChange?: (value: string) => void;
   className?: string;
+  style?: StyleProp<ViewStyle>;
+  countryInputStyle?: StyleProp<TextStyle>;
+  numberInputStyle?: StyleProp<TextStyle>;
 }
 
 export function PhoneInput({
@@ -390,15 +476,19 @@ export function PhoneInput({
   onCountryCodeChange,
   onNumberChange,
   className,
+  style,
+  countryInputStyle,
+  numberInputStyle,
 }: PhoneInputProps) {
   return (
-    <HStack className={`gap-2 ${className ?? ""}`}>
+    <HStack className={`gap-2 ${className ?? ""}`} style={style}>
       <Input
         accessibilityLabel="Country calling code"
         value={countryCode}
         onChangeText={onCountryCodeChange}
         keyboardType="phone-pad"
         className="w-24"
+        style={countryInputStyle}
       />
       <Input
         accessibilityLabel="Phone number"
@@ -406,6 +496,7 @@ export function PhoneInput({
         onChangeText={onNumberChange}
         keyboardType="phone-pad"
         className="flex-1"
+        style={numberInputStyle}
       />
     </HStack>
   );

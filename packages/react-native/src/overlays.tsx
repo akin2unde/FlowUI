@@ -1,5 +1,11 @@
 import React, { type ReactNode } from "react";
-import { Modal, Platform } from "react-native";
+import {
+  Modal,
+  Platform,
+  type StyleProp,
+  type TextStyle,
+  type ViewStyle,
+} from "react-native";
 import {
   KeyboardAvoidingView,
   Pressable,
@@ -20,6 +26,11 @@ export interface DialogProps {
   position?: "center" | "top" | "bottom" | "left" | "right";
   scrollable?: boolean;
   className?: string;
+  overlayStyle?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle>;
+  headerStyle?: StyleProp<ViewStyle>;
+  bodyStyle?: StyleProp<ViewStyle>;
+  footerStyle?: StyleProp<ViewStyle>;
 }
 
 export function Dialog({
@@ -33,6 +44,11 @@ export function Dialog({
   position = "center",
   scrollable = true,
   className,
+  overlayStyle,
+  style,
+  headerStyle,
+  bodyStyle,
+  footerStyle,
 }: DialogProps) {
   const { colors, theme } = useFlowUITheme();
   const alignment =
@@ -57,7 +73,7 @@ export function Dialog({
       <KeyboardAvoidingView
         className={`flex-1 p-4 ${alignment}`}
         behavior={Platform.OS === "ios" ? "padding" : undefined}
-        style={{ backgroundColor: colors.overlay }}
+        style={[{ backgroundColor: colors.overlay }, overlayStyle]}
       >
         <Pressable
           accessibilityLabel="Close dialog"
@@ -67,24 +83,29 @@ export function Dialog({
         <View
           accessibilityViewIsModal
           className={`max-h-[90%] w-full overflow-hidden sm:max-w-xl ${className ?? ""}`}
-          style={{
-            backgroundColor: colors.surface,
-            borderRadius: theme.radius.xl,
-          }}
+          style={[
+            {
+              backgroundColor: colors.surface,
+              borderRadius: theme.radius.xl,
+            },
+            style,
+          ]}
         >
           {header ? (
             <View
               className="border-b p-4"
-              style={{ borderColor: colors.border }}
+              style={[{ borderColor: colors.border }, headerStyle]}
             >
               {header}
             </View>
           ) : null}
-          <View className="p-4">{body}</View>
+          <View className="p-4" style={bodyStyle}>
+            {body}
+          </View>
           {footer ? (
             <View
               className="border-t p-4"
-              style={{ borderColor: colors.border }}
+              style={[{ borderColor: colors.border }, footerStyle]}
             >
               {footer}
             </View>
@@ -97,9 +118,17 @@ export function Dialog({
 
 export interface BottomSheetProps extends Omit<DialogProps, "position"> {
   title?: string;
+  titleStyle?: StyleProp<TextStyle>;
+  handleStyle?: StyleProp<ViewStyle>;
 }
 
-export function BottomSheet({ title, header, ...props }: BottomSheetProps) {
+export function BottomSheet({
+  title,
+  header,
+  titleStyle,
+  handleStyle,
+  ...props
+}: BottomSheetProps) {
   const { colors } = useFlowUITheme();
   return (
     <Dialog
@@ -109,10 +138,12 @@ export function BottomSheet({ title, header, ...props }: BottomSheetProps) {
           <View className="items-center gap-2">
             <View
               className="h-1 w-12 rounded-full"
-              style={{ backgroundColor: colors.border }}
+              style={[{ backgroundColor: colors.border }, handleStyle]}
             />
             {title ? (
-              <RNText style={{ color: colors.text, fontWeight: "700" }}>
+              <RNText
+                style={[{ color: colors.text, fontWeight: "700" }, titleStyle]}
+              >
                 {title}
               </RNText>
             ) : null}

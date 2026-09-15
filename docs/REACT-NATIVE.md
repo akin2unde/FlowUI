@@ -304,6 +304,47 @@ const countries = [
 
 Both controls use a responsive modal presentation, close on the backdrop and Android back button, and work on React Native Web.
 
+#### Per-control style overrides
+
+Every visual component accepts a React Native `style` prop. Components with
+multiple visual parts also expose explicit subpart styles. Caller styles are
+applied after FlowUI theme defaults, so they can override a single control
+without changing the application theme.
+
+```tsx
+<Select
+  items={gameweeks}
+  value={gameweek}
+  onValueChange={setGameweek}
+  style={{ backgroundColor: "#062821", borderColor: "#C6E58C" }}
+  textStyle={{ color: "#F5F8F2" }}
+  chevronStyle={{ color: "#C6E58C" }}
+  menuStyle={{ backgroundColor: "#13483F" }}
+  optionTextStyle={{ color: "#F5F8F2" }}
+/>
+```
+
+Common naming is `style` for the outer control, `textStyle` for its main text,
+and descriptive names such as `indicatorStyle`, `labelStyle`, `overlayStyle`,
+`headerStyle`, `bodyStyle`, and `menuStyle` for internal parts.
+
+### Menu
+
+```tsx
+<Menu
+  placement="bottom"
+  offset={6}
+  trigger={() => <Button variant="outline">More</Button>}
+  style={{ backgroundColor: "#13483F" }}
+>
+  <MenuItem textValue="Membership" onPress={openMembership}>
+    <MenuItemLabel>Membership</MenuItemLabel>
+  </MenuItem>
+</Menu>
+```
+
+Exports: `Menu`, `MenuItem`, `MenuItemLabel`.
+
 ### Dialog and BottomSheet
 
 ```tsx

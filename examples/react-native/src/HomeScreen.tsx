@@ -22,6 +22,9 @@ import {
   Image,
   Input,
   MoneyInput,
+  Menu,
+  MenuItem,
+  MenuItemLabel,
   MultiSelect,
   Notification,
   NumberInput,
@@ -136,6 +139,18 @@ export function HomeScreen() {
                 <ActivityIndicator />
                 <Text muted>VCenter</Text>
               </VCenter>
+              <Menu
+                placement="bottom"
+                trigger={() => (
+                  <Box className="rounded-xl border px-4 py-3">
+                    <Text>More actions</Text>
+                  </Box>
+                )}
+              >
+                <MenuItem textValue="Membership">
+                  <MenuItemLabel>Membership</MenuItemLabel>
+                </MenuItem>
+              </Menu>
               {chipVisible ? (
                 <Chip selected onRemove={() => setChipVisible(false)}>
                   Removable chip

@@ -2,6 +2,8 @@ import React, { type PropsWithChildren, type ReactNode } from "react";
 import {
   type ImageProps,
   type ScrollViewProps,
+  type StyleProp,
+  type TextStyle,
   type TextProps,
   type ViewProps,
 } from "react-native";
@@ -132,6 +134,7 @@ export interface AvatarProps extends Omit<FlowImageProps, "source"> {
   source?: ImageProps["source"];
   fallback?: string;
   size?: number;
+  fallbackTextStyle?: StyleProp<TextStyle>;
 }
 
 export function Avatar({
@@ -139,6 +142,7 @@ export function Avatar({
   fallback = "?",
   size = 44,
   style,
+  fallbackTextStyle,
   ...props
 }: AvatarProps) {
   const { colors } = useFlowUITheme();
@@ -153,16 +157,24 @@ export function Avatar({
   }
   return (
     <View
-      style={{
-        width: size,
-        height: size,
-        borderRadius: size / 2,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: colors.primary,
-      }}
+      style={[
+        {
+          width: size,
+          height: size,
+          borderRadius: size / 2,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: colors.primary,
+        },
+        style,
+      ]}
     >
-      <RNText style={{ color: colors.primaryText, fontWeight: "700" }}>
+      <RNText
+        style={[
+          { color: colors.primaryText, fontWeight: "700" },
+          fallbackTextStyle,
+        ]}
+      >
         {fallback.slice(0, 2).toUpperCase()}
       </RNText>
     </View>
@@ -172,6 +184,10 @@ export function Avatar({
 export interface SectionProps extends PropsWithChildren, ClassName {
   title: string;
   description?: string;
+  style?: ViewProps["style"];
+  headerStyle?: ViewProps["style"];
+  titleStyle?: StyleProp<TextStyle>;
+  descriptionStyle?: StyleProp<TextStyle>;
 }
 
 export function Section({
@@ -179,12 +195,22 @@ export function Section({
   description,
   children,
   className,
+  style,
+  headerStyle,
+  titleStyle,
+  descriptionStyle,
 }: SectionProps) {
   return (
-    <VStack className={`gap-3 ${className ?? ""}`}>
-      <VStack className="gap-1">
-        <Text className="text-lg font-bold">{title}</Text>
-        {description ? <Text muted>{description}</Text> : null}
+    <VStack className={`gap-3 ${className ?? ""}`} style={style}>
+      <VStack className="gap-1" style={headerStyle}>
+        <Text className="text-lg font-bold" style={titleStyle}>
+          {title}
+        </Text>
+        {description ? (
+          <Text muted style={descriptionStyle}>
+            {description}
+          </Text>
+        ) : null}
       </VStack>
       {children}
     </VStack>
