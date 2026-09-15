@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "FlowUI React Native",
+    "slug": "flowui-react-native-example",
+    "version": "0.2.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "web": {
+      "bundler": "metro"
+    }
+  }
+}

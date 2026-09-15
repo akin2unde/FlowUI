@@ -1,0 +1,121 @@
+import React, { type ReactNode } from "react";
+import {
+  ActivityIndicator as RNActivityIndicator,
+  Modal,
+  type ActivityIndicatorProps,
+} from "react-native";
+import { Text as RNText, View } from "./nativewind";
+import { useFlowUITheme } from "./theme";
+
+export function ActivityIndicator(props: ActivityIndicatorProps) {
+  const { colors } = useFlowUITheme();
+  return <RNActivityIndicator color={colors.primary} {...props} />;
+}
+
+export interface BusyIndicatorProps {
+  visible: boolean;
+  message?: string;
+}
+
+export function BusyIndicator({ visible, message }: BusyIndicatorProps) {
+  const { colors, theme } = useFlowUITheme();
+  return (
+    <Modal visible={visible} transparent animationType="fade">
+      <View
+        className="flex-1 items-center justify-center p-6"
+        style={{ backgroundColor: colors.overlay }}
+      >
+        <View
+          className="min-w-48 items-center gap-3 p-5"
+          style={{
+            backgroundColor: colors.surface,
+            borderRadius: theme.radius.xl,
+          }}
+        >
+          <RNActivityIndicator color={colors.primary} size="large" />
+          {message ? (
+            <RNText style={{ color: colors.text }}>{message}</RNText>
+          ) : null}
+        </View>
+      </View>
+    </Modal>
+  );
+}
+
+export interface ProgressBarProps {
+  value: number;
+  maximum?: number;
+  className?: string;
+}
+
+export function ProgressBar({
+  value,
+  maximum = 100,
+  className,
+}: ProgressBarProps) {
+  const { colors, theme } = useFlowUITheme();
+  const percentage = Math.min(100, Math.max(0, (value / maximum) * 100));
+  return (
+    <View
+      accessibilityRole="progressbar"
+      accessibilityValue={{ min: 0, max: maximum, now: value }}
+      className={`h-2 overflow-hidden ${className ?? ""}`}
+      style={{
+        backgroundColor: colors.border,
+        borderRadius: theme.radius.full,
+      }}
+    >
+      <View
+        className="h-full"
+        style={{ width: `${percentage}%`, backgroundColor: colors.primary }}
+      />
+    </View>
+  );
+}
+
+export interface NotificationProps {
+  title: string;
+  message?: string;
+  type?: "success" | "warning" | "error" | "info";
+  icon?: ReactNode;
+  className?: string;
+}
+
+export function Notification({
+  title,
+  message,
+  type = "info",
+  icon,
+  className,
+}: NotificationProps) {
+  const { colors, theme } = useFlowUITheme();
+  const accent =
+    type === "success"
+      ? colors.success
+      : type === "warning"
+        ? colors.warning
+        : type === "error"
+          ? colors.danger
+          : colors.primary;
+  return (
+    <View
+      accessibilityRole="alert"
+      className={`flex-row gap-3 border-l-4 p-4 ${className ?? ""}`}
+      style={{
+        borderColor: accent,
+        backgroundColor: colors.surface,
+        borderRadius: theme.radius.md,
+      }}
+    >
+      {icon}
+      <View className="flex-1 gap-1">
+        <RNText style={{ color: colors.text, fontWeight: "700" }}>
+          {title}
+        </RNText>
+        {message ? (
+          <RNText style={{ color: colors.textMuted }}>{message}</RNText>
+        ) : null}
+      </View>
+    </View>
+  );
+}

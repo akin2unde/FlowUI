@@ -22,3 +22,5 @@ row selection, and Excel/PDF table export.
 
 Version 0.1.6 redesigns Dropdown and adds searchable, templatable MultiSelect
 and TreeMultiSelect controls with grouping, load-more and removable chips.
+
+See the dedicated [React guide](../../docs/REACT.md).

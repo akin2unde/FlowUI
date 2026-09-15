@@ -1,10 +1,11 @@
 {
   "name": "flowui-workspace",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "private": true,
   "workspaces": [
     "packages/*",
-    "examples/*"
+    "examples/react",
+    "examples/angular"
   ],
   "scripts": {
     "clean": "node scripts/clean.mjs",
@@ -12,17 +13,21 @@
     "build:core": "npm run build -w @akin2unde/flowui-core",
     "build:react": "npm run build:core && npm run build:styles && npm run build -w @akin2unde/flowui-react",
     "build:angular": "npm run build:core && npm run build:styles && npm run build -w @akin2unde/flowui-angular",
-    "build:packages": "npm run build:core && npm run build:styles && npm run build -w @akin2unde/flowui-react && npm run build -w @akin2unde/flowui-angular",
-    "build:examples": "npm run build -w @akin2unde/flowui-react-example && npm run build -w @akin2unde/flowui-angular-example",
+    "build:react-native": "npm run build:core && npm run build -w @akin2unde/flowui-react-native",
+    "build:packages": "npm run build:core && npm run build:styles && npm run build -w @akin2unde/flowui-react && npm run build -w @akin2unde/flowui-angular && npm run build -w @akin2unde/flowui-react-native",
+    "build:examples": "npm run build -w @akin2unde/flowui-react-example && npm run build -w @akin2unde/flowui-angular-example && npm --prefix examples/react-native run typecheck",
     "build": "npm run build:packages && npm run build:examples",
-    "typecheck": "npm run typecheck -w @akin2unde/flowui-core && npm run typecheck -w @akin2unde/flowui-react && npm run typecheck -w @akin2unde/flowui-angular",
-    "test": "npm run test -w @akin2unde/flowui-core && npm run test -w @akin2unde/flowui-react",
+    "typecheck": "npm run typecheck -w @akin2unde/flowui-core && npm run typecheck -w @akin2unde/flowui-react && npm run typecheck -w @akin2unde/flowui-angular && npm run typecheck -w @akin2unde/flowui-react-native",
+    "test": "npm run test -w @akin2unde/flowui-core && npm run test -w @akin2unde/flowui-react && npm run test -w @akin2unde/flowui-react-native",
     "format": "prettier --write . --ignore-path .prettierignore",
     "format:check": "prettier --check . --ignore-path .prettierignore",
     "release:check": "npm run build && npm run typecheck && npm test && npm run format:check",
-    "publish:packages": "npm publish -w @akin2unde/flowui-core --access public && npm publish -w @akin2unde/flowui-react --access public && npm publish -w @akin2unde/flowui-angular --access public",
+    "publish:packages": "npm publish -w @akin2unde/flowui-core --access public && npm publish -w @akin2unde/flowui-react --access public && npm publish -w @akin2unde/flowui-angular --access public && npm publish -w @akin2unde/flowui-react-native --access public",
     "dev:react": "npm run dev -w @akin2unde/flowui-react-example",
-    "dev:angular": "npm run start -w @akin2unde/flowui-angular-example"
+    "dev:angular": "npm run start -w @akin2unde/flowui-angular-example",
+    "setup:react-native-example": "npm run build:react-native && npm --prefix examples/react-native install --workspaces=false",
+    "dev:react-native": "npm run build:react-native && npm --prefix examples/react-native run start",
+    "dev:react-native:web": "npm run build:react-native && npm --prefix examples/react-native run web"
   },
   "devDependencies": {
     "@angular/build": "^20.2.0",
@@ -38,6 +43,7 @@
     "tailwindcss": "^4.1.0",
     "tsup": "^8.5.0",
     "typescript": "^5.9.0",
+    "react-native": "^0.81.0",
     "vite": "^7.1.0",
     "vitest": "^3.2.0"
   }

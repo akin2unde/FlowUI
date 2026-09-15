@@ -1,17 +1,24 @@
 # FlowUI
 
-Current release: **0.1.6**
+Current release: **0.2.0**
 
-FlowUI is a Tailwind-styled component library with native React and Angular adapters over one framework-independent TypeScript core.
+FlowUI is a Tailwind-styled component library with React, Angular and React Native adapters over one framework-independent TypeScript core.
 
 ## Packages
 
 - `@akin2unde/flowui-core` — contracts, themes, responsive values and style resolution. It imports neither React nor Angular.
 - `@akin2unde/flowui-react` — React functional components.
 - `@akin2unde/flowui-angular` — standalone Angular components.
-- `@flowui/internal-styles` — private Tailwind build used to create the CSS shipped inside both adapters.
+- `@akin2unde/flowui-react-native` — lightweight React Native, Expo and React Native Web controls with NativeWind `className` support.
+- `@flowui/internal-styles` — private Tailwind build used by the browser React and Angular adapters.
 
-An application does **not** need Tailwind to use FlowUI. It may install Tailwind for its own application styling without affecting FlowUI.
+React and Angular applications do **not** need Tailwind to use FlowUI because their packages ship compiled CSS. React Native applications install NativeWind when they want Tailwind `className` styling.
+
+## Framework guides
+
+- [React setup and first screen](docs/REACT.md)
+- [Angular setup and first screen](docs/ANGULAR.md)
+- [React Native, Expo and web setup](docs/REACT-NATIVE.md)
 
 ## Responsive values
 
@@ -47,7 +54,12 @@ Run the galleries:
 ```bash
 npm run dev:react
 npm run dev:angular
+npm run dev:react-native
+npm run dev:react-native:web
 ```
+
+Both React Native development commands build the local package before starting
+Expo, so its `dist` entry points are always available.
 
 Framework packages can also be built independently from a clean checkout.
 `npm run build:react` and `npm run build:angular` automatically build their
@@ -284,6 +296,21 @@ filter its value. Money mode accepts decimals and displays `currencySymbol`.
 `PhoneInput` binds one object containing `countryCode`, `dialCode`, and
 `number`. `Chart` accepts `labels` and one or more named numeric series and can
 paint `bar`, `line`, `pie`, or `doughnut` views.
+
+## Version 0.2.0
+
+- Added the lightweight `@akin2unde/flowui-react-native` package for native,
+  Expo and React Native Web applications.
+- Added light, dark and system themes with fully typed custom theme tokens.
+- Added NativeWind `className` support alongside React Native `style` props.
+- Wrapped compiled React Native primitives with NativeWind `cssInterop` so
+  internal layout and typography utilities also work on React Native Web.
+- Added layout, action, form, selection, overlay and feedback controls,
+  including `FormGroup` and `FormField`.
+- Added a complete Expo example containing a named usage card for every native
+  control and an average Tailwind-styled form.
+- Split setup and first-screen documentation into dedicated React, Angular and
+  React Native guides.
 
 ## Version 0.1.6
 

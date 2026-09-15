@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "nativewind",
+    "moduleResolution": "Bundler",
+    "noEmit": true
+  },
+  "include": [
+    "App.tsx",
+    "src/**/*.tsx",
+    "nativewind-env.d.ts",
+    "react-native-classname.d.ts"
+  ]
+}

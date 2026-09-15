@@ -1,5 +1,9 @@
 # Component API Summary
 
+This reference covers the browser packages. Start with the framework-specific
+setup guide for [React](./REACT.md), [Angular](./ANGULAR.md), or
+[React Native, Expo and web](./REACT-NATIVE.md).
+
 Every visible component supports the applicable shared FlowUI properties: dimensions, margin, padding, flex behavior, position, border, radius, background, opacity and shadow. Text-bearing components additionally support text color, font family, size, weight, alignment, transformation and line clamping.
 
 ## Notable behavior
