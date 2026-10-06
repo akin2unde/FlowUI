@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-core",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Framework-independent contracts, themes and style resolution for FlowUI.",
   "author": "Akintunde Morakinyo",
   "repository": {
@@ -36,7 +36,8 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prepack": "node ../../scripts/prepack.mjs core"
   },
   "dependencies": {
     "csstype": "^3.1.3"

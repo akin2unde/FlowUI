@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-react",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "React components for FlowUI.",
   "author": "Akintunde Morakinyo",
   "repository": {
@@ -38,10 +38,11 @@
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --external react --external react-dom --clean && cp ../styles/dist/flowui.css dist/styles.css",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "prepack": "node ../../scripts/prepack.mjs react"
   },
   "dependencies": {
-    "@akin2unde/flowui-core": "0.2.0"
+    "@akin2unde/flowui-core": "0.2.1"
   },
   "peerDependencies": {
     "react": ">=18",

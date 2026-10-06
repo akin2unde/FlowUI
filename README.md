@@ -1,6 +1,6 @@
 # FlowUI
 
-Current release: **0.2.0**
+Current release: **0.2.1** (React Native: **0.2.4**)
 
 FlowUI is a Tailwind-styled component library with React, Angular and React Native adapters over one framework-independent TypeScript core.
 
@@ -64,6 +64,46 @@ Expo, so its `dist` entry points are always available.
 Framework packages can also be built independently from a clean checkout.
 `npm run build:react` and `npm run build:angular` automatically build their
 core and stylesheet dependencies first.
+
+## Packaging and publishing
+
+The 0.2.1 packaging fix builds packages before `npm pack` or `npm publish`.
+This prevents a clean checkout from publishing a manifest without its declared
+JavaScript, TypeScript declarations or stylesheet files. React Native includes
+these release safeguards in 0.2.4. Component APIs are unchanged.
+
+From the workspace root:
+
+```bash
+npm ci
+npm run build:packages
+npm run check:packages
+npm run typecheck
+npm test
+npm run publish:packages
+```
+
+`check:packages` checks the file list produced by `npm pack --dry-run`, including
+all declared entry points and stylesheet exports. It fails if a file is missing
+or empty. It also checks Angular's generated `dist` package, whose CSS export
+must be relative to that directory. `publish:packages` builds and checks every
+package before publishing core, React, Angular and React Native in that order.
+
+To publish only React and its updated core dependency:
+
+```bash
+npm publish -w @akin2unde/flowui-core --access public
+npm publish -w @akin2unde/flowui-react --access public
+```
+
+Each package's `prepack` hook builds its dependencies and checks its tarball
+before npm publishes it. Run these commands from this source workspace; do not
+use `--ignore-scripts` for publishing. npm versions cannot be overwritten, so
+publish the new patch versions and then update the consuming application:
+
+```bash
+npm install @akin2unde/flowui-react@0.2.1
+```
 
 ## React setup
 
