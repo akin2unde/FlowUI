@@ -6,3 +6,5 @@ export * from "./datetime";
 export * from "./input";
 export * from "./table-export";
 export * from "./selection";
+
+export * from "./async-label";

@@ -74,3 +74,7 @@ export function HomeScreen() {
 You may install Tailwind in the React application for page-specific styling. It does not replace FlowUI’s shipped stylesheet and it does not need to scan FlowUI’s package.
 
 See [Component API](COMPONENT-API.md) for the complete browser component reference.
+
+## AsyncLabel
+
+See [AsyncLabel usage and backend integration](./ASYNC-LABEL.md) for shared batching, inline loading indicators, provider setup and cache controls.

@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-angular",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Angular components for FlowUI.",
   "author": "Akintunde Morakinyo",
   "repository": {
@@ -34,10 +34,11 @@
   "scripts": {
     "build": "ng-packagr -p ng-package.json && cp ../styles/dist/flowui.css dist/flowui.css && node ../../scripts/finalize-angular.mjs",
     "typecheck": "tsc -p tsconfig.lib.json --noEmit",
-    "prepack": "node ../../scripts/prepack.mjs angular"
+    "prepack": "node ../../scripts/prepack.mjs angular",
+    "test": "vitest run"
   },
   "dependencies": {
-    "@akin2unde/flowui-core": "0.2.1",
+    "@akin2unde/flowui-core": "0.3.0",
     "tslib": "^2.8.0"
   },
   "peerDependencies": {

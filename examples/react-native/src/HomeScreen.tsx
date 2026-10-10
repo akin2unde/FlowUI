@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Platform, View } from "react-native";
 import {
   ActivityIndicator,
+  AsyncLabel,
+  useAsyncLabelStore,
   Avatar,
   Badge,
   BottomSheet,
@@ -72,6 +74,7 @@ const countries: SelectOption<{ region: string }>[] = [
 
 export function HomeScreen() {
   const { colors, mode, setMode } = useFlowUITheme();
+  const labels = useAsyncLabelStore();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [notes, setNotes] = useState("");
@@ -114,6 +117,24 @@ export function HomeScreen() {
           />
         </VStack>
 
+        <Card className="gap-4">
+          <Text className="text-lg font-bold">AsyncLabel</Text>
+          <Text>Repeated codes share one resolver request.</Text>
+          <AsyncLabel lookup="customerName" code="CUS001" />
+          <AsyncLabel lookup="customerName" code="CUS001" />
+          <AsyncLabel lookup="customerName" code="CUS002" />
+          <AsyncLabel
+            lookup="customerName"
+            code="CUS003"
+            fallback="Customer not found"
+          />
+          <Button
+            variant="outline"
+            onPress={() => labels.invalidate("customerName")}
+          >
+            Resolve again
+          </Button>
+        </Card>
         <Card className="gap-4">
           <Section
             title="Layout, media and actions"

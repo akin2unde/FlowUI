@@ -1,0 +1,9 @@
+node_modules/
+**/node_modules/
+**/dist/
+**/out-tsc/
+**/.angular/
+**/.expo/
+**/coverage/
+**/package-lock.json
+packages/angular/src/flowui.css

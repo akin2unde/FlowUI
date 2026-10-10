@@ -1,6 +1,6 @@
 # FlowUI
 
-Current release: **0.2.1** (React Native: **0.2.4**)
+Development version: **0.3.0** across all adapters (not yet published).
 
 FlowUI is a Tailwind-styled component library with React, Angular and React Native adapters over one framework-independent TypeScript core.
 
@@ -16,6 +16,8 @@ React and Angular applications do **not** need Tailwind to use FlowUI because th
 
 ## Framework guides
 
+- [Screenshot usage guide](docs/USAGE-IMAGE-GUIDE.md)
+- [AsyncLabel: resolvers, batching, cache and backend examples](docs/ASYNC-LABEL.md)
 - [React setup and first screen](docs/REACT.md)
 - [Angular setup and first screen](docs/ANGULAR.md)
 - [React Native, Expo and web setup](docs/REACT-NATIVE.md)
@@ -44,12 +46,13 @@ The word `base` is deliberately not part of the public API.
 ## Install and build the workspace
 
 ```bash
-npm install
+npm ci
+npm run setup:react-native-example
 npm run build
 npm test
 ```
 
-Run the galleries:
+Run the sidebar documentation sites or native gallery:
 
 ```bash
 npm run dev:react
@@ -374,3 +377,16 @@ paint `bar`, `line`, `pie`, or `doughnut` views.
 - Added single selection and selected styling to ButtonGroup.
 - Added optional alternating table rows and row selection events.
 - Updated both example galleries with all new controls.
+
+## Async labels and documentation
+
+`AsyncLabel` is available in React, Angular and React Native. One provider collects
+unique codes per named lookup, shares in-flight work, and caches completed results
+in a bounded in-memory cache. Applications own the backend calls; controls show a
+small loader until the name resolves. Dropdowns continue to use their datasource.
+See [the full AsyncLabel guide](docs/ASYNC-LABEL.md).
+
+The React and Angular examples now have searchable sidebar navigation, a selected
+component preview, framework tabs, usage snippets and generated property tables.
+The original full galleries remain linked in the sidebar. Blazor is planned.
+Run `npm run docs:data` after changing component contracts or gallery snippets.

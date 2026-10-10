@@ -9,3 +9,5 @@ export * from "./selection";
 export * from "./overlays";
 export * from "./feedback";
 export * from "./menu";
+
+export * from "./async-label";

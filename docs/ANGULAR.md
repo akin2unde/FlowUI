@@ -88,3 +88,7 @@ export class AppComponent {
 Import only the standalone controls a screen uses so Angular can remove unused code from the final bundle.
 
 See [Component API](COMPONENT-API.md) for the complete browser component reference.
+
+## AsyncLabel
+
+See [AsyncLabel usage and backend integration](./ASYNC-LABEL.md) for shared batching, inline loading indicators, provider setup and cache controls.

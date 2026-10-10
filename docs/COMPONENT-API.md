@@ -127,3 +127,7 @@ With `cascadeSelection`, selecting a tree parent selects its enabled,
 selectable leaf descendants. Parent checked and indeterminate states are
 derived from the bound values. `hasChildren` and `loadChildren` support lazy
 branches without changing the node model.
+
+## AsyncLabel
+
+See [AsyncLabel usage and backend integration](./ASYNC-LABEL.md) for shared batching, inline loading indicators, provider setup and cache controls.

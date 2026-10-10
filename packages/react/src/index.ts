@@ -36,3 +36,5 @@ export * from "./extras";
 export * from "./advanced";
 export * from "./selection";
 export * from "./controls";
+
+export * from "./async-label";

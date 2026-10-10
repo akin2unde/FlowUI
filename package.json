@@ -1,6 +1,6 @@
 {
   "name": "flowui-workspace",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": true,
   "workspaces": [
     "packages/*",
@@ -15,10 +15,10 @@
     "build:angular": "npm run build:core && npm run build:styles && npm run build -w @akin2unde/flowui-angular",
     "build:react-native": "npm run build:core && npm run build -w @akin2unde/flowui-react-native",
     "build:packages": "npm run build:core && npm run build:styles && npm run build -w @akin2unde/flowui-react && npm run build -w @akin2unde/flowui-angular && npm run build -w @akin2unde/flowui-react-native",
-    "build:examples": "npm run build -w @akin2unde/flowui-react-example && npm run build -w @akin2unde/flowui-angular-example && npm --prefix examples/react-native run typecheck",
+    "build:examples": "npm run docs:data && npm run build -w @akin2unde/flowui-react-example && npm run build -w @akin2unde/flowui-angular-example && npm --prefix examples/react-native run typecheck",
     "build": "npm run build:packages && npm run build:examples",
     "typecheck": "npm run typecheck -w @akin2unde/flowui-core && npm run typecheck -w @akin2unde/flowui-react && npm run typecheck -w @akin2unde/flowui-angular && npm run typecheck -w @akin2unde/flowui-react-native",
-    "test": "npm run test -w @akin2unde/flowui-core && npm run test -w @akin2unde/flowui-react && npm run test -w @akin2unde/flowui-react-native && npm run test:packaging",
+    "test": "npm run test -w @akin2unde/flowui-core && npm run test -w @akin2unde/flowui-react && npm run test -w @akin2unde/flowui-react-native && npm run test -w @akin2unde/flowui-angular && npm run test:packaging",
     "format": "prettier --write . --ignore-path .prettierignore",
     "format:check": "prettier --check . --ignore-path .prettierignore",
     "release:check": "npm run build && npm run check:packages && npm run typecheck && npm test && npm run format:check",
@@ -29,7 +29,8 @@
     "dev:react-native": "npm run build:react-native && npm --prefix examples/react-native run start",
     "dev:react-native:web": "npm run build:react-native && npm --prefix examples/react-native run web",
     "check:packages": "node scripts/check-package.mjs && node scripts/check-package.mjs angular/dist",
-    "test:packaging": "node --test scripts/check-package.test.mjs"
+    "test:packaging": "node --test scripts/check-package.test.mjs",
+    "docs:data": "node scripts/build-docs-data.mjs"
   },
   "devDependencies": {
     "@angular/build": "^20.2.0",

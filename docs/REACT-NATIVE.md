@@ -439,3 +439,7 @@ These adapters belong in separate entry points and are not part of the base bund
 - Chip removal has an explicit accessibility label.
 - Inputs retain the underlying React Native input props.
 - Add `accessibilityLabel` when visible content does not clearly describe an icon-only action.
+
+## AsyncLabel
+
+See [AsyncLabel usage and backend integration](./ASYNC-LABEL.md) for shared batching, inline loading indicators, provider setup and cache controls.

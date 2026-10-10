@@ -1,0 +1,611 @@
+@if (page().selected === "gallery") {
+  <a class="docs-gallery-back" href="#/angular/AsyncLabel"
+    >← Component documentation</a
+  ><app-root />
+} @else {
+  <div class="docs-shell">
+    <a class="docs-skip" href="#docs-content" (click)="skip($event)"
+      >Skip to content</a
+    >
+    <header class="docs-header">
+      <button
+        class="docs-mobile-toggle"
+        aria-label="Toggle documentation navigation"
+        [attr.aria-expanded]="menu"
+        (click)="menu = !menu"
+      >
+        ☰</button
+      ><a class="docs-brand" [href]="link('Introduction')"
+        ><span>F</span>FlowUI</a
+      ><span class="docs-header-label">Documentation</span
+      ><label class="docs-search"
+        ><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i
+        ><input
+          id="docs-search"
+          [value]="search"
+          (input)="search = $any($event.target).value; menu = true"
+          placeholder="Search components…"
+          aria-label="Search components"
+        /><kbd>⌘ K</kbd></label
+      ><a
+        href="https://github.com/akin2unde/FlowUI"
+        aria-label="FlowUI GitHub repository"
+        ><i class="fa-brands fa-github"></i></a
+      ><button
+        [attr.aria-label]="dark ? 'Use light theme' : 'Use dark theme'"
+        (click)="toggleTheme()"
+      >
+        <i [class]="dark ? 'fa-solid fa-sun' : 'fa-solid fa-moon'"></i>
+      </button>
+    </header>
+    @if (menu) {
+      <button
+        class="docs-backdrop"
+        aria-label="Close navigation"
+        (click)="menu = false"
+      ></button>
+    }
+    <aside class="docs-sidebar" [class.docs-sidebar-open]="menu">
+      <nav aria-label="Documentation components">
+        <h2>Getting started</h2>
+        @for (name of ["Introduction", "Installation", "Theming"]; track name) {
+          @if (matches(name)) {
+            <a
+              [href]="link(name)"
+              [attr.aria-current]="page().selected === name ? 'page' : null"
+              >{{ name }}</a
+            >
+          }
+        }
+        @for (group of groups; track group) {
+          @if (groupDocs(group).length) {
+            <h2>{{ group }}</h2>
+            @for (doc of groupDocs(group); track doc.name) {
+              <a
+                [href]="link(doc.name)"
+                [attr.aria-current]="
+                  page().selected === doc.name ? 'page' : null
+                "
+                >{{ doc.name }}
+                @if (doc.name === "AsyncLabel") {
+                  <small>New</small>
+                }
+              </a>
+            }
+          }
+        }
+      </nav>
+      <footer>v0.3.0 <a href="#/angular/gallery">Original gallery</a></footer>
+    </aside>
+    <main class="docs-content" id="docs-content" tabindex="-1">
+      <div class="docs-breadcrumb">
+        {{ selectedDoc() ? "Components" : "Getting started" }}<span>/</span
+        >{{ page().selected }}
+      </div>
+      <h1>{{ page().selected }}</h1>
+      <p class="docs-lead">
+        {{
+          selectedDoc()?.description ??
+            "A shared design language for React, Angular and React Native."
+        }}
+      </p>
+      <div class="docs-frameworks" role="tablist" aria-label="Framework">
+        @for (framework of frameworks; track framework) {
+          <a
+            role="tab"
+            [attr.aria-selected]="page().framework === framework"
+            [href]="link(page().selected, framework)"
+            >{{ names[framework] }}</a
+          >
+        }
+        <button disabled>Blazor · Planned</button>
+      </div>
+      @if (selectedDoc(); as doc) {
+        <section class="docs-card" id="preview">
+          <h2>Live preview <small>Angular browser component</small></h2>
+          <div
+            class="docs-component-preview"
+            [class.docs-async-preview]="doc.name === 'AsyncLabel'"
+          >
+            @switch (doc.name) {
+              @case ("AsyncLabel") {
+                <table class="docs-demo-table">
+                  <thead>
+                    <tr>
+                      <th>Sale</th>
+                      <th>Customer</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (row of rows; track row[0]) {
+                      <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>
+                          <fui-async-label
+                            lookup="customerName"
+                            [code]="row[1]"
+                            [fallback]="row[1]"
+                          />
+                        </td>
+                        <td>{{ row[2] }}</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+                <p class="docs-muted" aria-live="polite">
+                  Resolver calls: {{ stats().calls }} · Last unique codes:
+                  {{ stats().codes.join(", ") }}
+                </p>
+                <div class="docs-demo-actions">
+                  <fui-button
+                    variant="outline"
+                    (pressed)="labels.invalidate('customerName')"
+                    >Resolve again</fui-button
+                  ><fui-button
+                    variant="ghost"
+                    (pressed)="
+                      labels.prime(
+                        'customerName',
+                        'CUS001',
+                        'Akintunde (updated)'
+                      )
+                    "
+                    >Simulate customer edit</fui-button
+                  >
+                </div>
+              }
+              @case ("HC") {
+                <fui-hc gap="md"
+                  ><span class="docs-layout-item">First</span
+                  ><span class="docs-layout-item">Second</span></fui-hc
+                >
+              }
+              @case ("VC") {
+                <fui-vc gap="sm"
+                  ><span class="docs-layout-item">First</span
+                  ><span class="docs-layout-item">Second</span></fui-vc
+                >
+              }
+              @case ("Divider") {
+                <fui-divider label="or" />
+              }
+              @case ("Card") {
+                <fui-card
+                  ><strong>Customer details</strong>
+                  <p>Cards group related content.</p></fui-card
+                >
+              }
+              @case ("Label") {
+                <fui-label fontSize="3xl" fontWeight="bold">
+                  FlowUI Angular Gallery
+                </fui-label>
+              }
+              @case ("Badge") {
+                <fui-badge icon="fa-solid fa-check">Ready</fui-badge>
+              }
+              @case ("Icon") {
+                <fui-icon
+                  icon="fa-solid fa-layer-group"
+                  textColor="primary.600"
+                />
+              }
+              @case ("Image") {
+                <fui-image
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160'%3E%3Crect width='320' height='160' fill='%23eff6ff'/%3E%3C/svg%3E"
+                  alt="Sample illustration"
+                  [width]="320"
+                  [height]="160"
+                />
+              }
+              @case ("Button") {
+                <fui-button icon="fa-solid fa-floppy-disk">Save</fui-button>
+              }
+              @case ("ButtonGroup") {
+                <fui-button-group
+                  [selectable]="true"
+                  [value]="period"
+                  (valueChange)="period = $event"
+                >
+                  <fui-button value="day">Day</fui-button>
+                  <fui-button value="week" variant="outline">Week</fui-button>
+                  <fui-button value="month" variant="outline">Month</fui-button>
+                </fui-button-group>
+              }
+              @case ("Input") {
+                <fui-input inputMode="integer" placeholder="Quantity" />
+              }
+              @case ("PasswordInput") {
+                <fui-password-input
+                  [value]="password"
+                  placeholder="Enter password"
+                  (valueChange)="password = $event"
+                />
+              }
+              @case ("TextArea") {
+                <fui-textarea
+                  [value]="notes"
+                  placeholder="Notes"
+                  (valueChange)="notes = $event"
+                />
+              }
+              @case ("Dropdown") {
+                <fui-dropdown
+                  [(value)]="status"
+                  [options]="statuses"
+                  [searchable]="true"
+                />
+                <p class="docs-muted">
+                  Saved value: {{ status }}. Selected and hovered rows use
+                  different colours.
+                </p>
+              }
+              @case ("MultiSelect") {
+                <fui-multi-select
+                  [options]="countries"
+                  [(value)]="selectedCountries"
+                  [searchable]="true"
+                  [grouped]="true"
+                  chipTextColor="primary.700"
+                  chipBackgroundColor="primary.100"
+                  chipCloseIconColor="textInverse"
+                />
+              }
+              @case ("TreeDropdown") {
+                <fui-tree-dropdown
+                  [value]="location"
+                  [options]="tree"
+                  (selected)="selectLocation($event)"
+                />
+              }
+              @case ("TreeMultiSelect") {
+                <fui-tree-multi-select
+                  [nodes]="tree"
+                  [(value)]="selectedTreeValues"
+                  [(expandedValues)]="expandedTreeValues"
+                  [searchable]="true"
+                  [cascadeSelection]="true"
+                />
+              }
+              @case ("Checkbox") {
+                <fui-checkbox
+                  label="Available for sale"
+                  [checked]="checked"
+                  (checkedChange)="checked = $event"
+                />
+              }
+              @case ("Switch") {
+                <fui-switch
+                  label="Enable notifications"
+                  [checked]="notifications"
+                  (checkedChange)="notifications = $event"
+                />
+              }
+              @case ("Slider") {
+                <fui-slider [value]="volume" (valueChange)="volume = $event" />
+              }
+              @case ("ColorPicker") {
+                <fui-color-picker
+                  [value]="color"
+                  (valueChange)="color = $event"
+                />
+              }
+              @case ("DateTime") {
+                <fui-date-time
+                  [value]="dateTime"
+                  mode="datetime"
+                  (valueChange)="dateTime = $event"
+                />
+              }
+              @case ("Autocomplete") {
+                <fui-autocomplete
+                  [options]="countries"
+                  [value]="autocomplete"
+                  placeholder="Search for a country"
+                  (selected)="autocomplete = $event.value"
+                />
+              }
+              @case ("Rating") {
+                <fui-rating [value]="rating" (valueChange)="rating = $event" />
+              }
+              @case ("Listbox") {
+                <fui-listbox
+                  [options]="countries"
+                  [values]="listboxValues"
+                  [multiple]="true"
+                  (valuesChange)="listboxChanged($event)"
+                />
+              }
+              @case ("Timeline") {
+                <fui-timeline [items]="timelineItems" orientation="vertical" />
+              }
+              @case ("FileUpload") {
+                <fui-file-upload
+                  accept="image/*,.pdf"
+                  [multiple]="true"
+                  [preview]="true"
+                />
+              }
+              @case ("Carousel") {
+                <fui-carousel
+                  ><ng-template
+                    ><div class="docs-layout-item">Slide one</div></ng-template
+                  ><ng-template
+                    ><div class="docs-layout-item">Slide two</div></ng-template
+                  ></fui-carousel
+                >
+              }
+              @case ("Breadcrumb") {
+                <fui-breadcrumb [items]="breadcrumbs" />
+              }
+              @case ("Chart") {
+                <fui-chart
+                  type="bar"
+                  [data]="salesChart"
+                  [showValues]="true"
+                  [height]="220"
+                />
+              }
+              @case ("Knob") {
+                <fui-knob [(value)]="knob" valueSuffix="%" />
+              }
+              @case ("OTPInput") {
+                <fui-otp-input [(value)]="otp" [length]="6" />
+              }
+              @case ("PhoneInput") {
+                <fui-phone-input
+                  [countries]="phoneCountries"
+                  [(value)]="phone"
+                />
+              }
+              @case ("Notification") {
+                <fui-button (pressed)="noticeOpen = true"
+                  >Show notification</fui-button
+                ><fui-notification
+                  [open]="noticeOpen"
+                  title="Product saved"
+                  type="success"
+                  horizontal="center"
+                  vertical="top"
+                  (closed)="noticeOpen = false"
+                >
+                  <p>The product was saved successfully.</p>
+                </fui-notification>
+              }
+              @case ("Menu") {
+                <fui-menu
+                  [items]="menuItems"
+                  (selected)="name = $event.label"
+                />
+              }
+              @case ("Tabs / Tab") {
+                <fui-tabs>
+                  <fui-tab
+                    id="details"
+                    label="Details"
+                    icon="fa-solid fa-circle-info"
+                  >
+                    <p>Product details appear here.</p>
+                  </fui-tab>
+                  <fui-tab
+                    id="history"
+                    label="History"
+                    icon="fa-solid fa-clock-rotate-left"
+                  >
+                    <p>Change history appears here.</p>
+                  </fui-tab>
+                </fui-tabs>
+              }
+              @case ("Section") {
+                <fui-section title="Advanced settings" [defaultOpen]="true">
+                  <p>Accordion content can contain any Angular component.</p>
+                </fui-section>
+              }
+              @case ("Tree") {
+                <fui-tree
+                  [nodes]="tree"
+                  [value]="treeValue"
+                  [defaultExpanded]="true"
+                  (selected)="treeValue = $event.value"
+                />
+              }
+              @case ("Table") {
+                <fui-table
+                  [data]="data"
+                  [columns]="columns"
+                  [sort]="sort"
+                  [alternateRows]="true"
+                  [columnsConfigurable]="true"
+                  [(visibleColumnFields)]="visibleProductColumns"
+                  [exportable]="true"
+                  exportFileName="products"
+                  [selectionEnabled]="true"
+                  [selectedRow]="selectedProduct"
+                  (sortChange)="sortChanged($event)"
+                  (selectionChange)="selectedProduct = $event"
+                />
+              }
+              @case ("Tooltip") {
+                <fui-tooltip text="Shown on top" location="top">
+                  <fui-button variant="outline">top</fui-button>
+                </fui-tooltip>
+              }
+              @case ("Popover") {
+                <ng-template #popoverContent
+                  ><p>More information</p></ng-template
+                ><fui-popover [content]="popoverContent"
+                  ><fui-button>Open popover</fui-button></fui-popover
+                >
+              }
+              @case ("Dialog") {
+                <fui-button (pressed)="dialog = 'right'"
+                  >Open details</fui-button
+                ><ng-template #dialogBody><p>Sale details</p></ng-template
+                ><fui-dialog
+                  [open]="dialog !== null"
+                  position="right"
+                  [body]="dialogBody"
+                  (closed)="dialog = null"
+                />
+              }
+              @case ("RadioButton") {
+                <fui-radio
+                  name="docs-radio"
+                  label="Active"
+                  value="active"
+                  [checked]="status === 'active'"
+                  (selected)="status = $event"
+                />
+              }
+              @case ("RadioGroup") {
+                <fui-radio-group
+                  name="docs-status"
+                  [options]="[
+                    { label: 'Active', value: 'active' },
+                    { label: 'Inactive', value: 'inactive' },
+                  ]"
+                  [(value)]="status"
+                />
+              }
+              @default {
+                <p>See the usage and property reference below.</p>
+              }
+            }
+          </div>
+        </section>
+        <section class="docs-card" id="usage">
+          <h2>
+            Usage <small>{{ names[page().framework] }}</small>
+          </h2>
+          @if (doc.code[page().framework]; as code) {
+            <div class="docs-code">
+              <button (click)="copy(code)">{{ copied || "Copy" }}</button>
+              <pre><code>{{code}}</code></pre>
+            </div>
+          } @else {
+            <p>
+              No native usage example is available. Check the native guide for
+              supported controls.
+            </p>
+          }
+        </section>
+        @if (doc.name === "AsyncLabel") {
+          <section class="docs-card" id="provider">
+            <h2>
+              Provider setup <small>{{ names[page().framework] }}</small>
+            </h2>
+            <p>
+              Register an app resolver once. Return a code-to-label object, with
+              null for missing codes.
+            </p>
+            <div class="docs-code">
+              <button (click)="copy(setup[page().framework])">Copy</button>
+              <pre><code>{{setup[page().framework]}}</code></pre>
+            </div>
+            <div class="docs-code">
+              <pre><code>{{sampleResults}}</code></pre>
+            </div>
+          </section>
+        }
+        <section class="docs-card" id="props">
+          <h2>
+            {{ page().framework === "angular" ? "Inputs & outputs" : "Props" }}
+          </h2>
+          <div class="docs-table-scroll">
+            <table class="docs-props">
+              <thead>
+                <tr>
+                  <th>Property</th>
+                  <th>Type</th>
+                  <th>Required</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (prop of doc.props[page().framework]; track prop.name) {
+                  <tr>
+                    <td>
+                      <code>{{ prop.name }}</code>
+                    </td>
+                    <td>
+                      <code>{{ prop.type }}</code>
+                    </td>
+                    <td>{{ prop.optional ? "No" : "Yes / see defaults" }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+          <p class="docs-muted">
+            Component-specific contracts are generated from source. Base styling
+            and platform attributes also apply.
+          </p>
+        </section>
+        @if (doc.name === "AsyncLabel") {
+          <section class="docs-card" id="cache">
+            <h2>Cache & batching</h2>
+            <p>
+              Codes collected for 10 ms share batches of up to 100 unique codes.
+              Four batches can run concurrently. Cache lives in memory in the
+              provider scope, holds at most 1,000 entries and expires labels
+              after five minutes. Missing values expire after 30 seconds. Failed
+              or incomplete responses remain retryable.
+            </p>
+            <p>
+              Use labels.invalidate for refresh, labels.prime after edits, and
+              labels.setScope after changing tenant/account. Dropdowns use their
+              datasource displays.
+            </p>
+          </section>
+        }
+      } @else {
+        <section class="docs-card">
+          @switch (page().selected) {
+            @case ("Installation") {
+              <h2>Install</h2>
+              <div class="docs-code">
+                <pre><code>npm install &#64;akin2unde/flowui-{{page().framework === 'native' ? 'react-native' : page().framework}}</code></pre>
+              </div>
+              <p>Import the browser adapter stylesheet and Font Awesome CSS.</p>
+            }
+            @case ("Theming") {
+              <h2>Theme configuration</h2>
+              <div class="docs-code">
+                <pre><code>{{themeSetup[page().framework]}}</code></pre>
+              </div>
+              <p>
+                Use provideFlowUI in Angular or FlowUIProvider in React and
+                React Native. Use the theme toggle above to preview light and
+                dark modes.
+              </p>
+            }
+            @default {
+              <h2>Choose a component</h2>
+              <p>
+                Select a component in the sidebar for a live preview,
+                framework-specific usage and property reference.
+              </p>
+              <p>
+                AsyncLabel resolves read-only values. Dropdowns use the value
+                and display supplied by their datasource.
+              </p>
+              <a [href]="link('AsyncLabel')">Explore AsyncLabel →</a>
+            }
+          }
+        </section>
+      }
+      <footer class="docs-content-footer">
+        FlowUI · Component documentation
+      </footer>
+    </main>
+    <aside class="docs-on-page">
+      <strong>On this page</strong>
+      @for (id of ["preview", "usage", "props"]; track id) {
+        <button (click)="scroll(id)">{{ id }}</button>
+      }
+      @if (selectedDoc()?.name === "AsyncLabel") {
+        <button (click)="scroll('provider')">Provider setup</button
+        ><button (click)="scroll('cache')">Cache & batching</button>
+      }
+    </aside>
+  </div>
+}

@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-react-native-example",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "main": "expo/AppEntry.js",
   "scripts": {
@@ -20,7 +20,8 @@
     "react-native-css-interop": "0.2.7",
     "react-native-reanimated": "~4.1.1",
     "react-native-web": "^0.21.0",
-    "react-native-worklets": "0.5.1"
+    "react-native-worklets": "0.5.1",
+    "@akin2unde/flowui-core": "file:../../packages/core"
   },
   "devDependencies": {
     "@types/react": "~19.1.10",
