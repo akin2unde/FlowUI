@@ -2,7 +2,7 @@
 
 Development version: **0.3.0** across all adapters (not yet published).
 
-FlowUI is a Tailwind-styled component library with React, Angular and React Native adapters over one framework-independent TypeScript core.
+FlowUI is a component library for React, Angular, React Native, and Blazor. The JavaScript adapters share a framework-independent TypeScript core. FlowUI.Blazor is a .NET 10 Razor Class Library with its own C# implementation and isolated CSS.
 
 ## Packages
 
@@ -10,11 +10,16 @@ FlowUI is a Tailwind-styled component library with React, Angular and React Nati
 - `@akin2unde/flowui-react` — React functional components.
 - `@akin2unde/flowui-angular` — standalone Angular components.
 - `@akin2unde/flowui-react-native` — lightweight React Native, Expo and React Native Web controls with NativeWind `className` support.
+- `FlowUI.Blazor` — .NET 10 Razor components with separate markup, C# code-behind, isolated styles, and custom light/dark themes.
 - `@flowui/internal-styles` — private Tailwind build used by the browser React and Angular adapters.
 
 React and Angular applications do **not** need Tailwind to use FlowUI because their packages ship compiled CSS. React Native applications install NativeWind when they want Tailwind `className` styling.
 
 ## Framework guides
+
+- [Blazor setup, component APIs, themes, and debugging](packages/blazor/README.md)
+- [Blazor sample application](examples/blazor/README.md)
+- [Blazor control inventory](BLAZOR-CONTROLS.md)
 
 - [Screenshot usage guide](docs/USAGE-IMAGE-GUIDE.md)
 - [AsyncLabel: resolvers, batching, cache and backend examples](docs/ASYNC-LABEL.md)
@@ -154,7 +159,143 @@ bootstrapApplication(AppComponent, {
 
 All Angular components are standalone and are imported only where they are used.
 
-## Included components
+## Blazor setup
+
+FlowUI.Blazor targets **.NET 10**. Install the .NET 10 SDK to build and run
+it. No npm install, Tailwind setup, or JavaScript package build is required
+for the Blazor sample.
+
+### Run the included sample
+
+From the repository root:
+
+```bash
+dotnet restore FlowUI.Blazor.slnx
+dotnet build FlowUI.Blazor.slnx
+dotnet run --project examples/blazor/FlowUI.Blazor.Sample.csproj
+```
+
+Open **http://localhost:5180**. For development with change watching:
+
+```bash
+dotnet watch --project examples/blazor/FlowUI.Blazor.Sample.csproj
+```
+
+The sample uses Interactive Server and references the local library. The
+library does not force a render mode; consuming apps choose their own host.
+Interactive rendering is required for C# click handlers and other events.
+
+### Reference the library
+
+For an application in this repository, add a project reference (adjust the
+application path):
+
+```bash
+dotnet add path/to/MyApp.csproj reference packages/blazor/FlowUI.Blazor.csproj
+```
+
+Once version 0.3.0 is published to NuGet, consumers can install it with:
+
+```bash
+dotnet add package FlowUI.Blazor --version 0.3.0
+```
+
+The archive includes the package source; that alone does not publish it to
+NuGet. See [the release guide](BLAZOR-RELEASE.md) for packaging instructions.
+
+Add common namespaces to the app's `Components/_Imports.razor` (or import
+only those needed directly in a page):
+
+```razor
+@using FlowUI.Blazor.Layout
+@using FlowUI.Blazor.Presentation
+@using FlowUI.Blazor.Buttons
+@using FlowUI.Blazor.Forms
+@using FlowUI.Blazor.Selection
+@using FlowUI.Blazor.Overlays
+@using FlowUI.Blazor.Navigation
+@using FlowUI.Blazor.DataDisplay
+@using FlowUI.Blazor.Theming
+@using FlowUI.Blazor.Styling
+```
+
+Include the host's generated isolated stylesheet in `Components/App.razor`:
+
+```html
+<link rel="stylesheet" href="MyApp.styles.css" />
+```
+
+Replace `MyApp` with your application's assembly name. The stylesheet
+includes the referenced library's isolated CSS; do not link individual
+`.razor.css` files or use the React/Angular stylesheet for Blazor.
+
+### First component
+
+```razor
+<FlowThemeProvider Mode="FlowThemeMode.System">
+    <FlowCard>
+        <FlowVC Gap="1rem">
+            <FlowLabel>Welcome to FlowUI Blazor</FlowLabel>
+            <FlowButton OnClick="SaveAsync">Save</FlowButton>
+        </FlowVC>
+    </FlowCard>
+</FlowThemeProvider>
+
+@code {
+    private async Task SaveAsync()
+    {
+        // Demonstration only: replace with your application service call.
+        await Task.Delay(1000);
+    }
+}
+```
+
+### Custom and tenant themes
+
+Supply a theme independently of Light/Dark/System mode:
+
+```csharp
+private FlowThemeDefinition tenantTheme = FlowThemeDefinition.Default with
+{
+    Name = "Company",
+    Light = FlowThemeDefinition.Default.Light with
+    {
+        Primary = "#047857",
+        OnPrimary = "#ffffff",
+        TextColor = "#172554"
+    },
+    Dark = FlowThemeDefinition.Default.Dark with
+    {
+        Primary = "#34d399",
+        OnPrimary = "#052e16",
+        TextColor = "#f8fafc"
+    }
+};
+```
+
+```razor
+<FlowThemeProvider Theme="tenantTheme" Mode="FlowThemeMode.System">
+    @ChildContent
+</FlowThemeProvider>
+```
+
+Replace the definition when switching tenants; keep the user's preferred
+mode separately. System mode selects the custom light or dark palette using
+the device preference. Do not store mutable active-tenant state globally.
+
+### Blazor controls and documentation
+
+The preview includes 30 controls across Foundation, Forms, Selection,
+Overlays, Navigation, and Data Display, including table and tree controls.
+The existing JavaScript component list below is not a Blazor parity claim.
+**Blazor AsyncLabel is not implemented in this preview.**
+
+- [Complete Blazor component inventory](BLAZOR-CONTROLS.md)
+- [Detailed setup, APIs, custom themes, and VS Code debugging](packages/blazor/README.md)
+- [Sample application guide](examples/blazor/README.md)
+- [Validation results and limitations](BLAZOR-VALIDATION.md)
+
+## Included JavaScript components
 
 | Area       | Components                                                                                                                                                                                                        |
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
