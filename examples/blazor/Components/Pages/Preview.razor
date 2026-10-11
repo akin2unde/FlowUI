@@ -1,0 +1,21 @@
+@page "/preview"
+<PageTitle>FlowUI · Fields and login preview</PageTitle>
+<FlowThemeProvider Mode="FlowThemeMode.Light" Class="preview-theme">
+    <main class="preview-page">
+        <header><p class="eyebrow">FLOWUI / BLAZOR</p><h1>Fields that fit together.</h1><p class="subtitle">Clean selection controls and a simple sign-in form.</p></header>
+        <div class="preview-grid">
+            <FlowCard Class="selection-preview"><Header><h2>Selection</h2></Header><ChildContent>
+                <FlowVC Gap="1.5rem">
+                    <FlowDropdown Label="Department" Items="departments" ValueSelector="i => i.Id" TextSelector="i => i.Name"
+                                  @bind-Value="department" Searchable="true" Clearable="true" HelperText="Search or choose a department." />
+                    <FlowMultiSelect Label="Teams" Items="teams" ValueSelector="i => i.Id" TextSelector="i => i.Name"
+                                     @bind-Values="selectedTeams" Searchable="true" Clearable="true" MaxVisibleTags="3"
+                                     HelperText="Select multiple teams. Remove a chip to deselect." />
+                    <div class="preview-note"><strong>One field, one outline.</strong><p>Selected teams and clear actions sit inside the control.</p></div>
+                </FlowVC>
+            </ChildContent></FlowCard>
+            <div class="login-preview"><LoginDemo /></div>
+        </div>
+        <a href="/" class="gallery-link">Open the complete component gallery →</a>
+    </main>
+</FlowThemeProvider>

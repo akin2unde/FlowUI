@@ -1,0 +1,5 @@
+button { font: inherit; cursor: pointer; color: inherit; } button:disabled { opacity: .5; cursor: not-allowed; } button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--fui-color-focus, #2563eb); outline-offset: 3px; }
+.fui-tree { border: 1px solid var(--fui-color-border); border-radius: .7rem; padding: .5rem; }
+[role="treeitem"] { display: flex; align-items: center; gap: .5rem; padding: .55rem .5rem; border-radius: .45rem; cursor: pointer; font-size: .9rem; }
+[role="treeitem"][aria-selected="true"] { background: color-mix(in srgb, var(--fui-color-primary) 12%, transparent); color: var(--fui-color-primary); }
+button, .fui-tree-spacer { width: 1.25rem; height: 1.25rem; flex-shrink: 0; } button { border: 0; background: none; } .fui-tree-empty { padding: .5rem; font-size: .85rem; color: var(--fui-color-textMuted); }

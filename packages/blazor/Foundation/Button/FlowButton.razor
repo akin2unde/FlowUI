@@ -1,0 +1,11 @@
+@namespace FlowUI.Blazor.Buttons
+@inherits FlowComponentBase
+
+<button @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-button")" style="@Styles"
+        type="@Type" disabled="@(Disabled || Loading)" aria-busy="@Loading.ToString().ToLowerInvariant()"
+        aria-pressed="@Pressed" aria-label="@AriaLabel"
+        data-color="@Color.ToString().ToLowerInvariant()" data-variant="@Variant.ToString().ToLowerInvariant()"
+        data-size="@Size.ToString().ToLowerInvariant()" @onclick="HandleClickAsync">
+    @if (Loading) { <FlowLoader aria-hidden="true" Size="FlowSize.Sm" Label="@LoadingText" /> }
+    @if (Loading && !string.IsNullOrEmpty(LoadingText)) { @LoadingText } else { @ChildContent }
+</button>

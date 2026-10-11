@@ -1,0 +1,12 @@
+@namespace FlowUI.Blazor.DataDisplay
+
+@inherits FlowComponentBase
+<div @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-accordion")" style="@Styles">
+@foreach (var item in Items)
+{
+    var opened = OpenKeys.Contains(item.Key);
+    <section><h3><button type="button" id="@(uid + "-button-" + item.Key)" aria-expanded="@opened.ToString().ToLowerInvariant()" aria-controls="@(uid + "-panel-" + item.Key)" @onclick="() => Toggle(item.Key)">@item.Title<span aria-hidden="true">@(opened ? "−" : "+")</span></button></h3>
+        <div id="@(uid + "-panel-" + item.Key)" role="region" aria-labelledby="@(uid + "-button-" + item.Key)" hidden="@(!opened)" class="fui-accordion-panel">@if (Content is not null) { @Content(item.Key) }</div>
+    </section>
+}
+</div>

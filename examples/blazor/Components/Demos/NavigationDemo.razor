@@ -1,0 +1,14 @@
+<FlowVC Gap="1.5rem">
+<DemoBlock Title="Breadcrumbs" Markup="@Example0" Code="@ExampleCode">
+<FlowBreadcrumbs Items="breadcrumbs" />
+</DemoBlock>
+<DemoBlock Title="Tabs" Markup="@Example1" Code="@ExampleCode">
+<FlowTabs Items="tabs" @bind-ActiveKey="activeTab" Label="Project sections">
+    <Content Context="key">@if (key == "overview") { <p>Project overview content.</p> } else { <p>Activity content.</p> }</Content>
+</FlowTabs>
+</DemoBlock>
+<DemoBlock Title="Pagination" Markup="@Example2" Code="@ExampleCode">
+<FlowPagination @bind-Page="page" PageCount="12" MaxVisiblePages="5" />
+<p role="status">Selected page: @(page)</p>
+</DemoBlock>
+</FlowVC>

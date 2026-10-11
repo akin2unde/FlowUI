@@ -1,0 +1,7 @@
+@namespace FlowUI.Blazor.Layout
+@inherits FlowComponentBase
+
+<div @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-divider")" style="@Styles"
+     role="separator" aria-orientation="@Orientation.ToString().ToLowerInvariant()">
+    @if (!string.IsNullOrEmpty(Label) && Orientation == FlowOrientation.Horizontal) { <span>@Label</span> }
+</div>

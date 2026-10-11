@@ -1,0 +1,4 @@
+button { font: inherit; cursor: pointer; color: inherit; } button:disabled { opacity: .5; cursor: not-allowed; } button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--fui-color-focus, #2563eb); outline-offset: 3px; }
+.fui-pagination { display: flex; align-items: center; flex-wrap: wrap; gap: .35rem; }
+button { border: 1px solid var(--fui-color-border); border-radius: .45rem; background: var(--fui-color-surface); min-width: 2.25rem; height: 2.25rem; }
+button[aria-current="page"] { background: var(--fui-color-primary); color: var(--fui-color-onPrimary); border-color: var(--fui-color-primary); } .fui-page-summary { margin-inline-start: .6rem; font-size: .8rem; color: var(--fui-color-textMuted); }

@@ -1,0 +1,4 @@
+button { font: inherit; cursor: pointer; color: inherit; } button:disabled { opacity: .5; cursor: not-allowed; } button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--fui-color-focus, #2563eb); outline-offset: 3px; }
+.fui-popover { display: inline-block; position: relative; }
+.fui-popover-trigger { padding: .65rem .9rem; border-radius: .5rem; border: 1px solid var(--fui-color-border, #e2e8f0); background: var(--fui-color-surface, #fff); }
+.fui-popover-panel { position: fixed; z-index: 1500; max-width: calc(100vw - 1rem); width: 20rem; max-height: 20rem; overflow: auto; padding: 1rem; border: 1px solid var(--fui-color-border, #e2e8f0); border-radius: .7rem; background: var(--fui-color-surface, #fff); color: var(--fui-color-text, #0f172a); box-shadow: 0 10px 35px #0003; }

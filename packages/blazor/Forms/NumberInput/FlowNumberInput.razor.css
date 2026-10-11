@@ -1,0 +1,22 @@
+.fui-field { display: flex; flex-direction: column; gap: .4rem; min-width: 0; color: var(--fui-color-text, #0f172a); }
+.fui-field-label { font-size: .875rem; font-weight: 600; }
+.fui-required, .fui-error { color: var(--fui-color-danger, #dc2626); }
+.fui-control { display: block; box-sizing: border-box; width: 100%; min-width: 0; padding: .7rem .85rem; font: inherit; font-size: .9rem; line-height: 1.4; border: 1px solid var(--fui-color-border, #e2e8f0); border-radius: calc(var(--fui-radius, .75rem) * .7); color: var(--fui-color-text, #0f172a); background: var(--fui-color-surface, #fff); }
+.fui-control::placeholder { color: var(--fui-color-textMuted, #64748b); }
+.fui-control:focus { outline: 2px solid var(--fui-color-focus, #2563eb); outline-offset: 2px; }
+.fui-invalid .fui-control { border-color: var(--fui-color-danger, #dc2626); }
+.fui-control:disabled { opacity: .55; cursor: not-allowed; }
+.fui-control[readonly] { background: var(--fui-color-surfaceSunken, #f1f5f9); }
+.fui-help { font-size: .8rem; line-height: 1.5; color: var(--fui-color-textMuted, #64748b); }
+.fui-error { color: var(--fui-color-danger, #dc2626); }
+.fui-field[data-size="sm"] .fui-control { padding: .5rem .7rem; font-size: .8rem; }
+.fui-field[data-size="xs"] .fui-control { padding: .35rem .55rem; font-size: .75rem; }
+.fui-field[data-size="lg"] .fui-control { padding: .85rem 1rem; font-size: 1rem; }
+
+.fui-number-row { display: flex; align-items: stretch; border: 1px solid var(--fui-color-border, #e2e8f0); border-radius: calc(var(--fui-radius, .75rem) * .7); background: var(--fui-color-surface, #fff); }
+.fui-number-row .fui-control { border: 0; background: transparent; }
+.fui-affix { display: flex; align-items: center; padding: 0 .75rem; color: var(--fui-color-textMuted, #64748b); }
+.fui-stepper { display: flex; flex-direction: column; border-left: 1px solid var(--fui-color-border, #e2e8f0); }
+.fui-stepper button { border: 0; background: transparent; color: var(--fui-color-text, #0f172a); padding: 0 .65rem; flex: 1; cursor: pointer; }
+.fui-stepper button:disabled { opacity: .35; cursor: not-allowed; }
+.fui-invalid .fui-number-row { border-color: var(--fui-color-danger, #dc2626); }

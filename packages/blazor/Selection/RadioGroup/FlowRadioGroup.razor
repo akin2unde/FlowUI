@@ -1,0 +1,21 @@
+@namespace FlowUI.Blazor.Selection
+@typeparam TItem
+@typeparam TValue
+@inherits FlowSelectionFieldBase<TItem, TValue>
+<fieldset @attributes="AdditionalAttributes" @ref="InputElement" id="@InputId" class="@FieldClasses fui-radio-group" style="@Styles" disabled="@Disabled"
+          aria-describedby="@DescriptionId" aria-invalid="@Invalid" aria-required="@Required.ToString().ToLowerInvariant()">
+    @if (!string.IsNullOrEmpty(Label)) { <legend class="fui-field-label">@Label@if (Required) { <span class="fui-required" aria-hidden="true"> *</span> }</legend> }
+    <div class="fui-radio-options @(Orientation == FlowOrientation.Horizontal ? "fui-horizontal" : "")">
+        @foreach (var item in Source)
+        {
+            var value = ValueSelector(item);
+            <label class="fui-radio-option @(Disabled || IsItemDisabled(item) ? "fui-disabled" : "")">
+                <input type="radio" name="@RadioName" checked="@(EqualityComparer<TValue>.Default.Equals(Value, value))"
+                       disabled="@(Disabled || IsItemDisabled(item))" aria-label="@TextSelector(item)" aria-readonly="@ReadOnly.ToString().ToLowerInvariant()"
+                       @onclick:preventDefault="ReadOnly" @onchange="() => ChooseAsync(item)" />
+                <span>@if (ItemTemplate is not null) { @ItemTemplate(item) } else { @TextSelector(item) }</span>
+            </label>
+        }
+    </div>
+    @if (!string.IsNullOrEmpty(Message)) { <span id="@HelpId" class="fui-help @(HasErrors ? "fui-error" : "")">@Message</span> }
+</fieldset>

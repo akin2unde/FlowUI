@@ -1,0 +1,5 @@
+.fui-image {
+  display: block;
+  max-width: 100%;
+  border-radius: var(--fui-radius, 0.75rem);
+}

@@ -30,7 +30,10 @@
     "dev:react-native:web": "npm run build:react-native && npm --prefix examples/react-native run web",
     "check:packages": "node scripts/check-package.mjs && node scripts/check-package.mjs angular/dist",
     "test:packaging": "node --test scripts/check-package.test.mjs",
-    "docs:data": "node scripts/build-docs-data.mjs"
+    "docs:data": "node scripts/build-docs-data.mjs",
+    "build:blazor": "dotnet build FlowUI.Blazor.slnx",
+    "dev:blazor": "dotnet watch --project examples/blazor/FlowUI.Blazor.Sample.csproj",
+    "pack:blazor": "dotnet pack packages/blazor/FlowUI.Blazor.csproj -c Release -o artifacts/blazor"
   },
   "devDependencies": {
     "@angular/build": "^20.2.0",

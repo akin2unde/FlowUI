@@ -1,0 +1,55 @@
+@namespace FlowUI.Blazor.Selection
+@typeparam TItem
+@typeparam TValue
+@inherits FlowPopupFieldBase<TItem, TValue>
+<div @ref="RootElement" class="@FieldClasses fui-popup-root" style="@Styles" data-size="@Size.ToString().ToLowerInvariant()">
+
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label class="fui-field-label" for="@InputId">@Label@if (Required) { <span class="fui-required" aria-hidden="true"> *</span> }</label>
+    }
+
+    <div class="fui-trigger-row" data-clear="@((Clearable && CanClear && !Disabled && !ReadOnly).ToString().ToLowerInvariant())" @ref="AnchorElement">
+        <button @attributes="AdditionalAttributes" @ref="TriggerElement" id="@InputId" type="button" class="fui-control fui-trigger"
+                role="combobox" aria-haspopup="listbox" aria-expanded="@open.ToString().ToLowerInvariant()" aria-controls="@(open ? PanelId : null)"
+                aria-activedescendant="@ActiveId" aria-required="@Required.ToString().ToLowerInvariant()" aria-readonly="@ReadOnly.ToString().ToLowerInvariant()"
+                aria-invalid="@Invalid" aria-describedby="@DescriptionId" disabled="@Disabled" @onclick="ToggleAsync" @onkeydown="TriggerKey">
+            <span class="fui-selected-text @(HasSelection ? "" : "fui-placeholder")">@SelectedText</span><svg class="fui-chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+        </button>
+        @if (Clearable && CanClear && !Disabled && !ReadOnly)
+        {
+            <button class="fui-clear" type="button" aria-label="@($"Clear {Label ?? "selection"}")" @onclick="ClearAsync"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17" /></svg></button>
+        }
+    </div>
+
+    @if (open)
+    {
+        <div class="fui-panel" @ref="PanelElement">
+            @if (Searchable)
+            {
+                <input class="fui-control fui-search" @ref="SearchElement" role="combobox" aria-label="@($"Search {Label ?? "options"}")"
+                       aria-expanded="true" aria-controls="@PanelId" aria-activedescendant="@ActiveId" autocomplete="off"
+                       placeholder="@SearchPlaceholder" value="@search" @oninput="SearchChanged" @onkeydown="SearchKey" />
+            }
+            
+            <div id="@PanelId" class="fui-options" role="listbox" aria-label="@(Label ?? "Options")">
+                @if (Loading) { <p class="fui-empty" role="status">Loading options…</p> }
+                else if (Visible.Count == 0) { <p class="fui-empty" role="status">@(Source.Count == 0 ? EmptyText : NoResultsText)</p> }
+                else
+                {
+                    @for (var index = 0; index < Visible.Count; index++)
+                    {
+                        var i = index; var item = Visible[i];
+                        <div id="@(InputId + "-option-" + i)" data-index="@i" role="option" class="fui-option @(activeIndex == i ? "fui-active" : "")"
+                             aria-selected="@IsSelected(item).ToString().ToLowerInvariant()" aria-disabled="@((!CanChoose(item)).ToString().ToLowerInvariant())"
+                             @onmousedown:preventDefault="true" @onclick="() => ChooseAsync(item)">
+                            <span class="fui-option-mark" aria-hidden="true">@(IsSelected(item) ? "✓" : "")</span>
+                            <span class="fui-option-label">@if (ItemTemplate is not null) { @ItemTemplate(item) } else { @TextSelector(item) }</span>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+@if (!string.IsNullOrEmpty(Message)) { <span id="@HelpId" class="fui-help @(HasErrors ? "fui-error" : "")">@Message</span> }
+</div>

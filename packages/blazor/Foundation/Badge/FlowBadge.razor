@@ -1,0 +1,6 @@
+@namespace FlowUI.Blazor.Presentation
+@inherits FlowComponentBase
+
+<span @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-badge")" style="@Styles"
+      data-color="@Color.ToString().ToLowerInvariant()" data-variant="@Variant.ToString().ToLowerInvariant()"
+      data-size="@Size.ToString().ToLowerInvariant()">@ChildContent</span>

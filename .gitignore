@@ -6,3 +6,8 @@ out-tsc/
 coverage/
 *.tsbuildinfo
 .DS_Store
+
+# .NET / Blazor
+**/bin/
+**/obj/
+artifacts/

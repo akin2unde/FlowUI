@@ -1,0 +1,9 @@
+
+.login-stage { display: flex; justify-content: center; padding: clamp(.25rem, 3vw, 2rem); }
+.login-card { width: 100%; max-width: 25rem; }
+.login-brand { display: grid; place-items: center; width: 2.75rem; height: 2.75rem; background: var(--fui-color-primary); color: var(--fui-color-onPrimary); border-radius: .75rem; font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; }
+.login-eyebrow { color: var(--fui-color-primary); font-size: .65rem; font-weight: 700; letter-spacing: .12em; margin-bottom: .75rem; }
+h2 { font-size: 1.8rem; letter-spacing: -.035em; margin: 0 0 .5rem; }
+.login-subtitle { color: var(--fui-color-textMuted); line-height: 1.6; margin: 0 0 1.75rem; }
+.login-note { font-size: .75rem; color: var(--fui-color-textMuted); line-height: 1.6; margin-top: 1.5rem; }
+.login-status { font-size: .85rem; line-height: 1.6; padding: .8rem; border-radius: .6rem; background: var(--fui-color-surfaceSunken); }

@@ -1,0 +1,8 @@
+@namespace FlowUI.Blazor.Overlays
+
+@inherits FlowComponentBase
+<span @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-tooltip")" style="@Styles" tabindex="0" aria-describedby="@tipId"
+      @onmouseenter="Show" @onmouseleave="Hide" @onfocusin="Show" @onfocusout="Hide" @onkeydown="KeyDown">
+    @ChildContent
+    @if (visible) { <span role="tooltip" id="@tipId" class="fui-tip">@Text</span> }
+</span>

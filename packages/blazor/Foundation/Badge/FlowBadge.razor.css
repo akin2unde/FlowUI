@@ -1,0 +1,65 @@
+.fui-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  line-height: 1.3;
+  font-weight: 600;
+}
+.fui-badge[data-size="xs"] {
+  font-size: 0.65rem;
+}
+.fui-badge[data-size="md"] {
+  font-size: 0.85rem;
+}
+.fui-badge[data-size="lg"] {
+  font-size: 1rem;
+}
+
+[data-color="primary"] {
+  --fui-accent: var(--fui-color-primary, #2563eb);
+  --fui-on-accent: var(--fui-color-onPrimary, #fff);
+}
+[data-color="secondary"] {
+  --fui-accent: var(--fui-color-secondary, #475569);
+  --fui-on-accent: var(--fui-color-onSecondary, #fff);
+}
+[data-color="success"] {
+  --fui-accent: var(--fui-color-success, #15803d);
+  --fui-on-accent: var(--fui-color-onSuccess, #fff);
+}
+[data-color="danger"] {
+  --fui-accent: var(--fui-color-danger, #dc2626);
+  --fui-on-accent: var(--fui-color-onDanger, #fff);
+}
+[data-color="warning"] {
+  --fui-accent: var(--fui-color-warning, #fbbf24);
+  --fui-on-accent: var(--fui-color-onWarning, #422006);
+}
+[data-color="info"] {
+  --fui-accent: var(--fui-color-info, #0e7490);
+  --fui-on-accent: var(--fui-color-onInfo, #fff);
+}
+[data-variant="solid"] {
+  background: var(--fui-accent);
+  color: var(--fui-on-accent);
+  border-color: var(--fui-accent);
+}
+[data-variant="outline"] {
+  background: transparent;
+  color: var(--fui-accent);
+  border-color: var(--fui-accent);
+}
+[data-variant="soft"] {
+  background: color-mix(in srgb, var(--fui-accent) 13%, transparent);
+  color: var(--fui-accent);
+  border-color: transparent;
+}
+[data-variant="ghost"] {
+  background: transparent;
+  color: var(--fui-accent);
+  border-color: transparent;
+}

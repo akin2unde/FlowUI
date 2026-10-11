@@ -1,0 +1,47 @@
+<FlowVC Gap="1.5rem">
+    <DemoBlock Title="Text inputs" Markup="@Example0" Code="@ExampleCode">
+<FlowVC>
+    <FlowInput Label="Product name" @bind-Value="productName" Placeholder="Enter a product name" MaxLength="60" HelperText="Updates as you type." />
+    <p role="status">Product: @productName</p>
+    <FlowInput Label="Committed on change" @bind-Value="committed" UpdateOn="FlowUpdateOn.Change" HelperText="Leave the field to commit." />
+    <p role="status">Committed: @committed</p>
+    <FlowInput Label="Read-only reference" Value="SKU-1042" ReadOnly="true" />
+    <FlowInput Label="Disabled input" Value="Unavailable" Disabled="true" />
+</FlowVC>
+    </DemoBlock>
+    <DemoBlock Title="Password input" Markup="@Example1" Code="@ExampleCode">
+<FlowPasswordInput Label="Password" @bind-Value="password" AutoComplete="new-password" HelperText="Use the eye button to reveal or hide. The sample never displays your password elsewhere." />
+    </DemoBlock>
+    <DemoBlock Title="Text area" Markup="@Example2" Code="@ExampleCode">
+<FlowTextArea Label="Description" @bind-Value="description" Rows="3" AutoGrow="true" MaxHeight="12rem" MaxLength="240" ShowCharacterCount="true" Resize="FlowResize.Vertical" HelperText="Enter preserves new lines; the field grows with your text." />
+    </DemoBlock>
+    <DemoBlock Title="Number input" Markup="@Example3" Code="@ExampleCode">
+<FlowVC>
+    <FlowNumberInput TValue="decimal?" Label="Price" @bind-Value="price" Prefix="$" Min="0" Max="1000" Step="0.25m" DecimalPlaces="2" HelperText="Nullable decimal; typed values are validated without clamping." />
+    <p role="status">Price: @(price?.ToString("0.00") ?? "empty")</p>
+    <FlowNumberInput TValue="int" Label="Quantity" @bind-Value="quantity" Min="1" Max="20" Step="1" />
+    <p role="status">Quantity: @quantity</p>
+</FlowVC>
+    </DemoBlock>
+    <DemoBlock Title="Checkbox and switch" Markup="@Example4" Code="@ExampleCode">
+<FlowVC>
+    <FlowCheckbox Label="Accept updates" @bind-Value="acceptUpdates" HelperText="A native checkbox with a separate mixed-state parameter." />
+    <FlowCheckbox Label="Partly selected" Value="allSelected" Indeterminate="mixed" ValueChanged="SetAll" />
+    <FlowSwitch Label="Email notifications" @bind-Value="notifications" HelperText="The label stays stable when the value changes." />
+    <FlowSwitch Label="Read-only preference" Value="true" ReadOnly="true" />
+    <p role="status">Updates: @acceptUpdates · Notifications: @notifications</p>
+</FlowVC>
+    </DemoBlock>
+    <DemoBlock Title="EditForm validation" Markup="@Example5" Code="@ExampleCode">
+<EditForm Model="model" OnValidSubmit="SubmitAsync" FormName="product-editor">
+    <DataAnnotationsValidator />
+    <FlowVC>
+        <FlowInput Label="Validated name" @bind-Value="model.Name" Required="true" HelperText="Required with at least 3 characters." />
+        <FlowNumberInput TValue="decimal?" Label="Validated amount" @bind-Value="model.Amount" Required="true" Min="0" Max="1000" />
+        <FlowCheckbox Label="Accept terms" @bind-Value="model.AcceptTerms" Required="true" />
+        <FlowButton Type="submit">Validate form</FlowButton>
+        <p role="status">@submitStatus</p>
+    </FlowVC>
+</EditForm>
+    </DemoBlock>
+</FlowVC>

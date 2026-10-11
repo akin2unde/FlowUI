@@ -1,0 +1,13 @@
+@namespace FlowUI.Blazor.Navigation
+
+@inherits FlowComponentBase
+<div @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-tabs")" style="@Styles">
+    <div class="fui-tab-list" role="tablist" aria-label="@Label" @ref="tabList">
+        @foreach (var item in Items)
+        {
+            <button type="button" role="tab" id="@(uid + "-" + item.Key)" aria-controls="@(uid + "-panel")" aria-selected="@(ActiveKey == item.Key ? "true" : "false")"
+                    tabindex="@(ActiveKey == item.Key ? 0 : -1)" disabled="@item.Disabled" @onclick="() => Select(item.Key)" @onkeydown="e => KeyDown(e, item.Key)">@item.Text</button>
+        }
+    </div>
+    <div role="tabpanel" id="@(uid + "-panel")" aria-labelledby="@(uid + "-" + ActiveKey)" tabindex="0" class="fui-tab-panel">@if (Content is not null) { @Content(ActiveKey) } else { @ChildContent }</div>
+</div>

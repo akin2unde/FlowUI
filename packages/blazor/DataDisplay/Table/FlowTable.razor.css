@@ -1,0 +1,7 @@
+button { font: inherit; cursor: pointer; color: inherit; } button:disabled { opacity: .5; cursor: not-allowed; } button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--fui-color-focus, #2563eb); outline-offset: 3px; }
+.fui-table-wrap { overflow-x: auto; border: 1px solid var(--fui-color-border); border-radius: .7rem; }
+table { width: 100%; border-collapse: collapse; font-size: .85rem; } caption { text-align: start; padding: 1rem; font-weight: 600; }
+th, td { padding: .85rem 1rem; text-align: start; border-top: 1px solid var(--fui-color-border); }
+th { background: var(--fui-color-surfaceSunken); white-space: nowrap; font-weight: 600; }
+th button { background: none; border: 0; padding: 0; font-weight: 600; }
+.fui-table-pages { padding: 1rem; border-top: 1px solid var(--fui-color-border); }

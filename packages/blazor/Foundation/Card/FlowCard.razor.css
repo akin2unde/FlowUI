@@ -1,0 +1,21 @@
+.fui-card {
+  min-width: 0;
+  background: var(--fui-color-surface, #fff);
+  color: var(--fui-color-text, #0f172a);
+  border: 1px solid var(--fui-color-border, #e2e8f0);
+  border-radius: var(--fui-radius, 0.75rem);
+  box-sizing: border-box;
+}
+.fui-card-body {
+  padding: 1.25rem;
+}
+.fui-card-header,
+.fui-card-footer {
+  padding: 1rem 1.25rem;
+}
+.fui-card-header {
+  border-bottom: 1px solid var(--fui-color-border, #e2e8f0);
+}
+.fui-card-footer {
+  border-top: 1px solid var(--fui-color-border, #e2e8f0);
+}

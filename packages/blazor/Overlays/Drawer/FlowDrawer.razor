@@ -1,0 +1,13 @@
+@namespace FlowUI.Blazor.Overlays
+
+@inherits FlowModalBase
+<dialog @attributes="AdditionalAttributes" @ref="DialogElement" id="@Id" class="@Classes("fui-modal")" style="@Styles"
+        aria-labelledby="@TitleId" aria-modal="true" data-size="@Size.ToString().ToLowerInvariant()" data-side="@Side.ToString().ToLowerInvariant()">
+    <div class="fui-modal-layout">
+        <header><div id="@TitleId">@if (Header is not null) { @Header } else { <h2>@Title</h2> }</div>
+            @if (ShowCloseButton) { <button type="button" class="fui-modal-close" aria-label="Close dialog" @onclick='() => RequestClose("button")'>×</button> }
+        </header>
+        <div class="fui-modal-content">@ChildContent</div>
+        @if (Footer is not null) { <footer>@Footer</footer> }
+    </div>
+</dialog>

@@ -1,0 +1,12 @@
+@namespace FlowUI.Blazor.Navigation
+
+@inherits FlowComponentBase
+<nav @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-breadcrumbs")" style="@Styles" aria-label="@Label"><ol>
+@for (var index = 0; index < Items.Count; index++)
+{
+    var item = Items[index]; var last = index == Items.Count - 1;
+    <li>@if (index > 0) { <span class="fui-separator" aria-hidden="true">/</span> }
+        @if (!last && !string.IsNullOrWhiteSpace(item.Href)) { <a href="@item.Href">@item.Text</a> } else { <span aria-current="@(last ? "page" : null)">@item.Text</span> }
+    </li>
+}
+</ol></nav>

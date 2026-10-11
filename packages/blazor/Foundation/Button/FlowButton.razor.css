@@ -1,0 +1,86 @@
+.fui-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  border: 1px solid transparent;
+  border-radius: calc(var(--fui-radius, 0.75rem) * 0.7);
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+.fui-button:hover:not(:disabled) {
+  filter: brightness(0.93);
+}
+.fui-button:focus-visible {
+  outline: 3px solid var(--fui-color-focus, #2563eb);
+  outline-offset: 3px;
+}
+.fui-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.fui-button[data-size="xs"] {
+  padding: 0.3rem 0.5rem;
+  font-size: 0.7rem;
+}
+.fui-button[data-size="sm"] {
+  padding: 0.45rem 0.75rem;
+  font-size: 0.8rem;
+}
+.fui-button[data-size="lg"] {
+  padding: 0.85rem 1.35rem;
+  font-size: 1rem;
+}
+.fui-button[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--fui-color-focus, #2563eb);
+}
+
+[data-color="primary"] {
+  --fui-accent: var(--fui-color-primary, #2563eb);
+  --fui-on-accent: var(--fui-color-onPrimary, #fff);
+}
+[data-color="secondary"] {
+  --fui-accent: var(--fui-color-secondary, #475569);
+  --fui-on-accent: var(--fui-color-onSecondary, #fff);
+}
+[data-color="success"] {
+  --fui-accent: var(--fui-color-success, #15803d);
+  --fui-on-accent: var(--fui-color-onSuccess, #fff);
+}
+[data-color="danger"] {
+  --fui-accent: var(--fui-color-danger, #dc2626);
+  --fui-on-accent: var(--fui-color-onDanger, #fff);
+}
+[data-color="warning"] {
+  --fui-accent: var(--fui-color-warning, #fbbf24);
+  --fui-on-accent: var(--fui-color-onWarning, #422006);
+}
+[data-color="info"] {
+  --fui-accent: var(--fui-color-info, #0e7490);
+  --fui-on-accent: var(--fui-color-onInfo, #fff);
+}
+[data-variant="solid"] {
+  background: var(--fui-accent);
+  color: var(--fui-on-accent);
+  border-color: var(--fui-accent);
+}
+[data-variant="outline"] {
+  background: transparent;
+  color: var(--fui-accent);
+  border-color: var(--fui-accent);
+}
+[data-variant="soft"] {
+  background: color-mix(in srgb, var(--fui-accent) 13%, transparent);
+  color: var(--fui-accent);
+  border-color: transparent;
+}
+[data-variant="ghost"] {
+  background: transparent;
+  color: var(--fui-accent);
+  border-color: transparent;
+}

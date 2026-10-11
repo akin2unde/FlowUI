@@ -1,0 +1,8 @@
+.fui-label {
+  color: var(--fui-color-text, #0f172a);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.fui-required {
+  color: var(--fui-color-danger, #dc2626);
+}

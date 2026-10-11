@@ -1,0 +1,37 @@
+.fui-loader {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: inherit;
+}
+.fui-spinner {
+  display: inline-block;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: fui-spin 0.7s linear infinite;
+}
+.fui-loader[data-size="xs"] .fui-spinner {
+  width: 0.65rem;
+  height: 0.65rem;
+}
+.fui-loader[data-size="sm"] .fui-spinner {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+.fui-loader[data-size="lg"] .fui-spinner {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+@keyframes fui-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fui-spinner {
+    animation: none;
+  }
+}

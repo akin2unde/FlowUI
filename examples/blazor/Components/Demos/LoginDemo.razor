@@ -1,0 +1,25 @@
+<DemoBlock Title="Login form" Markup="@LoginMarkup" Code="@LoginCode">
+<div class="login-stage">
+    <div class="login-card">
+        <div class="login-brand" aria-hidden="true">F</div>
+        <p class="login-eyebrow">FLOWUI / ACCOUNT ACCESS</p>
+        <h2>Welcome back</h2>
+        <p class="login-subtitle">Sign in to your workspace.</p>
+        <EditForm Model="login" OnValidSubmit="SignInAsync" FormName="sample-login">
+            <DataAnnotationsValidator />
+            <FlowVC Gap="1.25rem">
+                <FlowInput Label="Email address" @bind-Value="login.Email"
+                           Placeholder="you@example.com" AutoComplete="username"
+                           inputmode="email" Required="true" Disabled="signingIn" />
+                <FlowPasswordInput Label="Password" @bind-Value="login.Password"
+                                   Placeholder="Enter your password" AutoComplete="current-password"
+                                   Required="true" Disabled="signingIn" />
+                <FlowCheckbox Label="Remember me" @bind-Value="login.RememberMe" Disabled="signingIn" />
+                <FlowButton Type="submit" Width="100%" Loading="signingIn" LoadingText="Signing in…">Sign in</FlowButton>
+                @if (!string.IsNullOrEmpty(loginStatus)) { <p class="login-status" role="status">@loginStatus</p> }
+            </FlowVC>
+        </EditForm>
+        <p class="login-note">Sample form · Use any valid email and a password of at least 8 characters.</p>
+    </div>
+</div>
+</DemoBlock>

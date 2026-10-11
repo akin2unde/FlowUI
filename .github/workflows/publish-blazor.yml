@@ -1,0 +1,22 @@
+name: Publish FlowUI.Blazor
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet build FlowUI.Blazor.slnx -c Release
+      - run: dotnet pack packages/blazor/FlowUI.Blazor.csproj -c Release --no-build -o artifacts/blazor
+      - name: Push package
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        shell: bash
+        run: |
+          test -n "$NUGET_API_KEY"
+          dotnet nuget push artifacts/blazor/FlowUI.Blazor.0.3.0.nupkg --source https://api.nuget.org/v3/index.json --api-key "$NUGET_API_KEY"

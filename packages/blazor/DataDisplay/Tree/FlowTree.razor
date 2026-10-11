@@ -1,0 +1,18 @@
+@namespace FlowUI.Blazor.DataDisplay
+
+@typeparam TNode
+@typeparam TValue where TValue : notnull
+@inherits FlowComponentBase
+<div @attributes="AdditionalAttributes" @ref="root" id="@Id" class="@Classes("fui-tree")" style="@Styles" role="tree" aria-label="@Label">
+@for (var i = 0; i < visible.Count; i++)
+{
+    var index = i; var row = visible[i]; var branch = row.Children.Count > 0; var expanded = ExpandedValues.Contains(row.Value);
+    <div role="treeitem" data-index="@i" aria-level="@row.Level" aria-setsize="@row.SiblingCount" aria-posinset="@row.Position"
+         aria-selected="@(EqualityComparer<TValue>.Default.Equals(Value, row.Value).ToString().ToLowerInvariant())" aria-expanded="@(branch ? expanded.ToString().ToLowerInvariant() : null)"
+         tabindex="@(active == i ? 0 : -1)" style="@($"padding-inline-start: {(row.Level - 1) * 1.25m + .5m}rem")" @onclick="() => Select(row, index)" @onkeydown="e => KeyDown(e, index)">
+        @if (branch) { <button type="button" tabindex="-1" aria-label="@($"{(expanded ? "Collapse" : "Expand")} {TextSelector(row.Item)}")" @onclick:stopPropagation="true" @onclick="() => Toggle(row)">@(expanded ? "⌄" : "›")</button> } else { <span class="fui-tree-spacer"></span> }
+        <span>@if (ItemTemplate is not null) { @ItemTemplate(row.Item) } else { @TextSelector(row.Item) }</span>
+    </div>
+}
+@if (visible.Count == 0) { <p class="fui-tree-empty">@EmptyText</p> }
+</div>

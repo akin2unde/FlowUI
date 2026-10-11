@@ -1,0 +1,8 @@
+@namespace FlowUI.Blazor.Layout
+@inherits FlowComponentBase
+
+<section @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-card")" style="@Styles">
+    @if (Header is not null) { <header class="fui-card-header">@Header</header> }
+    <div class="fui-card-body">@ChildContent</div>
+    @if (Footer is not null) { <footer class="fui-card-footer">@Footer</footer> }
+</section>

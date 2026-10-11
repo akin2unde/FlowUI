@@ -1,0 +1,13 @@
+@namespace FlowUI.Blazor.Forms
+@inherits FlowFieldBase<bool>
+<div class="@FieldClasses" style="@Styles" data-size="@Size.ToString().ToLowerInvariant()">
+    <label class="fui-check-row" for="@InputId" data-color="@Color.ToString().ToLowerInvariant()">
+        <input @attributes="AdditionalAttributes" @ref="InputElement" id="@InputId" type="checkbox"  class="fui-check"
+               checked="@Value" disabled="@Disabled" aria-readonly="@ReadOnly.ToString().ToLowerInvariant()"
+               aria-checked="@CheckedState" aria-required="@Required.ToString().ToLowerInvariant()" aria-invalid="@Invalid" aria-describedby="@DescriptionId"
+               @onclick:preventDefault="ReadOnly" @onchange="ChangeAsync" @onfocus="OnFocus" @onblur="OnBlur" />
+        
+        <span class="fui-field-label">@if (ChildContent is not null) { @ChildContent } else { @Label }@if (Required) { <span class="fui-required" aria-hidden="true"> *</span> }</span>
+    </label>
+    @if (!string.IsNullOrEmpty(Message)) { <span id="@HelpId" class="fui-help @(HasErrors ? "fui-error" : "")">@Message</span> }
+</div>

@@ -1,0 +1,14 @@
+.preview-page { min-height: 100vh; max-width: 1160px; margin: 0 auto; padding: 3rem 2rem; }
+header { margin-bottom: 2rem; }
+.eyebrow { font-size: .7rem; letter-spacing: .16em; font-weight: 700; color: var(--fui-color-primary); margin-bottom: .8rem; }
+h1 { font-size: 2.3rem; letter-spacing: -.04em; margin-bottom: .7rem; }
+h2 { font-size: 1.1rem; margin: 0; }
+.subtitle { color: var(--fui-color-textMuted); line-height: 1.6; }
+.preview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+.preview-note { padding: 1rem; border-radius: .7rem; background: var(--fui-color-surfaceSunken); margin-top: .5rem; }
+.preview-note strong { font-size: .85rem; }
+.preview-note p { font-size: .8rem; line-height: 1.6; margin-top: .4rem; color: var(--fui-color-textMuted); }
+.gallery-link { display: inline-block; margin-top: 2rem; color: var(--fui-color-primary); font-size: .85rem; text-decoration: none; }
+.login-preview ::deep details { display: none; }
+.login-preview ::deep .login-stage { padding: .5rem; }
+@media (max-width: 700px) { .preview-page { padding: 1.5rem 1rem; } .preview-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }

@@ -1,0 +1,5 @@
+<section class="demo-block">
+    <FlowCard><Header><h2>@Title</h2></Header><ChildContent>@ChildContent</ChildContent></FlowCard>
+    <details open><summary>Usage · Razor</summary><pre><code>@Markup</code></pre></details>
+    @if (!string.IsNullOrWhiteSpace(Code)) { <details><summary>Code-behind · C#</summary><pre><code>@Code</code></pre></details> }
+</section>

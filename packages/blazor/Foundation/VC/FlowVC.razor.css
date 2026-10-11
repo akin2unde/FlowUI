@@ -1,0 +1,6 @@
+.fui-stack {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  box-sizing: border-box;
+}

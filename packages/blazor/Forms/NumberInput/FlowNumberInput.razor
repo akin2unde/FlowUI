@@ -1,0 +1,24 @@
+@namespace FlowUI.Blazor.Forms
+@typeparam TValue
+@inherits FlowFieldBase<TValue>
+<div class="@FieldClasses" style="@Styles" data-size="@Size.ToString().ToLowerInvariant()">
+    @if (!string.IsNullOrEmpty(Label))
+    {
+        <label class="fui-field-label" for="@InputId">@Label@if (Required) { <span class="fui-required" aria-hidden="true"> *</span> }</label>
+    }
+    <div class="fui-number-row">
+        @if (!string.IsNullOrEmpty(Prefix)) { <span class="fui-affix" aria-hidden="true">@Prefix</span> }
+        <input @attributes="AdditionalAttributes" @ref="InputElement" id="@InputId" class="fui-control"
+               type="text" inputmode="@(IsInteger ? "numeric" : "decimal")" value="@text" placeholder="@Placeholder"
+               disabled="@Disabled" readonly="@ReadOnly" aria-required="@Required.ToString().ToLowerInvariant()"
+               aria-invalid="@Invalid" aria-describedby="@DescriptionId"
+               @oninput="HandleInput" @onchange="HandleChange" @onblur="BlurAsync" @onfocus="OnFocus"
+               @onwheel="WheelAsync" @onwheel:preventDefault="AllowMouseWheel" />
+        @if (!string.IsNullOrEmpty(Suffix)) { <span class="fui-affix" aria-hidden="true">@Suffix</span> }
+        @if (ShowStepper)
+        {
+            <div class="fui-stepper"><button type="button" aria-label="@($"Increase {Label ?? "value"}")" disabled="@(Disabled || ReadOnly || AtMaximum)" @onclick="() => StepAsync(1)">+</button><button type="button" aria-label="@($"Decrease {Label ?? "value"}")" disabled="@(Disabled || ReadOnly || AtMinimum)" @onclick="() => StepAsync(-1)">−</button></div>
+        }
+    </div>
+    @if (!string.IsNullOrEmpty(Message)) { <span id="@HelpId" class="fui-help @(HasErrors ? "fui-error" : "")">@Message</span> }
+</div>

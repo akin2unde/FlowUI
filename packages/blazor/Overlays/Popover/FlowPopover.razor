@@ -1,0 +1,8 @@
+@namespace FlowUI.Blazor.Overlays
+
+@inherits FlowComponentBase
+<div class="@Classes("fui-popover")" style="@Styles" @ref="root">
+    <button @attributes="AdditionalAttributes" @ref="trigger" id="@Id" type="button" class="fui-popover-trigger"
+            aria-expanded="@Open.ToString().ToLowerInvariant()" aria-controls="@(Open ? panelId : null)" @onclick="Toggle" @onkeydown="KeyDown">@if (Trigger is not null) { @Trigger } else { @Text }</button>
+    @if (Open) { <div @ref="panel" class="fui-popover-panel" id="@panelId" role="dialog" aria-label="@Label" @onkeydown="KeyDown">@ChildContent</div> }
+</div>

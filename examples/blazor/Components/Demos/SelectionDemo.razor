@@ -1,0 +1,24 @@
+<FlowVC Gap="1.5rem">
+    <DemoBlock Title="Searchable dropdown" Markup="@Example0" Code="@ExampleCode">
+<FlowVC>
+    <FlowDropdown Label="Department" Items="departments" ValueSelector="i => i.Id" TextSelector="i => i.Name" DisabledSelector="i => i.Disabled" @bind-Value="department" Searchable="true" Clearable="true" Placeholder="Choose a department" HelperText="Arrow keys navigate; Enter selects; Escape closes." />
+    <p role="status">Department: @(department ?? "none")</p>
+    <FlowDropdown Label="Loading departments" Items="Array.Empty<Option>()" ValueSelector="i => i.Id" TextSelector="i => i.Name" Loading="true" Placeholder="Open to see loading feedback" />
+    <FlowDropdown Label="Missing selection" Items="departments" ValueSelector="i => i.Id" TextSelector="i => i.Name" Value='@("removed")' ReadOnly="true" HelperText="A missing value is preserved rather than selecting the first option." />
+</FlowVC>
+    </DemoBlock>
+    <DemoBlock Title="Multi-select" Markup="@Example1" Code="@ExampleCode">
+<FlowVC>
+    <FlowMultiSelect Label="Teams" Items="teams" ValueSelector="i => i.Id" TextSelector="i => i.Name" DisabledSelector="i => i.Disabled" @bind-Values="selectedTeams" Searchable="true" Clearable="true" ShowSelectAll="true" MaxSelections="4" MaxVisibleTags="2" HelperText="Select up to four. Bulk selection applies to enabled filtered options." />
+    <p role="status">Team IDs: @string.Join(", ", selectedTeams)</p>
+    <FlowMultiSelect Label="Read-only teams" Items="teams" ValueSelector="i => i.Id" TextSelector="i => i.Name" Values="lockedTeams" ReadOnly="true" />
+</FlowVC>
+    </DemoBlock>
+    <DemoBlock Title="Radio group" Markup="@Example2" Code="@ExampleCode">
+<FlowVC>
+    <FlowRadioGroup Label="Delivery" Items="deliveries" ValueSelector="i => i.Id" TextSelector="i => i.Name" DisabledSelector="i => i.Disabled" @bind-Value="delivery" Orientation="FlowOrientation.Horizontal" HelperText="Native radios share a unique group name." />
+    <FlowRadioGroup Label="Read-only delivery" Items="deliveries" ValueSelector="i => i.Id" TextSelector="i => i.Name" Value='@("standard")' ReadOnly="true" />
+    <p role="status">Delivery: @delivery</p>
+</FlowVC>
+    </DemoBlock>
+</FlowVC>

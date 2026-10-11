@@ -1,0 +1,15 @@
+<FlowVC Gap="1.5rem">
+<DemoBlock Title="Accordion" Markup="@Example0" Code="@ExampleCode">
+<FlowAccordion Items="questions" @bind-OpenKeys="openQuestions">
+    <Content Context="key">@(key == "installation" ? "Install the package and import the FlowUI namespaces in _Imports.razor." : "Choose Light, Dark, or System and supply your own palette when needed.")</Content>
+</FlowAccordion>
+</DemoBlock>
+<DemoBlock Title="Table" Markup="@Example1" Code="@ExampleCode">
+<FlowTable Items="products" Columns="columns" RowKey="p => p.Id" Caption="Product inventory" PageSize="3" @bind-Page="tablePage" />
+</DemoBlock>
+<DemoBlock Title="Tree" Markup="@Example2" Code="@ExampleCode">
+<FlowTree Items="nodes" ValueSelector="n => n.Id" TextSelector="n => n.Name" ChildrenSelector="n => n.Children"
+          @bind-Value="selectedNode" @bind-ExpandedValues="expanded" Label="Project folders" />
+<p role="status">Selected node: @(selectedNode ?? "none")</p>
+</DemoBlock>
+</FlowVC>

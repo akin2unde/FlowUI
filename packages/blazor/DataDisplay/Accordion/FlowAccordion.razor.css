@@ -1,0 +1,6 @@
+button { font: inherit; cursor: pointer; color: inherit; } button:disabled { opacity: .5; cursor: not-allowed; } button:focus-visible, a:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--fui-color-focus, #2563eb); outline-offset: 3px; }
+.fui-accordion { border: 1px solid var(--fui-color-border); border-radius: .7rem; overflow: hidden; }
+section + section { border-top: 1px solid var(--fui-color-border); } h3 { margin: 0; }
+button { display: flex; justify-content: space-between; align-items: center; gap: 1rem; width: 100%; border: 0; background: var(--fui-color-surface); padding: 1rem; text-align: start; font-size: .9rem; font-weight: 600; }
+.fui-accordion-panel { padding: 0 1rem 1rem; font-size: .9rem; line-height: 1.6; }
+.fui-accordion-panel[hidden] { display: none; }

@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+}
+button,
+select,
+input {
+  font: inherit;
+}
+a {
+  color: inherit;
+}
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+button,
+select,
+input,
+a {
+  touch-action: manipulation;
+}
+:focus-visible {
+  outline: 3px solid #60a5fa;
+  outline-offset: 3px;
+}

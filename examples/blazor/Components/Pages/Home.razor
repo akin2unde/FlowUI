@@ -1,0 +1,97 @@
+@page "/"
+<PageTitle>FlowUI · Blazor components</PageTitle>
+<FlowThemeProvider Theme="ActiveTheme" Mode="mode" Class="showcase-theme">
+    <div class="shell">
+        <aside class="sidebar">
+            <a class="brand" href="/">F<span>FlowUI <small>BLAZOR</small></span></a>
+            <p class="nav-heading">COMPONENTS</p>
+            @foreach (var section in Sections)
+            {
+                <button class="nav-item @(selectedSection == section ? "active" : "")"
+                        aria-current="@(selectedSection == section ? "page" : null)"
+                        @onclick="() => SelectSection(section)">@(section)</button>
+            }
+            <div class="sidebar-note"><strong>C# all the way.</strong><p>Razor templates, code-behind, isolated CSS.</p></div>
+        </aside>
+        <main class="content">
+            <header class="page-header">
+                <div><p class="eyebrow">FLOWUI / @selectedSection.ToUpperInvariant()</p><h1>@selectedSection</h1><p class="muted">A familiar design system. A native Blazor implementation.</p></div>
+                <FlowBadge Color="FlowColor.Success">Component preview · 0.3.0</FlowBadge>
+            </header>
+            <div class="theme-toolbar">
+
+                <div class="toolbar-field"><FlowDropdown Id="sample-palette" Label="Sample Palette" Items="PaletteOptions" ValueSelector="i => i.Id" TextSelector="i => i.Name" @bind-Value="tenant" /></div>
+                <div class="toolbar-field"><FlowDropdown Id="theme-mode" Label="Appearance" Items="Enum.GetValues<FlowThemeMode>()" ValueSelector="i => i" TextSelector="i => i.ToString()" @bind-Value="mode" /></div>
+                <span class="muted">@ActiveTheme.Name · @mode</span>
+            </div>
+            @if (selectedSection == "Overview")
+            {
+                <div class="hero"><div><p class="eyebrow">BUILD YOUR NEXT INTERFACE</p><h2>Small components.<br />Clear responsibilities.</h2><p>Explore layout, presentation, buttons, and custom themes. Every example uses the actual FlowUI library.</p><FlowButton OnClick="OpenButtons">Explore buttons</FlowButton></div><FlowImage Src="showcase.svg" Alt="FlowUI blue geometric illustration" Width="100%" /></div>
+                <div class="card-grid">
+                    <FlowCard><Header><h3>Layout</h3></Header><ChildContent><FlowVC Gap=".75rem"><p class="muted">Compose rows, columns, cards and dividers.</p><FlowHC Wrap="true" Gap=".5rem"><FlowBadge>FlowHC</FlowBadge><FlowBadge>FlowVC</FlowBadge><FlowBadge>FlowCard</FlowBadge></FlowHC></FlowVC></ChildContent></FlowCard>
+                    <FlowCard><Header><h3>Presentation</h3></Header><ChildContent><FlowVC Gap=".75rem"><p class="muted">Labels, images, badges and accessible loading feedback.</p><FlowLoader ShowLabel="true" Label="Resolving a label" /></FlowVC></ChildContent></FlowCard>
+                    <FlowCard><Header><h3>Buttons</h3></Header><ChildContent><FlowVC Gap=".75rem"><p class="muted">Typed variants, semantic colors, loading and click events.</p><FlowButton Variant="FlowVariant.Outline" OnClick="Increment">Clicked @clicks times</FlowButton></FlowVC></ChildContent></FlowCard>
+                    <FlowCard><Header><h3>Theming</h3></Header><ChildContent><FlowVC Gap=".75rem"><p class="muted">Custom light and dark palettes without a separate Custom mode.</p><FlowBadge Color="FlowColor.Info">Switch palettes above</FlowBadge></FlowVC></ChildContent></FlowCard>
+                </div>
+            }
+            else if (selectedSection == "Layout")
+            {
+                <FlowVC Gap="1.25rem">
+                    <FlowCard><Header><h2>Horizontal container · FlowHC</h2></Header><ChildContent><FlowHC Wrap="true" Align="FlowAlign.Center" Justify="FlowJustify.SpaceBetween"><FlowBadge>First item</FlowBadge><FlowBadge Color="FlowColor.Success">Second item</FlowBadge><FlowButton Size="FlowSize.Sm">Third item</FlowButton></FlowHC></ChildContent></FlowCard>
+                    <FlowCard><Header><h2>Vertical container · FlowVC</h2></Header><ChildContent><FlowVC><FlowLabel>First row</FlowLabel><FlowDivider Label="Separated content" /><FlowLabel>Second row</FlowLabel></FlowVC></ChildContent><Footer><p class="muted">FlowCard accepts Header, ChildContent, and Footer fragments.</p></Footer></FlowCard>
+                    <pre><code>@LayoutCode</code></pre>
+                </FlowVC>
+            }
+            else if (selectedSection == "Presentation")
+            {
+                <FlowVC Gap="1.25rem">
+                    <FlowCard><Header><h2>Labels and badges</h2></Header><ChildContent><FlowVC><FlowLabel HtmlFor="sample-name" Required="true">Product name</FlowLabel><input id="sample-name" @bind="productName" placeholder="Enter a product name" required /><FlowHC Wrap="true">@foreach (var color in Enum.GetValues<FlowColor>()) { <FlowBadge Color="color">@color</FlowBadge> }</FlowHC></FlowVC></ChildContent></FlowCard>
+                    <FlowCard><Header><h2>Loading feedback</h2></Header><ChildContent><FlowHC Wrap="true" Align="FlowAlign.Center"><FlowLoader Size="FlowSize.Sm" /><FlowLoader ShowLabel="true" Label="Loading products" /><FlowLoader Size="FlowSize.Lg" /></FlowHC></ChildContent></FlowCard>
+                    <FlowCard><Header><h2>Image with fallback</h2></Header><ChildContent><FlowImage Src="missing-image.svg" FallbackSrc="showcase.svg" Alt="FlowUI illustration loaded as the fallback" MaxWidth="30rem" /></ChildContent></FlowCard>
+                    <pre><code>@PresentationCode</code></pre>
+                </FlowVC>
+            }
+            else if (selectedSection == "Buttons")
+            {
+                <FlowVC Gap="1.25rem">
+                    <FlowCard><Header><h2>Variants</h2></Header><ChildContent><FlowHC Wrap="true">@foreach (var variant in Enum.GetValues<FlowVariant>()) { <FlowButton Variant="variant" OnClick="Increment">@variant</FlowButton> }</FlowHC></ChildContent></FlowCard>
+                    <FlowCard><Header><h2>Semantic colors</h2></Header><ChildContent><FlowHC Wrap="true">@foreach (var color in Enum.GetValues<FlowColor>()) { <FlowButton Color="color" OnClick="Increment">@color</FlowButton> }</FlowHC></ChildContent></FlowCard>
+                    <FlowCard><Header><h2>Sizes and states</h2></Header><ChildContent><FlowVC><FlowHC Wrap="true" Align="FlowAlign.Center">@foreach (var size in Enum.GetValues<FlowSize>()) { <FlowButton Size="size" OnClick="Increment">@size</FlowButton> }<FlowButton Disabled="true">Disabled</FlowButton></FlowHC><FlowHC Wrap="true" Align="FlowAlign.Center"><FlowButton Loading="saving" LoadingText="Saving…" OnClick="SaveAsync">Save sample</FlowButton><FlowButton Variant="FlowVariant.Outline" Selected="selected" OnClick="ToggleSelected">Toggle selected</FlowButton><span role="status">@status · Clicks: @clicks</span></FlowHC></FlowVC></ChildContent></FlowCard>
+                    <pre><code>@ButtonCode</code></pre>
+                </FlowVC>
+            }
+            else if (selectedSection == "Forms")
+            {
+                <FormsDemo />
+            }
+            else if (selectedSection == "Selection")
+            {
+                <SelectionDemo />
+            }
+            else if (selectedSection == "Login")
+            {
+                <LoginDemo />
+            }
+            else if (selectedSection == "Overlays")
+            { <OverlaysDemo /> }
+            else if (selectedSection == "Navigation")
+            { <NavigationDemo /> }
+            else if (selectedSection == "Data Display")
+            { <DataDisplayDemo /> }
+            else if (selectedSection == "Theming")
+            {
+                <FlowVC Gap="1.25rem">
+                    <FlowCard><Header><h2>Palettes and appearance are independent</h2></Header><ChildContent><p class="muted">Choose a palette above, then change appearance. Switching palettes preserves your selected mode for this session. System follows your browser's OS preference automatically.</p></ChildContent></FlowCard>
+                    <FlowCard><Header><h2>Nested provider · always Studio dark</h2></Header><ChildContent><FlowThemeProvider Theme="StudioTheme" Mode="FlowThemeMode.Dark" Padding="1.5rem" CornerRadius="1rem"><FlowVC><FlowLabel>This palette is isolated from the outer provider.</FlowLabel><FlowHC Wrap="true"><FlowButton>Studio primary</FlowButton><FlowBadge Color="FlowColor.Success">Nested theme</FlowBadge></FlowHC></FlowVC></FlowThemeProvider></ChildContent></FlowCard>
+                    <FlowCard><Header><h2>Change a sample palette at runtime</h2></Header><ChildContent><FlowVC><FlowLabel HtmlFor="accent">Custom primary color (current palette)</FlowLabel><input id="accent" type="color" value="@CurrentPrimary" @onchange="ChangeAccent" /><FlowButton>Live primary preview</FlowButton><FlowButton Variant="FlowVariant.Ghost" OnClick="ResetTenant">Reset this palette</FlowButton></FlowVC></ChildContent></FlowCard>
+                    <pre><code>@ThemeCode</code></pre>
+                </FlowVC>
+            }
+            else
+            {
+                <FlowVC Gap="1.25rem"><FlowCard><Header><h2>Template / behavior / styling</h2></Header><ChildContent><p class="muted">Components use .razor, .razor.cs, and .razor.css. Set a breakpoint in Home.razor.cs → Increment(), open Buttons, and click any enabled variant.</p></ChildContent></FlowCard><pre><code>@SetupCode</code></pre><FlowCard><ChildContent><p class="muted">This sample uses Interactive Server. The library does not set a render mode and can also be referenced by a WebAssembly app. See packages/blazor/README.md for setup, theme definitions, and packaging.</p></ChildContent></FlowCard></FlowVC>
+            }
+            <footer class="page-footer">FlowUI.Blazor · .NET 10 · Razor Class Library · No JavaScript dependency for theming</footer>
+        </main>
+    </div>
+</FlowThemeProvider>

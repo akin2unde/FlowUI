@@ -1,0 +1,9 @@
+@namespace FlowUI.Blazor.Navigation
+
+@inherits FlowComponentBase
+<nav @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-pagination")" style="@Styles" aria-label="@Label">
+<button type="button" disabled="@(Disabled || Page <= 1)" aria-label="Previous page" @onclick="() => Change(Page - 1)">‹</button>
+@foreach (var page in PageNumbers) { <button type="button" disabled="@Disabled" aria-label="@($"Page {page}")" aria-current="@(Page == page ? "page" : null)" @onclick="() => Change(page)">@(page)</button> }
+<button type="button" disabled="@(Disabled || Page >= PageCount)" aria-label="Next page" @onclick="() => Change(Page + 1)">›</button>
+<span class="fui-page-summary">Page @Page of @PageCount</span>
+</nav>

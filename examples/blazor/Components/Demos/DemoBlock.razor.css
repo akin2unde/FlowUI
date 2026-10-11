@@ -1,0 +1,4 @@
+.demo-block { display: flex; flex-direction: column; gap: .7rem; min-width: 0; }
+h2 { margin: 0; font-size: 1.05rem; }
+summary { cursor: pointer; padding: .6rem .2rem; color: var(--fui-color-textMuted); font-size: .8rem; font-weight: 600; }
+pre { margin: 0; padding: 1rem; border-radius: .65rem; border: 1px solid var(--fui-color-border); background: var(--fui-color-surfaceSunken); font-size: .8rem; line-height: 1.6; overflow: auto; max-width: 100%; }

@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/packages/">
+    <Project Path="packages/blazor/FlowUI.Blazor.csproj" />
+  </Folder>
+  <Folder Name="/examples/">
+    <Project Path="examples/blazor/FlowUI.Blazor.Sample.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,9 @@
+@namespace FlowUI.Blazor.Theming
+@inherits FlowComponentBase
+
+<CascadingValue Value="Context">
+    <div @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-theme-provider")" style="@Styles"
+         data-fui-theme="@Mode.ToString().ToLowerInvariant()" data-fui-theme-name="@Theme.Name">
+        @ChildContent
+    </div>
+</CascadingValue>

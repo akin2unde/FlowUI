@@ -1,0 +1,7 @@
+@namespace FlowUI.Blazor.Presentation
+@inherits FlowComponentBase
+
+<label @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-label")" style="@Styles" for="@HtmlFor">
+    @ChildContent
+    @if (Required) { <span class="fui-required" aria-hidden="true"> *</span> }
+</label>

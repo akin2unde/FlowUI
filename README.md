@@ -388,5 +388,27 @@ See [the full AsyncLabel guide](docs/ASYNC-LABEL.md).
 
 The React and Angular examples now have searchable sidebar navigation, a selected
 component preview, framework tabs, usage snippets and generated property tables.
-The original full galleries remain linked in the sidebar. Blazor is planned.
+The original full galleries remain linked in the sidebar. Blazor has a separate
+runnable showcase at `examples/blazor`.
 Run `npm run docs:data` after changing component contracts or gallery snippets.
+
+## Blazor components (.NET 10)
+
+FlowUI now includes a Razor Class Library at `packages/blazor` and an Interactive
+Server showcase at `examples/blazor`. It contains 30 controls across Foundation,
+Forms, Selection, Overlays, Navigation and Data Display: layout, presentation, buttons, form fields, dropdowns,
+multi-select, radio groups, and custom Light/Dark/System themes.
+
+```bash
+dotnet build FlowUI.Blazor.slnx
+dotnet run --project examples/blazor/FlowUI.Blazor.Sample.csproj
+```
+
+Open **http://localhost:5180**, or use the included **FlowUI Blazor Sample** F5
+configuration in VS Code. See [the Blazor guide](packages/blazor/README.md) for
+setup, file structure, debugging, component examples and local NuGet packaging.
+Existing npm builds/releases stay independent; explicit shortcuts are
+`npm run build:blazor`, `npm run dev:blazor`, and `npm run pack:blazor`.
+
+Blazor documentation: https://flowui-blazor-docs.tealwolf.chatgpt.site
+See `BLAZOR-RELEASE.md` for packaging, publishing and hosting.
