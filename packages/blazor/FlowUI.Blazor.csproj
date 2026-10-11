@@ -8,8 +8,7 @@
     <Authors>Akintunde Morakinyo</Authors>
     <Description>FlowUI Foundation, Forms, Selection, Overlays, Navigation and Data Display controls for Blazor, with isolated styles and custom light/dark palettes.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://flowui-blazor-docs.tealwolf.chatgpt.site</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/akin2unde/FlowUI</RepositoryUrl>
+    <PackageProjectUrl>https://flowui.pantry-stack.com</PackageProjectUrl>    <RepositoryUrl>https://github.com/akin2unde/FlowUI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>blazor;razor;components;ui;forms;table;tree;dotnet</PackageTags>
     <PackageReleaseNotes>Preview with 30 controls, separated templates/code-behind/styles, typed tables and trees, overlays, navigation, and documentation.</PackageReleaseNotes>
