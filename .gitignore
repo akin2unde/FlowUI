@@ -11,3 +11,5 @@ coverage/
 **/bin/
 **/obj/
 artifacts/
+
+.DS_Store
