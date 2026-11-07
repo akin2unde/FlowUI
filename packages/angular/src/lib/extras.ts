@@ -1,3 +1,4 @@
+import { resolveTooltipLocation } from "@akin2unde/flowui-core";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -224,7 +225,9 @@ export class FlowTreeComponent extends FlowComponentBase {
     <span
       [class]="view().className"
       [ngStyle]="view().style"
-      [attr.data-location]="location"
+      [attr.data-location]="placed ?? location"
+      (mouseenter)="position($event)"
+      (focusin)="position($event)"
     >
       <ng-content />
       <span class="fui-tooltip-content" role="tooltip">
@@ -237,6 +240,19 @@ export class FlowTooltipComponent extends FlowComponentBase {
   @Input({ required: true }) text!: string;
   @Input() location: TooltipLocation = "top";
   @Input() delay = 150;
+  placed?: TooltipLocation;
+
+  position(event: Event): void {
+    const anchor = event.currentTarget as HTMLElement;
+    const tip = anchor.querySelector<HTMLElement>(".fui-tooltip-content");
+    if (tip)
+      this.placed = resolveTooltipLocation(
+        this.location,
+        anchor.getBoundingClientRect(),
+        tip.getBoundingClientRect(),
+        { width: window.innerWidth, height: window.innerHeight },
+      );
+  }
 
   view = () => {
     const resolved = this.resolved("fui-tooltip");

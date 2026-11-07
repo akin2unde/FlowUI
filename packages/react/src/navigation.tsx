@@ -49,6 +49,7 @@ export function Menu({ items, onSelect, ...props }: MenuProps) {
 }
 
 export interface DropdownProps extends BaseUIProps {
+  clearable?: boolean;
   value?: string | number;
   options: DropdownModel[];
   placeholder?: string;
@@ -64,6 +65,7 @@ export interface DropdownProps extends BaseUIProps {
   renderValue?: (model: DropdownModel) => ReactNode;
   onSearchChange?: (query: string) => void;
   onLoadMore?: () => void;
+  onClear?: () => void;
   onChange?: (model: DropdownModel) => void;
 }
 
@@ -83,6 +85,8 @@ export function Dropdown({
   renderValue,
   onSearchChange,
   onLoadMore,
+  clearable = false,
+  onClear,
   onChange,
   ...props
 }: DropdownProps) {
@@ -98,10 +102,12 @@ export function Dropdown({
     ? Array.from(new Set(matches.map((option) => option.group ?? "Other")))
     : [undefined];
   const flow = useFlowProps("fui-select", props);
+  const canClear = Boolean(clearable && selected && onClear);
   return (
     <div {...flow} ref={root}>
       <button
         className="fui-select-trigger"
+        data-clearable={canClear}
         type="button"
         disabled={disabled}
         aria-haspopup="listbox"
@@ -115,6 +121,17 @@ export function Dropdown({
         </span>
         <Icon icon={`fa-solid fa-chevron-${open ? "up" : "down"}`} />
       </button>
+      {canClear && (
+        <button
+          type="button"
+          className="fui-select-clear fui-select-clear-single"
+          disabled={disabled}
+          aria-label="Clear selection"
+          onClick={() => onClear?.()}
+        >
+          <Icon icon="fa-solid fa-xmark" />
+        </button>
+      )}
       {open && (
         <div className="fui-select-menu">
           {searchable && (
@@ -217,6 +234,7 @@ function TreeDropdownNode({ option, value, onChange }: TreeDropdownNodeProps) {
 }
 
 export interface TreeDropdownProps extends BaseUIProps {
+  clearable?: boolean;
   value?: string | number;
   options: TreeModel[];
   placeholder?: string;
@@ -224,6 +242,7 @@ export interface TreeDropdownProps extends BaseUIProps {
   searchPlaceholder?: string;
   emptyText?: string;
   disabled?: boolean;
+  onClear?: () => void;
   onChange?: (model: TreeModel) => void;
 }
 
@@ -235,6 +254,8 @@ export function TreeDropdown({
   searchPlaceholder = "Search tree…",
   emptyText = "No options found",
   disabled = false,
+  clearable = false,
+  onClear,
   onChange,
   ...props
 }: TreeDropdownProps) {
@@ -252,10 +273,12 @@ export function TreeDropdown({
   };
   const visibleOptions = filterTree(options, query);
   const flow = useFlowProps("fui-tree-dropdown", props);
+  const canClear = Boolean(clearable && selected(options) && onClear);
   return (
     <div {...flow} ref={root}>
       <button
         className="fui-select-trigger"
+        data-clearable={canClear}
         type="button"
         disabled={disabled}
         onClick={() => setOpen((current) => !current)}
@@ -264,6 +287,17 @@ export function TreeDropdown({
         <span>{selected(options)?.display ?? placeholder}</span>
         <Icon icon={`fa-solid fa-chevron-${open ? "up" : "down"}`} />
       </button>
+      {canClear && (
+        <button
+          type="button"
+          className="fui-select-clear fui-select-clear-single"
+          disabled={disabled}
+          aria-label="Clear selection"
+          onClick={() => onClear?.()}
+        >
+          <Icon icon="fa-solid fa-xmark" />
+        </button>
+      )}
       {open && (
         <div className="fui-select-menu">
           {searchable && (
@@ -312,6 +346,7 @@ export interface TabsProps extends PropsWithChildren<BaseUIProps> {
   tabs?: TabDefinition[];
   value?: string;
   defaultValue?: string;
+  selectedStyle?: "underline" | "fill";
   onChange?: (id: string) => void;
 }
 export function Tabs({
@@ -319,6 +354,7 @@ export function Tabs({
   children,
   value,
   defaultValue,
+  selectedStyle = "underline",
   onChange,
   ...props
 }: TabsProps) {
@@ -336,7 +372,12 @@ export function Tabs({
     }));
   const definitions = tabs ?? childTabs;
   const [internal, setInternal] = useState(defaultValue ?? definitions[0]?.id);
-  const selected = value ?? internal;
+  const requested = value ?? internal;
+  const selected = definitions.some(
+    (tab) => tab.id === requested && !tab.disabled,
+  )
+    ? requested
+    : definitions.find((tab) => !tab.disabled)?.id;
   const flow = useFlowProps("", props);
   const activate = (id: string) => {
     if (value === undefined) setInternal(id);
@@ -344,12 +385,17 @@ export function Tabs({
   };
   return (
     <div {...flow}>
-      <div className="fui-tabs-list" role="tablist">
+      <div
+        className="fui-tabs-list"
+        role="tablist"
+        data-selected-style={selectedStyle}
+      >
         {definitions.map((tab) => (
           <button
             key={tab.id}
             id={`tab-${tab.id}`}
             className="fui-tab"
+            type="button"
             role="tab"
             aria-selected={selected === tab.id}
             aria-controls={`panel-${tab.id}`}

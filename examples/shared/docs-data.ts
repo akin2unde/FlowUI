@@ -802,9 +802,12 @@ export const componentDocs: ComponentDoc[] = [
     name: "Tooltip",
     description: "Shows short guidance around a trigger.",
     code: {
-      react: '<Tooltip text="Save" location="top">...</Tooltip>',
-      angular: '<fui-tooltip text="Save">...</fui-tooltip>',
-      native: "",
+      react:
+        '<Tooltip text="Save your changes" location="bottom"><Button>Save</Button></Tooltip>',
+      angular:
+        '<fui-tooltip text="Save your changes" location="bottom"><fui-button>Save</fui-button></fui-tooltip>',
+      native:
+        '<Tooltip text="Save your changes" location="bottom"><Text>Long press for help</Text></Tooltip>',
     },
     props: {
       react: [
@@ -953,12 +956,19 @@ export const componentDocs: ComponentDoc[] = [
     name: "Breadcrumb",
     description: "Shows image, icon, or text navigation ancestry.",
     code: {
-      react: "<Breadcrumb items={items} />",
-      angular: '<fui-breadcrumb [items]="items" />',
-      native: "",
+      react:
+        '<Breadcrumb separator="/" items={[{ id: "home", text: "Home", href: "/" }, { id: "products", text: "Products" }]} />',
+      angular:
+        '<fui-breadcrumb [items]="items" separator="/" (selected)="navigate($event)" />',
+      native: '<Breadcrumb items={crumbs} separator="/" onSelect={navigate} />',
     },
     props: {
       react: [
+        {
+          name: "separator",
+          type: "string",
+          optional: true,
+        },
         {
           name: "items",
           type: "BreadcrumbItem[]",
@@ -987,6 +997,11 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "separator",
+          type: "string",
+          optional: true,
+        },
+        {
           name: "separatorIcon",
           type: "string",
           optional: true,
@@ -1003,6 +1018,11 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       native: [
+        {
+          name: "separator",
+          type: "string",
+          optional: true,
+        },
         {
           name: "items",
           type: "BreadcrumbItem[]",
@@ -1832,6 +1852,11 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "autoComplete",
+          type: "string",
+          optional: true,
+        },
+        {
           name: "placeholder",
           type: "string",
           optional: true,
@@ -1873,6 +1898,11 @@ export const componentDocs: ComponentDoc[] = [
           type: "boolean",
           optional: true,
         },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
       ],
     },
   },
@@ -1911,6 +1941,11 @@ export const componentDocs: ComponentDoc[] = [
         },
         {
           name: "name",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "autoComplete",
           type: "string",
           optional: true,
         },
@@ -1959,6 +1994,11 @@ export const componentDocs: ComponentDoc[] = [
         {
           name: "invalid",
           type: "boolean",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
           optional: true,
         },
         {
@@ -2236,9 +2276,9 @@ export const componentDocs: ComponentDoc[] = [
     name: "DateTime",
     description: "Captures a local date, time, or both without UTC shifting.",
     code: {
-      react: '<DateTime mode="datetime" value={date} />',
+      react: '<DateTime mode="datetime" value={date} onChange={setDate} />',
       angular: '<fui-date-time mode="datetime" [(value)]="date" />',
-      native: "",
+      native: '<DateTime mode="datetime" value={date} onChange={setDate} />',
     },
     props: {
       react: [
@@ -2371,7 +2411,8 @@ export const componentDocs: ComponentDoc[] = [
     code: {
       react: "<Autocomplete options={options} />",
       angular: '<fui-autocomplete [options]="options" />',
-      native: "",
+      native:
+        "<Autocomplete items={products} value={query} onChangeText={setQuery} />",
     },
     props: {
       react: [
@@ -3799,10 +3840,15 @@ export const componentDocs: ComponentDoc[] = [
       react: "<Dropdown options={options} searchable />",
       angular: '<fui-dropdown [options]="options" />',
       native:
-        "<Select items={options} value={code}\n  onValueChange={(value) => setCode(value)} />",
+        "<Select items={options} value={code} clearable\n  onClear={() => setCode(undefined)} onValueChange={setCode} />",
     },
     props: {
       react: [
+        {
+          name: "clearable",
+          type: "boolean",
+          optional: true,
+        },
         {
           name: "value",
           type: "string | number",
@@ -3879,6 +3925,11 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "onClear",
+          type: "() => void",
+          optional: true,
+        },
+        {
           name: "onChange",
           type: "(model: DropdownModel) => void",
           optional: true,
@@ -3902,6 +3953,11 @@ export const componentDocs: ComponentDoc[] = [
         },
         {
           name: "disabled",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "clearable",
           type: "boolean",
           optional: true,
         },
@@ -3951,6 +4007,11 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "cleared",
+          type: "See component source",
+          optional: true,
+        },
+        {
           name: "selected",
           type: "See component source",
           optional: true,
@@ -3990,6 +4051,16 @@ export const componentDocs: ComponentDoc[] = [
         {
           name: "chevron",
           type: "ReactNode",
+          optional: true,
+        },
+        {
+          name: "clearable",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "onClear",
+          type: "() => void",
           optional: true,
         },
         {
@@ -4098,12 +4169,17 @@ export const componentDocs: ComponentDoc[] = [
       react: "<MultiSelect options={options} value={values} />",
       angular: '<fui-multi-select [options]="options" />',
       native:
-        "<MultiSelect items={options} value={codes}\n  onValueChange={(values) => setCodes(values)} />",
+        "<MultiSelect items={options} value={codes} clearable\n  onValueChange={setCodes} />",
     },
     props: {
       react: [
         {
           name: "disabled",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "clearable",
           type: "boolean",
           optional: true,
         },
@@ -4265,6 +4341,11 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "clearable",
+          type: "boolean",
+          optional: true,
+        },
+        {
           name: "maxVisibleChips",
           type: "See component source",
           optional: true,
@@ -4327,6 +4408,11 @@ export const componentDocs: ComponentDoc[] = [
           optional: false,
         },
         {
+          name: "maxVisibleChips",
+          type: "number",
+          optional: true,
+        },
+        {
           name: "onValueChange",
           type: "( values: Array<string | number>, items: SelectOption<T>[], ) => void",
           optional: true,
@@ -4345,6 +4431,11 @@ export const componentDocs: ComponentDoc[] = [
     },
     props: {
       react: [
+        {
+          name: "clearable",
+          type: "boolean",
+          optional: true,
+        },
         {
           name: "value",
           type: "string | number",
@@ -4378,6 +4469,11 @@ export const componentDocs: ComponentDoc[] = [
         {
           name: "disabled",
           type: "boolean",
+          optional: true,
+        },
+        {
+          name: "onClear",
+          type: "() => void",
           optional: true,
         },
         {
@@ -4423,6 +4519,16 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "clearable",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "cleared",
+          type: "See component source",
+          optional: true,
+        },
+        {
           name: "selected",
           type: "See component source",
           optional: true,
@@ -4431,6 +4537,11 @@ export const componentDocs: ComponentDoc[] = [
       native: [
         {
           name: "disabled",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "clearable",
           type: "boolean",
           optional: true,
         },
@@ -4480,6 +4591,11 @@ export const componentDocs: ComponentDoc[] = [
       react: [
         {
           name: "disabled",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "clearable",
           type: "boolean",
           optional: true,
         },
@@ -4621,6 +4737,11 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "clearable",
+          type: "boolean",
+          optional: true,
+        },
+        {
           name: "maxVisibleChips",
           type: "See component source",
           optional: true,
@@ -4679,6 +4800,11 @@ export const componentDocs: ComponentDoc[] = [
       native: [
         {
           name: "disabled",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "clearable",
           type: "boolean",
           optional: true,
         },
@@ -4813,9 +4939,11 @@ export const componentDocs: ComponentDoc[] = [
     name: "Tabs / Tab",
     description: "Switches between named content panels.",
     code: {
-      react: '<Tabs><Tab id="one" label="One">...</Tab></Tabs>',
-      angular: '<fui-tabs><fui-tab id="one">...</fui-tab></fui-tabs>',
-      native: "",
+      react:
+        '<Tabs value={activeTab} onChange={setActiveTab}>\n  <Tab id="one" label="Overview" icon="fa-solid fa-chart-line">Overview</Tab>\n  {showReport && <Tab id="report" label="Report">Report</Tab>}\n</Tabs>',
+      angular:
+        '<fui-tabs [(value)]="activeTab">\n  <fui-tab id="one" label="Overview" icon="fa-solid fa-chart-line">Overview</fui-tab>\n  @if (showReport) { <fui-tab id="report" label="Report">Report</fui-tab> }\n</fui-tabs>',
+      native: "<Tabs tabs={tabs} value={activeTab} onChange={setActiveTab} />",
     },
     props: {
       react: [
@@ -4835,6 +4963,11 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "selectedStyle",
+          type: '"underline" | "fill"',
+          optional: true,
+        },
+        {
           name: "onChange",
           type: "(id: string) => void",
           optional: true,
@@ -4844,6 +4977,11 @@ export const componentDocs: ComponentDoc[] = [
         {
           name: "value",
           type: "string",
+          optional: true,
+        },
+        {
+          name: "selectedStyle",
+          type: '"underline" | "fill"',
           optional: true,
         },
         {
@@ -4949,9 +5087,12 @@ export const componentDocs: ComponentDoc[] = [
     name: "Table",
     description: "Sorts, selects, configures, and exports tabular data.",
     code: {
-      react: "<Table data={rows} columns={columns} />",
-      angular: '<fui-table [data]="rows" [columns]="columns" />',
-      native: "",
+      react:
+        "<Table data={rows} columns={columns} columnsConfigurable exportable\n  totalCount={total} onLoadMore={fetchNextPage}\n  renderLoadMore={({ loadedCount, totalCount, hasMore, loading, loadMore }) => (\n    <div>\n      <span>{loadedCount} of {totalCount} records loaded</span>\n      {hasMore && <Button disabled={loading} onClick={loadMore}>Show more</Button>}\n    </div>\n  )} />",
+      angular:
+        '<fui-table [data]="rows" [columns]="columns" [columnsConfigurable]="true" [exportable]="true"\n  [totalCount]="total" [loadMoreTemplate]="footer" (loadMore)="fetchNextPage()" />\n<ng-template #footer let-page>\n  <span>{{ page.loadedCount }} of {{ page.totalCount }} records loaded</span>\n  @if (page.hasMore) { <fui-button [disabled]="page.loading" (click)="page.loadMore()">Show more</fui-button> }\n</ng-template>',
+      native:
+        "<Table data={rows} columns={columns} columnsConfigurable exportable totalCount={total} onLoadMore={fetchNextPage} />",
     },
     props: {
       react: [
@@ -5013,6 +5154,31 @@ export const componentDocs: ComponentDoc[] = [
         {
           name: "exportable",
           type: "boolean",
+          optional: true,
+        },
+        {
+          name: "totalCount",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "hasMore",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "loadingMore",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "onLoadMore",
+          type: "() => void",
+          optional: true,
+        },
+        {
+          name: "renderLoadMore",
+          type: "(context: TableLoadMoreContext) => ReactNode",
           optional: true,
         },
         {
@@ -5080,6 +5246,36 @@ export const componentDocs: ComponentDoc[] = [
         {
           name: "exportable",
           type: "boolean",
+          optional: true,
+        },
+        {
+          name: "showLoadMore",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "totalCount",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "hasMore",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "loadingMore",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "loadMoreTemplate",
+          type: "TemplateRef<{ $implicit: TableLoadMoreContext }>",
+          optional: true,
+        },
+        {
+          name: "loadMore",
+          type: "See component source",
           optional: true,
         },
         {

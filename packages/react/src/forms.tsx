@@ -39,6 +39,7 @@ export function Input({
   readOnly,
   required,
   autoFocus,
+  autoComplete,
   tabIndex,
   inputMode = "text",
   currencySymbol = "₦",
@@ -47,6 +48,9 @@ export function Input({
   ...props
 }: InputProps) {
   const flow = useFlowProps("fui-control", props);
+  const moneyField = useFlowProps("fui-money-input", {
+    focusStyle: props.focusStyle,
+  });
   const [currentValue, setCurrentValue] = useControllableValue<string | number>(
     value,
     "",
@@ -69,6 +73,7 @@ export function Input({
       readOnly={readOnly}
       required={required}
       autoFocus={autoFocus}
+      autoComplete={autoComplete}
       tabIndex={tabIndex}
       onChange={(event) => {
         const next = sanitizeInputValue(event.target.value, inputMode);
@@ -81,7 +86,7 @@ export function Input({
   );
   if (inputMode !== "money") return control;
   return (
-    <span className="fui-money-input">
+    <span {...moneyField}>
       <span className="fui-money-symbol">{currencySymbol}</span>
       {control}
     </span>
@@ -99,6 +104,7 @@ export interface PasswordInputProps
 }
 
 export function PasswordInput({
+  id,
   value,
   name,
   placeholder,
@@ -106,6 +112,7 @@ export function PasswordInput({
   readOnly,
   required,
   autoFocus,
+  autoComplete,
   tabIndex,
   showToggle = true,
   visible,
@@ -128,6 +135,7 @@ export function PasswordInput({
     <div {...flow}>
       <input
         className="fui-control fui-password-control"
+        id={id}
         type={isVisible ? "text" : "password"}
         value={currentValue}
         name={name}
@@ -136,6 +144,7 @@ export function PasswordInput({
         readOnly={readOnly}
         required={required}
         autoFocus={autoFocus}
+        autoComplete={autoComplete}
         tabIndex={tabIndex}
         onChange={(event) => {
           setCurrentValue(event.target.value);

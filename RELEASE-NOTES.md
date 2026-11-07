@@ -1,4 +1,21 @@
-# FlowUI 0.3.0 — development build
+# FlowUI 1.0.0
+
+- Updated the Angular adapter and example to Angular 22.2.5 and the Angular CLI and packaging tools to 22.2.6. The Angular adapter now declares Angular 22 as its peer requirement.
+- Updated the browser React adapter and example to React and React DOM 19.3.1.
+- Updated the npm workspace toolchain to TypeScript 6.0 and Vitest 4. The Expo sample uses its SDK-pinned React version.
+
+- React `Input` and `PasswordInput` forward `autoComplete` to the native input.
+- React `PasswordInput` puts `id` on the native input so `Label htmlFor` can target it.
+  If your CSS selected the old wrapper ID, use `className` to style the wrapper.
+- Angular `fui-input` and `fui-password-input` forward `autoComplete` and use the
+  native field as the label target without duplicating its ID on the component host.
+- React Native already forwards `autoComplete`, `textContentType`, and `nativeID`
+  through both input controls.
+- Aligned the npm workspace packages and the Blazor package at `1.0.0`.
+
+## Previous release
+
+### FlowUI 0.3.0 — development build
 
 - Added framework-neutral code-to-label batching, in-flight deduplication, a bounded
   provider-owned cache, timeouts, invalidation and saved-result priming.

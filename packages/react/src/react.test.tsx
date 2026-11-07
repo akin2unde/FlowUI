@@ -12,6 +12,7 @@ import {
   Table,
   TreeMultiSelect,
   Input,
+  Label,
   PasswordInput,
   TextArea,
 } from "./index";
@@ -27,6 +28,26 @@ describe("FlowUI React", () => {
     );
     expect(html).toContain('value=""');
   });
+  it("puts login labels and autocomplete hints on the native inputs", () => {
+    const html = renderToStaticMarkup(
+      <FlowUIProvider>
+        <Label htmlFor="login-email">Email</Label>
+        <Input id="login-email" type="email" autoComplete="username" />
+        <Label htmlFor="login-password">Password</Label>
+        <PasswordInput id="login-password" autoComplete="current-password" />
+      </FlowUIProvider>,
+    );
+    expect(html).toContain('for="login-email"');
+    expect(html).toContain('for="login-password"');
+    const inputs = html.match(/<input\b[^>]*>/g) ?? [];
+    expect(inputs[0]).toContain('id="login-email"');
+    expect(inputs[0]).toContain('autoComplete="username"');
+    expect(inputs[1]).toContain('id="login-password"');
+    expect(inputs[1]).toContain('autoComplete="current-password"');
+    expect(html.match(/id="login-password"/g)).toHaveLength(1);
+    expect(html).toContain('aria-label="Show password"');
+  });
+
   it("renders components and default responsive classes", () => {
     const html = renderToStaticMarkup(
       <FlowUIProvider>
@@ -84,8 +105,8 @@ describe("FlowUI React", () => {
       </FlowUIProvider>,
     );
     expect(html).toContain("2026-09-01");
-    expect(html).toContain('title="Today"');
-    expect(html).toContain('title="Start of day"');
+    expect(html).toContain('aria-label="Choose date"');
+    expect(html).toContain('aria-label="Choose time"');
     expect(html).toContain('aria-pressed="true"');
     expect(html).toContain("Nigeria");
     expect(html).toContain("Created");

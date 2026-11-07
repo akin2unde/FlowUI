@@ -214,7 +214,7 @@ export class AppComponent {
       "Display",
       "Tooltip",
       "Shows short guidance around a trigger.",
-      `<fui-tooltip text="Save">...</fui-tooltip>`,
+      `<fui-tooltip text="Save your changes" location="bottom"><fui-button>Save</fui-button></fui-tooltip>`,
     ],
     [
       "Display",
@@ -226,7 +226,7 @@ export class AppComponent {
       "Display",
       "Breadcrumb",
       "Shows image, icon, or text ancestry.",
-      `<fui-breadcrumb [items]="items" />`,
+      `<fui-breadcrumb [items]="items" separator="/" (selected)="navigate($event)" />`,
     ],
     [
       "Display",
@@ -400,7 +400,7 @@ export class AppComponent {
       "Navigation",
       "Tabs / Tab",
       "Switches between content panels.",
-      `<fui-tabs><fui-tab id="one">...</fui-tab></fui-tabs>`,
+      `<fui-tabs [(value)]="activeTab">\n  <fui-tab id="one" label="Overview" icon="fa-solid fa-chart-line">Overview</fui-tab>\n  @if (showReport) { <fui-tab id="report" label="Report">Report</fui-tab> }\n</fui-tabs>`,
     ],
     [
       "Navigation",
@@ -412,7 +412,7 @@ export class AppComponent {
       "Data",
       "Table",
       "Sorts, selects, configures, and exports rows.",
-      `<fui-table [data]="rows" [columns]="columns" />`,
+      `<fui-table [data]="rows" [columns]="columns" [columnsConfigurable]="true" [exportable]="true"\n  [totalCount]="total" [loadMoreTemplate]="footer" (loadMore)="fetchNextPage()" />\n<ng-template #footer let-page>\n  <span>{{ page.loadedCount }} of {{ page.totalCount }} records loaded</span>\n  @if (page.hasMore) { <fui-button [disabled]="page.loading" (click)="page.loadMore()">Show more</fui-button> }\n</ng-template>`,
     ],
     [
       "Overlay",

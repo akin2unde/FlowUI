@@ -1,4 +1,17 @@
 <FlowVC Gap="1.5rem">
+    <DemoBlock Title="Date and time" Markup="@DateExample" Code="@DateExampleCode">
+        <label>Mode
+            <select @bind="dateMode">
+                <option value="@FlowDateTimeMode.DateTime">Date and time</option>
+                <option value="@FlowDateTimeMode.Date">Date only</option>
+                <option value="@FlowDateTimeMode.Time">Time only</option>
+            </select>
+        </label>
+        <FlowDateTime Mode="dateMode" Value="@(dateValues[dateMode])" ValueChanged="SetDate" />
+    </DemoBlock>
+    <DemoBlock Title="Autocomplete" Markup="@AutocompleteExample">
+        <FlowAutocomplete Items="suggestions" @bind-Value="productQuery" Label="Product" Placeholder="Search products" />
+    </DemoBlock>
     <DemoBlock Title="Text inputs" Markup="@Example0" Code="@ExampleCode">
 <FlowVC>
     <FlowInput Label="Product name" @bind-Value="productName" Placeholder="Enter a product name" MaxLength="60" HelperText="Updates as you type." />
@@ -45,3 +58,33 @@
 </EditForm>
     </DemoBlock>
 </FlowVC>
+
+@code {
+    private FlowDateTimeMode dateMode = FlowDateTimeMode.DateTime;
+    private readonly Dictionary<FlowDateTimeMode, string> dateValues = new()
+    {
+        [FlowDateTimeMode.Date] = "2026-11-07",
+        [FlowDateTimeMode.Time] = "09:30",
+        [FlowDateTimeMode.DateTime] = "2026-11-07T09:30",
+    };
+    private void SetDate(string value) => dateValues[dateMode] = value;
+    private readonly string[] suggestions = ["Notebook", "Desk lamp", "Pen set"];
+    private string productQuery = "";
+
+    private const string DateExample = """
+        <FlowDateTime Mode="dateMode" Value="@(dateValues[dateMode])" ValueChanged="SetDate" />
+        """;
+    private const string DateExampleCode = """
+        private FlowDateTimeMode dateMode = FlowDateTimeMode.DateTime;
+        private readonly Dictionary<FlowDateTimeMode, string> dateValues = new()
+        {
+            [FlowDateTimeMode.Date] = "2026-11-07",
+            [FlowDateTimeMode.Time] = "09:30",
+            [FlowDateTimeMode.DateTime] = "2026-11-07T09:30",
+        };
+        private void SetDate(string value) => dateValues[dateMode] = value;
+        """;
+    private const string AutocompleteExample = """
+        <FlowAutocomplete Items="suggestions" @bind-Value="productQuery" Label="Product" Placeholder="Search products" />
+        """;
+}

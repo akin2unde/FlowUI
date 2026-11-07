@@ -302,7 +302,7 @@ const componentCatalog = [
     "Display",
     "Tooltip",
     "Shows short guidance around a trigger.",
-    `<Tooltip text="Save" location="top">...</Tooltip>`,
+    `<Tooltip text="Save your changes" location="bottom"><Button>Save</Button></Tooltip>`,
   ],
   [
     "Display",
@@ -314,7 +314,7 @@ const componentCatalog = [
     "Display",
     "Breadcrumb",
     "Shows image, icon, or text navigation ancestry.",
-    `<Breadcrumb items={items} />`,
+    `<Breadcrumb separator="/" items={[{ id: "home", text: "Home", href: "/" }, { id: "products", text: "Products" }]} />`,
   ],
   [
     "Display",
@@ -374,7 +374,7 @@ const componentCatalog = [
     "Forms",
     "DateTime",
     "Captures a local date, time, or both without UTC shifting.",
-    `<DateTime mode="datetime" value={date} />`,
+    `<DateTime mode="datetime" value={date} onChange={setDate} />`,
   ],
   [
     "Forms",
@@ -483,7 +483,7 @@ const componentCatalog = [
     "Navigation",
     "Tabs / Tab",
     "Switches between named content panels.",
-    `<Tabs><Tab id="one" label="One">...</Tab></Tabs>`,
+    `<Tabs value={activeTab} onChange={setActiveTab}>\n  <Tab id="one" label="Overview" icon="fa-solid fa-chart-line">Overview</Tab>\n  {showReport && <Tab id="report" label="Report">Report</Tab>}\n</Tabs>`,
   ],
   [
     "Navigation",
@@ -495,7 +495,7 @@ const componentCatalog = [
     "Data",
     "Table",
     "Sorts, selects, configures, and exports tabular data.",
-    `<Table data={rows} columns={columns} />`,
+    `<Table data={rows} columns={columns} columnsConfigurable exportable\n  totalCount={total} onLoadMore={fetchNextPage}\n  renderLoadMore={({ loadedCount, totalCount, hasMore, loading, loadMore }) => (\n    <div>\n      <span>{loadedCount} of {totalCount} records loaded</span>\n      {hasMore && <Button disabled={loading} onClick={loadMore}>Show more</Button>}\n    </div>\n  )} />`,
   ],
   [
     "Overlay",

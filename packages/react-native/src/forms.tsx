@@ -1,5 +1,7 @@
+import type { FieldFocusStyle } from "@akin2unde/flowui-core";
 import React, { type PropsWithChildren, type ReactNode, useState } from "react";
 import {
+  Platform,
   Switch as RNSwitch,
   type StyleProp,
   type TextStyle,
@@ -12,6 +14,12 @@ import { useFlowUITheme } from "./theme";
 import { HStack, Text, VStack } from "./primitives";
 
 type ClassName = { className?: string };
+
+// React Native Web supports the CSS value "none" for outlineStyle.
+const webInputFocus =
+  Platform.OS === "web"
+    ? ({ outlineStyle: "none" } as unknown as TextStyle)
+    : undefined;
 
 export interface FormGroupProps
   extends PropsWithChildren, ViewProps, ClassName {
@@ -125,10 +133,21 @@ export function FormField({
 
 export interface InputProps extends TextInputProps, ClassName {
   invalid?: boolean;
+  focusStyle?: FieldFocusStyle;
 }
 
-export function Input({ className, invalid, style, ...props }: InputProps) {
+export function Input({
+  className,
+  invalid,
+  style,
+  focusStyle,
+  onFocus,
+  onBlur,
+  ...props
+}: InputProps) {
   const { colors, theme } = useFlowUITheme();
+  const [focused, setFocused] = useState(false);
+  const appearance = focusStyle ?? theme.focusStyle ?? "border";
   return (
     <TextInput
       className={`border px-3 ${className ?? ""}`}
@@ -136,14 +155,33 @@ export function Input({ className, invalid, style, ...props }: InputProps) {
       style={[
         {
           minHeight: theme.components.inputHeight,
-          borderColor: invalid ? colors.danger : colors.border,
+          borderColor: invalid
+            ? colors.danger
+            : focused && appearance !== "none"
+              ? colors.textMuted
+              : colors.border,
+          shadowColor:
+            focused && appearance === "ring" ? colors.primary : undefined,
+          shadowOpacity: focused && appearance === "ring" ? 0.22 : undefined,
+          shadowRadius: focused && appearance === "ring" ? 2 : undefined,
           borderRadius: theme.components.controlRadius,
           backgroundColor: colors.surface,
           color: colors.text,
         },
+        webInputFocus,
         style,
       ]}
       {...props}
+      onFocus={(
+        event: Parameters<NonNullable<TextInputProps["onFocus"]>>[0],
+      ) => {
+        setFocused(true);
+        onFocus?.(event);
+      }}
+      onBlur={(event: Parameters<NonNullable<TextInputProps["onBlur"]>>[0]) => {
+        setFocused(false);
+        onBlur?.(event);
+      }}
     />
   );
 }

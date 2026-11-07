@@ -21,7 +21,6 @@ import type {
   TimelineItem,
   TooltipLocation,
 } from "@akin2unde/flowui-core";
-import { setLocalDayBoundary } from "@akin2unde/flowui-core";
 import { FlowComponentBase } from "./base";
 import { FlowIconComponent } from "./primitives";
 
@@ -30,68 +29,130 @@ import { FlowIconComponent } from "./primitives";
   standalone: true,
   imports: [CommonModule, FlowIconComponent],
   template: `
-    <div [class]="view().className" [ngStyle]="view().style">
+    <div
+      [class]="view().className"
+      [ngStyle]="view().style"
+      [attr.data-mode]="mode"
+    >
       <input
-        *ngIf="mode === 'time'"
-        class="fui-date-time-clock fui-date-time-only"
-        type="time"
+        type="hidden"
+        [attr.name]="name"
         [value]="value"
-        [name]="name ?? ''"
-        [min]="min ?? ''"
-        [max]="max ?? ''"
         [disabled]="disabled"
-        (input)="valueChange.emit($any($event.target).value)"
       />
-
-      <div *ngIf="mode !== 'time'" class="fui-date-time-field">
+      <div class="fui-date-time-field">
         <button
+          *ngIf="mode !== 'time'"
           class="fui-date-display"
           type="button"
           [disabled]="disabled"
+          aria-label="Choose date"
+          [attr.aria-expanded]="open === 'date'"
           (click)="toggleCalendar()"
         >
-          <fui-icon icon="fa-regular fa-calendar" />
-          <span>{{ selectedDate || "Select date" }}</span>
+          <fui-icon icon="fa-regular fa-calendar" /><span>{{
+            selectedDate || "Select date"
+          }}</span>
         </button>
-        <input
-          *ngIf="mode === 'datetime'"
-          class="fui-date-time-clock"
-          type="time"
-          [value]="selectedTime"
+        <button
+          *ngIf="mode !== 'date'"
+          class="fui-date-display"
+          type="button"
           [disabled]="disabled"
-          (input)="setTime($any($event.target).value)"
-        />
-        <div class="fui-date-time-actions">
+          aria-label="Choose time"
+          [attr.aria-expanded]="open === 'time'"
+          (click)="toggleTime()"
+        >
+          <fui-icon icon="fa-regular fa-clock" /><span>{{
+            mode === "time" && !value ? "Select time" : selectedTime.slice(0, 5)
+          }}</span>
+        </button>
+      </div>
+      <ng-template #footer>
+        <div class="fui-date-time-actions fui-picker-footer">
           <button
+            *ngIf="mode !== 'time'"
             type="button"
             title="Today"
-            [disabled]="disabled"
+            aria-label="Today"
+            [disabled]="dayDisabled(today)"
             (click)="selectToday()"
           >
             <fui-icon icon="fa-solid fa-calendar-day" />
           </button>
           <button
-            *ngIf="mode === 'datetime' && showDayBoundaryButtons"
+            *ngIf="mode !== 'date' && showDayBoundaryButtons"
             type="button"
             title="Start of day"
-            [disabled]="disabled"
+            aria-label="Start of day"
+            [disabled]="!timeAllowed('00:00')"
             (click)="setBoundary('start')"
           >
             <fui-icon icon="fa-solid fa-sun" />
           </button>
           <button
-            *ngIf="mode === 'datetime' && showDayBoundaryButtons"
+            *ngIf="mode !== 'date' && showDayBoundaryButtons"
             type="button"
             title="End of day"
-            [disabled]="disabled"
+            aria-label="End of day"
+            [disabled]="!timeAllowed('23:59')"
             (click)="setBoundary('end')"
           >
             <fui-icon icon="fa-solid fa-moon" />
           </button>
+          <button type="button" aria-label="Close picker" (click)="open = null">
+            <fui-icon icon="fa-solid fa-xmark" />
+          </button>
         </div>
+      </ng-template>
+      <div
+        *ngIf="open === 'time' && mode !== 'date' && !disabled"
+        class="fui-calendar fui-time-panel"
+        role="dialog"
+        aria-label="Choose time"
+      >
+        <div class="fui-time-fields">
+          <label
+            >Hour<select
+              [value]="draftTime.slice(0, 2)"
+              (change)="
+                draftTime = $any($event.target).value + ':' + draftTime.slice(3)
+              "
+            >
+              <option *ngFor="let hour of hours" [value]="hour">
+                {{ hour }}
+              </option>
+            </select></label
+          >
+          <label
+            >Minute<select
+              [value]="draftTime.slice(3)"
+              (change)="
+                draftTime =
+                  draftTime.slice(0, 2) + ':' + $any($event.target).value
+              "
+            >
+              <option *ngFor="let minute of minutes" [value]="minute">
+                {{ minute }}
+              </option>
+            </select></label
+          >
+          <button
+            type="button"
+            [disabled]="!timeAllowed(draftTime)"
+            (click)="setTime(draftTime); open = null"
+          >
+            Done
+          </button>
+        </div>
+        <ng-container [ngTemplateOutlet]="footer" />
       </div>
-
-      <div *ngIf="open && mode !== 'time'" class="fui-calendar" role="dialog">
+      <div
+        *ngIf="open === 'date' && mode !== 'time' && !disabled"
+        class="fui-calendar"
+        role="dialog"
+        aria-label="Choose date"
+      >
         <div class="fui-calendar-header">
           <button
             type="button"
@@ -121,6 +182,7 @@ import { FlowIconComponent } from "./primitives";
             {{ day.getDate() }}
           </button>
         </div>
+        <ng-container [ngTemplateOutlet]="footer" />
       </div>
     </div>
   `,
@@ -137,17 +199,26 @@ export class FlowDateTimeComponent extends FlowComponentBase {
   @Input() disabled = false;
   @Input() showDayBoundaryButtons = true;
   @Output() valueChange = new EventEmitter<string>();
-  open = false;
+  open: "date" | "time" | null = null;
+  draftTime = "00:00";
+  readonly hours = Array.from({ length: 24 }, (_, i) =>
+    String(i).padStart(2, "0"),
+  );
+  readonly minutes = Array.from({ length: 60 }, (_, i) =>
+    String(i).padStart(2, "0"),
+  );
   month = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
   readonly today = new Date();
   readonly weekdays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
   get selectedDate(): string {
-    return this.value.split("T")[0] ?? "";
+    return this.mode === "time" ? "" : (this.value.split("T")[0] ?? "");
   }
 
   get selectedTime(): string {
-    return this.value.includes("T") ? this.value.split("T")[1] : "00:00";
+    return (
+      (this.mode === "time" ? this.value : this.value.split("T")[1]) || "00:00"
+    );
   }
 
   get monthLabel(): string {
@@ -184,7 +255,7 @@ export class FlowDateTimeComponent extends FlowComponentBase {
     this.valueChange.emit(
       this.mode === "date" ? date : `${date}T${this.selectedTime || "00:00"}`,
     );
-    this.open = false;
+    this.open = null;
   }
 
   selectToday(): void {
@@ -192,10 +263,24 @@ export class FlowDateTimeComponent extends FlowComponentBase {
     this.month = new Date(this.today.getFullYear(), this.today.getMonth(), 1);
   }
 
+  private timeValue(time: string): string {
+    return this.mode === "time"
+      ? time
+      : `${this.selectedDate || this.dateKey(new Date())}T${time}`;
+  }
+
+  timeAllowed(time: string): boolean {
+    const next = this.timeValue(time);
+    return (!this.min || next >= this.min) && (!this.max || next <= this.max);
+  }
+
   setTime(time: string): void {
-    this.valueChange.emit(
-      `${this.selectedDate || this.dateKey(this.today)}T${time}`,
-    );
+    if (this.timeAllowed(time)) this.valueChange.emit(this.timeValue(time));
+  }
+
+  toggleTime(): void {
+    this.draftTime = this.selectedTime.slice(0, 5);
+    this.open = this.open === "time" ? null : "time";
   }
 
   moveMonth(amount: number): void {
@@ -207,15 +292,16 @@ export class FlowDateTimeComponent extends FlowComponentBase {
   }
 
   toggleCalendar(): void {
-    if (!this.open && this.selectedDate) {
+    if (this.open !== "date" && this.selectedDate) {
       const selected = new Date(`${this.selectedDate}T12:00`);
       this.month = new Date(selected.getFullYear(), selected.getMonth(), 1);
     }
-    this.open = !this.open;
+    this.open = this.open === "date" ? null : "date";
   }
 
   setBoundary(boundary: "start" | "end"): void {
-    this.valueChange.emit(setLocalDayBoundary(this.value, boundary));
+    this.draftTime = boundary === "start" ? "00:00" : "23:59";
+    this.setTime(this.draftTime);
   }
 
   @HostListener("document:pointerdown", ["$event"])
@@ -224,8 +310,13 @@ export class FlowDateTimeComponent extends FlowComponentBase {
       this.open &&
       !this.element.nativeElement.contains(event.target as Node)
     ) {
-      this.open = false;
+      this.open = null;
     }
+  }
+
+  @HostListener("document:keydown.escape")
+  closeOnEscape(): void {
+    this.open = null;
   }
 
   view = () => this.resolved("fui-date-time");
@@ -234,22 +325,33 @@ export class FlowDateTimeComponent extends FlowComponentBase {
 @Component({
   selector: "fui-autocomplete",
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FlowIconComponent],
   template: `
     <div [class]="view().className" [ngStyle]="view().style">
-      <input
-        class="fui-control"
-        role="combobox"
-        [value]="query"
-        [placeholder]="placeholder ?? ''"
-        [disabled]="disabled"
-        [attr.aria-expanded]="open"
-        (focus)="open = true"
-        (input)="updateQuery($any($event.target).value)"
-      />
+      <div class="fui-autocomplete-field">
+        <input
+          class="fui-control"
+          role="combobox"
+          [value]="query"
+          [placeholder]="placeholder ?? ''"
+          [disabled]="disabled"
+          [attr.aria-expanded]="open"
+          (focus)="open = true"
+          (input)="updateQuery($any($event.target).value)"
+        />
 
+        <button
+          type="button"
+          [disabled]="disabled"
+          aria-label="Toggle suggestions"
+          [attr.aria-expanded]="open"
+          (click)="browseAll = !open; open = !open"
+        >
+          <fui-icon [icon]="'fa-solid fa-chevron-' + (open ? 'up' : 'down')" />
+        </button>
+      </div>
       <div
-        *ngIf="open && query.length >= minCharacters"
+        *ngIf="open && (browseAll || query.length >= minCharacters)"
         class="fui-autocomplete-menu"
         role="listbox"
       >
@@ -281,16 +383,19 @@ export class FlowAutocompleteComponent extends FlowComponentBase {
 
   query = "";
   open = false;
+  browseAll = false;
 
   get matches(): DropdownModel[] {
     const search = this.query.toLowerCase();
-    return this.options.filter((option) =>
-      String(option.display).toLowerCase().includes(search),
+    return this.options.filter(
+      (option) =>
+        this.browseAll || String(option.display).toLowerCase().includes(search),
     );
   }
 
   updateQuery(query: string): void {
     this.query = query;
+    this.browseAll = false;
     this.open = true;
   }
 
@@ -676,12 +781,17 @@ export class FlowCarouselComponent extends FlowComponentBase {
     >
       <ol>
         <li *ngFor="let item of items; let index = index">
-          <fui-icon *ngIf="index > 0" [icon]="separatorIcon" />
-          <a
-            [href]="item.href ?? ''"
-            [attr.aria-current]="index === items.length - 1 ? 'page' : null"
-            (click)="select($event, item)"
-          >
+          <span *ngIf="index > 0" aria-hidden="true">
+            <fui-icon
+              *ngIf="
+                separator === undefined && separatorIcon;
+                else separatorText
+              "
+              [icon]="separatorIcon!"
+            />
+            <ng-template #separatorText>{{ separator ?? ">" }}</ng-template>
+          </span>
+          <ng-template #crumb>
             <ng-container
               *ngIf="itemTemplate; else defaultCrumb"
               [ngTemplateOutlet]="itemTemplate"
@@ -692,7 +802,30 @@ export class FlowCarouselComponent extends FlowComponentBase {
               <fui-icon *ngIf="item.icon" [icon]="item.icon" />
               <span *ngIf="item.text">{{ item.text }}</span>
             </ng-template>
-          </a>
+          </ng-template>
+          <ng-container
+            *ngIf="index === items.length - 1 || item.disabled; else ancestor"
+          >
+            <span
+              [attr.aria-current]="index === items.length - 1 ? 'page' : null"
+              [ngTemplateOutlet]="crumb"
+            ></span>
+          </ng-container>
+          <ng-template #ancestor>
+            <a
+              *ngIf="item.href; else action"
+              [href]="item.href"
+              (click)="selected.emit(item)"
+              [ngTemplateOutlet]="crumb"
+            ></a>
+            <ng-template #action
+              ><button
+                type="button"
+                (click)="selected.emit(item)"
+                [ngTemplateOutlet]="crumb"
+              ></button
+            ></ng-template>
+          </ng-template>
         </li>
       </ol>
     </nav>
@@ -700,14 +833,10 @@ export class FlowCarouselComponent extends FlowComponentBase {
 })
 export class FlowBreadcrumbComponent extends FlowComponentBase {
   @Input() items: BreadcrumbItem[] = [];
-  @Input() separatorIcon = "fa-solid fa-chevron-right";
+  @Input() separator?: string;
+  @Input() separatorIcon?: string;
   @Input() itemTemplate?: TemplateRef<{ $implicit: BreadcrumbItem }>;
   @Output() selected = new EventEmitter<BreadcrumbItem>();
-
-  select(event: MouseEvent, item: BreadcrumbItem): void {
-    if (!item.href) event.preventDefault();
-    this.selected.emit(item);
-  }
 
   view = () => this.resolved("fui-breadcrumb");
 }

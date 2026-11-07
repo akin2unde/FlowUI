@@ -1,0 +1,17 @@
+.fui-date-time { position: relative; width: fit-content; max-width: 100%; }
+.fui-date-field { display: flex; flex-wrap: wrap; gap: .2rem; padding: .2rem; border: 1px solid var(--fui-color-border, #e2e8f0); border-radius: .5rem; }
+button, select { font: inherit; color: inherit; border: 0; padding: .35rem .5rem; border-radius: .35rem; background: transparent; }
+button:hover:not(:disabled), button[aria-expanded="true"], button[aria-pressed="true"] { background: var(--fui-color-surfaceSunken, #f1f5f9); }
+button:focus-visible, select:focus-visible { outline: 1px solid var(--fui-color-focus, #2563eb); }
+button:disabled { opacity: .45; }
+.fui-date-panel { position: absolute; z-index: 50; top: calc(100% + 4px); left: 0; box-sizing: border-box; width: min(16rem, calc(100vw - 2rem)); padding: .5rem; background: var(--fui-color-surface, white); border: 1px solid var(--fui-color-border, #e2e8f0); border-radius: .5rem; box-shadow: 0 5px 18px #0002; }
+.fui-date-panel[data-picker="time"] { width: min(14rem, calc(100vw - 2rem)); }
+.fui-month, .fui-date-footer, .fui-time-fields { display: flex; align-items: center; gap: .25rem; flex-wrap: wrap; }
+.fui-month { justify-content: space-between; }
+.fui-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: .15rem; text-align: center; }
+.fui-days button { padding-inline: 0; }
+.fui-date-footer { border-top: 1px solid var(--fui-color-border, #e2e8f0); margin-top: .45rem; padding-top: .3rem; }
+.fui-date-footer button:last-child { margin-left: auto; }
+.fui-time-fields { align-items: end; }
+.fui-time-fields label { display: grid; gap: .2rem; }
+.fui-time-fields select { border: 1px solid var(--fui-color-border, #e2e8f0); }

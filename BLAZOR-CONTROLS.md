@@ -1,6 +1,6 @@
 # Blazor controls in this archive
 
-30 controls. Each has its own Razor template, C# code-behind and isolated CSS.
+32 controls. Each has its own Razor template, C# code-behind and isolated CSS.
 
 ## Foundation
 
@@ -17,7 +17,9 @@
 
 ## Forms
 
+- `FlowAutocomplete`
 - `FlowCheckbox`
+- `FlowDateTime`
 - `FlowInput`
 - `FlowNumberInput`
 - `FlowPasswordInput`

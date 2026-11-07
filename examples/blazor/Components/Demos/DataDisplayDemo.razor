@@ -5,7 +5,16 @@
 </FlowAccordion>
 </DemoBlock>
 <DemoBlock Title="Table" Markup="@Example1" Code="@ExampleCode">
-<FlowTable Items="products" Columns="columns" RowKey="p => p.Id" Caption="Product inventory" PageSize="3" @bind-Page="tablePage" />
+<FlowTable TItem="Product" Items="@products.Take(loadedProducts).ToArray()" Columns="columns" RowKey="p => p.Id"
+                   Caption="Product inventory" PageSize="0" ColumnsConfigurable="true" Exportable="true" TotalCount="@products.Length" OnLoadMore="LoadProducts">
+            <LoadMoreTemplate Context="footer">
+                <p role="status">@($"{footer.LoadedCount} of {footer.TotalCount} products loaded")</p>
+                @if (footer.HasMore)
+                {
+                    <FlowButton Disabled="footer.Loading" OnClick="() => footer.LoadMore()">Show more products</FlowButton>
+                }
+            </LoadMoreTemplate>
+        </FlowTable>
 </DemoBlock>
 <DemoBlock Title="Tree" Markup="@Example2" Code="@ExampleCode">
 <FlowTree Items="nodes" ValueSelector="n => n.Id" TextSelector="n => n.Name" ChildrenSelector="n => n.Children"

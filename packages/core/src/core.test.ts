@@ -3,6 +3,8 @@ import {
   createTheme,
   formatLocalDateTime,
   resolveFlowStyle,
+  resolveTooltipLocation,
+  tableToCsv,
   sanitizeInputValue,
   setLocalDayBoundary,
   themeToCSS,
@@ -85,5 +87,35 @@ describe("tree selection helpers", () => {
     ).toEqual(["noodles"]);
     expect(filterTree(nodes, "noodles")[0].children?.[0].value).toBe("noodles");
     expect(selectedTreeModels(nodes, ["noodles"])[0].display).toBe("Noodles");
+  });
+});
+
+describe("shared control behavior", () => {
+  it("exports formatted, visible fields and escapes CSV separators and line breaks", () => {
+    const data = [
+      { name: 'Oil, "Premium"\n500 ml', price: 250, private: "hidden" },
+    ];
+    const csv = tableToCsv(data, [
+      { field: "name", header: "Product" },
+      { field: "price", header: "Price", format: (value) => `NGN ${value}` },
+    ]);
+    expect(csv).toBe(
+      '"Product","Price"\r\n"Oil, ""Premium""\n500 ml","NGN 250"',
+    );
+  });
+
+  it("places a tooltip on the opposite side only if it has more room", () => {
+    const anchor = { top: 3, left: 5, right: 70, bottom: 40 };
+    const tooltip = { width: 100, height: 20 };
+    const viewport = { width: 600, height: 400 };
+    expect(resolveTooltipLocation("top", anchor, tooltip, viewport)).toBe(
+      "bottom",
+    );
+    expect(resolveTooltipLocation("left", anchor, tooltip, viewport)).toBe(
+      "right",
+    );
+    expect(resolveTooltipLocation("right", anchor, tooltip, viewport)).toBe(
+      "right",
+    );
   });
 });

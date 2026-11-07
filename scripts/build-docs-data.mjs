@@ -137,6 +137,16 @@ function angularProperties(name) {
     }));
 }
 const nativeExamples = {
+  DateTime: '<DateTime mode="datetime" value={date} onChange={setDate} />',
+  Tooltip:
+    '<Tooltip text="Save your changes" location="bottom"><Text>Long press for help</Text></Tooltip>',
+  Breadcrumb: '<Breadcrumb items={crumbs} separator="/" onSelect={navigate} />',
+  Autocomplete:
+    "<Autocomplete items={products} value={query} onChangeText={setQuery} />",
+  "Tabs / Tab":
+    "<Tabs tabs={tabs} value={activeTab} onChange={setActiveTab} />",
+  Table:
+    "<Table data={rows} columns={columns} columnsConfigurable exportable totalCount={total} onLoadMore={fetchNextPage} />",
   Divider: "<Divider />",
   ButtonGroup:
     "<ButtonGroup options={periods} value={period} onValueChange={setPeriod} />",
@@ -161,9 +171,9 @@ const nativeExamples = {
     "<PasswordInput value={password} onChangeText={setPassword} />",
   TextArea: "<TextArea value={notes} onChangeText={setNotes} />",
   Dropdown:
-    "<Select items={options} value={code}\n  onValueChange={(value) => setCode(value)} />",
+    "<Select items={options} value={code} clearable\n  onClear={() => setCode(undefined)} onValueChange={setCode} />",
   MultiSelect:
-    "<MultiSelect items={options} value={codes}\n  onValueChange={(values) => setCodes(values)} />",
+    "<MultiSelect items={options} value={codes} clearable\n  onValueChange={setCodes} />",
   Checkbox: "<Checkbox checked={checked} onCheckedChange={setChecked} />",
   Switch: "<Switch value={enabled} onValueChange={setEnabled} />",
   Dialog:

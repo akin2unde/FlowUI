@@ -188,6 +188,18 @@ export function resolveFlowStyle(
     style.WebkitBoxOrient = "vertical";
     style.WebkitLineClamp = lines;
   }
+  const focusStyle = props.focusStyle ?? theme.focusStyle;
+  if (focusStyle === "ring") {
+    style["--fui-field-focus-border"] = "var(--fui-color-borderStrong)";
+    style["--fui-field-focus-shadow"] =
+      "0 0 0 2px color-mix(in srgb, var(--fui-color-focus) 22%, transparent)";
+  } else if (focusStyle === "none") {
+    style["--fui-field-focus-border"] = "var(--fui-color-border)";
+    style["--fui-field-focus-shadow"] = "none";
+  } else if (focusStyle === "border") {
+    style["--fui-field-focus-border"] = "var(--fui-color-borderStrong)";
+    style["--fui-field-focus-shadow"] = "none";
+  }
   Object.assign(style, userStyle);
   return { classNames, style };
 }

@@ -134,6 +134,7 @@ export interface TreeModel extends DropdownModel {
 }
 
 export interface DropdownBehaviorProps extends BaseUIProps, DisableableProps {
+  clearable?: boolean;
   options: DropdownModel[];
   searchable?: boolean;
   searchPlaceholder?: string;
@@ -155,6 +156,7 @@ export interface MultiSelectProps extends DropdownBehaviorProps {
 }
 
 export interface TreeMultiSelectProps extends BaseUIProps, DisableableProps {
+  clearable?: boolean;
   nodes: TreeModel[];
   value?: Array<string | number>;
   expandedValues?: Array<string | number>;
@@ -168,6 +170,7 @@ export interface TreeMultiSelectProps extends BaseUIProps, DisableableProps {
   chipBackgroundColor?: ColorValue;
   chipCloseIconColor?: ColorValue;
 }
+export type TabSelectedStyle = "underline" | "fill";
 export interface TabItem {
   id: string;
   label: string;
@@ -188,6 +191,13 @@ export interface TableColumn<T> {
   width?: string | number;
   align?: "left" | "center" | "right";
   format?: (value: unknown, row: T) => string | number;
+}
+export interface TableLoadMoreContext {
+  loadedCount: number;
+  totalCount?: number;
+  loading: boolean;
+  hasMore: boolean;
+  loadMore: () => void;
 }
 export type DialogPosition = "center" | "left" | "right" | "top" | "bottom";
 export type TooltipLocation = "top" | "right" | "bottom" | "left";
@@ -216,6 +226,7 @@ export interface TreeProps extends BaseUIProps {
   defaultExpanded?: boolean;
 }
 export interface TreeDropdownProps extends BaseUIProps, DisableableProps {
+  clearable?: boolean;
   nodes: TreeModel[];
   value?: string | number;
   placeholder?: string;
@@ -295,6 +306,7 @@ export interface BreadcrumbItem {
   other?: any;
 }
 export interface BreadcrumbProps extends BaseUIProps {
+  separator?: string;
   items: BreadcrumbItem[];
   separatorIcon?: string;
 }

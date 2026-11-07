@@ -1,0 +1,31 @@
+.fui-autocomplete { position: relative; }
+.fui-autocomplete-field {
+    display: flex;
+    border: 1px solid var(--fui-color-border);
+    border-radius: .5rem;
+    background: var(--fui-color-surface);
+}
+.fui-autocomplete-field:focus-within {
+    border-color: var(--fui-field-focus-border, var(--fui-color-textMuted, #64748b));
+    box-shadow: var(--fui-field-focus-shadow, none);
+}
+input, button { color: inherit; font: inherit; border: 0; background: transparent; }
+input { flex: 1; min-width: 0; padding: .55rem .65rem; outline: none; }
+button { padding: .55rem .65rem; cursor: pointer; }
+ul {
+    position: absolute;
+    z-index: 20;
+    inset: calc(100% + .25rem) 0 auto;
+    max-height: 15rem;
+    overflow: auto;
+    margin: 0;
+    padding: .35rem;
+    list-style: none;
+    border: 1px solid var(--fui-color-border);
+    border-radius: .5rem;
+    background: var(--fui-color-surface);
+    box-shadow: 0 8px 22px rgb(0 0 0 / .12);
+}
+li + li { margin-top: .2rem; }
+li button { width: 100%; text-align: start; border-radius: .35rem; }
+li[aria-selected="true"] button, li button:hover { background: var(--fui-color-surfaceSunken); }

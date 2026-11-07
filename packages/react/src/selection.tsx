@@ -67,6 +67,7 @@ export function MultiSelect({
   hasMore = false,
   loadMoreText = "Load more",
   grouped = false,
+  clearable = false,
   maxVisibleChips = 3,
   showCheckboxes = true,
   chipTextColor,
@@ -160,6 +161,21 @@ export function MultiSelect({
             </span>
           )}
         </span>
+        {clearable && value.length > 0 && (
+          <button
+            type="button"
+            className="fui-select-clear"
+            disabled={disabled}
+            aria-label="Clear selection"
+            onKeyDown={(event) => event.stopPropagation()}
+            onClick={(event) => {
+              event.stopPropagation();
+              emit([]);
+            }}
+          >
+            <Icon icon="fa-solid fa-xmark" />
+          </button>
+        )}
         <button
           className="fui-multi-select-toggle"
           type="button"
@@ -376,6 +392,7 @@ export function TreeMultiSelect({
   emptyText = "No nodes found",
   disabled = false,
   cascadeSelection = true,
+  clearable = false,
   maxVisibleChips = 3,
   chipTextColor,
   chipBackgroundColor,
@@ -472,6 +489,21 @@ export function TreeMultiSelect({
             </span>
           )}
         </span>
+        {clearable && value.length > 0 && (
+          <button
+            type="button"
+            className="fui-select-clear"
+            disabled={disabled}
+            aria-label="Clear selection"
+            onKeyDown={(event) => event.stopPropagation()}
+            onClick={(event) => {
+              event.stopPropagation();
+              emit([]);
+            }}
+          >
+            <Icon icon="fa-solid fa-xmark" />
+          </button>
+        )}
         <button
           className="fui-multi-select-toggle"
           type="button"

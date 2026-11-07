@@ -5,8 +5,8 @@
 @for (var index = 0; index < Items.Count; index++)
 {
     var item = Items[index]; var last = index == Items.Count - 1;
-    <li>@if (index > 0) { <span class="fui-separator" aria-hidden="true">/</span> }
-        @if (!last && !string.IsNullOrWhiteSpace(item.Href)) { <a href="@item.Href">@item.Text</a> } else { <span aria-current="@(last ? "page" : null)">@item.Text</span> }
+    <li>@if (index > 0) { <span class="fui-separator" aria-hidden="true">@Separator</span> }
+        @if (!last && !string.IsNullOrWhiteSpace(item.Href)) { <a href="@item.Href">@item.Text</a> } else if (!last && Selected.HasDelegate) { <button type="button" @onclick="() => Selected.InvokeAsync(item)">@item.Text</button> } else { <span aria-current="@(last ? "page" : null)">@item.Text</span> }
     </li>
 }
 </ol></nav>

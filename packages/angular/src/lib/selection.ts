@@ -73,6 +73,17 @@ import { FlowIconComponent } from "./primitives";
           </span>
         </span>
         <button
+          *ngIf="clearable && value.length"
+          type="button"
+          class="fui-select-clear"
+          aria-label="Clear selection"
+          [disabled]="disabled"
+          (keydown)="$event.stopPropagation()"
+          (click)="$event.stopPropagation(); clearSelection()"
+        >
+          <fui-icon icon="fa-solid fa-xmark" />
+        </button>
+        <button
           class="fui-multi-select-toggle"
           type="button"
           [disabled]="disabled"
@@ -164,6 +175,7 @@ export class FlowMultiSelectComponent extends FlowComponentBase {
   @Input() loading = false;
   @Input() hasMore = false;
   @Input() loadMoreText = "Load more";
+  @Input() clearable = false;
   @Input() maxVisibleChips = 3;
   @Input() showCheckboxes = true;
   @Input() chipTextColor?: ColorValue;
@@ -266,6 +278,10 @@ export class FlowMultiSelectComponent extends FlowComponentBase {
     }
   }
 
+  clearSelection(): void {
+    this.emit([]);
+  }
+
   private emit(values: Array<string | number>): void {
     this.value = values;
     this.valueChange.emit(values);
@@ -332,6 +348,17 @@ interface FlatTreeNode extends TreeModel {
             >+{{ selectedNodes.length - maxVisibleChips }}</span
           >
         </span>
+        <button
+          *ngIf="clearable && value.length"
+          type="button"
+          class="fui-select-clear"
+          aria-label="Clear selection"
+          [disabled]="disabled"
+          (keydown)="$event.stopPropagation()"
+          (click)="$event.stopPropagation(); clearSelection()"
+        >
+          <fui-icon icon="fa-solid fa-xmark" />
+        </button>
         <button
           class="fui-multi-select-toggle"
           type="button"
@@ -425,6 +452,7 @@ export class FlowTreeMultiSelectComponent extends FlowComponentBase {
   @Input() emptyText = "No nodes found";
   @Input() disabled = false;
   @Input() cascadeSelection = true;
+  @Input() clearable = false;
   @Input() maxVisibleChips = 3;
   @Input() chipTextColor?: ColorValue;
   @Input() chipBackgroundColor?: ColorValue;
@@ -555,6 +583,10 @@ export class FlowTreeMultiSelectComponent extends FlowComponentBase {
     ) {
       this.open = false;
     }
+  }
+
+  clearSelection(): void {
+    this.emit([]);
   }
 
   private emit(values: Array<string | number>): void {

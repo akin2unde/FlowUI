@@ -25,7 +25,7 @@ private bool dialogOpen, drawerOpen, popoverOpen, toastOpen;
     private const string Example2 = """
         <FlowHC Wrap="true" Align="FlowAlign.Center">
             <FlowPopover Text="Project information" Label="Project information" @bind-Open="popoverOpen"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>
-            <FlowTooltip Text="Available to keyboard and mouse users"><FlowBadge Color="FlowColor.Info">Hover or focus for a hint</FlowBadge></FlowTooltip>
+            <FlowTooltip Text="Available to keyboard and mouse users" Location="bottom"><FlowBadge Color="FlowColor.Info">Hover or focus for a hint</FlowBadge></FlowTooltip>
         </FlowHC>
         """;
     private const string Example3 = """

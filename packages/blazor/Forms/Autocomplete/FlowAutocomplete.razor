@@ -1,0 +1,27 @@
+@namespace FlowUI.Blazor.Forms
+@inherits FlowComponentBase
+<div @ref="root" @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-autocomplete")" style="@Styles" @onkeydown="KeyDown">
+    <div class="fui-autocomplete-field">
+        <input type="text" role="combobox" aria-label="@Label" aria-autocomplete="list"
+               aria-expanded="@(open ? "true" : "false")" aria-controls="@listId"
+               aria-activedescendant="@(open && activeIndex >= 0 ? $"{listId}-{activeIndex}" : null)"
+               value="@Value" placeholder="@Placeholder" disabled="@Disabled" autocomplete="off" @oninput="Search" />
+        <button type="button" aria-label="Show suggestions" aria-expanded="@(open ? "true" : "false")"
+                disabled="@Disabled" @onclick="Toggle">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+    </div>
+    @if (open)
+    {
+        <ul id="@listId" role="listbox" aria-label="Suggestions">
+            @for (var i = 0; i < matches.Length; i++)
+            {
+                var index = i;
+                <li id="@($"{listId}-{index}")" role="option" aria-selected="@(index == activeIndex ? "true" : "false")">
+                    <button type="button" tabindex="-1" @onclick="() => Select(matches[index])">@matches[index]</button>
+                </li>
+            }
+            @if (matches.Length == 0) { <li role="presentation">No suggestions</li> }
+        </ul>
+    }
+</div>

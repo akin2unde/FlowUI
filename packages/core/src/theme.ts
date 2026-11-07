@@ -1,3 +1,4 @@
+import type { FieldFocusStyle } from "./types";
 import type { ColorShade, DeepPartial, PaletteColor, ThemeMode } from "./types";
 
 export type ColorScale = Record<ColorShade, string>;
@@ -17,6 +18,7 @@ export interface ThemeColorScheme {
   overlay: string;
 }
 export interface FlowUITheme {
+  focusStyle?: FieldFocusStyle;
   palette: ColorPalette;
   schemes: { light: ThemeColorScheme; dark: ThemeColorScheme };
   spacing: Record<

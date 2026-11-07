@@ -26,7 +26,6 @@ import type {
   TimelineItem,
   TimelineProps as CoreTimelineProps,
 } from "@akin2unde/flowui-core";
-import { setLocalDayBoundary } from "@akin2unde/flowui-core";
 import { useDismissableLayer, useFlowProps } from "./helpers";
 import { Icon } from "./primitives";
 
@@ -60,103 +59,188 @@ export function DateTime({
   ...props
 }: DateTimeProps) {
   const flow = useFlowProps("fui-date-time", props);
-  const selectedDate = value?.split("T")[0] ?? "";
-  const selectedTime = value?.includes("T") ? value.split("T")[1] : "00:00";
+  const selectedDate = mode === "time" ? "" : (value?.split("T")[0] ?? "");
+  const selectedTime =
+    (mode === "time" ? value : value?.split("T")[1]) || "00:00";
   const parsed = selectedDate ? new Date(`${selectedDate}T12:00`) : new Date();
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<"date" | "time" | null>(null);
+  const [draftTime, setDraftTime] = useState("00:00");
   const root = useRef<HTMLDivElement>(null);
-  useDismissableLayer(root, open, () => setOpen(false));
+  useDismissableLayer(root, open !== null, () => setOpen(null));
   const [month, setMonth] = useState(
     new Date(parsed.getFullYear(), parsed.getMonth(), 1),
   );
-  const selectDate = (key: string) => {
-    onChange?.(mode === "date" ? key : `${key}T${selectedTime || "00:00"}`);
-    setOpen(false);
-  };
-  const selectToday = () => {
-    const today = dateKey(new Date());
-    selectDate(today);
-    setMonth(new Date());
-  };
-
-  if (mode === "time") {
-    return (
-      <div {...flow}>
-        <input
-          className="fui-date-time-clock fui-date-time-only"
-          type="time"
-          value={value ?? ""}
-          name={name}
-          min={min}
-          max={max}
-          disabled={disabled}
-          onChange={(event) => onChange?.(event.target.value)}
-        />
-      </div>
+  const dateDisabled = (key: string) =>
+    Boolean(
+      (min && key < min.split("T")[0]) || (max && key > max.split("T")[0]),
     );
-  }
-
-  return (
-    <div {...flow} ref={root}>
-      <input type="hidden" name={name} value={value ?? ""} />
-      <div className="fui-date-time-field">
+  const selectDate = (key: string) => {
+    if (dateDisabled(key)) return;
+    onChange?.(mode === "date" ? key : `${key}T${selectedTime}`);
+    setOpen(null);
+  };
+  const timeValue = (time: string) =>
+    mode === "time" ? time : `${selectedDate || dateKey(new Date())}T${time}`;
+  const withinLimits = (next: string) =>
+    (!min || next >= min) && (!max || next <= max);
+  const updateTime = (time: string) => {
+    const next = timeValue(time);
+    if (withinLimits(next)) onChange?.(next);
+  };
+  const footer = (
+    <div className="fui-date-time-actions fui-picker-footer">
+      {mode !== "time" && (
         <button
-          className="fui-date-display"
           type="button"
-          disabled={disabled}
-          onClick={() => {
-            setMonth(new Date(parsed.getFullYear(), parsed.getMonth(), 1));
-            setOpen((current) => !current);
-          }}
+          title="Today"
+          aria-label="Today"
+          disabled={disabled || dateDisabled(dateKey(new Date()))}
+          onClick={() => selectDate(dateKey(new Date()))}
         >
-          <Icon icon="fa-regular fa-calendar" />
-          <span>{selectedDate || "Select date"}</span>
+          <Icon icon="fa-solid fa-calendar-day" />
         </button>
-        {mode === "datetime" && (
-          <input
-            className="fui-date-time-clock"
-            type="time"
-            value={selectedTime}
-            disabled={disabled}
-            onChange={(event) =>
-              onChange?.(
-                `${selectedDate || dateKey(new Date())}T${event.target.value}`,
-              )
-            }
-          />
-        )}
-        <div className="fui-date-time-actions">
+      )}
+      {mode !== "date" && showDayBoundaryButtons && (
+        <>
           <button
             type="button"
-            title="Today"
-            disabled={disabled}
-            onClick={selectToday}
+            title="Start of day"
+            aria-label="Start of day"
+            disabled={disabled || !withinLimits(timeValue("00:00"))}
+            onClick={() => {
+              setDraftTime("00:00");
+              updateTime("00:00");
+            }}
           >
-            <Icon icon="fa-solid fa-calendar-day" />
+            <Icon icon="fa-solid fa-sun" />
           </button>
-          {mode === "datetime" && showDayBoundaryButtons && (
-            <>
-              <button
-                type="button"
-                title="Start of day"
-                disabled={disabled}
-                onClick={() => onChange?.(setLocalDayBoundary(value, "start"))}
-              >
-                <Icon icon="fa-solid fa-sun" />
-              </button>
-              <button
-                type="button"
-                title="End of day"
-                disabled={disabled}
-                onClick={() => onChange?.(setLocalDayBoundary(value, "end"))}
-              >
-                <Icon icon="fa-solid fa-moon" />
-              </button>
-            </>
-          )}
-        </div>
+          <button
+            type="button"
+            title="End of day"
+            aria-label="End of day"
+            disabled={disabled || !withinLimits(timeValue("23:59"))}
+            onClick={() => {
+              setDraftTime("23:59");
+              updateTime("23:59");
+            }}
+          >
+            <Icon icon="fa-solid fa-moon" />
+          </button>
+        </>
+      )}
+      <button
+        type="button"
+        aria-label="Close picker"
+        onClick={() => setOpen(null)}
+      >
+        <Icon icon="fa-solid fa-xmark" />
+      </button>
+    </div>
+  );
+  const active =
+    disabled ||
+    (mode === "date" && open === "time") ||
+    (mode === "time" && open === "date")
+      ? null
+      : open;
+  return (
+    <div {...flow} ref={root} data-mode={mode}>
+      <input
+        type="hidden"
+        name={name}
+        value={value ?? ""}
+        disabled={disabled}
+      />
+      <div className="fui-date-time-field">
+        {mode !== "time" && (
+          <button
+            className="fui-date-display"
+            type="button"
+            disabled={disabled}
+            aria-label="Choose date"
+            aria-expanded={active === "date"}
+            onClick={() => {
+              setMonth(new Date(parsed.getFullYear(), parsed.getMonth(), 1));
+              setOpen(active === "date" ? null : "date");
+            }}
+          >
+            <Icon icon="fa-regular fa-calendar" />
+            <span>{selectedDate || "Select date"}</span>
+          </button>
+        )}
+        {mode !== "date" && (
+          <button
+            className="fui-date-display"
+            type="button"
+            disabled={disabled}
+            aria-label="Choose time"
+            aria-expanded={active === "time"}
+            onClick={() => {
+              setDraftTime(selectedTime.slice(0, 5));
+              setOpen(active === "time" ? null : "time");
+            }}
+          >
+            <Icon icon="fa-regular fa-clock" />
+            <span>
+              {mode === "time" && !value
+                ? "Select time"
+                : selectedTime.slice(0, 5)}
+            </span>
+          </button>
+        )}
       </div>
-      {open && (
+      {active === "time" && (
+        <div
+          className="fui-calendar fui-time-panel"
+          role="dialog"
+          aria-label="Choose time"
+        >
+          <div className="fui-time-fields">
+            <label>
+              Hour
+              <select
+                value={draftTime.slice(0, 2)}
+                onChange={(event) =>
+                  setDraftTime(`${event.target.value}:${draftTime.slice(3)}`)
+                }
+              >
+                {Array.from({ length: 24 }, (_, i) =>
+                  String(i).padStart(2, "0"),
+                ).map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Minute
+              <select
+                value={draftTime.slice(3)}
+                onChange={(event) =>
+                  setDraftTime(`${draftTime.slice(0, 2)}:${event.target.value}`)
+                }
+              >
+                {Array.from({ length: 60 }, (_, i) =>
+                  String(i).padStart(2, "0"),
+                ).map((item) => (
+                  <option key={item}>{item}</option>
+                ))}
+              </select>
+            </label>
+            <button
+              type="button"
+              disabled={!withinLimits(timeValue(draftTime))}
+              onClick={() => {
+                updateTime(draftTime);
+                setOpen(null);
+              }}
+            >
+              Done
+            </button>
+          </div>
+          {footer}
+        </div>
+      )}
+      {active === "date" && (
         <div className="fui-calendar" role="dialog" aria-label="Choose date">
           <div className="fui-calendar-header">
             <button
@@ -199,10 +283,7 @@ export function DateTime({
                   data-outside={day.getMonth() !== month.getMonth()}
                   data-selected={key === selectedDate}
                   data-today={key === dateKey(new Date())}
-                  disabled={Boolean(
-                    (min && key < min.split("T")[0]) ||
-                    (max && key > max.split("T")[0]),
-                  )}
+                  disabled={dateDisabled(key)}
                   onClick={() => selectDate(key)}
                 >
                   {day.getDate()}
@@ -210,6 +291,7 @@ export function DateTime({
               );
             })}
           </div>
+          {footer}
         </div>
       )}
     </div>
@@ -232,11 +314,14 @@ export function Autocomplete({
   const selected = options.find((option) => option.value === value);
   const [query, setQuery] = useState(selected ? String(selected.display) : "");
   const [open, setOpen] = useState(false);
+  const [browseAll, setBrowseAll] = useState(false);
   const root = useRef<HTMLDivElement>(null);
   useDismissableLayer(root, open, () => setOpen(false));
   const flow = useFlowProps("fui-autocomplete", props);
-  const matches = options.filter((option) =>
-    String(option.display).toLowerCase().includes(query.toLowerCase()),
+  const matches = options.filter(
+    (option) =>
+      browseAll ||
+      String(option.display).toLowerCase().includes(query.toLowerCase()),
   );
 
   useEffect(() => {
@@ -245,20 +330,35 @@ export function Autocomplete({
 
   return (
     <div {...flow} ref={root}>
-      <input
-        className="fui-control"
-        value={query}
-        placeholder={placeholder}
-        disabled={disabled}
-        role="combobox"
-        aria-expanded={open}
-        onFocus={() => setOpen(true)}
-        onChange={(event) => {
-          setQuery(event.target.value);
-          setOpen(true);
-        }}
-      />
-      {open && query.length >= minCharacters && (
+      <div className="fui-autocomplete-field">
+        <input
+          className="fui-control"
+          value={query}
+          placeholder={placeholder}
+          disabled={disabled}
+          role="combobox"
+          aria-expanded={open}
+          onFocus={() => setOpen(true)}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            setBrowseAll(false);
+            setOpen(true);
+          }}
+        />
+        <button
+          type="button"
+          disabled={disabled}
+          aria-label="Toggle suggestions"
+          aria-expanded={open}
+          onClick={() => {
+            setBrowseAll(!open);
+            setOpen(!open);
+          }}
+        >
+          <Icon icon={`fa-solid fa-chevron-${open ? "up" : "down"}`} />
+        </button>
+      </div>
+      {open && (browseAll || query.length >= minCharacters) && (
         <div className="fui-autocomplete-menu" role="listbox">
           {matches.length ? (
             matches.map((option) => (
@@ -600,7 +700,8 @@ export interface BreadcrumbProps extends CoreBreadcrumbProps {
 
 export function Breadcrumb({
   items,
-  separatorIcon = "fa-solid fa-chevron-right",
+  separator,
+  separatorIcon,
   renderItem,
   onSelect,
   ...props
@@ -609,27 +710,41 @@ export function Breadcrumb({
   return (
     <nav {...flow} aria-label="Breadcrumb">
       <ol>
-        {items.map((item, index) => (
-          <li key={item.id}>
-            {index > 0 && <Icon icon={separatorIcon} />}
-            <a
-              href={item.href}
-              aria-current={index === items.length - 1 ? "page" : undefined}
-              onClick={(event) => {
-                if (!item.href) event.preventDefault();
-                onSelect?.(item);
-              }}
-            >
-              {renderItem?.(item) ?? (
-                <>
-                  {item.image && <img src={item.image} alt="" />}
-                  {item.icon && <Icon icon={item.icon} />}
-                  {item.text && <span>{item.text}</span>}
-                </>
+        {items.map((item, index) => {
+          const current = index === items.length - 1;
+          const content = renderItem?.(item) ?? (
+            <>
+              {item.image && <img src={item.image} alt="" />}
+              {item.icon && <Icon icon={item.icon} />}
+              {item.text && <span>{item.text}</span>}
+            </>
+          );
+          return (
+            <li key={item.id}>
+              {index > 0 && (
+                <span aria-hidden="true">
+                  {separator ??
+                    (separatorIcon ? <Icon icon={separatorIcon} /> : ">")}
+                </span>
               )}
-            </a>
-          </li>
-        ))}
+              {current || item.disabled ? (
+                <span aria-current={current ? "page" : undefined}>
+                  {content}
+                </span>
+              ) : item.href ? (
+                <a href={item.href} onClick={() => onSelect?.(item)}>
+                  {content}
+                </a>
+              ) : onSelect ? (
+                <button type="button" onClick={() => onSelect(item)}>
+                  {content}
+                </button>
+              ) : (
+                <span>{content}</span>
+              )}
+            </li>
+          );
+        })}
       </ol>
     </nav>
   );

@@ -66,6 +66,7 @@ interface FlatTreeModel extends TreeModel {
     <div [class]="view().className" [ngStyle]="view().style">
       <button
         class="fui-select-trigger"
+        [attr.data-clearable]="clearable && value !== undefined"
         type="button"
         [disabled]="disabled"
         (click)="open = !open"
@@ -75,6 +76,16 @@ interface FlatTreeModel extends TreeModel {
         <fui-icon [icon]="'fa-solid fa-chevron-' + (open ? 'up' : 'down')" />
       </button>
 
+      <button
+        *ngIf="clearable && value !== undefined"
+        type="button"
+        class="fui-select-clear fui-select-clear-single"
+        aria-label="Clear selection"
+        [disabled]="disabled"
+        (click)="clearSelection()"
+      >
+        <fui-icon icon="fa-solid fa-xmark" />
+      </button>
       <div *ngIf="open" class="fui-select-menu">
         <label *ngIf="searchable" class="fui-select-search">
           <fui-icon icon="fa-solid fa-magnifying-glass" />
@@ -117,7 +128,9 @@ export class FlowTreeDropdownComponent extends FlowComponentBase {
   @Input() searchPlaceholder = "Search tree…";
   @Input() emptyText = "No options found";
   @Input() disabled = false;
+  @Input() clearable = false;
 
+  @Output() cleared = new EventEmitter<void>();
   @Output() selected = new EventEmitter<TreeModel>();
 
   open = false;
@@ -155,6 +168,16 @@ export class FlowTreeDropdownComponent extends FlowComponentBase {
     this.query = "";
   }
 
+  clearSelection(): void {
+    this.value = undefined;
+    this.cleared.emit();
+  }
+
+  @HostListener("document:keydown.escape")
+  closeOnEscape(): void {
+    this.open = false;
+  }
+
   @HostListener("document:pointerdown", ["$event"])
   closeOutside(event: PointerEvent): void {
     if (
@@ -186,10 +209,15 @@ export class FlowTabComponent {
   standalone: true,
   imports: [CommonModule, FlowIconComponent],
   template: `<div [class]="view().className" [ngStyle]="view().style">
-    <div class="fui-tabs-list" role="tablist">
+    <div
+      class="fui-tabs-list"
+      role="tablist"
+      [attr.data-selected-style]="selectedStyle"
+    >
       <button
         *ngFor="let tab of tabList"
         class="fui-tab"
+        type="button"
         role="tab"
         [attr.aria-selected]="active === tab.id"
         [disabled]="tab.disabled"
@@ -209,13 +237,17 @@ export class FlowTabsComponent
 {
   @ContentChildren(FlowTabComponent) tabs!: QueryList<FlowTabComponent>;
   @Input() value?: string;
+  @Input() selectedStyle: "underline" | "fill" = "underline";
   @Output() valueChange = new EventEmitter<string>();
   internal?: string;
   get tabList() {
     return this.tabs?.toArray() ?? [];
   }
   get active() {
-    return this.value ?? this.internal;
+    const requested = this.value ?? this.internal;
+    return this.tabList.some((tab) => tab.id === requested && !tab.disabled)
+      ? requested
+      : this.tabList.find((tab) => !tab.disabled)?.id;
   }
   get activeTab() {
     return this.tabList.find((tab) => tab.id === this.active);

@@ -194,6 +194,8 @@ export interface TypographyProps {
   lines?: ResponsiveValue<number>;
 }
 
+export type FieldFocusStyle = "border" | "ring" | "none";
+
 export interface BaseUIProps
   extends
     SpacingProps,
@@ -205,6 +207,7 @@ export interface BaseUIProps
   id?: string;
   hidden?: boolean;
   testId?: string;
+  focusStyle?: FieldFocusStyle;
   className?: string;
   style?: Readonly<FlowUIStyle>;
 }

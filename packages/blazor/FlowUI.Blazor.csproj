@@ -4,14 +4,14 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageId>FlowUI.Blazor</PackageId>
-    <Version>0.3.0</Version>
+    <Version>1.0.0</Version>
     <Authors>Akintunde Morakinyo</Authors>
     <Description>FlowUI Foundation, Forms, Selection, Overlays, Navigation and Data Display controls for Blazor, with isolated styles and custom light/dark palettes.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://flowui.pantry-stack.com</PackageProjectUrl>    <RepositoryUrl>https://github.com/akin2unde/FlowUI</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>blazor;razor;components;ui;forms;table;tree;dotnet</PackageTags>
-    <PackageReleaseNotes>Preview with 30 controls, separated templates/code-behind/styles, typed tables and trees, overlays, navigation, and documentation.</PackageReleaseNotes>
+    <PackageReleaseNotes>Preview with 32 controls, separated templates/code-behind/styles, typed tables and trees, overlays, navigation, and documentation.</PackageReleaseNotes>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>

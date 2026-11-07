@@ -15,17 +15,28 @@ import { FlowIconComponent } from "./primitives";
 
 @Component({
   selector: "fui-input",
+  host: { "[attr.id]": "null" },
   standalone: true,
   imports: [CommonModule],
   template: `
-    <span *ngIf="inputMode === 'money'" class="fui-money-input">
+    <span
+      *ngIf="inputMode === 'money'"
+      class="fui-money-input"
+      [style.--fui-field-focus-border]="
+        view().style['--fui-field-focus-border']
+      "
+      [style.--fui-field-focus-shadow]="
+        view().style['--fui-field-focus-shadow']
+      "
+    >
       <span class="fui-money-symbol">{{ currencySymbol }}</span>
       <ng-container *ngTemplateOutlet="control" />
     </span>
     <ng-container *ngIf="inputMode !== 'money'" [ngTemplateOutlet]="control" />
     <ng-template #control
       ><input
-        [id]="id"
+        [attr.id]="id"
+        [attr.autocomplete]="autoComplete"
         [class]="view().className"
         [ngStyle]="view().style"
         [type]="inputMode === 'text' ? type : 'text'"
@@ -59,6 +70,7 @@ export class FlowInputComponent extends FlowComponentBase {
     "text";
   @Input() currencySymbol = "₦";
   @Input() name?: string;
+  @Input() autoComplete?: string;
   @Input() placeholder?: string;
   @Input() disabled = false;
   @Input() readOnly = false;
@@ -84,12 +96,15 @@ export class FlowInputComponent extends FlowComponentBase {
 
 @Component({
   selector: "fui-password-input",
+  host: { "[attr.id]": "null" },
   standalone: true,
   imports: [CommonModule, FlowIconComponent],
   template: `
     <div [class]="view().className" [ngStyle]="view().style">
       <input
         class="fui-control fui-password-control"
+        [attr.id]="id"
+        [attr.autocomplete]="autoComplete"
         [type]="isVisible ? 'text' : 'password'"
         [value]="value"
         [name]="name ?? ''"
@@ -116,6 +131,7 @@ export class FlowInputComponent extends FlowComponentBase {
 export class FlowPasswordInputComponent extends FlowComponentBase {
   @Input() value = "";
   @Input() name?: string;
+  @Input() autoComplete?: string;
   @Input() placeholder?: string;
   @Input() disabled = false;
   @Input() readOnly = false;
@@ -306,6 +322,7 @@ export class FlowColorPickerComponent extends FlowComponentBase {
     <div [class]="view().className" [ngStyle]="view().style">
       <button
         class="fui-select-trigger"
+        [attr.data-clearable]="clearable && !!selectedOption"
         type="button"
         [disabled]="disabled"
         [attr.aria-expanded]="open"
@@ -324,6 +341,16 @@ export class FlowColorPickerComponent extends FlowComponentBase {
         <fui-icon [icon]="'fa-solid fa-chevron-' + (open ? 'up' : 'down')" />
       </button>
 
+      <button
+        *ngIf="clearable && !!selectedOption"
+        type="button"
+        class="fui-select-clear fui-select-clear-single"
+        aria-label="Clear selection"
+        [disabled]="disabled"
+        (click)="clearSelection()"
+      >
+        <fui-icon icon="fa-solid fa-xmark" />
+      </button>
       <div *ngIf="open" class="fui-select-menu">
         <label *ngIf="searchable" class="fui-select-search">
           <fui-icon icon="fa-solid fa-magnifying-glass" />
@@ -389,6 +416,7 @@ export class FlowDropdownComponent extends FlowComponentBase {
   @Input() options: DropdownModel[] = [];
   @Input() placeholder = "Select an option";
   @Input() disabled = false;
+  @Input() clearable = false;
   @Input() searchable = false;
   @Input() grouped = false;
   @Input() searchPlaceholder = "Search…";
@@ -402,6 +430,7 @@ export class FlowDropdownComponent extends FlowComponentBase {
   }>;
   @Input() valueTemplate?: TemplateRef<{ $implicit: DropdownModel }>;
 
+  @Output() cleared = new EventEmitter<void>();
   @Output() selected = new EventEmitter<DropdownModel>();
   @Output() valueChange = new EventEmitter<string | number>();
   @Output() searchChange = new EventEmitter<string>();
@@ -445,6 +474,16 @@ export class FlowDropdownComponent extends FlowComponentBase {
     this.selected.emit(model);
     this.open = false;
     this.query = "";
+  }
+
+  clearSelection(): void {
+    this.value = undefined;
+    this.cleared.emit();
+  }
+
+  @HostListener("document:keydown.escape")
+  closeOnEscape(): void {
+    this.open = false;
   }
 
   @HostListener("document:pointerdown", ["$event"])

@@ -1,3 +1,4 @@
+import type { FieldFocusStyle } from "@akin2unde/flowui-core";
 import { Directive, Input, inject } from "@angular/core";
 import {
   resolveFlowStyle,
@@ -20,6 +21,7 @@ import { FlowUIThemeService } from "./theme";
 export abstract class FlowComponentBase implements BaseUIProps {
   protected readonly fuiTheme = inject(FlowUIThemeService);
   @Input() id?: string;
+  @Input() focusStyle?: FieldFocusStyle;
   @Input() hidden?: boolean;
   @Input() testId?: string;
   @Input() className?: string;

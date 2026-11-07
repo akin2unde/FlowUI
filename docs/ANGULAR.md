@@ -4,6 +4,8 @@ The Angular package contains standalone browser components and ships compiled CS
 
 ## Install
 
+This release targets Angular 22. Use TypeScript 6.0.x and a supported Node.js version, such as Node.js 24.15 or later in the 24.x series.
+
 ```bash
 npm install @akin2unde/flowui-angular @fortawesome/fontawesome-free
 ```

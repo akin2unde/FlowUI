@@ -127,6 +127,24 @@ import { createTheme, themeToCSS } from "@akin2unde/flowui-core";
   templateUrl: "./docs.component.html",
 })
 export class DocsComponent extends AppComponent {
+  dateMode: "date" | "time" | "datetime" = "datetime";
+  dateValues = {
+    date: "2026-10-10",
+    time: "09:30",
+    datetime: "2026-10-10T09:30",
+  };
+  placement: "top" | "right" | "bottom" | "left" = "top";
+  breadcrumbDepth = 3;
+  reportTab = false;
+  activeTab = "details";
+  tabStyle: "underline" | "fill" = "underline";
+  loadedProducts = 2;
+
+  toggleReportTab() {
+    this.reportTab = !this.reportTab;
+    this.activeTab = this.reportTab ? "report" : "details";
+  }
+
   readonly labels = inject(AsyncLabelService);
   readonly stats = demoStats;
   readonly docs = componentDocs;

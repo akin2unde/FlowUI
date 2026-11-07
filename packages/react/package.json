@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-react",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "React components for FlowUI.",
   "author": "Akintunde Morakinyo",
   "repository": {
@@ -36,13 +36,13 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts --external react --external react-dom --clean && cp ../styles/dist/flowui.css dist/styles.css",
+    "build": "tsup src/index.ts --format esm,cjs --config ../../scripts/tsup.config.mjs --external react --external react-dom --clean && cp ../styles/dist/flowui.css dist/styles.css",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "prepack": "node ../../scripts/prepack.mjs react"
   },
   "dependencies": {
-    "@akin2unde/flowui-core": "0.3.0"
+    "@akin2unde/flowui-core": "1.0.0"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -50,13 +50,13 @@
     "@fortawesome/fontawesome-free": ">=6"
   },
   "devDependencies": {
-    "@types/react": "^19.1.0",
-    "@types/react-dom": "^19.1.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "tsup": "^8.5.0",
-    "typescript": "^5.9.0",
-    "vitest": "^3.2.0"
+    "typescript": "~6.0.3",
+    "vitest": "^4.0.8"
   },
   "sideEffects": [
     "*.css"

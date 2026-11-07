@@ -8,6 +8,7 @@ public abstract class FlowComponentBase : ComponentBase
     [Parameter] public string? Id { get; set; }
     [Parameter] public string? Class { get; set; }
     [Parameter] public string? Style { get; set; }
+    [Parameter] public string? FocusStyle { get; set; }
     [Parameter] public string? Width { get; set; }
     [Parameter] public string? Height { get; set; }
     [Parameter] public string? MaxWidth { get; set; }
@@ -23,6 +24,8 @@ public abstract class FlowComponentBase : ComponentBase
     protected virtual FlowStyleBuilder BuildStyle() => new FlowStyleBuilder()
         .Add("width", Width).Add("height", Height).Add("max-width", MaxWidth)
         .Add("padding", Padding).Add("margin", Margin).Add("background-color", BackgroundColor)
-        .Add("color", TextColor).Add("border-radius", CornerRadius);
+        .Add("color", TextColor).Add("border-radius", CornerRadius)
+        .Add("--fui-field-focus-border", FocusStyle == "none" ? "var(--fui-color-border, #e2e8f0)" : null)
+        .Add("--fui-field-focus-shadow", FocusStyle == "ring" ? "0 0 0 2px color-mix(in srgb, var(--fui-color-focus, #2563eb) 22%, transparent)" : FocusStyle is "border" or "none" ? "none" : null);
     protected string Styles => BuildStyle().Append(Style).ToString();
 }

@@ -7,7 +7,8 @@ private readonly FlowAccordionItem[] questions = [new("installation", "How do I 
     public sealed record Product(int Id, string Name, decimal Price, int Stock);
     private readonly Product[] products = [new(1, "Notebook", 12.50m, 40), new(2, "Desk lamp", 35m, 18), new(3, "Pen set", 6m, 120), new(4, "Monitor", 220m, 10), new(5, "Keyboard", 65m, 24), new(6, "Mouse", 25m, 42), new(7, "Cable", 8m, 70)];
     private readonly FlowTableColumn<Product>[] columns = [new() { Title = "Product", Value = p => p.Name }, new() { Title = "Price", Value = p => p.Price }, new() { Title = "Stock", Value = p => p.Stock }];
-    private int tablePage = 1;
+    private int loadedProducts = 3;
+    private void LoadProducts() => loadedProducts = Math.Min(loadedProducts + 3, products.Length);
     public sealed record Node(string Id, string Name, Node[] Children);
     private readonly Node[] nodes = [new("catalog", "Catalog", [new("products", "Products", [new("office", "Office", []), new("electronics", "Electronics", [])]), new("categories", "Categories", [])]), new("settings", "Settings", [new("users", "Users", []), new("roles", "Roles", [])])];
     private string? selectedNode;
@@ -19,7 +20,16 @@ private readonly FlowAccordionItem[] questions = [new("installation", "How do I 
         </FlowAccordion>
         """;
     private const string Example1 = """
-        <FlowTable Items="products" Columns="columns" RowKey="p => p.Id" Caption="Product inventory" PageSize="3" @bind-Page="tablePage" />
+        <FlowTable TItem="Product" Items="@products.Take(loadedProducts).ToArray()" Columns="columns" RowKey="p => p.Id"
+                   Caption="Product inventory" PageSize="0" ColumnsConfigurable="true" Exportable="true" TotalCount="@products.Length" OnLoadMore="LoadProducts">
+            <LoadMoreTemplate Context="footer">
+                <p role="status">@($"{footer.LoadedCount} of {footer.TotalCount} products loaded")</p>
+                @if (footer.HasMore)
+                {
+                    <FlowButton Disabled="footer.Loading" OnClick="() => footer.LoadMore()">Show more products</FlowButton>
+                }
+            </LoadMoreTemplate>
+        </FlowTable>
         """;
     private const string Example2 = """
         <FlowTree Items="nodes" ValueSelector="n => n.Id" TextSelector="n => n.Name" ChildrenSelector="n => n.Children"
@@ -36,7 +46,8 @@ private readonly FlowAccordionItem[] questions = [new("installation", "How do I 
             public sealed record Product(int Id, string Name, decimal Price, int Stock);
             private readonly Product[] products = [new(1, "Notebook", 12.50m, 40), new(2, "Desk lamp", 35m, 18), new(3, "Pen set", 6m, 120), new(4, "Monitor", 220m, 10), new(5, "Keyboard", 65m, 24), new(6, "Mouse", 25m, 42), new(7, "Cable", 8m, 70)];
             private readonly FlowTableColumn<Product>[] columns = [new() { Title = "Product", Value = p => p.Name }, new() { Title = "Price", Value = p => p.Price }, new() { Title = "Stock", Value = p => p.Stock }];
-            private int tablePage = 1;
+            private int loadedProducts = 3;
+            private void LoadProducts() => loadedProducts = Math.Min(loadedProducts + 3, products.Length);
             public sealed record Node(string Id, string Name, Node[] Children);
             private readonly Node[] nodes = [new("catalog", "Catalog", [new("products", "Products", [new("office", "Office", []), new("electronics", "Electronics", [])]), new("categories", "Categories", [])]), new("settings", "Settings", [new("users", "Users", []), new("roles", "Roles", [])])];
             private string? selectedNode;

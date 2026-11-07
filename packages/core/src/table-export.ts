@@ -11,11 +11,37 @@ function download(content: BlobPart, type: string, fileName: string): void {
   anchor.href = url;
   anchor.download = fileName;
   anchor.click();
-  URL.revokeObjectURL(url);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+export function tableToCsv<T>(
+  data: readonly T[],
+  columns: readonly TableColumn<T>[],
+): string {
+  const escape = (value: string) => '"' + value.replaceAll('"', '""') + '"';
+  return [
+    columns.map((column) => column.header),
+    ...data.map((item) => columns.map((column) => cellText(item, column))),
+  ]
+    .map((row) => row.map(escape).join(","))
+    .join("\r\n");
+}
+
+export function exportTableToCsv<T>(
+  data: T[],
+  columns: TableColumn<T>[],
+  fileName = "table",
+): void {
+  download(
+    "\uFEFF" + tableToCsv(data, columns),
+    "text/csv;charset=utf-8",
+    `${fileName}.csv`,
+  );
 }
 
 function xml(value: string): string {
   return value
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -35,7 +61,7 @@ export function exportTableToExcel<T>(
     ...data.map((item) => row(columns.map((column) => cellText(item, column)))),
   ].join("");
   const workbook = `<?xml version="1.0"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><Worksheet ss:Name="Data"><Table>${rows}</Table></Worksheet></Workbook>`;
-  download(workbook, "application/vnd.ms-excel", `${fileName}.xls`);
+  download(workbook, "application/vnd.ms-excel", `${fileName}.xml`);
 }
 
 function pdfEscape(value: string): string {
@@ -52,15 +78,19 @@ export function exportTableToPdf<T>(
   columns: TableColumn<T>[],
   fileName = "table",
 ): void {
-  const lines = [
-    columns.map((column) => column.header).join(" | "),
-    ...data.map((item) =>
-      columns.map((column) => cellText(item, column)).join(" | "),
-    ),
-  ];
+  const wrap = (line: string) =>
+    line.replace(/\r?\n/g, " ").match(/.{1,82}/gu) ?? [""];
+  const header = wrap(columns.map((column) => column.header).join(" | "));
+  const lines = data.flatMap((item) =>
+    wrap(columns.map((column) => cellText(item, column)).join(" | ")),
+  );
+  const pageLength = Math.max(1, 48 - header.length);
   const pages = Array.from(
-    { length: Math.max(1, Math.ceil(lines.length / 48)) },
-    (_, index) => lines.slice(index * 48, (index + 1) * 48),
+    { length: Math.max(1, Math.ceil(lines.length / pageLength)) },
+    (_, index) => [
+      ...header,
+      ...lines.slice(index * pageLength, (index + 1) * pageLength),
+    ],
   );
   const fontObject = 3 + pages.length * 2;
   const pageObjects = pages.map((_, index) => 3 + index * 2);
@@ -75,7 +105,7 @@ export function exportTableToPdf<T>(
       "BT /F1 10 Tf 40 800 Td",
       ...page.flatMap((line, lineIndex) => [
         lineIndex ? "0 -15 Td" : "",
-        `(${pdfEscape(line).slice(0, 115)}) Tj`,
+        `(${pdfEscape(line)}) Tj`,
       ]),
       "ET",
     ]

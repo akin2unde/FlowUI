@@ -1,6 +1,6 @@
 # FlowUI
 
-Development version: **0.3.0** across all adapters (not yet published).
+Development version: **1.0.0** across all adapters (not yet published).
 
 FlowUI is a component library for React, Angular, React Native, and Blazor. The JavaScript adapters share a framework-independent TypeScript core. FlowUI.Blazor is a .NET 10 Razor Class Library with its own C# implementation and isolated CSS.
 
@@ -50,6 +50,10 @@ The word `base` is deliberately not part of the public API.
 
 ## Install and build the workspace
 
+Extract the release into a fresh folder, then run the commands from the workspace
+root. Use Node.js 24.15 or newer in the 24.x series for Angular 22. The root
+`npm ci` installs the locked TypeScript 6 toolchain for Angular.
+
 ```bash
 npm ci
 npm run setup:react-native-example
@@ -72,6 +76,28 @@ Expo, so its `dist` entry points are always available.
 Framework packages can also be built independently from a clean checkout.
 `npm run build:react` and `npm run build:angular` automatically build their
 core and stylesheet dependencies first.
+
+## Try the controls
+
+- Open DateTime in either browser gallery, or Date and time in the native and
+  Blazor galleries. Switch between date-only, time-only and combined modes.
+  Use local values in `YYYY-MM-DD`, `HH:mm` or `YYYY-MM-DDTHH:mm` format.
+- Use `clearable` (Blazor `Clearable`) to show a clear button. In a controlled
+  single select, clear the bound value when the clear event fires. The clear
+  event is separate from choosing an option in React, Angular and React Native.
+- Start with the default underline for tabs. Opt into `fill` for a filled
+  selection, and keep tab IDs stable when adding or removing items.
+- The Table demos show optional column selection, export and a custom footer.
+  Use `renderLoadMore` in React and React Native, `loadMoreTemplate` in Angular,
+  or `LoadMoreTemplate` in Blazor. The template supplies the entire footer and
+  can render any element supported by the framework. It receives the loaded
+  count, optional total, loading state, whether more rows are available, and
+  an action that calls the table's load-more handler if supplied.
+  For server paging, append each fetched page to the loaded rows, pass the
+  total if available, and report loading while a request is in progress.
+  Export uses the loaded rows and visible columns. React and Angular support
+  CSV, Excel-compatible XML and PDF. Use CSV or XML for Unicode values.
+  Blazor and React Native support CSV. Native devices open the share sheet.
 
 ## Packaging and publishing
 
@@ -194,10 +220,10 @@ application path):
 dotnet add path/to/MyApp.csproj reference packages/blazor/FlowUI.Blazor.csproj
 ```
 
-Once version 0.3.0 is published to NuGet, consumers can install it with:
+Once version 1.0.0 is published to NuGet, consumers can install it with:
 
 ```bash
-dotnet add package FlowUI.Blazor --version 0.3.0
+dotnet add package FlowUI.Blazor --version 1.0.0
 ```
 
 The archive includes the package source; that alone does not publish it to

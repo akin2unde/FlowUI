@@ -125,6 +125,25 @@ function AsyncPreview() {
 function ComponentPreview({ name }: { name: string }) {
   const [text, setText] = useState("");
   const [value, setValue] = useState<string | number>("active");
+  const [dropdownValue, setDropdownValue] = useState<
+    string | number | undefined
+  >("active");
+  const [dateMode, setDateMode] = useState<"date" | "time" | "datetime">(
+    "datetime",
+  );
+  const [dateValues, setDateValues] = useState({
+    date: "2026-10-10",
+    time: "09:30",
+    datetime: "2026-10-10T09:30",
+  });
+  const [placement, setPlacement] = useState<
+    "top" | "right" | "bottom" | "left"
+  >("top");
+  const [breadcrumbDepth, setBreadcrumbDepth] = useState(3);
+  const [tab, setTab] = useState("overview");
+  const [tabStyle, setTabStyle] = useState<"underline" | "fill">("underline");
+  const [report, setReport] = useState(false);
+  const [loaded, setLoaded] = useState(2);
   const [values, setValues] = useState<Array<string | number>>(["active"]);
   const [checked, setChecked] = useState(true);
   const [number, setNumber] = useState(40);
@@ -191,14 +210,16 @@ function ComponentPreview({ name }: { name: string }) {
         <>
           <F.Label required>Status</F.Label>
           <F.Dropdown
-            value={value}
+            value={dropdownValue}
             options={choices}
             searchable
-            onChange={(option) => setValue(option.value)}
+            clearable
+            onClear={() => setDropdownValue(undefined)}
+            onChange={(option) => setDropdownValue(option.value)}
           />
           <p className="docs-muted">
-            Saved value: <code>{value}</code>. Selected and hovered rows use
-            different colours.
+            Saved value: <code>{dropdownValue ?? "None"}</code>. Selected and
+            hovered rows use different colours.
           </p>
         </>
       );
@@ -302,7 +323,28 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "DateTime":
       preview = (
-        <F.DateTime value={text || "2026-10-10T09:30"} onChange={setText} />
+        <F.VC gap="sm">
+          <label>
+            Mode{" "}
+            <select
+              value={dateMode}
+              onChange={(event) =>
+                setDateMode(event.target.value as typeof dateMode)
+              }
+            >
+              <option value="datetime">Date and time</option>
+              <option value="date">Date only</option>
+              <option value="time">Time only</option>
+            </select>
+          </label>
+          <F.DateTime
+            mode={dateMode}
+            value={dateValues[dateMode]}
+            onChange={(next) =>
+              setDateValues((previous) => ({ ...previous, [dateMode]: next }))
+            }
+          />
+        </F.VC>
       );
       break;
     case "OTPInput":
@@ -416,9 +458,26 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Tooltip":
       preview = (
-        <F.Tooltip text="Save your changes" location="top">
-          <F.Button>Hover or focus</F.Button>
-        </F.Tooltip>
+        <F.VC gap="md">
+          <label>
+            Placement{" "}
+            <select
+              value={placement}
+              onChange={(event) =>
+                setPlacement(event.target.value as typeof placement)
+              }
+            >
+              {["top", "right", "bottom", "left"].map((side) => (
+                <option key={side}>{side}</option>
+              ))}
+            </select>
+          </label>
+          <div>
+            <F.Tooltip text="Save your changes" location={placement}>
+              <F.Button>Hover or focus</F.Button>
+            </F.Tooltip>
+          </div>
+        </F.VC>
       );
       break;
     case "Carousel":
@@ -437,7 +496,9 @@ function ComponentPreview({ name }: { name: string }) {
             { id: 1, text: "Home" },
             { id: 2, text: "Customers" },
             { id: 3, text: "Akintunde" },
-          ]}
+          ].slice(0, breadcrumbDepth)}
+          separator="/"
+          onSelect={(item) => setBreadcrumbDepth(Number(item.id))}
         />
       );
       break;
@@ -476,14 +537,44 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Tabs / Tab":
       preview = (
-        <F.Tabs>
-          <F.Tab id="overview" label="Overview">
-            Overview content
-          </F.Tab>
-          <F.Tab id="history" label="History">
-            History content
-          </F.Tab>
-        </F.Tabs>
+        <F.VC gap="sm">
+          <F.HC gap="sm">
+            <F.Button
+              variant="outline"
+              onClick={() => {
+                setReport(!report);
+                setTab(report ? "overview" : "report");
+              }}
+            >
+              {report ? "Remove report tab" : "Add report tab"}
+            </F.Button>
+            <label>
+              Selected style{" "}
+              <select
+                value={tabStyle}
+                onChange={(event) =>
+                  setTabStyle(event.target.value as typeof tabStyle)
+                }
+              >
+                <option value="underline">Underline</option>
+                <option value="fill">Fill</option>
+              </select>
+            </label>
+          </F.HC>
+          <F.Tabs value={tab} onChange={setTab} selectedStyle={tabStyle}>
+            <F.Tab id="overview" label="Overview" icon="fa-solid fa-chart-line">
+              Overview content
+            </F.Tab>
+            <F.Tab id="history" label="History">
+              History content
+            </F.Tab>
+            {report && (
+              <F.Tab id="report" label="Report" icon="fa-solid fa-file">
+                Report content
+              </F.Tab>
+            )}
+          </F.Tabs>
+        </F.VC>
       );
       break;
     case "Section":
@@ -499,14 +590,32 @@ function ComponentPreview({ name }: { name: string }) {
           data={[
             { name: "Rice", price: 24500 },
             { name: "Beans", price: 18000 },
-          ]}
+            { name: 'Oil, "Premium"', price: 18500 },
+            { name: "Detergent", price: 9300 },
+          ].slice(0, loaded)}
           columns={[
             { field: "name", header: "Product" },
-            { field: "price", header: "Price" },
+            {
+              field: "price",
+              header: "Price",
+              format: (price) => `NGN ${Number(price).toLocaleString()}`,
+            },
           ]}
           alternateRows
           columnsConfigurable
           exportable
+          totalCount={4}
+          onLoadMore={() => setLoaded((count) => Math.min(count + 2, 4))}
+          renderLoadMore={({ loadedCount, hasMore, loading, loadMore }) => (
+            <footer className="docs-table-footer">
+              <span role="status">{loadedCount} records loaded</span>
+              {hasMore && (
+                <button type="button" disabled={loading} onClick={loadMore}>
+                  {loading ? "Loading…" : "Load more"}
+                </button>
+              )}
+            </footer>
+          )}
         />
       );
       break;
@@ -733,7 +842,7 @@ export function DocsApp() {
                 ) && <p className="docs-muted">No matching components.</p>}
             </nav>
             <footer>
-              v0.3.0 <a href="#gallery">Original gallery</a>
+              v1.0.0 <a href="#gallery">Original gallery</a>
             </footer>
           </aside>
           <main className="docs-content" id="docs-content" tabIndex={-1}>

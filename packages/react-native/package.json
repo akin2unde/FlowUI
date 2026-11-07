@@ -1,6 +1,6 @@
 {
   "name": "@akin2unde/flowui-react-native",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Lightweight Tailwind-styled FlowUI controls for React Native, Expo and React Native Web.",
   "author": "Akintunde Morakinyo",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --dts --external react --external react-native --external nativewind --clean",
+    "build": "tsup src/index.ts --format esm,cjs --config ../../scripts/tsup.config.mjs --external react --external react-native --external nativewind --clean",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --passWithNoTests",
     "prepack": "node ../../scripts/prepack.mjs react-native"
@@ -35,6 +35,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@akin2unde/flowui-core": "0.3.0"
+    "@akin2unde/flowui-core": "1.0.0"
   }
 }

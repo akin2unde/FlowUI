@@ -6,6 +6,7 @@ import React, {
   type PropsWithChildren,
 } from "react";
 import { useColorScheme } from "react-native";
+import type { FieldFocusStyle } from "@akin2unde/flowui-core";
 import type { FlowThemeMode } from "./types";
 
 export interface NativeColorScheme {
@@ -24,6 +25,7 @@ export interface NativeColorScheme {
 }
 
 export interface NativeFlowTheme {
+  focusStyle?: FieldFocusStyle;
   schemes: {
     light: NativeColorScheme;
     dark: NativeColorScheme;
@@ -38,6 +40,7 @@ export interface NativeFlowTheme {
 }
 
 export type NativeThemeOverride = {
+  focusStyle?: FieldFocusStyle;
   schemes?: {
     light?: Partial<NativeColorScheme>;
     dark?: Partial<NativeColorScheme>;
@@ -97,6 +100,7 @@ export function createNativeTheme(
         ...override.schemes?.dark,
       },
     },
+    focusStyle: override.focusStyle,
     spacing: { ...defaultNativeTheme.spacing, ...override.spacing },
     radius: { ...defaultNativeTheme.radius, ...override.radius },
     components: {

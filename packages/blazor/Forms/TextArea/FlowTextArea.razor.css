@@ -3,7 +3,7 @@
 .fui-required, .fui-error { color: var(--fui-color-danger, #dc2626); }
 .fui-control { display: block; box-sizing: border-box; width: 100%; min-width: 0; padding: .7rem .85rem; font: inherit; font-size: .9rem; line-height: 1.4; border: 1px solid var(--fui-color-border, #e2e8f0); border-radius: calc(var(--fui-radius, .75rem) * .7); color: var(--fui-color-text, #0f172a); background: var(--fui-color-surface, #fff); }
 .fui-control::placeholder { color: var(--fui-color-textMuted, #64748b); }
-.fui-control:focus { outline: 2px solid var(--fui-color-focus, #2563eb); outline-offset: 2px; }
+.fui-control:focus { outline: none; border-color: var(--fui-field-focus-border, var(--fui-color-textMuted, #64748b)); box-shadow: var(--fui-field-focus-shadow, none); }
 .fui-invalid .fui-control { border-color: var(--fui-color-danger, #dc2626); }
 .fui-control:disabled { opacity: .55; cursor: not-allowed; }
 .fui-control[readonly] { background: var(--fui-color-surfaceSunken, #f1f5f9); }

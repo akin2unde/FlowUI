@@ -28,3 +28,39 @@ export function closePopover(root) { const state = popovers.get(root); if (!stat
 export function focusId(id) { document.getElementById(id)?.focus(); }
 export function focusTreeItem(root, index) { requestAnimationFrame(() => root.querySelector('[data-index="' + index + '"]')?.focus()); }
 export function prepareNavigationKeys(root, kind) { if (root.dataset.fuiKeys) return; root.dataset.fuiKeys = kind; root.addEventListener('keydown', e => { const keys = kind === 'tree' ? ['ArrowDown','ArrowUp','ArrowLeft','ArrowRight','Home','End',' '] : ['ArrowLeft','ArrowRight','Home','End']; if (keys.includes(e.key)) e.preventDefault(); }); }
+
+const outsideWatchers = new WeakMap();
+export function watchOutside(root, receiver) {
+    if (outsideWatchers.has(root)) return;
+    const onOutside = event => {
+        if (!root.contains(event.target)) receiver.invokeMethodAsync("CloseFromOutside").catch(() => {});
+    };
+    document.addEventListener("pointerdown", onOutside, true);
+    outsideWatchers.set(root, onOutside);
+}
+export function unwatchOutside(root) {
+    const handler = outsideWatchers.get(root);
+    if (!handler) return;
+    document.removeEventListener("pointerdown", handler, true);
+    outsideWatchers.delete(root);
+}
+export function downloadCsv(csv, fileName) {
+    const url = URL.createObjectURL(new Blob(["\uFEFF", csv], { type: "text/csv;charset=utf-8" }));
+    const anchor = document.createElement("a");
+    anchor.href = url;
+    anchor.download = fileName + ".csv";
+    anchor.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+export function positionTooltip(anchor, preferred) {
+    const tooltip = anchor.querySelector('[role="tooltip"]');
+    if (!tooltip) return;
+    const { top, right, bottom, left } = anchor.getBoundingClientRect();
+    const opposite = { top: "bottom", bottom: "top", left: "right", right: "left" };
+    const space = { top, right: innerWidth - right, bottom: innerHeight - bottom, left };
+    const required = (preferred === "top" || preferred === "bottom" ? tooltip.offsetHeight : tooltip.offsetWidth) + 6;
+    anchor.dataset.location = space[preferred] < required && space[opposite[preferred]] > space[preferred]
+        ? opposite[preferred]
+        : preferred;
+}

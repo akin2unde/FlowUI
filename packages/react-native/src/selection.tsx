@@ -22,6 +22,8 @@ export interface SelectProps<T = unknown> {
   /** Style for the dropdown close icon. */
   closeIconStyle?: StyleProp<TextStyle>;
   chevron?: ReactNode;
+  clearable?: boolean;
+  onClear?: () => void;
   items: SelectOption<T>[];
   value?: string | number;
   onValueChange?: (value: string | number, item: SelectOption<T>) => void;
@@ -193,6 +195,9 @@ function PickerModal<T>({
                       backgroundColor: selected
                         ? `${colors.primary}18`
                         : "transparent",
+                      marginHorizontal: 6,
+                      marginVertical: 2,
+                      borderRadius: theme.radius.md,
                       opacity: item.disabled ? 0.45 : 1,
                     },
                     optionStyle,
@@ -256,47 +261,70 @@ export function Select<T>({
   menuHeaderStyle,
   menuTitleStyle,
   closeIconStyle,
+  clearable = false,
+  onClear,
 }: SelectProps<T>) {
   const [open, setOpen] = useState(false);
   const { colors, theme } = useFlowUITheme();
   const selected = items.find((item) => item.value === value);
+  const canClear = Boolean(clearable && selected && onClear && !disabled);
   return (
     <>
-      <Pressable
-        accessibilityRole="button"
-        accessibilityState={{ disabled, expanded: open }}
-        disabled={disabled}
-        onPress={() => setOpen(true)}
-        className={`min-h-12 flex-row items-center justify-between border px-3 ${className ?? ""}`}
-        style={[
-          {
-            borderColor: colors.border,
-            borderRadius: theme.components.controlRadius,
-            backgroundColor: colors.surface,
-            opacity: disabled ? 0.5 : 1,
-          },
-          style,
-        ]}
-      >
-        <Text muted={!selected} style={textStyle}>
-          {selected?.display ?? placeholder}
-        </Text>
-        {chevron ?? (
-          <Text
-            style={[
-              {
-                color: colors.textMuted,
-                fontSize: 22,
-                lineHeight: 22,
-                transform: [{ translateY: -2 }],
-              },
-              chevronStyle,
-            ]}
-          >
-            ⌄
+      <View style={{ position: "relative" }}>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityState={{ disabled, expanded: open }}
+          disabled={disabled}
+          onPress={() => setOpen(true)}
+          className={`min-h-12 flex-row items-center justify-between border px-3 ${className ?? ""}`}
+          style={[
+            {
+              borderColor: colors.border,
+              borderRadius: theme.components.controlRadius,
+              backgroundColor: colors.surface,
+              opacity: disabled ? 0.5 : 1,
+              paddingRight: canClear ? 48 : undefined,
+            },
+            style,
+          ]}
+        >
+          <Text muted={!selected} style={textStyle}>
+            {selected?.display ?? placeholder}
           </Text>
+          {chevron ?? (
+            <Text
+              style={[
+                {
+                  color: colors.textMuted,
+                  fontSize: 22,
+                  lineHeight: 22,
+                  transform: [{ translateY: -2 }],
+                },
+                chevronStyle,
+              ]}
+            >
+              ⌄
+            </Text>
+          )}
+        </Pressable>
+        {canClear && (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Clear selection"
+            onPress={onClear}
+            style={{
+              position: "absolute",
+              right: 8,
+              top: 0,
+              bottom: 0,
+              paddingHorizontal: 8,
+              justifyContent: "center",
+            }}
+          >
+            <Text muted>×</Text>
+          </Pressable>
         )}
-      </Pressable>
+      </View>
       <PickerModal
         visible={open}
         items={items}
@@ -329,6 +357,7 @@ export interface MultiSelectProps<T = unknown> extends Omit<
   "value" | "onValueChange"
 > {
   value: Array<string | number>;
+  maxVisibleChips?: number;
   onValueChange?: (
     values: Array<string | number>,
     items: SelectOption<T>[],
@@ -357,10 +386,18 @@ export function MultiSelect<T>({
   menuHeaderStyle,
   menuTitleStyle,
   closeIconStyle,
+  clearable = false,
+  onClear,
+  maxVisibleChips,
 }: MultiSelectProps<T>) {
   const [open, setOpen] = useState(false);
   const { colors, theme } = useFlowUITheme();
   const selectedItems = items.filter((item) => value.includes(item.value));
+  const visibleItems =
+    maxVisibleChips === undefined
+      ? selectedItems
+      : selectedItems.slice(0, maxVisibleChips);
+  const canClear = clearable && selectedItems.length > 0 && !disabled;
   const update = (next: Array<string | number>) =>
     onValueChange?.(
       next,
@@ -368,40 +405,66 @@ export function MultiSelect<T>({
     );
   return (
     <>
-      <Pressable
-        accessibilityRole="button"
-        accessibilityState={{ disabled, expanded: open }}
-        disabled={disabled}
-        onPress={() => setOpen(true)}
-        className={`min-h-12 flex-row flex-wrap items-center gap-2 border p-2 ${className ?? ""}`}
-        style={[
-          {
-            borderColor: colors.border,
-            borderRadius: theme.components.controlRadius,
-            backgroundColor: colors.surface,
-            opacity: disabled ? 0.5 : 1,
-          },
-          style,
-        ]}
-      >
-        {selectedItems.length === 0 ? (
-          <Text muted style={textStyle}>
-            {placeholder}
-          </Text>
-        ) : null}
-        {selectedItems.map((item) => (
-          <Chip
-            key={String(item.value)}
-            selected
-            onRemove={() =>
-              update(value.filter((current) => current !== item.value))
-            }
-            removeLabel={`Remove ${item.display}`}
+      <View style={{ position: "relative" }}>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityState={{ disabled, expanded: open }}
+          disabled={disabled}
+          onPress={() => setOpen(true)}
+          className={`min-h-12 flex-row flex-wrap items-center gap-2 border p-2 ${className ?? ""}`}
+          style={[
+            {
+              borderColor: colors.border,
+              borderRadius: theme.components.controlRadius,
+              backgroundColor: colors.surface,
+              opacity: disabled ? 0.5 : 1,
+              paddingRight: canClear ? 40 : undefined,
+            },
+            style,
+          ]}
+        >
+          {visibleItems.length === 0 ? (
+            <Text muted style={textStyle}>
+              {placeholder}
+            </Text>
+          ) : null}
+          {visibleItems.map((item) => (
+            <Chip
+              key={String(item.value)}
+              selected
+              onRemove={() =>
+                update(value.filter((current) => current !== item.value))
+              }
+              removeLabel={`Remove ${item.display}`}
+            >
+              {item.display}
+            </Chip>
+          ))}
+          {selectedItems.length > visibleItems.length && (
+            <Text muted>+{selectedItems.length - visibleItems.length}</Text>
+          )}
+        </Pressable>
+        {canClear && (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Clear selection"
+            onPress={() => {
+              update([]);
+              onClear?.();
+            }}
+            style={{
+              position: "absolute",
+              right: 8,
+              top: 0,
+              bottom: 0,
+              paddingHorizontal: 8,
+              justifyContent: "center",
+            }}
           >
-            {item.display}
-          </Chip>
-        ))}
-      </Pressable>
+            <Text muted>×</Text>
+          </Pressable>
+        )}
+      </View>
       <PickerModal
         visible={open}
         items={items}

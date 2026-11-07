@@ -2,6 +2,12 @@ import React, { useState } from "react";
 import { Platform, View } from "react-native";
 import {
   ActivityIndicator,
+  Autocomplete,
+  Breadcrumb,
+  DateTime,
+  Table,
+  Tabs,
+  Tooltip,
   AsyncLabel,
   useAsyncLabelStore,
   Avatar,
@@ -72,6 +78,18 @@ const countries: SelectOption<{ region: string }>[] = [
   { display: "Unavailable", value: "NA", disabled: true },
 ];
 
+const products = [
+  { name: "Rice", price: 24500 },
+  { name: "Beans", price: 18000 },
+  { name: 'Oil, "Premium"', price: 18500 },
+  { name: "Detergent", price: 9300 },
+];
+const dateModes = [
+  { label: "Date", value: "date" },
+  { label: "Time", value: "time" },
+  { label: "Both", value: "datetime" },
+];
+
 export function HomeScreen() {
   const { colors, mode, setMode } = useFlowUITheme();
   const labels = useAsyncLabelStore();
@@ -95,6 +113,20 @@ export function HomeScreen() {
   const [busy, setBusy] = useState(false);
   const [chipVisible, setChipVisible] = useState(true);
 
+  const [dateMode, setDateMode] = useState<"date" | "time" | "datetime">(
+    "datetime",
+  );
+  const [dateValues, setDateValues] = useState({
+    date: "2026-11-07",
+    time: "09:30",
+    datetime: "2026-11-07T09:30",
+  });
+  const [productQuery, setProductQuery] = useState("");
+  const [breadcrumbDepth, setBreadcrumbDepth] = useState(3);
+  const [activeTab, setActiveTab] = useState("overview");
+  const [showReport, setShowReport] = useState(false);
+  const [loaded, setLoaded] = useState(2);
+
   return (
     <View className="flex-1" style={{ backgroundColor: colors.canvas }}>
       <ScrollContainer contentContainerClassName="mx-auto w-full max-w-3xl gap-5 p-4 pb-16 pt-12">
@@ -116,6 +148,109 @@ export function HomeScreen() {
             ]}
           />
         </VStack>
+
+        <Card className="gap-4">
+          <Text className="text-lg font-bold">Date and time</Text>
+          <ButtonGroup
+            options={dateModes}
+            value={dateMode}
+            onValueChange={(next) => setDateMode(next as typeof dateMode)}
+          />
+          <DateTime
+            mode={dateMode}
+            value={dateValues[dateMode]}
+            onChange={(next) =>
+              setDateValues((previous) => ({ ...previous, [dateMode]: next }))
+            }
+          />
+          <Tooltip
+            text="Long press on touch, or hover on web"
+            location="bottom"
+          >
+            <Text>Picker help</Text>
+          </Tooltip>
+        </Card>
+
+        <Card className="gap-4">
+          <Text className="text-lg font-bold">Product inventory</Text>
+          <Breadcrumb
+            separator="/"
+            items={[
+              { id: 1, text: "Home" },
+              { id: 2, text: "Inventory" },
+              { id: 3, text: "Products" },
+            ].slice(0, breadcrumbDepth)}
+            onSelect={(id) => setBreadcrumbDepth(Number(id))}
+          />
+          <Autocomplete
+            items={products.map((item) => item.name)}
+            value={productQuery}
+            onChangeText={setProductQuery}
+            placeholder="Search products"
+          />
+          <Button
+            variant="outline"
+            onPress={() => {
+              setShowReport(!showReport);
+              setActiveTab(showReport ? "overview" : "report");
+            }}
+          >
+            {showReport ? "Remove report tab" : "Add report tab"}
+          </Button>
+          <Tabs
+            value={activeTab}
+            onChange={setActiveTab}
+            tabs={[
+              {
+                id: "overview",
+                label: "Overview",
+                icon: <Text>◉</Text>,
+                content: <Text>Inventory overview</Text>,
+              },
+              ...(showReport
+                ? [
+                    {
+                      id: "report",
+                      label: "Report",
+                      content: <Text>Inventory report</Text>,
+                    },
+                  ]
+                : []),
+            ]}
+          />
+          <Table
+            data={products.slice(0, loaded)}
+            columns={[
+              { field: "name", header: "Product" },
+              {
+                field: "price",
+                header: "Price",
+                format: (price) => `NGN ${Number(price).toLocaleString()}`,
+              },
+            ]}
+            columnsConfigurable
+            exportable
+            totalCount={products.length}
+            onLoadMore={() =>
+              setLoaded((count) => Math.min(count + 2, products.length))
+            }
+            renderLoadMore={({
+              loadedCount,
+              totalCount,
+              hasMore,
+              loadMore,
+            }) => (
+              <VStack className="gap-2">
+                <Text>
+                  {loadedCount} of {totalCount} products loaded
+                </Text>
+                {hasMore && (
+                  <Button onPress={loadMore}>Show more products</Button>
+                )}
+              </VStack>
+            )}
+          />
+        </Card>
 
         <Card className="gap-4">
           <Text className="text-lg font-bold">AsyncLabel</Text>
@@ -203,7 +338,7 @@ export function HomeScreen() {
                   value={name}
                   onChangeText={setName}
                   placeholder="e.g. Premium noodles"
-                  className="h-14 rounded-2xl border-violet-200 bg-violet-50 px-4 text-base dark:border-violet-800 dark:bg-slate-900"
+                  className="h-14 rounded-2xl px-4 text-base"
                 />
               </FormField>
               <FormField label="Password">
@@ -229,6 +364,8 @@ export function HomeScreen() {
                   items={countries}
                   value={country}
                   onValueChange={setCountry}
+                  clearable
+                  onClear={() => setCountry(undefined)}
                   searchable
                 />
               </FormField>
@@ -237,6 +374,7 @@ export function HomeScreen() {
                   items={countries}
                   value={markets}
                   onValueChange={setMarkets}
+                  clearable
                   searchable
                 />
               </FormField>

@@ -4,6 +4,8 @@ This guide is for browser React applications. The React package ships compiled C
 
 ## Install
 
+The browser example runs on React and React DOM 19.3.1. Install matching versions of React and React DOM in your app.
+
 ```bash
 npm install @akin2unde/flowui-react @fortawesome/fontawesome-free
 ```

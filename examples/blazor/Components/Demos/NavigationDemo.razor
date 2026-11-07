@@ -1,10 +1,12 @@
 <FlowVC Gap="1.5rem">
 <DemoBlock Title="Breadcrumbs" Markup="@Example0" Code="@ExampleCode">
-<FlowBreadcrumbs Items="breadcrumbs" />
+<FlowBreadcrumbs Items="breadcrumbs" Separator="/" />
 </DemoBlock>
 <DemoBlock Title="Tabs" Markup="@Example1" Code="@ExampleCode">
-<FlowTabs Items="tabs" @bind-ActiveKey="activeTab" Label="Project sections">
-    <Content Context="key">@if (key == "overview") { <p>Project overview content.</p> } else { <p>Activity content.</p> }</Content>
+<FlowButton OnClick="ToggleReport">@(showReport ? "Remove report tab" : "Add report tab")</FlowButton>
+<FlowTabs Items="Tabs" @bind-ActiveKey="activeTab" Label="Project sections">
+    <IconTemplate Context="item">@if (item.Key == "report") { <span aria-hidden="true">▤</span> }</IconTemplate>
+    <Content Context="key">@if (key == "overview") { <p>Project overview content.</p> } else { <p>@key content.</p> }</Content>
 </FlowTabs>
 </DemoBlock>
 <DemoBlock Title="Pagination" Markup="@Example2" Code="@ExampleCode">

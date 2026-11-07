@@ -11,6 +11,8 @@ public partial class FlowTabs : FlowComponentBase, IAsyncDisposable
     [Parameter] public string ActiveKey { get; set; } = "";
     [Parameter] public EventCallback<string> ActiveKeyChanged { get; set; }
     [Parameter] public RenderFragment<string>? Content { get; set; }
+    [Parameter] public RenderFragment<FlowTabItem>? IconTemplate { get; set; }
+    [Parameter] public string SelectedStyle { get; set; } = "underline";
     [Parameter] public string Label { get; set; } = "Tabs";
     private readonly string uid = "fui-tabs-" + Guid.NewGuid().ToString("N");
     private ElementReference tabList;

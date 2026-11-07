@@ -1,4 +1,4 @@
-# Release FlowUI.Blazor 0.3.0
+# Release FlowUI.Blazor 1.0.0
 
 The archive contains the library, runnable Interactive Server gallery, static
 reference documentation, NuGet publishing workflow and gallery Dockerfile.
@@ -17,7 +17,7 @@ dotnet build FlowUI.Blazor.slnx -c Release
 dotnet pack packages/blazor/FlowUI.Blazor.csproj -c Release -o artifacts/blazor
 ```
 
-The package is `artifacts/blazor/FlowUI.Blazor.0.3.0.nupkg`. Each published
+The package is `artifacts/blazor/FlowUI.Blazor.1.0.0.nupkg`. Each published
 version is immutable; increase Version, rebuild and repack for the next release.
 The .NET release is independent of the existing npm packages.
 
@@ -36,7 +36,7 @@ It uses GitHub's masked repository secret; a missing/expired key fails the step.
 For a manual local push, set your NUGET_API_KEY securely in your shell, then:
 
 ```bash
-dotnet nuget push artifacts/blazor/FlowUI.Blazor.0.3.0.nupkg \
+dotnet nuget push artifacts/blazor/FlowUI.Blazor.1.0.0.nupkg \
   --source https://api.nuget.org/v3/index.json --api-key "$NUGET_API_KEY"
 ```
 
@@ -44,7 +44,7 @@ Wait for NuGet validation/indexing and check the package page before announcing
 installation. A consumer can then run:
 
 ```bash
-dotnet add package FlowUI.Blazor --version 0.3.0
+dotnet add package FlowUI.Blazor --version 1.0.0
 ```
 
 Import the FlowUI namespaces, enable an interactive render mode, and link the

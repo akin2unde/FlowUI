@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "1.0.0",
   "published": false,
   "controls": [
     {
@@ -18,6 +18,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -79,7 +83,7 @@
           "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
         },
         {
-          "markup": "<FlowHC Wrap=\"true\" Align=\"FlowAlign.Center\">\n    <FlowPopover Text=\"Project information\" Label=\"Project information\" @bind-Open=\"popoverOpen\"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>\n    <FlowTooltip Text=\"Available to keyboard and mouse users\"><FlowBadge Color=\"FlowColor.Info\">Hover or focus for a hint</FlowBadge></FlowTooltip>\n</FlowHC>",
+          "markup": "<FlowHC Wrap=\"true\" Align=\"FlowAlign.Center\">\n    <FlowPopover Text=\"Project information\" Label=\"Project information\" @bind-Open=\"popoverOpen\"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>\n    <FlowTooltip Text=\"Available to keyboard and mouse users\" Location=\"bottom\"><FlowBadge Color=\"FlowColor.Info\">Hover or focus for a hint</FlowBadge></FlowTooltip>\n</FlowHC>",
           "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
         }
       ],
@@ -101,6 +105,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -186,6 +194,14 @@
       ],
       "examples": [
         {
+          "markup": "<FlowButton OnClick=\"ToggleReport\">@(showReport ? \"Remove report tab\" : \"Add report tab\")</FlowButton>\n<FlowTabs Items=\"Tabs\" @bind-ActiveKey=\"activeTab\" Label=\"Project sections\">\n    <IconTemplate Context=\"item\">@if (item.Key == \"report\") { <span aria-hidden=\"true\">\u25a4</span> }</IconTemplate>\n    <Content Context=\"key\">@if (key == \"overview\") { <p>Project overview content.</p> } else { <p>@key content.</p> }</Content>\n</FlowTabs>",
+          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class NavigationDemo\n{\nprivate readonly FlowBreadcrumbItem[] breadcrumbs = [new(\"Home\", \"/\"), new(\"Projects\", \"/\"), new(\"Platform\")];\n    private readonly FlowTabItem[] tabs = [new(\"overview\", \"Overview\"), new(\"activity\", \"Activity\"), new(\"settings\", \"Settings\", true)];\n    private string activeTab = \"overview\";\n    private int page = 1;\n    private bool showReport;\n    private IReadOnlyList<FlowTabItem> Tabs => showReport ? [.. tabs, new(\"report\", \"Report\")] : tabs;\n    private void ToggleReport()\n    {\n        showReport = !showReport;\n        activeTab = showReport ? \"report\" : \"overview\";\n    }\n}"
+        },
+        {
+          "markup": "<div class=\"login-stage\">\n    <div class=\"login-card\">\n        <div class=\"login-brand\" aria-hidden=\"true\">F</div>\n        <p class=\"login-eyebrow\">FLOWUI / ACCOUNT ACCESS</p>\n        <h2>Welcome back</h2>\n        <p class=\"login-subtitle\">Sign in to your workspace.</p>\n        <EditForm Model=\"login\" OnValidSubmit=\"SignInAsync\" FormName=\"sample-login\">\n            <DataAnnotationsValidator />\n            <FlowVC Gap=\"1.25rem\">\n                <FlowInput Label=\"Email address\" @bind-Value=\"login.Email\"\n                           Placeholder=\"you@example.com\" AutoComplete=\"username\"\n                           inputmode=\"email\" Required=\"true\" Disabled=\"signingIn\" />\n                <FlowPasswordInput Label=\"Password\" @bind-Value=\"login.Password\"\n                                   Placeholder=\"Enter your password\" AutoComplete=\"current-password\"\n                                   Required=\"true\" Disabled=\"signingIn\" />\n                <FlowCheckbox Label=\"Remember me\" @bind-Value=\"login.RememberMe\" Disabled=\"signingIn\" />\n                <FlowButton Type=\"submit\" Width=\"100%\" Loading=\"signingIn\" LoadingText=\"Signing in\u2026\">Sign in</FlowButton>\n                @if (!string.IsNullOrEmpty(loginStatus)) { <p class=\"login-status\" role=\"status\">@loginStatus</p> }\n            </FlowVC>\n        </EditForm>\n        <p class=\"login-note\">Sample form \u00b7 Use any valid email and a password of at least 8 characters.</p>\n    </div>\n</div>",
+          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class LoginDemo\n{\n    private readonly LoginModel login = new();\n    private bool signingIn;\n    private string? loginStatus;\n    private async Task SignInAsync()\n    {\n        if (signingIn) return;\n        signingIn = true;\n        loginStatus = null;\n        try\n        {\n            // Replace this delay with your application's authentication service.\n            await Task.Delay(700);\n            loginStatus = $\"Sample sign-in complete. Remember me: {(login.RememberMe ? \"on\" : \"off\")}. No authentication request was sent.\";\n        }\n        finally { signingIn = false; login.Password = null; }\n    }\n    public sealed class LoginModel\n    {\n        [Required, EmailAddress] public string? Email { get; set; }\n        [Required, MinLength(8)] public string? Password { get; set; }\n        public bool RememberMe { get; set; }\n    }\n}"
+        },
+        {
           "markup": "<FlowButton OnClick=\"() => dialogOpen = true\">Open dialog</FlowButton>\n<FlowDialog @bind-Open=\"dialogOpen\" Title=\"Create a project\">\n    <ChildContent><FlowInput Label=\"Project name\" @bind-Value=\"projectName\" Placeholder=\"Enter a name\" /></ChildContent>\n    <Footer><FlowHC Justify=\"FlowJustify.End\"><FlowButton Variant=\"FlowVariant.Ghost\" OnClick=\"() => dialogOpen = false\">Cancel</FlowButton><FlowButton Disabled=\"string.IsNullOrWhiteSpace(projectName)\" OnClick=\"SaveProject\">Create project</FlowButton></FlowHC></Footer>\n</FlowDialog>\n<p role=\"status\">@projectStatus</p>",
           "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
         },
@@ -202,8 +218,8 @@
           "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class FormsDemo\n{\n    private string? productName = \"Sample product\";\n    private string? committed = \"Initial value\";\n    private string? password;\n    private string? description = \"A short product description.\";\n    private decimal? price = 12.50m;\n    private int quantity = 1;\n    private bool acceptUpdates, allSelected, notifications;\n    private bool mixed = true;\n    private void SetAll(bool value) { allSelected = value; mixed = false; }\n    private readonly ProductModel model = new();\n    private string submitStatus = \"Fill in the form and submit.\";\n    private Task SubmitAsync() { submitStatus = \"Valid sample saved (demo only).\"; return Task.CompletedTask; }\n    public sealed class ProductModel\n    {\n        [Required, MinLength(3)] public string? Name { get; set; }\n        [Required, Range(typeof(decimal), \"0\", \"1000\")] public decimal? Amount { get; set; }\n        [Range(typeof(bool), \"true\", \"true\", ErrorMessage = \"Accept the terms to continue.\")]\n        public bool AcceptTerms { get; set; }\n    }\n}"
         },
         {
-          "markup": "<div class=\"login-stage\">\n    <div class=\"login-card\">\n        <div class=\"login-brand\" aria-hidden=\"true\">F</div>\n        <p class=\"login-eyebrow\">FLOWUI / ACCOUNT ACCESS</p>\n        <h2>Welcome back</h2>\n        <p class=\"login-subtitle\">Sign in to your workspace.</p>\n        <EditForm Model=\"login\" OnValidSubmit=\"SignInAsync\" FormName=\"sample-login\">\n            <DataAnnotationsValidator />\n            <FlowVC Gap=\"1.25rem\">\n                <FlowInput Label=\"Email address\" @bind-Value=\"login.Email\"\n                           Placeholder=\"you@example.com\" AutoComplete=\"username\"\n                           inputmode=\"email\" Required=\"true\" Disabled=\"signingIn\" />\n                <FlowPasswordInput Label=\"Password\" @bind-Value=\"login.Password\"\n                                   Placeholder=\"Enter your password\" AutoComplete=\"current-password\"\n                                   Required=\"true\" Disabled=\"signingIn\" />\n                <FlowCheckbox Label=\"Remember me\" @bind-Value=\"login.RememberMe\" Disabled=\"signingIn\" />\n                <FlowButton Type=\"submit\" Width=\"100%\" Loading=\"signingIn\" LoadingText=\"Signing in\u2026\">Sign in</FlowButton>\n                @if (!string.IsNullOrEmpty(loginStatus)) { <p class=\"login-status\" role=\"status\">@loginStatus</p> }\n            </FlowVC>\n        </EditForm>\n        <p class=\"login-note\">Sample form \u00b7 Use any valid email and a password of at least 8 characters.</p>\n    </div>\n</div>",
-          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class LoginDemo\n{\n    private readonly LoginModel login = new();\n    private bool signingIn;\n    private string? loginStatus;\n    private async Task SignInAsync()\n    {\n        if (signingIn) return;\n        signingIn = true;\n        loginStatus = null;\n        try\n        {\n            // Replace this delay with your application's authentication service.\n            await Task.Delay(700);\n            loginStatus = $\"Sample sign-in complete. Remember me: {(login.RememberMe ? \"on\" : \"off\")}. No authentication request was sent.\";\n        }\n        finally { signingIn = false; login.Password = null; }\n    }\n    public sealed class LoginModel\n    {\n        [Required, EmailAddress] public string? Email { get; set; }\n        [Required, MinLength(8)] public string? Password { get; set; }\n        public bool RememberMe { get; set; }\n    }\n}"
+          "markup": "<FlowTable TItem=\"Product\" Items=\"@products.Take(loadedProducts).ToArray()\" Columns=\"columns\" RowKey=\"p => p.Id\"\n                   Caption=\"Product inventory\" PageSize=\"0\" ColumnsConfigurable=\"true\" Exportable=\"true\" TotalCount=\"@products.Length\" OnLoadMore=\"LoadProducts\">\n            <LoadMoreTemplate Context=\"footer\">\n                <p role=\"status\">@($\"{footer.LoadedCount} of {footer.TotalCount} products loaded\")</p>\n                @if (footer.HasMore)\n                {\n                    <FlowButton Disabled=\"footer.Loading\" OnClick=\"() => footer.LoadMore()\">Show more products</FlowButton>\n                }\n            </LoadMoreTemplate>\n        </FlowTable>",
+          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class DataDisplayDemo\n{\nprivate readonly FlowAccordionItem[] questions = [new(\"installation\", \"How do I install FlowUI?\"), new(\"themes\", \"Can I customize themes?\")];\n    private IReadOnlyList<string> openQuestions = [\"installation\"];\n    public sealed record Product(int Id, string Name, decimal Price, int Stock);\n    private readonly Product[] products = [new(1, \"Notebook\", 12.50m, 40), new(2, \"Desk lamp\", 35m, 18), new(3, \"Pen set\", 6m, 120), new(4, \"Monitor\", 220m, 10), new(5, \"Keyboard\", 65m, 24), new(6, \"Mouse\", 25m, 42), new(7, \"Cable\", 8m, 70)];\n    private readonly FlowTableColumn<Product>[] columns = [new() { Title = \"Product\", Value = p => p.Name }, new() { Title = \"Price\", Value = p => p.Price }, new() { Title = \"Stock\", Value = p => p.Stock }];\n    private int loadedProducts = 3;\n    private void LoadProducts() => loadedProducts = Math.Min(loadedProducts + 3, products.Length);\n    public sealed record Node(string Id, string Name, Node[] Children);\n    private readonly Node[] nodes = [new(\"catalog\", \"Catalog\", [new(\"products\", \"Products\", [new(\"office\", \"Office\", []), new(\"electronics\", \"Electronics\", [])]), new(\"categories\", \"Categories\", [])]), new(\"settings\", \"Settings\", [new(\"users\", \"Users\", []), new(\"roles\", \"Roles\", [])])];\n    private string? selectedNode;\n    private IReadOnlyList<string> expanded = [\"catalog\"];\n}"
         }
       ],
       "sourcePath": "packages/blazor/Foundation/Button/FlowButton.razor"
@@ -224,6 +240,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -302,6 +322,10 @@
           "type": "string?"
         },
         {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
           "name": "Width",
           "type": "string?"
         },
@@ -377,6 +401,10 @@
           "type": "string?"
         },
         {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
           "name": "Width",
           "type": "string?"
         },
@@ -439,7 +467,7 @@
           "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
         },
         {
-          "markup": "<FlowHC Wrap=\"true\" Align=\"FlowAlign.Center\">\n    <FlowPopover Text=\"Project information\" Label=\"Project information\" @bind-Open=\"popoverOpen\"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>\n    <FlowTooltip Text=\"Available to keyboard and mouse users\"><FlowBadge Color=\"FlowColor.Info\">Hover or focus for a hint</FlowBadge></FlowTooltip>\n</FlowHC>",
+          "markup": "<FlowHC Wrap=\"true\" Align=\"FlowAlign.Center\">\n    <FlowPopover Text=\"Project information\" Label=\"Project information\" @bind-Open=\"popoverOpen\"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>\n    <FlowTooltip Text=\"Available to keyboard and mouse users\" Location=\"bottom\"><FlowBadge Color=\"FlowColor.Info\">Hover or focus for a hint</FlowBadge></FlowTooltip>\n</FlowHC>",
           "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
         }
       ],
@@ -461,6 +489,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -555,6 +587,10 @@
           "type": "string?"
         },
         {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
           "name": "Width",
           "type": "string?"
         },
@@ -627,6 +663,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -709,6 +749,10 @@
           "type": "string?"
         },
         {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
           "name": "Width",
           "type": "string?"
         },
@@ -784,6 +828,10 @@
           "type": "string?"
         },
         {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
           "name": "Width",
           "type": "string?"
         },
@@ -842,14 +890,6 @@
       ],
       "examples": [
         {
-          "markup": "<FlowButton Variant=\"FlowVariant.Outline\" OnClick=\"() => drawerOpen = true\">Open drawer</FlowButton>\n<FlowDrawer @bind-Open=\"drawerOpen\" Title=\"Project details\" Side=\"FlowDrawerSide.End\">\n    <ChildContent><FlowVC><FlowLabel>Assigned team</FlowLabel><FlowBadge>Platform</FlowBadge><p>A side panel can contain forms or details while retaining the current page.</p></FlowVC></ChildContent>\n    <Footer><FlowButton OnClick=\"() => drawerOpen = false\">Done</FlowButton></Footer>\n</FlowDrawer>",
-          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
-        },
-        {
-          "markup": "<FlowHC Wrap=\"true\" Align=\"FlowAlign.Center\">\n    <FlowPopover Text=\"Project information\" Label=\"Project information\" @bind-Open=\"popoverOpen\"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>\n    <FlowTooltip Text=\"Available to keyboard and mouse users\"><FlowBadge Color=\"FlowColor.Info\">Hover or focus for a hint</FlowBadge></FlowTooltip>\n</FlowHC>",
-          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
-        },
-        {
           "markup": "<FlowVC>\n    <FlowDropdown Label=\"Department\" Items=\"departments\" ValueSelector=\"i => i.Id\" TextSelector=\"i => i.Name\" DisabledSelector=\"i => i.Disabled\" @bind-Value=\"department\" Searchable=\"true\" Clearable=\"true\" Placeholder=\"Choose a department\" HelperText=\"Arrow keys navigate; Enter selects; Escape closes.\" />\n    <p role=\"status\">Department: @(department ?? \"none\")</p>\n    <FlowDropdown Label=\"Loading departments\" Items=\"Array.Empty<Option>()\" ValueSelector=\"i => i.Id\" TextSelector=\"i => i.Name\" Loading=\"true\" Placeholder=\"Open to see loading feedback\" />\n    <FlowDropdown Label=\"Missing selection\" Items=\"departments\" ValueSelector=\"i => i.Id\" TextSelector=\"i => i.Name\" Value='@(\"removed\")' ReadOnly=\"true\" HelperText=\"A missing value is preserved rather than selecting the first option.\" />\n</FlowVC>",
           "code": "namespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class SelectionDemo\n{\n    public sealed record Option(string Id, string Name, bool Disabled = false);\n    private readonly Option[] departments = [new(\"engineering\", \"Engineering\"), new(\"finance\", \"Finance\"), new(\"operations\", \"Operations\"), new(\"archived\", \"Archived\", true)];\n    private readonly Option[] teams = [new(\"platform\", \"Platform\"), new(\"design\", \"Design\"), new(\"quality\", \"Quality\"), new(\"support\", \"Support\"), new(\"sales\", \"Sales\"), new(\"archived\", \"Archived\", true)];\n    private readonly Option[] deliveries = [new(\"standard\", \"Standard\"), new(\"express\", \"Express\"), new(\"unavailable\", \"Unavailable\", true)];\n    private string? department;\n    private string delivery = \"standard\";\n    private IReadOnlyList<string> selectedTeams = [\"platform\"];\n    private readonly IReadOnlyList<string> lockedTeams = [\"design\", \"removed\"];\n}"
         },
@@ -860,6 +900,18 @@
         {
           "markup": "<FlowVC>\n    <FlowRadioGroup Label=\"Delivery\" Items=\"deliveries\" ValueSelector=\"i => i.Id\" TextSelector=\"i => i.Name\" DisabledSelector=\"i => i.Disabled\" @bind-Value=\"delivery\" Orientation=\"FlowOrientation.Horizontal\" HelperText=\"Native radios share a unique group name.\" />\n    <FlowRadioGroup Label=\"Read-only delivery\" Items=\"deliveries\" ValueSelector=\"i => i.Id\" TextSelector=\"i => i.Name\" Value='@(\"standard\")' ReadOnly=\"true\" />\n    <p role=\"status\">Delivery: @delivery</p>\n</FlowVC>",
           "code": "namespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class SelectionDemo\n{\n    public sealed record Option(string Id, string Name, bool Disabled = false);\n    private readonly Option[] departments = [new(\"engineering\", \"Engineering\"), new(\"finance\", \"Finance\"), new(\"operations\", \"Operations\"), new(\"archived\", \"Archived\", true)];\n    private readonly Option[] teams = [new(\"platform\", \"Platform\"), new(\"design\", \"Design\"), new(\"quality\", \"Quality\"), new(\"support\", \"Support\"), new(\"sales\", \"Sales\"), new(\"archived\", \"Archived\", true)];\n    private readonly Option[] deliveries = [new(\"standard\", \"Standard\"), new(\"express\", \"Express\"), new(\"unavailable\", \"Unavailable\", true)];\n    private string? department;\n    private string delivery = \"standard\";\n    private IReadOnlyList<string> selectedTeams = [\"platform\"];\n    private readonly IReadOnlyList<string> lockedTeams = [\"design\", \"removed\"];\n}"
+        },
+        {
+          "markup": "<div class=\"login-stage\">\n    <div class=\"login-card\">\n        <div class=\"login-brand\" aria-hidden=\"true\">F</div>\n        <p class=\"login-eyebrow\">FLOWUI / ACCOUNT ACCESS</p>\n        <h2>Welcome back</h2>\n        <p class=\"login-subtitle\">Sign in to your workspace.</p>\n        <EditForm Model=\"login\" OnValidSubmit=\"SignInAsync\" FormName=\"sample-login\">\n            <DataAnnotationsValidator />\n            <FlowVC Gap=\"1.25rem\">\n                <FlowInput Label=\"Email address\" @bind-Value=\"login.Email\"\n                           Placeholder=\"you@example.com\" AutoComplete=\"username\"\n                           inputmode=\"email\" Required=\"true\" Disabled=\"signingIn\" />\n                <FlowPasswordInput Label=\"Password\" @bind-Value=\"login.Password\"\n                                   Placeholder=\"Enter your password\" AutoComplete=\"current-password\"\n                                   Required=\"true\" Disabled=\"signingIn\" />\n                <FlowCheckbox Label=\"Remember me\" @bind-Value=\"login.RememberMe\" Disabled=\"signingIn\" />\n                <FlowButton Type=\"submit\" Width=\"100%\" Loading=\"signingIn\" LoadingText=\"Signing in\u2026\">Sign in</FlowButton>\n                @if (!string.IsNullOrEmpty(loginStatus)) { <p class=\"login-status\" role=\"status\">@loginStatus</p> }\n            </FlowVC>\n        </EditForm>\n        <p class=\"login-note\">Sample form \u00b7 Use any valid email and a password of at least 8 characters.</p>\n    </div>\n</div>",
+          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class LoginDemo\n{\n    private readonly LoginModel login = new();\n    private bool signingIn;\n    private string? loginStatus;\n    private async Task SignInAsync()\n    {\n        if (signingIn) return;\n        signingIn = true;\n        loginStatus = null;\n        try\n        {\n            // Replace this delay with your application's authentication service.\n            await Task.Delay(700);\n            loginStatus = $\"Sample sign-in complete. Remember me: {(login.RememberMe ? \"on\" : \"off\")}. No authentication request was sent.\";\n        }\n        finally { signingIn = false; login.Password = null; }\n    }\n    public sealed class LoginModel\n    {\n        [Required, EmailAddress] public string? Email { get; set; }\n        [Required, MinLength(8)] public string? Password { get; set; }\n        public bool RememberMe { get; set; }\n    }\n}"
+        },
+        {
+          "markup": "<FlowButton Variant=\"FlowVariant.Outline\" OnClick=\"() => drawerOpen = true\">Open drawer</FlowButton>\n<FlowDrawer @bind-Open=\"drawerOpen\" Title=\"Project details\" Side=\"FlowDrawerSide.End\">\n    <ChildContent><FlowVC><FlowLabel>Assigned team</FlowLabel><FlowBadge>Platform</FlowBadge><p>A side panel can contain forms or details while retaining the current page.</p></FlowVC></ChildContent>\n    <Footer><FlowButton OnClick=\"() => drawerOpen = false\">Done</FlowButton></Footer>\n</FlowDrawer>",
+          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
+        },
+        {
+          "markup": "<FlowHC Wrap=\"true\" Align=\"FlowAlign.Center\">\n    <FlowPopover Text=\"Project information\" Label=\"Project information\" @bind-Open=\"popoverOpen\"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>\n    <FlowTooltip Text=\"Available to keyboard and mouse users\" Location=\"bottom\"><FlowBadge Color=\"FlowColor.Info\">Hover or focus for a hint</FlowBadge></FlowTooltip>\n</FlowHC>",
+          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
         },
         {
           "markup": "<FlowVC>\n    <FlowInput Label=\"Product name\" @bind-Value=\"productName\" Placeholder=\"Enter a product name\" MaxLength=\"60\" HelperText=\"Updates as you type.\" />\n    <p role=\"status\">Product: @productName</p>\n    <FlowInput Label=\"Committed on change\" @bind-Value=\"committed\" UpdateOn=\"FlowUpdateOn.Change\" HelperText=\"Leave the field to commit.\" />\n    <p role=\"status\">Committed: @committed</p>\n    <FlowInput Label=\"Read-only reference\" Value=\"SKU-1042\" ReadOnly=\"true\" />\n    <FlowInput Label=\"Disabled input\" Value=\"Unavailable\" Disabled=\"true\" />\n</FlowVC>",
@@ -876,13 +928,112 @@
         {
           "markup": "<EditForm Model=\"model\" OnValidSubmit=\"SubmitAsync\" FormName=\"product-editor\">\n    <DataAnnotationsValidator />\n    <FlowVC>\n        <FlowInput Label=\"Validated name\" @bind-Value=\"model.Name\" Required=\"true\" HelperText=\"Required with at least 3 characters.\" />\n        <FlowNumberInput TValue=\"decimal?\" Label=\"Validated amount\" @bind-Value=\"model.Amount\" Required=\"true\" Min=\"0\" Max=\"1000\" />\n        <FlowCheckbox Label=\"Accept terms\" @bind-Value=\"model.AcceptTerms\" Required=\"true\" />\n        <FlowButton Type=\"submit\">Validate form</FlowButton>\n        <p role=\"status\">@submitStatus</p>\n    </FlowVC>\n</EditForm>",
           "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class FormsDemo\n{\n    private string? productName = \"Sample product\";\n    private string? committed = \"Initial value\";\n    private string? password;\n    private string? description = \"A short product description.\";\n    private decimal? price = 12.50m;\n    private int quantity = 1;\n    private bool acceptUpdates, allSelected, notifications;\n    private bool mixed = true;\n    private void SetAll(bool value) { allSelected = value; mixed = false; }\n    private readonly ProductModel model = new();\n    private string submitStatus = \"Fill in the form and submit.\";\n    private Task SubmitAsync() { submitStatus = \"Valid sample saved (demo only).\"; return Task.CompletedTask; }\n    public sealed class ProductModel\n    {\n        [Required, MinLength(3)] public string? Name { get; set; }\n        [Required, Range(typeof(decimal), \"0\", \"1000\")] public decimal? Amount { get; set; }\n        [Range(typeof(bool), \"true\", \"true\", ErrorMessage = \"Accept the terms to continue.\")]\n        public bool AcceptTerms { get; set; }\n    }\n}"
-        },
-        {
-          "markup": "<div class=\"login-stage\">\n    <div class=\"login-card\">\n        <div class=\"login-brand\" aria-hidden=\"true\">F</div>\n        <p class=\"login-eyebrow\">FLOWUI / ACCOUNT ACCESS</p>\n        <h2>Welcome back</h2>\n        <p class=\"login-subtitle\">Sign in to your workspace.</p>\n        <EditForm Model=\"login\" OnValidSubmit=\"SignInAsync\" FormName=\"sample-login\">\n            <DataAnnotationsValidator />\n            <FlowVC Gap=\"1.25rem\">\n                <FlowInput Label=\"Email address\" @bind-Value=\"login.Email\"\n                           Placeholder=\"you@example.com\" AutoComplete=\"username\"\n                           inputmode=\"email\" Required=\"true\" Disabled=\"signingIn\" />\n                <FlowPasswordInput Label=\"Password\" @bind-Value=\"login.Password\"\n                                   Placeholder=\"Enter your password\" AutoComplete=\"current-password\"\n                                   Required=\"true\" Disabled=\"signingIn\" />\n                <FlowCheckbox Label=\"Remember me\" @bind-Value=\"login.RememberMe\" Disabled=\"signingIn\" />\n                <FlowButton Type=\"submit\" Width=\"100%\" Loading=\"signingIn\" LoadingText=\"Signing in\u2026\">Sign in</FlowButton>\n                @if (!string.IsNullOrEmpty(loginStatus)) { <p class=\"login-status\" role=\"status\">@loginStatus</p> }\n            </FlowVC>\n        </EditForm>\n        <p class=\"login-note\">Sample form \u00b7 Use any valid email and a password of at least 8 characters.</p>\n    </div>\n</div>",
-          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class LoginDemo\n{\n    private readonly LoginModel login = new();\n    private bool signingIn;\n    private string? loginStatus;\n    private async Task SignInAsync()\n    {\n        if (signingIn) return;\n        signingIn = true;\n        loginStatus = null;\n        try\n        {\n            // Replace this delay with your application's authentication service.\n            await Task.Delay(700);\n            loginStatus = $\"Sample sign-in complete. Remember me: {(login.RememberMe ? \"on\" : \"off\")}. No authentication request was sent.\";\n        }\n        finally { signingIn = false; login.Password = null; }\n    }\n    public sealed class LoginModel\n    {\n        [Required, EmailAddress] public string? Email { get; set; }\n        [Required, MinLength(8)] public string? Password { get; set; }\n        public bool RememberMe { get; set; }\n    }\n}"
         }
       ],
       "sourcePath": "packages/blazor/Foundation/VC/FlowVC.razor"
+    },
+    {
+      "name": "FlowAutocomplete",
+      "category": "Forms",
+      "description": "Searchable suggestions with a browse chevron and keyboard selection.",
+      "namespace": "FlowUI.Blazor.Forms",
+      "parameters": [
+        {
+          "name": "Id",
+          "type": "string?"
+        },
+        {
+          "name": "Class",
+          "type": "string?"
+        },
+        {
+          "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
+          "name": "Width",
+          "type": "string?"
+        },
+        {
+          "name": "Height",
+          "type": "string?"
+        },
+        {
+          "name": "MaxWidth",
+          "type": "string?"
+        },
+        {
+          "name": "Padding",
+          "type": "string?"
+        },
+        {
+          "name": "Margin",
+          "type": "string?"
+        },
+        {
+          "name": "BackgroundColor",
+          "type": "string?"
+        },
+        {
+          "name": "TextColor",
+          "type": "string?"
+        },
+        {
+          "name": "CornerRadius",
+          "type": "string?"
+        },
+        {
+          "name": "ChildContent",
+          "type": "RenderFragment?"
+        },
+        {
+          "name": "AdditionalAttributes",
+          "type": "IReadOnlyDictionary<string, object>?"
+        },
+        {
+          "name": "Items",
+          "type": "IReadOnlyList<string>"
+        },
+        {
+          "name": "Value",
+          "type": "string"
+        },
+        {
+          "name": "ValueChanged",
+          "type": "EventCallback<string>"
+        },
+        {
+          "name": "Selected",
+          "type": "EventCallback<string>"
+        },
+        {
+          "name": "Label",
+          "type": "string"
+        },
+        {
+          "name": "Placeholder",
+          "type": "string?"
+        },
+        {
+          "name": "MinCharacters",
+          "type": "int"
+        },
+        {
+          "name": "Disabled",
+          "type": "bool"
+        }
+      ],
+      "examples": [
+        {
+          "markup": "<FlowAutocomplete Items=\"suggestions\" @bind-Value=\"productQuery\" Label=\"Product\" Placeholder=\"Search products\" />",
+          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class FormsDemo\n{\n    private string? productName = \"Sample product\";\n    private string? committed = \"Initial value\";\n    private string? password;\n    private string? description = \"A short product description.\";\n    private decimal? price = 12.50m;\n    private int quantity = 1;\n    private bool acceptUpdates, allSelected, notifications;\n    private bool mixed = true;\n    private void SetAll(bool value) { allSelected = value; mixed = false; }\n    private readonly ProductModel model = new();\n    private string submitStatus = \"Fill in the form and submit.\";\n    private Task SubmitAsync() { submitStatus = \"Valid sample saved (demo only).\"; return Task.CompletedTask; }\n    public sealed class ProductModel\n    {\n        [Required, MinLength(3)] public string? Name { get; set; }\n        [Required, Range(typeof(decimal), \"0\", \"1000\")] public decimal? Amount { get; set; }\n        [Range(typeof(bool), \"true\", \"true\", ErrorMessage = \"Accept the terms to continue.\")]\n        public bool AcceptTerms { get; set; }\n    }\n}"
+        }
+      ],
+      "sourcePath": "packages/blazor/Forms/Autocomplete/FlowAutocomplete.razor"
     },
     {
       "name": "FlowCheckbox",
@@ -900,6 +1051,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -1001,19 +1156,118 @@
       ],
       "examples": [
         {
+          "markup": "<div class=\"login-stage\">\n    <div class=\"login-card\">\n        <div class=\"login-brand\" aria-hidden=\"true\">F</div>\n        <p class=\"login-eyebrow\">FLOWUI / ACCOUNT ACCESS</p>\n        <h2>Welcome back</h2>\n        <p class=\"login-subtitle\">Sign in to your workspace.</p>\n        <EditForm Model=\"login\" OnValidSubmit=\"SignInAsync\" FormName=\"sample-login\">\n            <DataAnnotationsValidator />\n            <FlowVC Gap=\"1.25rem\">\n                <FlowInput Label=\"Email address\" @bind-Value=\"login.Email\"\n                           Placeholder=\"you@example.com\" AutoComplete=\"username\"\n                           inputmode=\"email\" Required=\"true\" Disabled=\"signingIn\" />\n                <FlowPasswordInput Label=\"Password\" @bind-Value=\"login.Password\"\n                                   Placeholder=\"Enter your password\" AutoComplete=\"current-password\"\n                                   Required=\"true\" Disabled=\"signingIn\" />\n                <FlowCheckbox Label=\"Remember me\" @bind-Value=\"login.RememberMe\" Disabled=\"signingIn\" />\n                <FlowButton Type=\"submit\" Width=\"100%\" Loading=\"signingIn\" LoadingText=\"Signing in\u2026\">Sign in</FlowButton>\n                @if (!string.IsNullOrEmpty(loginStatus)) { <p class=\"login-status\" role=\"status\">@loginStatus</p> }\n            </FlowVC>\n        </EditForm>\n        <p class=\"login-note\">Sample form \u00b7 Use any valid email and a password of at least 8 characters.</p>\n    </div>\n</div>",
+          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class LoginDemo\n{\n    private readonly LoginModel login = new();\n    private bool signingIn;\n    private string? loginStatus;\n    private async Task SignInAsync()\n    {\n        if (signingIn) return;\n        signingIn = true;\n        loginStatus = null;\n        try\n        {\n            // Replace this delay with your application's authentication service.\n            await Task.Delay(700);\n            loginStatus = $\"Sample sign-in complete. Remember me: {(login.RememberMe ? \"on\" : \"off\")}. No authentication request was sent.\";\n        }\n        finally { signingIn = false; login.Password = null; }\n    }\n    public sealed class LoginModel\n    {\n        [Required, EmailAddress] public string? Email { get; set; }\n        [Required, MinLength(8)] public string? Password { get; set; }\n        public bool RememberMe { get; set; }\n    }\n}"
+        },
+        {
           "markup": "<FlowVC>\n    <FlowCheckbox Label=\"Accept updates\" @bind-Value=\"acceptUpdates\" HelperText=\"A native checkbox with a separate mixed-state parameter.\" />\n    <FlowCheckbox Label=\"Partly selected\" Value=\"allSelected\" Indeterminate=\"mixed\" ValueChanged=\"SetAll\" />\n    <FlowSwitch Label=\"Email notifications\" @bind-Value=\"notifications\" HelperText=\"The label stays stable when the value changes.\" />\n    <FlowSwitch Label=\"Read-only preference\" Value=\"true\" ReadOnly=\"true\" />\n    <p role=\"status\">Updates: @acceptUpdates \u00b7 Notifications: @notifications</p>\n</FlowVC>",
           "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class FormsDemo\n{\n    private string? productName = \"Sample product\";\n    private string? committed = \"Initial value\";\n    private string? password;\n    private string? description = \"A short product description.\";\n    private decimal? price = 12.50m;\n    private int quantity = 1;\n    private bool acceptUpdates, allSelected, notifications;\n    private bool mixed = true;\n    private void SetAll(bool value) { allSelected = value; mixed = false; }\n    private readonly ProductModel model = new();\n    private string submitStatus = \"Fill in the form and submit.\";\n    private Task SubmitAsync() { submitStatus = \"Valid sample saved (demo only).\"; return Task.CompletedTask; }\n    public sealed class ProductModel\n    {\n        [Required, MinLength(3)] public string? Name { get; set; }\n        [Required, Range(typeof(decimal), \"0\", \"1000\")] public decimal? Amount { get; set; }\n        [Range(typeof(bool), \"true\", \"true\", ErrorMessage = \"Accept the terms to continue.\")]\n        public bool AcceptTerms { get; set; }\n    }\n}"
         },
         {
           "markup": "<EditForm Model=\"model\" OnValidSubmit=\"SubmitAsync\" FormName=\"product-editor\">\n    <DataAnnotationsValidator />\n    <FlowVC>\n        <FlowInput Label=\"Validated name\" @bind-Value=\"model.Name\" Required=\"true\" HelperText=\"Required with at least 3 characters.\" />\n        <FlowNumberInput TValue=\"decimal?\" Label=\"Validated amount\" @bind-Value=\"model.Amount\" Required=\"true\" Min=\"0\" Max=\"1000\" />\n        <FlowCheckbox Label=\"Accept terms\" @bind-Value=\"model.AcceptTerms\" Required=\"true\" />\n        <FlowButton Type=\"submit\">Validate form</FlowButton>\n        <p role=\"status\">@submitStatus</p>\n    </FlowVC>\n</EditForm>",
           "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class FormsDemo\n{\n    private string? productName = \"Sample product\";\n    private string? committed = \"Initial value\";\n    private string? password;\n    private string? description = \"A short product description.\";\n    private decimal? price = 12.50m;\n    private int quantity = 1;\n    private bool acceptUpdates, allSelected, notifications;\n    private bool mixed = true;\n    private void SetAll(bool value) { allSelected = value; mixed = false; }\n    private readonly ProductModel model = new();\n    private string submitStatus = \"Fill in the form and submit.\";\n    private Task SubmitAsync() { submitStatus = \"Valid sample saved (demo only).\"; return Task.CompletedTask; }\n    public sealed class ProductModel\n    {\n        [Required, MinLength(3)] public string? Name { get; set; }\n        [Required, Range(typeof(decimal), \"0\", \"1000\")] public decimal? Amount { get; set; }\n        [Range(typeof(bool), \"true\", \"true\", ErrorMessage = \"Accept the terms to continue.\")]\n        public bool AcceptTerms { get; set; }\n    }\n}"
-        },
-        {
-          "markup": "<div class=\"login-stage\">\n    <div class=\"login-card\">\n        <div class=\"login-brand\" aria-hidden=\"true\">F</div>\n        <p class=\"login-eyebrow\">FLOWUI / ACCOUNT ACCESS</p>\n        <h2>Welcome back</h2>\n        <p class=\"login-subtitle\">Sign in to your workspace.</p>\n        <EditForm Model=\"login\" OnValidSubmit=\"SignInAsync\" FormName=\"sample-login\">\n            <DataAnnotationsValidator />\n            <FlowVC Gap=\"1.25rem\">\n                <FlowInput Label=\"Email address\" @bind-Value=\"login.Email\"\n                           Placeholder=\"you@example.com\" AutoComplete=\"username\"\n                           inputmode=\"email\" Required=\"true\" Disabled=\"signingIn\" />\n                <FlowPasswordInput Label=\"Password\" @bind-Value=\"login.Password\"\n                                   Placeholder=\"Enter your password\" AutoComplete=\"current-password\"\n                                   Required=\"true\" Disabled=\"signingIn\" />\n                <FlowCheckbox Label=\"Remember me\" @bind-Value=\"login.RememberMe\" Disabled=\"signingIn\" />\n                <FlowButton Type=\"submit\" Width=\"100%\" Loading=\"signingIn\" LoadingText=\"Signing in\u2026\">Sign in</FlowButton>\n                @if (!string.IsNullOrEmpty(loginStatus)) { <p class=\"login-status\" role=\"status\">@loginStatus</p> }\n            </FlowVC>\n        </EditForm>\n        <p class=\"login-note\">Sample form \u00b7 Use any valid email and a password of at least 8 characters.</p>\n    </div>\n</div>",
-          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class LoginDemo\n{\n    private readonly LoginModel login = new();\n    private bool signingIn;\n    private string? loginStatus;\n    private async Task SignInAsync()\n    {\n        if (signingIn) return;\n        signingIn = true;\n        loginStatus = null;\n        try\n        {\n            // Replace this delay with your application's authentication service.\n            await Task.Delay(700);\n            loginStatus = $\"Sample sign-in complete. Remember me: {(login.RememberMe ? \"on\" : \"off\")}. No authentication request was sent.\";\n        }\n        finally { signingIn = false; login.Password = null; }\n    }\n    public sealed class LoginModel\n    {\n        [Required, EmailAddress] public string? Email { get; set; }\n        [Required, MinLength(8)] public string? Password { get; set; }\n        public bool RememberMe { get; set; }\n    }\n}"
         }
       ],
       "sourcePath": "packages/blazor/Forms/Checkbox/FlowCheckbox.razor"
+    },
+    {
+      "name": "FlowDateTime",
+      "category": "Forms",
+      "description": "Compact date-only, time-only and combined local date/time pickers.",
+      "namespace": "FlowUI.Blazor.Forms",
+      "parameters": [
+        {
+          "name": "Id",
+          "type": "string?"
+        },
+        {
+          "name": "Class",
+          "type": "string?"
+        },
+        {
+          "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
+          "name": "Width",
+          "type": "string?"
+        },
+        {
+          "name": "Height",
+          "type": "string?"
+        },
+        {
+          "name": "MaxWidth",
+          "type": "string?"
+        },
+        {
+          "name": "Padding",
+          "type": "string?"
+        },
+        {
+          "name": "Margin",
+          "type": "string?"
+        },
+        {
+          "name": "BackgroundColor",
+          "type": "string?"
+        },
+        {
+          "name": "TextColor",
+          "type": "string?"
+        },
+        {
+          "name": "CornerRadius",
+          "type": "string?"
+        },
+        {
+          "name": "ChildContent",
+          "type": "RenderFragment?"
+        },
+        {
+          "name": "AdditionalAttributes",
+          "type": "IReadOnlyDictionary<string, object>?"
+        },
+        {
+          "name": "Mode",
+          "type": "FlowDateTimeMode"
+        },
+        {
+          "name": "Value",
+          "type": "string?"
+        },
+        {
+          "name": "ValueChanged",
+          "type": "EventCallback<string>"
+        },
+        {
+          "name": "Min",
+          "type": "string?"
+        },
+        {
+          "name": "Max",
+          "type": "string?"
+        },
+        {
+          "name": "Disabled",
+          "type": "bool"
+        },
+        {
+          "name": "ShowDayBoundaryButtons",
+          "type": "bool"
+        }
+      ],
+      "examples": [
+        {
+          "markup": "<label>Mode\n            <select @bind=\"dateMode\">\n                <option value=\"@FlowDateTimeMode.DateTime\">Date and time</option>\n                <option value=\"@FlowDateTimeMode.Date\">Date only</option>\n                <option value=\"@FlowDateTimeMode.Time\">Time only</option>\n            </select>\n        </label>\n        <FlowDateTime Mode=\"dateMode\" Value=\"@(dateValues[dateMode])\" ValueChanged=\"SetDate\" />",
+          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class FormsDemo\n{\n    private string? productName = \"Sample product\";\n    private string? committed = \"Initial value\";\n    private string? password;\n    private string? description = \"A short product description.\";\n    private decimal? price = 12.50m;\n    private int quantity = 1;\n    private bool acceptUpdates, allSelected, notifications;\n    private bool mixed = true;\n    private void SetAll(bool value) { allSelected = value; mixed = false; }\n    private readonly ProductModel model = new();\n    private string submitStatus = \"Fill in the form and submit.\";\n    private Task SubmitAsync() { submitStatus = \"Valid sample saved (demo only).\"; return Task.CompletedTask; }\n    public sealed class ProductModel\n    {\n        [Required, MinLength(3)] public string? Name { get; set; }\n        [Required, Range(typeof(decimal), \"0\", \"1000\")] public decimal? Amount { get; set; }\n        [Range(typeof(bool), \"true\", \"true\", ErrorMessage = \"Accept the terms to continue.\")]\n        public bool AcceptTerms { get; set; }\n    }\n}"
+        }
+      ],
+      "sourcePath": "packages/blazor/Forms/DateTime/FlowDateTime.razor"
     },
     {
       "name": "FlowInput",
@@ -1031,6 +1285,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -1136,6 +1394,10 @@
       ],
       "examples": [
         {
+          "markup": "<div class=\"login-stage\">\n    <div class=\"login-card\">\n        <div class=\"login-brand\" aria-hidden=\"true\">F</div>\n        <p class=\"login-eyebrow\">FLOWUI / ACCOUNT ACCESS</p>\n        <h2>Welcome back</h2>\n        <p class=\"login-subtitle\">Sign in to your workspace.</p>\n        <EditForm Model=\"login\" OnValidSubmit=\"SignInAsync\" FormName=\"sample-login\">\n            <DataAnnotationsValidator />\n            <FlowVC Gap=\"1.25rem\">\n                <FlowInput Label=\"Email address\" @bind-Value=\"login.Email\"\n                           Placeholder=\"you@example.com\" AutoComplete=\"username\"\n                           inputmode=\"email\" Required=\"true\" Disabled=\"signingIn\" />\n                <FlowPasswordInput Label=\"Password\" @bind-Value=\"login.Password\"\n                                   Placeholder=\"Enter your password\" AutoComplete=\"current-password\"\n                                   Required=\"true\" Disabled=\"signingIn\" />\n                <FlowCheckbox Label=\"Remember me\" @bind-Value=\"login.RememberMe\" Disabled=\"signingIn\" />\n                <FlowButton Type=\"submit\" Width=\"100%\" Loading=\"signingIn\" LoadingText=\"Signing in\u2026\">Sign in</FlowButton>\n                @if (!string.IsNullOrEmpty(loginStatus)) { <p class=\"login-status\" role=\"status\">@loginStatus</p> }\n            </FlowVC>\n        </EditForm>\n        <p class=\"login-note\">Sample form \u00b7 Use any valid email and a password of at least 8 characters.</p>\n    </div>\n</div>",
+          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class LoginDemo\n{\n    private readonly LoginModel login = new();\n    private bool signingIn;\n    private string? loginStatus;\n    private async Task SignInAsync()\n    {\n        if (signingIn) return;\n        signingIn = true;\n        loginStatus = null;\n        try\n        {\n            // Replace this delay with your application's authentication service.\n            await Task.Delay(700);\n            loginStatus = $\"Sample sign-in complete. Remember me: {(login.RememberMe ? \"on\" : \"off\")}. No authentication request was sent.\";\n        }\n        finally { signingIn = false; login.Password = null; }\n    }\n    public sealed class LoginModel\n    {\n        [Required, EmailAddress] public string? Email { get; set; }\n        [Required, MinLength(8)] public string? Password { get; set; }\n        public bool RememberMe { get; set; }\n    }\n}"
+        },
+        {
           "markup": "<FlowButton OnClick=\"() => dialogOpen = true\">Open dialog</FlowButton>\n<FlowDialog @bind-Open=\"dialogOpen\" Title=\"Create a project\">\n    <ChildContent><FlowInput Label=\"Project name\" @bind-Value=\"projectName\" Placeholder=\"Enter a name\" /></ChildContent>\n    <Footer><FlowHC Justify=\"FlowJustify.End\"><FlowButton Variant=\"FlowVariant.Ghost\" OnClick=\"() => dialogOpen = false\">Cancel</FlowButton><FlowButton Disabled=\"string.IsNullOrWhiteSpace(projectName)\" OnClick=\"SaveProject\">Create project</FlowButton></FlowHC></Footer>\n</FlowDialog>\n<p role=\"status\">@projectStatus</p>",
           "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
         },
@@ -1146,10 +1408,6 @@
         {
           "markup": "<EditForm Model=\"model\" OnValidSubmit=\"SubmitAsync\" FormName=\"product-editor\">\n    <DataAnnotationsValidator />\n    <FlowVC>\n        <FlowInput Label=\"Validated name\" @bind-Value=\"model.Name\" Required=\"true\" HelperText=\"Required with at least 3 characters.\" />\n        <FlowNumberInput TValue=\"decimal?\" Label=\"Validated amount\" @bind-Value=\"model.Amount\" Required=\"true\" Min=\"0\" Max=\"1000\" />\n        <FlowCheckbox Label=\"Accept terms\" @bind-Value=\"model.AcceptTerms\" Required=\"true\" />\n        <FlowButton Type=\"submit\">Validate form</FlowButton>\n        <p role=\"status\">@submitStatus</p>\n    </FlowVC>\n</EditForm>",
           "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class FormsDemo\n{\n    private string? productName = \"Sample product\";\n    private string? committed = \"Initial value\";\n    private string? password;\n    private string? description = \"A short product description.\";\n    private decimal? price = 12.50m;\n    private int quantity = 1;\n    private bool acceptUpdates, allSelected, notifications;\n    private bool mixed = true;\n    private void SetAll(bool value) { allSelected = value; mixed = false; }\n    private readonly ProductModel model = new();\n    private string submitStatus = \"Fill in the form and submit.\";\n    private Task SubmitAsync() { submitStatus = \"Valid sample saved (demo only).\"; return Task.CompletedTask; }\n    public sealed class ProductModel\n    {\n        [Required, MinLength(3)] public string? Name { get; set; }\n        [Required, Range(typeof(decimal), \"0\", \"1000\")] public decimal? Amount { get; set; }\n        [Range(typeof(bool), \"true\", \"true\", ErrorMessage = \"Accept the terms to continue.\")]\n        public bool AcceptTerms { get; set; }\n    }\n}"
-        },
-        {
-          "markup": "<div class=\"login-stage\">\n    <div class=\"login-card\">\n        <div class=\"login-brand\" aria-hidden=\"true\">F</div>\n        <p class=\"login-eyebrow\">FLOWUI / ACCOUNT ACCESS</p>\n        <h2>Welcome back</h2>\n        <p class=\"login-subtitle\">Sign in to your workspace.</p>\n        <EditForm Model=\"login\" OnValidSubmit=\"SignInAsync\" FormName=\"sample-login\">\n            <DataAnnotationsValidator />\n            <FlowVC Gap=\"1.25rem\">\n                <FlowInput Label=\"Email address\" @bind-Value=\"login.Email\"\n                           Placeholder=\"you@example.com\" AutoComplete=\"username\"\n                           inputmode=\"email\" Required=\"true\" Disabled=\"signingIn\" />\n                <FlowPasswordInput Label=\"Password\" @bind-Value=\"login.Password\"\n                                   Placeholder=\"Enter your password\" AutoComplete=\"current-password\"\n                                   Required=\"true\" Disabled=\"signingIn\" />\n                <FlowCheckbox Label=\"Remember me\" @bind-Value=\"login.RememberMe\" Disabled=\"signingIn\" />\n                <FlowButton Type=\"submit\" Width=\"100%\" Loading=\"signingIn\" LoadingText=\"Signing in\u2026\">Sign in</FlowButton>\n                @if (!string.IsNullOrEmpty(loginStatus)) { <p class=\"login-status\" role=\"status\">@loginStatus</p> }\n            </FlowVC>\n        </EditForm>\n        <p class=\"login-note\">Sample form \u00b7 Use any valid email and a password of at least 8 characters.</p>\n    </div>\n</div>",
-          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class LoginDemo\n{\n    private readonly LoginModel login = new();\n    private bool signingIn;\n    private string? loginStatus;\n    private async Task SignInAsync()\n    {\n        if (signingIn) return;\n        signingIn = true;\n        loginStatus = null;\n        try\n        {\n            // Replace this delay with your application's authentication service.\n            await Task.Delay(700);\n            loginStatus = $\"Sample sign-in complete. Remember me: {(login.RememberMe ? \"on\" : \"off\")}. No authentication request was sent.\";\n        }\n        finally { signingIn = false; login.Password = null; }\n    }\n    public sealed class LoginModel\n    {\n        [Required, EmailAddress] public string? Email { get; set; }\n        [Required, MinLength(8)] public string? Password { get; set; }\n        public bool RememberMe { get; set; }\n    }\n}"
         }
       ],
       "sourcePath": "packages/blazor/Forms/Input/FlowInput.razor"
@@ -1170,6 +1428,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -1332,6 +1594,10 @@
           "type": "string?"
         },
         {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
           "name": "Width",
           "type": "string?"
         },
@@ -1446,12 +1712,12 @@
       ],
       "examples": [
         {
-          "markup": "<FlowPasswordInput Label=\"Password\" @bind-Value=\"password\" AutoComplete=\"new-password\" HelperText=\"Use the eye button to reveal or hide. The sample never displays your password elsewhere.\" />",
-          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class FormsDemo\n{\n    private string? productName = \"Sample product\";\n    private string? committed = \"Initial value\";\n    private string? password;\n    private string? description = \"A short product description.\";\n    private decimal? price = 12.50m;\n    private int quantity = 1;\n    private bool acceptUpdates, allSelected, notifications;\n    private bool mixed = true;\n    private void SetAll(bool value) { allSelected = value; mixed = false; }\n    private readonly ProductModel model = new();\n    private string submitStatus = \"Fill in the form and submit.\";\n    private Task SubmitAsync() { submitStatus = \"Valid sample saved (demo only).\"; return Task.CompletedTask; }\n    public sealed class ProductModel\n    {\n        [Required, MinLength(3)] public string? Name { get; set; }\n        [Required, Range(typeof(decimal), \"0\", \"1000\")] public decimal? Amount { get; set; }\n        [Range(typeof(bool), \"true\", \"true\", ErrorMessage = \"Accept the terms to continue.\")]\n        public bool AcceptTerms { get; set; }\n    }\n}"
-        },
-        {
           "markup": "<div class=\"login-stage\">\n    <div class=\"login-card\">\n        <div class=\"login-brand\" aria-hidden=\"true\">F</div>\n        <p class=\"login-eyebrow\">FLOWUI / ACCOUNT ACCESS</p>\n        <h2>Welcome back</h2>\n        <p class=\"login-subtitle\">Sign in to your workspace.</p>\n        <EditForm Model=\"login\" OnValidSubmit=\"SignInAsync\" FormName=\"sample-login\">\n            <DataAnnotationsValidator />\n            <FlowVC Gap=\"1.25rem\">\n                <FlowInput Label=\"Email address\" @bind-Value=\"login.Email\"\n                           Placeholder=\"you@example.com\" AutoComplete=\"username\"\n                           inputmode=\"email\" Required=\"true\" Disabled=\"signingIn\" />\n                <FlowPasswordInput Label=\"Password\" @bind-Value=\"login.Password\"\n                                   Placeholder=\"Enter your password\" AutoComplete=\"current-password\"\n                                   Required=\"true\" Disabled=\"signingIn\" />\n                <FlowCheckbox Label=\"Remember me\" @bind-Value=\"login.RememberMe\" Disabled=\"signingIn\" />\n                <FlowButton Type=\"submit\" Width=\"100%\" Loading=\"signingIn\" LoadingText=\"Signing in\u2026\">Sign in</FlowButton>\n                @if (!string.IsNullOrEmpty(loginStatus)) { <p class=\"login-status\" role=\"status\">@loginStatus</p> }\n            </FlowVC>\n        </EditForm>\n        <p class=\"login-note\">Sample form \u00b7 Use any valid email and a password of at least 8 characters.</p>\n    </div>\n</div>",
           "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class LoginDemo\n{\n    private readonly LoginModel login = new();\n    private bool signingIn;\n    private string? loginStatus;\n    private async Task SignInAsync()\n    {\n        if (signingIn) return;\n        signingIn = true;\n        loginStatus = null;\n        try\n        {\n            // Replace this delay with your application's authentication service.\n            await Task.Delay(700);\n            loginStatus = $\"Sample sign-in complete. Remember me: {(login.RememberMe ? \"on\" : \"off\")}. No authentication request was sent.\";\n        }\n        finally { signingIn = false; login.Password = null; }\n    }\n    public sealed class LoginModel\n    {\n        [Required, EmailAddress] public string? Email { get; set; }\n        [Required, MinLength(8)] public string? Password { get; set; }\n        public bool RememberMe { get; set; }\n    }\n}"
+        },
+        {
+          "markup": "<FlowPasswordInput Label=\"Password\" @bind-Value=\"password\" AutoComplete=\"new-password\" HelperText=\"Use the eye button to reveal or hide. The sample never displays your password elsewhere.\" />",
+          "code": "using System.ComponentModel.DataAnnotations;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class FormsDemo\n{\n    private string? productName = \"Sample product\";\n    private string? committed = \"Initial value\";\n    private string? password;\n    private string? description = \"A short product description.\";\n    private decimal? price = 12.50m;\n    private int quantity = 1;\n    private bool acceptUpdates, allSelected, notifications;\n    private bool mixed = true;\n    private void SetAll(bool value) { allSelected = value; mixed = false; }\n    private readonly ProductModel model = new();\n    private string submitStatus = \"Fill in the form and submit.\";\n    private Task SubmitAsync() { submitStatus = \"Valid sample saved (demo only).\"; return Task.CompletedTask; }\n    public sealed class ProductModel\n    {\n        [Required, MinLength(3)] public string? Name { get; set; }\n        [Required, Range(typeof(decimal), \"0\", \"1000\")] public decimal? Amount { get; set; }\n        [Range(typeof(bool), \"true\", \"true\", ErrorMessage = \"Accept the terms to continue.\")]\n        public bool AcceptTerms { get; set; }\n    }\n}"
         }
       ],
       "sourcePath": "packages/blazor/Forms/PasswordInput/FlowPasswordInput.razor"
@@ -1472,6 +1738,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -1591,6 +1861,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -1738,6 +2012,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -1901,6 +2179,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -2095,6 +2377,10 @@
           "type": "string?"
         },
         {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
           "name": "Width",
           "type": "string?"
         },
@@ -2238,6 +2524,10 @@
           "type": "string?"
         },
         {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
           "name": "Width",
           "type": "string?"
         },
@@ -2342,6 +2632,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -2456,6 +2750,10 @@
           "type": "string?"
         },
         {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
           "name": "Width",
           "type": "string?"
         },
@@ -2518,7 +2816,7 @@
       ],
       "examples": [
         {
-          "markup": "<FlowHC Wrap=\"true\" Align=\"FlowAlign.Center\">\n    <FlowPopover Text=\"Project information\" Label=\"Project information\" @bind-Open=\"popoverOpen\"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>\n    <FlowTooltip Text=\"Available to keyboard and mouse users\"><FlowBadge Color=\"FlowColor.Info\">Hover or focus for a hint</FlowBadge></FlowTooltip>\n</FlowHC>",
+          "markup": "<FlowHC Wrap=\"true\" Align=\"FlowAlign.Center\">\n    <FlowPopover Text=\"Project information\" Label=\"Project information\" @bind-Open=\"popoverOpen\"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>\n    <FlowTooltip Text=\"Available to keyboard and mouse users\" Location=\"bottom\"><FlowBadge Color=\"FlowColor.Info\">Hover or focus for a hint</FlowBadge></FlowTooltip>\n</FlowHC>",
           "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
         }
       ],
@@ -2540,6 +2838,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -2630,6 +2932,10 @@
           "type": "string?"
         },
         {
+          "name": "FocusStyle",
+          "type": "string?"
+        },
+        {
           "name": "Width",
           "type": "string?"
         },
@@ -2670,13 +2976,17 @@
           "type": "IReadOnlyDictionary<string, object>?"
         },
         {
+          "name": "Location",
+          "type": "string"
+        },
+        {
           "name": "Text",
           "type": "string"
         }
       ],
       "examples": [
         {
-          "markup": "<FlowHC Wrap=\"true\" Align=\"FlowAlign.Center\">\n    <FlowPopover Text=\"Project information\" Label=\"Project information\" @bind-Open=\"popoverOpen\"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>\n    <FlowTooltip Text=\"Available to keyboard and mouse users\"><FlowBadge Color=\"FlowColor.Info\">Hover or focus for a hint</FlowBadge></FlowTooltip>\n</FlowHC>",
+          "markup": "<FlowHC Wrap=\"true\" Align=\"FlowAlign.Center\">\n    <FlowPopover Text=\"Project information\" Label=\"Project information\" @bind-Open=\"popoverOpen\"><FlowVC><strong>Platform project</strong><p>The popover closes with Escape or an outside click.</p></FlowVC></FlowPopover>\n    <FlowTooltip Text=\"Available to keyboard and mouse users\" Location=\"bottom\"><FlowBadge Color=\"FlowColor.Info\">Hover or focus for a hint</FlowBadge></FlowTooltip>\n</FlowHC>",
           "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class OverlaysDemo\n{\nprivate bool dialogOpen, drawerOpen, popoverOpen, toastOpen;\n    private string? projectName;\n    private string projectStatus = \"No project created yet.\";\n    private void SaveProject() { projectStatus = $\"Created {projectName} (demo only).\"; dialogOpen = false; }\n}"
         }
       ],
@@ -2698,6 +3008,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -2745,14 +3059,22 @@
           "type": "IReadOnlyList<FlowBreadcrumbItem>"
         },
         {
+          "name": "Separator",
+          "type": "string"
+        },
+        {
+          "name": "Selected",
+          "type": "EventCallback<FlowBreadcrumbItem>"
+        },
+        {
           "name": "Label",
           "type": "string"
         }
       ],
       "examples": [
         {
-          "markup": "<FlowBreadcrumbs Items=\"breadcrumbs\" />",
-          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class NavigationDemo\n{\nprivate readonly FlowBreadcrumbItem[] breadcrumbs = [new(\"Home\", \"/\"), new(\"Projects\", \"/\"), new(\"Platform\")];\n    private readonly FlowTabItem[] tabs = [new(\"overview\", \"Overview\"), new(\"activity\", \"Activity\"), new(\"settings\", \"Settings\", true)];\n    private string activeTab = \"overview\";\n    private int page = 1;\n}"
+          "markup": "<FlowBreadcrumbs Items=\"breadcrumbs\" Separator=\"/\" />",
+          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class NavigationDemo\n{\nprivate readonly FlowBreadcrumbItem[] breadcrumbs = [new(\"Home\", \"/\"), new(\"Projects\", \"/\"), new(\"Platform\")];\n    private readonly FlowTabItem[] tabs = [new(\"overview\", \"Overview\"), new(\"activity\", \"Activity\"), new(\"settings\", \"Settings\", true)];\n    private string activeTab = \"overview\";\n    private int page = 1;\n    private bool showReport;\n    private IReadOnlyList<FlowTabItem> Tabs => showReport ? [.. tabs, new(\"report\", \"Report\")] : tabs;\n    private void ToggleReport()\n    {\n        showReport = !showReport;\n        activeTab = showReport ? \"report\" : \"overview\";\n    }\n}"
         }
       ],
       "sourcePath": "packages/blazor/Navigation/Breadcrumbs/FlowBreadcrumbs.razor"
@@ -2773,6 +3095,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -2843,7 +3169,7 @@
       "examples": [
         {
           "markup": "<FlowPagination @bind-Page=\"page\" PageCount=\"12\" MaxVisiblePages=\"5\" />\n<p role=\"status\">Selected page: @(page)</p>",
-          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class NavigationDemo\n{\nprivate readonly FlowBreadcrumbItem[] breadcrumbs = [new(\"Home\", \"/\"), new(\"Projects\", \"/\"), new(\"Platform\")];\n    private readonly FlowTabItem[] tabs = [new(\"overview\", \"Overview\"), new(\"activity\", \"Activity\"), new(\"settings\", \"Settings\", true)];\n    private string activeTab = \"overview\";\n    private int page = 1;\n}"
+          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class NavigationDemo\n{\nprivate readonly FlowBreadcrumbItem[] breadcrumbs = [new(\"Home\", \"/\"), new(\"Projects\", \"/\"), new(\"Platform\")];\n    private readonly FlowTabItem[] tabs = [new(\"overview\", \"Overview\"), new(\"activity\", \"Activity\"), new(\"settings\", \"Settings\", true)];\n    private string activeTab = \"overview\";\n    private int page = 1;\n    private bool showReport;\n    private IReadOnlyList<FlowTabItem> Tabs => showReport ? [.. tabs, new(\"report\", \"Report\")] : tabs;\n    private void ToggleReport()\n    {\n        showReport = !showReport;\n        activeTab = showReport ? \"report\" : \"overview\";\n    }\n}"
         }
       ],
       "sourcePath": "packages/blazor/Navigation/Pagination/FlowPagination.razor"
@@ -2864,6 +3190,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -2923,14 +3253,22 @@
           "type": "RenderFragment<string>?"
         },
         {
+          "name": "IconTemplate",
+          "type": "RenderFragment<FlowTabItem>?"
+        },
+        {
+          "name": "SelectedStyle",
+          "type": "string"
+        },
+        {
           "name": "Label",
           "type": "string"
         }
       ],
       "examples": [
         {
-          "markup": "<FlowTabs Items=\"tabs\" @bind-ActiveKey=\"activeTab\" Label=\"Project sections\">\n    <Content Context=\"key\">@if (key == \"overview\") { <p>Project overview content.</p> } else { <p>Activity content.</p> }</Content>\n</FlowTabs>",
-          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class NavigationDemo\n{\nprivate readonly FlowBreadcrumbItem[] breadcrumbs = [new(\"Home\", \"/\"), new(\"Projects\", \"/\"), new(\"Platform\")];\n    private readonly FlowTabItem[] tabs = [new(\"overview\", \"Overview\"), new(\"activity\", \"Activity\"), new(\"settings\", \"Settings\", true)];\n    private string activeTab = \"overview\";\n    private int page = 1;\n}"
+          "markup": "<FlowButton OnClick=\"ToggleReport\">@(showReport ? \"Remove report tab\" : \"Add report tab\")</FlowButton>\n<FlowTabs Items=\"Tabs\" @bind-ActiveKey=\"activeTab\" Label=\"Project sections\">\n    <IconTemplate Context=\"item\">@if (item.Key == \"report\") { <span aria-hidden=\"true\">\u25a4</span> }</IconTemplate>\n    <Content Context=\"key\">@if (key == \"overview\") { <p>Project overview content.</p> } else { <p>@key content.</p> }</Content>\n</FlowTabs>",
+          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class NavigationDemo\n{\nprivate readonly FlowBreadcrumbItem[] breadcrumbs = [new(\"Home\", \"/\"), new(\"Projects\", \"/\"), new(\"Platform\")];\n    private readonly FlowTabItem[] tabs = [new(\"overview\", \"Overview\"), new(\"activity\", \"Activity\"), new(\"settings\", \"Settings\", true)];\n    private string activeTab = \"overview\";\n    private int page = 1;\n    private bool showReport;\n    private IReadOnlyList<FlowTabItem> Tabs => showReport ? [.. tabs, new(\"report\", \"Report\")] : tabs;\n    private void ToggleReport()\n    {\n        showReport = !showReport;\n        activeTab = showReport ? \"report\" : \"overview\";\n    }\n}"
         }
       ],
       "sourcePath": "packages/blazor/Navigation/Tabs/FlowTabs.razor"
@@ -2951,6 +3289,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -3017,7 +3359,7 @@
       "examples": [
         {
           "markup": "<FlowAccordion Items=\"questions\" @bind-OpenKeys=\"openQuestions\">\n    <Content Context=\"key\">@(key == \"installation\" ? \"Install the package and import the FlowUI namespaces in _Imports.razor.\" : \"Choose Light, Dark, or System and supply your own palette when needed.\")</Content>\n</FlowAccordion>",
-          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class DataDisplayDemo\n{\nprivate readonly FlowAccordionItem[] questions = [new(\"installation\", \"How do I install FlowUI?\"), new(\"themes\", \"Can I customize themes?\")];\n    private IReadOnlyList<string> openQuestions = [\"installation\"];\n    public sealed record Product(int Id, string Name, decimal Price, int Stock);\n    private readonly Product[] products = [new(1, \"Notebook\", 12.50m, 40), new(2, \"Desk lamp\", 35m, 18), new(3, \"Pen set\", 6m, 120), new(4, \"Monitor\", 220m, 10), new(5, \"Keyboard\", 65m, 24), new(6, \"Mouse\", 25m, 42), new(7, \"Cable\", 8m, 70)];\n    private readonly FlowTableColumn<Product>[] columns = [new() { Title = \"Product\", Value = p => p.Name }, new() { Title = \"Price\", Value = p => p.Price }, new() { Title = \"Stock\", Value = p => p.Stock }];\n    private int tablePage = 1;\n    public sealed record Node(string Id, string Name, Node[] Children);\n    private readonly Node[] nodes = [new(\"catalog\", \"Catalog\", [new(\"products\", \"Products\", [new(\"office\", \"Office\", []), new(\"electronics\", \"Electronics\", [])]), new(\"categories\", \"Categories\", [])]), new(\"settings\", \"Settings\", [new(\"users\", \"Users\", []), new(\"roles\", \"Roles\", [])])];\n    private string? selectedNode;\n    private IReadOnlyList<string> expanded = [\"catalog\"];\n}"
+          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class DataDisplayDemo\n{\nprivate readonly FlowAccordionItem[] questions = [new(\"installation\", \"How do I install FlowUI?\"), new(\"themes\", \"Can I customize themes?\")];\n    private IReadOnlyList<string> openQuestions = [\"installation\"];\n    public sealed record Product(int Id, string Name, decimal Price, int Stock);\n    private readonly Product[] products = [new(1, \"Notebook\", 12.50m, 40), new(2, \"Desk lamp\", 35m, 18), new(3, \"Pen set\", 6m, 120), new(4, \"Monitor\", 220m, 10), new(5, \"Keyboard\", 65m, 24), new(6, \"Mouse\", 25m, 42), new(7, \"Cable\", 8m, 70)];\n    private readonly FlowTableColumn<Product>[] columns = [new() { Title = \"Product\", Value = p => p.Name }, new() { Title = \"Price\", Value = p => p.Price }, new() { Title = \"Stock\", Value = p => p.Stock }];\n    private int loadedProducts = 3;\n    private void LoadProducts() => loadedProducts = Math.Min(loadedProducts + 3, products.Length);\n    public sealed record Node(string Id, string Name, Node[] Children);\n    private readonly Node[] nodes = [new(\"catalog\", \"Catalog\", [new(\"products\", \"Products\", [new(\"office\", \"Office\", []), new(\"electronics\", \"Electronics\", [])]), new(\"categories\", \"Categories\", [])]), new(\"settings\", \"Settings\", [new(\"users\", \"Users\", []), new(\"roles\", \"Roles\", [])])];\n    private string? selectedNode;\n    private IReadOnlyList<string> expanded = [\"catalog\"];\n}"
         }
       ],
       "sourcePath": "packages/blazor/DataDisplay/Accordion/FlowAccordion.razor"
@@ -3025,7 +3367,7 @@
     {
       "name": "FlowTable",
       "category": "DataDisplay",
-      "description": "Typed columns, cell templates, local sorting and paging.",
+      "description": "Typed columns, cell templates, optional column picker and CSV export, and a customizable load-more footer.",
       "namespace": "FlowUI.Blazor.DataDisplay",
       "parameters": [
         {
@@ -3038,6 +3380,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -3115,12 +3461,52 @@
         {
           "name": "PageChanged",
           "type": "EventCallback<int>"
+        },
+        {
+          "name": "ColumnsConfigurable",
+          "type": "bool"
+        },
+        {
+          "name": "Exportable",
+          "type": "bool"
+        },
+        {
+          "name": "ExportFileName",
+          "type": "string"
+        },
+        {
+          "name": "VisibleColumnKeys",
+          "type": "IReadOnlyList<string>?"
+        },
+        {
+          "name": "VisibleColumnKeysChanged",
+          "type": "EventCallback<IReadOnlyList<string>>"
+        },
+        {
+          "name": "TotalCount",
+          "type": "int?"
+        },
+        {
+          "name": "HasMore",
+          "type": "bool?"
+        },
+        {
+          "name": "LoadingMore",
+          "type": "bool"
+        },
+        {
+          "name": "OnLoadMore",
+          "type": "EventCallback"
+        },
+        {
+          "name": "LoadMoreTemplate",
+          "type": "RenderFragment<FlowTableLoadMoreContext>?"
         }
       ],
       "examples": [
         {
-          "markup": "<FlowTable Items=\"products\" Columns=\"columns\" RowKey=\"p => p.Id\" Caption=\"Product inventory\" PageSize=\"3\" @bind-Page=\"tablePage\" />",
-          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class DataDisplayDemo\n{\nprivate readonly FlowAccordionItem[] questions = [new(\"installation\", \"How do I install FlowUI?\"), new(\"themes\", \"Can I customize themes?\")];\n    private IReadOnlyList<string> openQuestions = [\"installation\"];\n    public sealed record Product(int Id, string Name, decimal Price, int Stock);\n    private readonly Product[] products = [new(1, \"Notebook\", 12.50m, 40), new(2, \"Desk lamp\", 35m, 18), new(3, \"Pen set\", 6m, 120), new(4, \"Monitor\", 220m, 10), new(5, \"Keyboard\", 65m, 24), new(6, \"Mouse\", 25m, 42), new(7, \"Cable\", 8m, 70)];\n    private readonly FlowTableColumn<Product>[] columns = [new() { Title = \"Product\", Value = p => p.Name }, new() { Title = \"Price\", Value = p => p.Price }, new() { Title = \"Stock\", Value = p => p.Stock }];\n    private int tablePage = 1;\n    public sealed record Node(string Id, string Name, Node[] Children);\n    private readonly Node[] nodes = [new(\"catalog\", \"Catalog\", [new(\"products\", \"Products\", [new(\"office\", \"Office\", []), new(\"electronics\", \"Electronics\", [])]), new(\"categories\", \"Categories\", [])]), new(\"settings\", \"Settings\", [new(\"users\", \"Users\", []), new(\"roles\", \"Roles\", [])])];\n    private string? selectedNode;\n    private IReadOnlyList<string> expanded = [\"catalog\"];\n}"
+          "markup": "<FlowTable TItem=\"Product\" Items=\"@products.Take(loadedProducts).ToArray()\" Columns=\"columns\" RowKey=\"p => p.Id\"\n                   Caption=\"Product inventory\" PageSize=\"0\" ColumnsConfigurable=\"true\" Exportable=\"true\" TotalCount=\"@products.Length\" OnLoadMore=\"LoadProducts\">\n            <LoadMoreTemplate Context=\"footer\">\n                <p role=\"status\">@($\"{footer.LoadedCount} of {footer.TotalCount} products loaded\")</p>\n                @if (footer.HasMore)\n                {\n                    <FlowButton Disabled=\"footer.Loading\" OnClick=\"() => footer.LoadMore()\">Show more products</FlowButton>\n                }\n            </LoadMoreTemplate>\n        </FlowTable>",
+          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class DataDisplayDemo\n{\nprivate readonly FlowAccordionItem[] questions = [new(\"installation\", \"How do I install FlowUI?\"), new(\"themes\", \"Can I customize themes?\")];\n    private IReadOnlyList<string> openQuestions = [\"installation\"];\n    public sealed record Product(int Id, string Name, decimal Price, int Stock);\n    private readonly Product[] products = [new(1, \"Notebook\", 12.50m, 40), new(2, \"Desk lamp\", 35m, 18), new(3, \"Pen set\", 6m, 120), new(4, \"Monitor\", 220m, 10), new(5, \"Keyboard\", 65m, 24), new(6, \"Mouse\", 25m, 42), new(7, \"Cable\", 8m, 70)];\n    private readonly FlowTableColumn<Product>[] columns = [new() { Title = \"Product\", Value = p => p.Name }, new() { Title = \"Price\", Value = p => p.Price }, new() { Title = \"Stock\", Value = p => p.Stock }];\n    private int loadedProducts = 3;\n    private void LoadProducts() => loadedProducts = Math.Min(loadedProducts + 3, products.Length);\n    public sealed record Node(string Id, string Name, Node[] Children);\n    private readonly Node[] nodes = [new(\"catalog\", \"Catalog\", [new(\"products\", \"Products\", [new(\"office\", \"Office\", []), new(\"electronics\", \"Electronics\", [])]), new(\"categories\", \"Categories\", [])]), new(\"settings\", \"Settings\", [new(\"users\", \"Users\", []), new(\"roles\", \"Roles\", [])])];\n    private string? selectedNode;\n    private IReadOnlyList<string> expanded = [\"catalog\"];\n}"
         }
       ],
       "sourcePath": "packages/blazor/DataDisplay/Table/FlowTable.razor"
@@ -3141,6 +3527,10 @@
         },
         {
           "name": "Style",
+          "type": "string?"
+        },
+        {
+          "name": "FocusStyle",
           "type": "string?"
         },
         {
@@ -3231,7 +3621,7 @@
       "examples": [
         {
           "markup": "<FlowTree Items=\"nodes\" ValueSelector=\"n => n.Id\" TextSelector=\"n => n.Name\" ChildrenSelector=\"n => n.Children\"\n          @bind-Value=\"selectedNode\" @bind-ExpandedValues=\"expanded\" Label=\"Project folders\" />\n<p role=\"status\">Selected node: @(selectedNode ?? \"none\")</p>",
-          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class DataDisplayDemo\n{\nprivate readonly FlowAccordionItem[] questions = [new(\"installation\", \"How do I install FlowUI?\"), new(\"themes\", \"Can I customize themes?\")];\n    private IReadOnlyList<string> openQuestions = [\"installation\"];\n    public sealed record Product(int Id, string Name, decimal Price, int Stock);\n    private readonly Product[] products = [new(1, \"Notebook\", 12.50m, 40), new(2, \"Desk lamp\", 35m, 18), new(3, \"Pen set\", 6m, 120), new(4, \"Monitor\", 220m, 10), new(5, \"Keyboard\", 65m, 24), new(6, \"Mouse\", 25m, 42), new(7, \"Cable\", 8m, 70)];\n    private readonly FlowTableColumn<Product>[] columns = [new() { Title = \"Product\", Value = p => p.Name }, new() { Title = \"Price\", Value = p => p.Price }, new() { Title = \"Stock\", Value = p => p.Stock }];\n    private int tablePage = 1;\n    public sealed record Node(string Id, string Name, Node[] Children);\n    private readonly Node[] nodes = [new(\"catalog\", \"Catalog\", [new(\"products\", \"Products\", [new(\"office\", \"Office\", []), new(\"electronics\", \"Electronics\", [])]), new(\"categories\", \"Categories\", [])]), new(\"settings\", \"Settings\", [new(\"users\", \"Users\", []), new(\"roles\", \"Roles\", [])])];\n    private string? selectedNode;\n    private IReadOnlyList<string> expanded = [\"catalog\"];\n}"
+          "code": "using FlowUI.Blazor.Styling;\nnamespace FlowUI.Blazor.Sample.Components.Demos;\npublic partial class DataDisplayDemo\n{\nprivate readonly FlowAccordionItem[] questions = [new(\"installation\", \"How do I install FlowUI?\"), new(\"themes\", \"Can I customize themes?\")];\n    private IReadOnlyList<string> openQuestions = [\"installation\"];\n    public sealed record Product(int Id, string Name, decimal Price, int Stock);\n    private readonly Product[] products = [new(1, \"Notebook\", 12.50m, 40), new(2, \"Desk lamp\", 35m, 18), new(3, \"Pen set\", 6m, 120), new(4, \"Monitor\", 220m, 10), new(5, \"Keyboard\", 65m, 24), new(6, \"Mouse\", 25m, 42), new(7, \"Cable\", 8m, 70)];\n    private readonly FlowTableColumn<Product>[] columns = [new() { Title = \"Product\", Value = p => p.Name }, new() { Title = \"Price\", Value = p => p.Price }, new() { Title = \"Stock\", Value = p => p.Stock }];\n    private int loadedProducts = 3;\n    private void LoadProducts() => loadedProducts = Math.Min(loadedProducts + 3, products.Length);\n    public sealed record Node(string Id, string Name, Node[] Children);\n    private readonly Node[] nodes = [new(\"catalog\", \"Catalog\", [new(\"products\", \"Products\", [new(\"office\", \"Office\", []), new(\"electronics\", \"Electronics\", [])]), new(\"categories\", \"Categories\", [])]), new(\"settings\", \"Settings\", [new(\"users\", \"Users\", []), new(\"roles\", \"Roles\", [])])];\n    private string? selectedNode;\n    private IReadOnlyList<string> expanded = [\"catalog\"];\n}"
         }
       ],
       "sourcePath": "packages/blazor/DataDisplay/Tree/FlowTree.razor"

@@ -1,0 +1,62 @@
+@namespace FlowUI.Blazor.Forms
+@using System.Globalization
+@inherits FlowComponentBase
+<div @ref="root" @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-date-time")" style="@Styles" @onkeydown="KeyDown">
+    <div class="fui-date-field">
+        @if (Mode != FlowDateTimeMode.Time)
+        {
+            <button type="button" disabled="@Disabled" aria-label="Choose date" aria-expanded="@(picker == "date" ? "true" : "false")" @onclick='() => Toggle("date")'>
+                <span aria-hidden="true">▦</span> @(DateValue?.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) ?? "Select date")
+            </button>
+        }
+        @if (Mode != FlowDateTimeMode.Date)
+        {
+            <button type="button" disabled="@Disabled" aria-label="Choose time" aria-expanded="@(picker == "time" ? "true" : "false")" @onclick='() => Toggle("time")'>
+                <span aria-hidden="true">◷</span> @(TimeValue?.ToString("HH:mm", CultureInfo.InvariantCulture) ?? "Select time")
+            </button>
+        }
+    </div>
+    @if (picker is not null)
+    {
+        <div class="fui-date-panel" data-picker="@picker" role="dialog" aria-label="@(picker == "date" ? "Choose date" : "Choose time")">
+            @if (picker == "date")
+            {
+                <div class="fui-month">
+                    <button type="button" aria-label="Previous month" @onclick="() => MoveMonth(-1)">‹</button>
+                    <strong>@month.ToString("MMMM yyyy")</strong>
+                    <button type="button" aria-label="Next month" @onclick="() => MoveMonth(1)">›</button>
+                </div>
+                <div class="fui-days">
+                    @foreach (var weekday in Weekdays) { <span aria-hidden="true">@weekday</span> }
+                    @for (var blank = 0; blank < (int)month.DayOfWeek; blank++) { <span aria-hidden="true"></span> }
+                    @for (var day = 1; day <= DateTime.DaysInMonth(month.Year, month.Month); day++)
+                    {
+                        var date = new DateOnly(month.Year, month.Month, day);
+                        <button type="button" aria-label="@date.ToLongDateString()" aria-pressed="@(date == DateValue ? "true" : "false")"
+                                disabled="@(!Allowed(FormatDate(date)))" @onclick="() => SelectDate(date)">@day</button>
+                    }
+                </div>
+            }
+            else
+            {
+                <div class="fui-time-fields">
+                    <label>Hour <select @bind="hour">@for (var i = 0; i < 24; i++) { <option value="@i">@i.ToString("00")</option> }</select></label>
+                    <label>Minute <select @bind="minute">@for (var i = 0; i < 60; i++) { <option value="@i">@i.ToString("00")</option> }</select></label>
+                    <button type="button" disabled="@(!Allowed(FormatTime(new TimeOnly(hour, minute))))" @onclick="ApplyTime">Done</button>
+                </div>
+            }
+            <div class="fui-date-footer">
+                @if (Mode != FlowDateTimeMode.Time)
+                {
+                    <button type="button" disabled="@(!Allowed(FormatDate(Today)))" @onclick="() => SelectDate(Today)">Today</button>
+                }
+                @if (Mode != FlowDateTimeMode.Date && ShowDayBoundaryButtons)
+                {
+                    <button type="button" title="Start of day" aria-label="Start of day" disabled="@(!Allowed(FormatTime(TimeOnly.MinValue)))" @onclick="() => SetTime(TimeOnly.MinValue)">☀</button>
+                    <button type="button" title="End of day" aria-label="End of day" disabled="@(!Allowed(FormatTime(new TimeOnly(23, 59))))" @onclick="() => SetTime(new TimeOnly(23, 59))">☾</button>
+                }
+                <button type="button" aria-label="Close picker" @onclick="Close">×</button>
+            </div>
+        </div>
+    }
+</div>

@@ -6,13 +6,22 @@ private readonly FlowBreadcrumbItem[] breadcrumbs = [new("Home", "/"), new("Proj
     private readonly FlowTabItem[] tabs = [new("overview", "Overview"), new("activity", "Activity"), new("settings", "Settings", true)];
     private string activeTab = "overview";
     private int page = 1;
+    private bool showReport;
+    private IReadOnlyList<FlowTabItem> Tabs => showReport ? [.. tabs, new("report", "Report")] : tabs;
+    private void ToggleReport()
+    {
+        showReport = !showReport;
+        activeTab = showReport ? "report" : "overview";
+    }
 
     private const string Example0 = """
-        <FlowBreadcrumbs Items="breadcrumbs" />
+        <FlowBreadcrumbs Items="breadcrumbs" Separator="/" />
         """;
     private const string Example1 = """
-        <FlowTabs Items="tabs" @bind-ActiveKey="activeTab" Label="Project sections">
-            <Content Context="key">@if (key == "overview") { <p>Project overview content.</p> } else { <p>Activity content.</p> }</Content>
+        <FlowButton OnClick="ToggleReport">@(showReport ? "Remove report tab" : "Add report tab")</FlowButton>
+        <FlowTabs Items="Tabs" @bind-ActiveKey="activeTab" Label="Project sections">
+            <IconTemplate Context="item">@if (item.Key == "report") { <span aria-hidden="true">▤</span> }</IconTemplate>
+            <Content Context="key">@if (key == "overview") { <p>Project overview content.</p> } else { <p>@key content.</p> }</Content>
         </FlowTabs>
         """;
     private const string Example2 = """
@@ -28,6 +37,13 @@ private readonly FlowBreadcrumbItem[] breadcrumbs = [new("Home", "/"), new("Proj
             private readonly FlowTabItem[] tabs = [new("overview", "Overview"), new("activity", "Activity"), new("settings", "Settings", true)];
             private string activeTab = "overview";
             private int page = 1;
+            private bool showReport;
+            private IReadOnlyList<FlowTabItem> Tabs => showReport ? [.. tabs, new("report", "Report")] : tabs;
+            private void ToggleReport()
+            {
+                showReport = !showReport;
+                activeTab = showReport ? "report" : "overview";
+            }
         }
         """;
 }

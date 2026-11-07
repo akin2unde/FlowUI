@@ -7,5 +7,7 @@ namespace FlowUI.Blazor.Navigation;
 public partial class FlowBreadcrumbs : FlowComponentBase
 {
     [Parameter] public IReadOnlyList<FlowBreadcrumbItem> Items { get; set; } = [];
+    [Parameter] public string Separator { get; set; } = ">";
+    [Parameter] public EventCallback<FlowBreadcrumbItem> Selected { get; set; }
     [Parameter] public string Label { get; set; } = "Breadcrumb";
 }

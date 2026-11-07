@@ -75,7 +75,7 @@
           }
         }
       </nav>
-      <footer>v0.3.0 <a href="#/angular/gallery">Original gallery</a></footer>
+      <footer>v1.0.0 <a href="#/angular/gallery">Original gallery</a></footer>
     </aside>
     <main class="docs-content" id="docs-content" tabindex="-1">
       <div class="docs-breadcrumb">
@@ -214,6 +214,7 @@
               }
               @case ("Input") {
                 <fui-input inputMode="integer" placeholder="Quantity" />
+                <fui-input inputMode="money" placeholder="Amount" />
               }
               @case ("PasswordInput") {
                 <fui-password-input
@@ -234,6 +235,8 @@
                   [(value)]="status"
                   [options]="statuses"
                   [searchable]="true"
+                  [clearable]="true"
+                  (cleared)="status = ''"
                 />
                 <p class="docs-muted">
                   Saved value: {{ status }}. Selected and hovered rows use
@@ -255,6 +258,7 @@
                 <fui-tree-dropdown
                   [value]="location"
                   [options]="tree"
+                  [searchable]="true"
                   (selected)="selectLocation($event)"
                 />
               }
@@ -291,10 +295,21 @@
                 />
               }
               @case ("DateTime") {
+                <label
+                  >Mode
+                  <select
+                    [value]="dateMode"
+                    (change)="dateMode = $any($event.target).value"
+                  >
+                    <option value="datetime">Date and time</option>
+                    <option value="date">Date only</option>
+                    <option value="time">Time only</option>
+                  </select>
+                </label>
                 <fui-date-time
-                  [value]="dateTime"
-                  mode="datetime"
-                  (valueChange)="dateTime = $event"
+                  [value]="dateValues[dateMode]"
+                  [mode]="dateMode"
+                  (valueChange)="dateValues[dateMode] = $event"
                 />
               }
               @case ("Autocomplete") {
@@ -336,7 +351,11 @@
                 >
               }
               @case ("Breadcrumb") {
-                <fui-breadcrumb [items]="breadcrumbs" />
+                <fui-breadcrumb
+                  [items]="breadcrumbs.slice(0, breadcrumbDepth)"
+                  separator="/"
+                  (selected)="breadcrumbDepth = +$event.id"
+                />
               }
               @case ("Chart") {
                 <fui-chart
@@ -379,7 +398,20 @@
                 />
               }
               @case ("Tabs / Tab") {
-                <fui-tabs>
+                <fui-button variant="outline" (click)="toggleReportTab()">{{
+                  reportTab ? "Remove report tab" : "Add report tab"
+                }}</fui-button>
+                <label
+                  >Selected style
+                  <select
+                    [value]="tabStyle"
+                    (change)="tabStyle = $any($event.target).value"
+                  >
+                    <option value="underline">Underline</option>
+                    <option value="fill">Fill</option>
+                  </select>
+                </label>
+                <fui-tabs [(value)]="activeTab" [selectedStyle]="tabStyle">
                   <fui-tab
                     id="details"
                     label="Details"
@@ -394,6 +426,11 @@
                   >
                     <p>Change history appears here.</p>
                   </fui-tab>
+                  @if (reportTab) {
+                    <fui-tab id="report" label="Report" icon="fa-solid fa-file"
+                      >Report content</fui-tab
+                    >
+                  }
                 </fui-tabs>
               }
               @case ("Section") {
@@ -410,8 +447,27 @@
                 />
               }
               @case ("Table") {
+                <ng-template #productFooter let-load>
+                  <footer class="docs-table-footer">
+                    <span role="status"
+                      >{{ load.loadedCount }} records loaded</span
+                    >
+                    @if (load.hasMore) {
+                      <button
+                        type="button"
+                        [disabled]="load.loading"
+                        (click)="load.loadMore()"
+                      >
+                        {{ load.loading ? "Loading…" : "Load more" }}
+                      </button>
+                    }
+                  </footer>
+                </ng-template>
                 <fui-table
-                  [data]="data"
+                  [data]="data.slice(0, loadedProducts)"
+                  [totalCount]="data.length"
+                  [loadMoreTemplate]="productFooter"
+                  (loadMore)="loadedProducts = data.length"
                   [columns]="columns"
                   [sort]="sort"
                   [alternateRows]="true"
@@ -426,8 +482,20 @@
                 />
               }
               @case ("Tooltip") {
-                <fui-tooltip text="Shown on top" location="top">
-                  <fui-button variant="outline">top</fui-button>
+                <label
+                  >Placement
+                  <select
+                    [value]="placement"
+                    (change)="placement = $any($event.target).value"
+                  >
+                    <option>top</option>
+                    <option>right</option>
+                    <option>bottom</option>
+                    <option>left</option>
+                  </select>
+                </label>
+                <fui-tooltip text="Save your changes" [location]="placement">
+                  <fui-button variant="outline">Hover or focus</fui-button>
                 </fui-tooltip>
               }
               @case ("Popover") {

@@ -8,3 +8,5 @@ export * from "./table-export";
 export * from "./selection";
 
 export * from "./async-label";
+
+export * from "./tooltip";

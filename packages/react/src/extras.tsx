@@ -1,4 +1,6 @@
+import { resolveTooltipLocation } from "@akin2unde/flowui-core";
 import {
+  useRef,
   useState,
   type CSSProperties,
   type ChangeEventHandler,
@@ -227,15 +229,34 @@ export function Tooltip({
   ...props
 }: TooltipProps) {
   const flow = useFlowProps("fui-tooltip", props);
+  const tip = useRef<HTMLSpanElement>(null);
+  const [placed, setPlaced] = useState(location);
+  const position = (anchor: HTMLSpanElement) => {
+    if (tip.current)
+      setPlaced(
+        resolveTooltipLocation(
+          location,
+          anchor.getBoundingClientRect(),
+          tip.current.getBoundingClientRect(),
+          { width: window.innerWidth, height: window.innerHeight },
+        ),
+      );
+  };
   const tooltipStyle = {
     ...flow.style,
     "--fui-tooltip-delay": `${delay}ms`,
   } as CSSProperties;
 
   return (
-    <span {...flow} style={tooltipStyle} data-location={location}>
+    <span
+      {...flow}
+      style={tooltipStyle}
+      data-location={placed}
+      onMouseEnter={(event) => position(event.currentTarget)}
+      onFocus={(event) => position(event.currentTarget)}
+    >
       {children}
-      <span className="fui-tooltip-content" role="tooltip">
+      <span ref={tip} className="fui-tooltip-content" role="tooltip">
         {text}
       </span>
     </span>

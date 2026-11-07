@@ -1,9 +1,9 @@
-# FlowUI.Blazor — component preview 0.3.0
+# FlowUI.Blazor — component preview 1.0.0
 
 A .NET 10 Razor Class Library added alongside the existing FlowUI npm packages.
 The library has no application render mode, database dependency, or JavaScript
 runtime dependency for theming. The included demo uses **Interactive Server**.
-This preview contains 30 Blazor controls across Foundation, Forms, Selection, Overlays,
+This preview contains 32 Blazor controls across Foundation, Forms, Selection, Overlays,
 Navigation, and Data Display. AsyncLabel is not implemented in this preview. Existing React, Angular, and React Native sources are retained.
 See the root `BLAZOR-CONTROLS.md` for the complete Blazor inventory.
 
@@ -340,7 +340,7 @@ should have sufficient contrast with their corresponding background colors.
 dotnet pack packages/blazor/FlowUI.Blazor.csproj -c Release -o artifacts/blazor
 ```
 
-Produces a `FlowUI.Blazor.0.3.0.nupkg` with compiled components, static/scoped
+Produces a `FlowUI.Blazor.1.0.0.nupkg` with compiled components, static/scoped
 styles and this README. The .NET package has its own initial version and does
 not change the version of any existing npm package.
 
