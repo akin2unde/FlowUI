@@ -1,3 +1,4 @@
+import NotificationDemo from "./NotificationDemo";
 import { useMemo, useState, type ReactNode } from "react";
 import {
   Autocomplete,
@@ -42,7 +43,6 @@ import {
   TreeMultiSelect,
   VC,
   FileUpload,
-  Notification,
   OTPInput,
   PhoneInput,
   createTheme,
@@ -544,7 +544,6 @@ export function App() {
     "name",
     "price",
   ]);
-  const [noticeOpen, setNoticeOpen] = useState(false);
   const [knob, setKnob] = useState(68);
   const [otp, setOtp] = useState("");
   const [phone, setPhone] = useState<PhoneNumberValue>({
@@ -932,19 +931,7 @@ export function App() {
 
               <Breadcrumb items={breadcrumbs} />
 
-              <Button color="success" onClick={() => setNoticeOpen(true)}>
-                Show notification
-              </Button>
-              <Notification
-                open={noticeOpen}
-                title="Product saved"
-                type="success"
-                horizontal="center"
-                vertical="top"
-                onClose={() => setNoticeOpen(false)}
-              >
-                <p>The product was saved successfully.</p>
-              </Notification>
+              <NotificationDemo />
             </VC>
           </section>
 

@@ -1,3 +1,5 @@
+using FlowUI.Blazor.Overlays;
+using Microsoft.AspNetCore.Components;
 using FlowUI.Blazor.Styling;
 namespace FlowUI.Blazor.Sample.Components.Demos;
 public partial class OverlaysDemo
@@ -6,6 +8,48 @@ private bool dialogOpen, drawerOpen, popoverOpen, toastOpen;
     private string? projectName;
     private string projectStatus = "No project created yet.";
     private void SaveProject() { projectStatus = $"Created {projectName} (demo only)."; dialogOpen = false; }
+
+    private FlowToastType noticeType;
+    private bool acceptOnly;
+    private int noticeId;
+    private string noticeResult = "";
+    private void ShowNotice(FlowToastType type, bool only = false)
+    {
+        noticeType = type;
+        acceptOnly = only;
+        noticeResult = "";
+        noticeId++;
+        toastOpen = true;
+    }
+
+    private string NoticeTitle => noticeType switch
+    {
+        FlowToastType.Success => "Saved successfully",
+        FlowToastType.Info => "Update available",
+        FlowToastType.Warning => "Check required fields",
+        FlowToastType.Error => "Could not save changes",
+        _ => acceptOnly ? "Review required" : "Reassign ticket?"
+    };
+    private string NoticeBody => noticeType switch
+    {
+        FlowToastType.Success => "Your changes have been saved.",
+        FlowToastType.Info => "A new version is ready.",
+        FlowToastType.Warning => "Two fields need your attention.",
+        FlowToastType.Error => "Ticket #1042 changed while you were editing. Reload it and apply your changes again.",
+        _ => acceptOnly ? "Read the handoff notes before continuing." : "Ticket #1042 · Support → Development"
+    };
+    private static readonly RenderFragment ConflictDetails =
+        builder => builder.AddContent(0, "Conflict detected. The ticket changed after this edit was opened.");
+    private FlowToastAction AcceptNotice => new(acceptOnly ? "Open handoff notes" : "Reassign", () =>
+    {
+        noticeResult = acceptOnly ? "Handoff notes opened." : "Ticket reassigned.";
+        return Task.CompletedTask;
+    });
+    private FlowToastAction CancelNotice => new("Cancel", () =>
+    {
+        noticeResult = "Reassignment cancelled.";
+        return Task.CompletedTask;
+    });
 
     private const string Example0 = """
         <FlowButton OnClick="() => dialogOpen = true">Open dialog</FlowButton>
@@ -29,8 +73,10 @@ private bool dialogOpen, drawerOpen, popoverOpen, toastOpen;
         </FlowHC>
         """;
     private const string Example3 = """
-        <FlowButton Color="FlowColor.Success" OnClick="() => toastOpen = true">Show success notification</FlowButton>
-        <FlowToast @bind-Open="toastOpen" Title="Saved" Color="FlowColor.Success" Duration="2500"><p>Your sample changes have been saved.</p></FlowToast>
+        <FlowToast @bind-Open="toastOpen" Type="FlowToastType.Decision" Title="Reassign ticket?"
+                   Accept="@AcceptNotice" Cancel="@CancelNotice">
+            <p>Ticket #1042 · Support → Development</p>
+        </FlowToast>
         """;
     private const string ExampleCode = """
         using FlowUI.Blazor.Styling;

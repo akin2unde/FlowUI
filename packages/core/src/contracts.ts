@@ -310,7 +310,7 @@ export interface BreadcrumbProps extends BaseUIProps {
   items: BreadcrumbItem[];
   separatorIcon?: string;
 }
-export type NotificationType = "success" | "error" | "warning" | "info";
+export type NotificationType = "success" | "error" | "warning" | "info" | "decision";
 export type NotificationHorizontal = "left" | "center" | "right";
 export type NotificationVertical = "top" | "bottom";
 export interface NotificationProps extends BaseUIProps {
@@ -319,6 +319,7 @@ export interface NotificationProps extends BaseUIProps {
   horizontal?: NotificationHorizontal;
   vertical?: NotificationVertical;
   duration?: number;
+  defaultDuration?: number;
   dismissible?: boolean;
 }
 

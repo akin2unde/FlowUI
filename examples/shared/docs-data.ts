@@ -1617,6 +1617,11 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "defaultDuration",
+          type: "number",
+          optional: true,
+        },
+        {
           name: "dismissible",
           type: "boolean",
           optional: true,
@@ -1624,6 +1629,21 @@ export const componentDocs: ComponentDoc[] = [
         {
           name: "title",
           type: "string",
+          optional: true,
+        },
+        {
+          name: "details",
+          type: "ReactNode",
+          optional: true,
+        },
+        {
+          name: "accept",
+          type: "NotificationAction",
+          optional: true,
+        },
+        {
+          name: "cancel",
+          type: "NotificationAction",
           optional: true,
         },
         {
@@ -1659,8 +1679,33 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "duration",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "defaultDuration",
+          type: "number",
+          optional: true,
+        },
+        {
           name: "dismissible",
           type: "boolean",
+          optional: true,
+        },
+        {
+          name: "details",
+          type: "TemplateRef<unknown>",
+          optional: true,
+        },
+        {
+          name: "accept",
+          type: "NotificationAction",
+          optional: true,
+        },
+        {
+          name: "cancel",
+          type: "NotificationAction",
           optional: true,
         },
         {
@@ -1681,8 +1726,53 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "children",
+          type: "ReactNode",
+          optional: true,
+        },
+        {
+          name: "details",
+          type: "ReactNode",
+          optional: true,
+        },
+        {
           name: "type",
-          type: '"success" | "warning" | "error" | "info"',
+          type: "NotificationType",
+          optional: true,
+        },
+        {
+          name: "open",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "duration",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "defaultDuration",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "dismissible",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "accept",
+          type: "NotificationAction",
+          optional: true,
+        },
+        {
+          name: "cancel",
+          type: "NotificationAction",
+          optional: true,
+        },
+        {
+          name: "onClose",
+          type: "() => void",
           optional: true,
         },
         {

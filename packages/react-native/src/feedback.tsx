@@ -1,4 +1,10 @@
-import React, { type ReactNode } from "react";
+import {
+  createNotificationTimer,
+  notificationDuration,
+  type NotificationAction,
+  type NotificationType,
+} from "@akin2unde/flowui-core";
+import React, { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   ActivityIndicator as RNActivityIndicator,
   Modal,
@@ -7,7 +13,7 @@ import {
   type TextStyle,
   type ViewStyle,
 } from "react-native";
-import { Text as RNText, View } from "./nativewind";
+import { Pressable, Text as RNText, View } from "./nativewind";
 import { useFlowUITheme } from "./theme";
 
 export function ActivityIndicator(props: ActivityIndicatorProps) {
@@ -109,7 +115,16 @@ export function ProgressBar({
 export interface NotificationProps {
   title: string;
   message?: string;
-  type?: "success" | "warning" | "error" | "info";
+  children?: ReactNode;
+  details?: ReactNode;
+  type?: NotificationType;
+  open?: boolean;
+  duration?: number;
+  defaultDuration?: number;
+  dismissible?: boolean;
+  accept?: NotificationAction;
+  cancel?: NotificationAction;
+  onClose?: () => void;
   icon?: ReactNode;
   className?: string;
   style?: StyleProp<ViewStyle>;
@@ -118,10 +133,27 @@ export interface NotificationProps {
   messageStyle?: StyleProp<TextStyle>;
 }
 
+const noticeColors = {
+  success: ["#e9f8ee", "#a9dcc0", "#16804a", "✓"],
+  info: ["#eaf3ff", "#b7d5fa", "#175db5", "ⓘ"],
+  warning: ["#fff5db", "#efd18c", "#9b6108", "⚠"],
+  error: ["#fff0f0", "#f2b6ba", "#b62335", "×"],
+  decision: ["#f4edff", "#cfb8f0", "#6324b7", "?"],
+} as const;
+
 export function Notification({
   title,
   message,
+  children,
+  details,
   type = "info",
+  open = true,
+  duration,
+  defaultDuration,
+  dismissible = true,
+  accept,
+  cancel,
+  onClose,
   icon,
   className,
   style,
@@ -129,39 +161,177 @@ export function Notification({
   titleStyle,
   messageStyle,
 }: NotificationProps) {
-  const { colors, theme } = useFlowUITheme();
-  const accent =
-    type === "success"
-      ? colors.success
-      : type === "warning"
-        ? colors.warning
-        : type === "error"
-          ? colors.danger
-          : colors.primary;
+  const { theme } = useFlowUITheme();
+  const [backgroundColor, borderColor, accent, glyph] = noticeColors[type];
+  const [closed, setClosed] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
+  const busy = useRef(false);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+  const timer = useRef<ReturnType<typeof createNotificationTimer> | null>(null);
+  const lifetime = notificationDuration(type, duration, defaultDuration);
+  const decision = type === "decision";
+
+  function close() {
+    timer.current?.dispose();
+    setClosed(true);
+    onCloseRef.current?.();
+  }
+
+  useEffect(() => {
+    setClosed(false);
+    setExpanded(false);
+    setHovered(false);
+    setFocused(false);
+    setError("");
+    if (!open) return;
+    const current = createNotificationTimer(lifetime, close);
+    timer.current = current;
+    current.resume();
+    return () => {
+      current.dispose();
+      timer.current = null;
+    };
+  }, [open, lifetime, type]);
+
+  useEffect(() => {
+    if (expanded || hovered || focused) timer.current?.pause();
+    else timer.current?.resume();
+  }, [expanded, hovered, focused]);
+
+  async function choose(action: NotificationAction) {
+    if (busy.current) return;
+    const current = timer.current;
+    busy.current = true;
+    setPending(true);
+    setError("");
+    try {
+      await action.onClick();
+      if (timer.current === current) close();
+    } catch {
+      if (timer.current === current)
+        setError("The action could not be completed. Please try again.");
+    } finally {
+      busy.current = false;
+      setPending(false);
+    }
+  }
+
+  if (!open || closed) return null;
   return (
     <View
-      accessibilityRole="alert"
-      className={`flex-row gap-3 border-l-4 p-4 ${className ?? ""}`}
+      accessibilityRole={decision ? undefined : "alert"}
+      className={`flex-row items-start gap-3 p-4 ${className ?? ""}`}
       style={[
         {
-          borderColor: accent,
-          backgroundColor: colors.surface,
+          borderColor,
+          backgroundColor,
           borderRadius: theme.radius.md,
+          borderWidth: 1,
         },
         style,
       ]}
+      onPointerEnter={() => setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
     >
-      {icon}
+      {icon ?? (
+        <RNText
+          accessible={false}
+          style={{ color: accent, fontSize: 20, fontWeight: "700" }}
+        >
+          {glyph}
+        </RNText>
+      )}
       <View className="flex-1 gap-1" style={contentStyle}>
-        <RNText style={[{ color: colors.text, fontWeight: "700" }, titleStyle]}>
+        <RNText style={[{ color: "#162033", fontWeight: "700" }, titleStyle]}>
           {title}
         </RNText>
         {message ? (
-          <RNText style={[{ color: colors.textMuted }, messageStyle]}>
+          <RNText style={[{ color: "#162033" }, messageStyle]}>
             {message}
           </RNText>
         ) : null}
+        {children}
+        {details != null && (
+          <>
+            <Pressable
+              accessibilityRole="button"
+              accessibilityState={{ expanded }}
+              onFocus={() => setFocused(true)}
+              onBlur={() => setFocused(false)}
+              onPress={() => setExpanded(!expanded)}
+            >
+              <RNText
+                style={{ color: accent, textDecorationLine: "underline" }}
+              >
+                {expanded ? "Hide details" : "View details"}
+              </RNText>
+            </Pressable>
+            {expanded && (
+              <View
+                style={{
+                  padding: 8,
+                  borderRadius: 6,
+                  backgroundColor: "#ffffff80",
+                }}
+              >
+                {details}
+              </View>
+            )}
+          </>
+        )}
+        {decision && (
+          <>
+            {error ? (
+              <RNText accessibilityRole="alert" style={{ color: "#9d1731" }}>
+                {error}
+              </RNText>
+            ) : null}
+            <View className="flex-row flex-wrap justify-end gap-2">
+              {[cancel, accept].map(
+                (action, index) =>
+                  action && (
+                    <Pressable
+                      key={index}
+                      accessibilityRole="button"
+                      disabled={pending}
+                      accessibilityState={{ disabled: pending }}
+                      onPress={() => void choose(action)}
+                      style={{
+                        borderColor: accent,
+                        borderWidth: 1,
+                        borderRadius: 6,
+                        padding: 8,
+                        backgroundColor: index === 1 ? accent : "transparent",
+                        opacity: pending ? 0.65 : 1,
+                      }}
+                    >
+                      <RNText style={{ color: index === 1 ? "#fff" : accent }}>
+                        {action.label}
+                      </RNText>
+                    </Pressable>
+                  ),
+              )}
+            </View>
+          </>
+        )}
       </View>
+      {!decision && dismissible && (
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel="Close notification"
+          hitSlop={8}
+          onFocus={() => setFocused(true)}
+          onBlur={() => setFocused(false)}
+          onPress={close}
+        >
+          <RNText style={{ color: "#162033", fontSize: 19 }}>×</RNText>
+        </Pressable>
+      )}
     </View>
   );
 }

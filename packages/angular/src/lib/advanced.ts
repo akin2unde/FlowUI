@@ -1,6 +1,17 @@
+import {
+  createNotificationTimer,
+  notificationDuration,
+  type NotificationAction,
+} from "@akin2unde/flowui-core";
 import { CommonModule } from "@angular/common";
 import {
+  ChangeDetectorRef,
   Component,
+  inject,
+  type OnChanges,
+  type OnDestroy,
+  type OnInit,
+  type SimpleChanges,
   ContentChildren,
   ElementRef,
   EventEmitter,
@@ -847,38 +858,190 @@ export class FlowBreadcrumbComponent extends FlowComponentBase {
   imports: [CommonModule, FlowIconComponent],
   template: `
     <aside
-      *ngIf="open"
+      *ngIf="open && !dismissed"
       [class]="view().className"
       [ngStyle]="view().style"
       [attr.data-type]="type"
       [attr.data-horizontal]="horizontal"
       [attr.data-vertical]="vertical"
-      [attr.role]="type === 'error' ? 'alert' : 'status'"
+      [attr.role]="
+        type === 'decision' ? 'group' : type === 'error' ? 'alert' : 'status'
+      "
+      [attr.aria-label]="type === 'decision' ? title : null"
+      (mouseenter)="setHovered(true)"
+      (mouseleave)="setHovered(false)"
+      (focusin)="setFocused(true)"
+      (focusout)="onFocusOut($event)"
     >
-      <fui-icon [icon]="icon" />
-      <div>
-        <strong *ngIf="title">{{ title }}</strong
-        ><ng-content />
+      <fui-icon className="fui-notification-icon" [icon]="icon" />
+      <div class="fui-notification-body">
+        <strong *ngIf="title">{{ title }}</strong>
+        <ng-content />
+        @if (details) {
+          <button
+            type="button"
+            class="fui-notification-details-toggle"
+            [attr.aria-expanded]="expanded"
+            (click)="toggleDetails()"
+          >
+            {{ expanded ? "Hide details" : "View details" }}
+          </button>
+          @if (expanded) {
+            <div class="fui-notification-details">
+              <ng-container *ngTemplateOutlet="details" />
+            </div>
+          }
+        }
+        @if (type === "decision") {
+          @if (error) {
+            <p role="alert" class="fui-notification-error">{{ error }}</p>
+          }
+          <div class="fui-notification-actions" [attr.aria-busy]="pending">
+            @if (cancel; as action) {
+              <button
+                type="button"
+                [disabled]="pending"
+                (click)="choose(action)"
+              >
+                {{ action.label }}
+              </button>
+            }
+            @if (accept; as action) {
+              <button
+                type="button"
+                data-primary
+                [disabled]="pending"
+                (click)="choose(action)"
+              >
+                {{ action.label }}
+              </button>
+            }
+          </div>
+        }
       </div>
-      <button
-        *ngIf="dismissible"
-        type="button"
-        aria-label="Close notification"
-        (click)="closed.emit()"
-      >
-        <fui-icon icon="fa-solid fa-xmark" />
-      </button>
+      @if (type !== "decision" && dismissible) {
+        <button
+          type="button"
+          class="fui-notification-close"
+          aria-label="Close notification"
+          (click)="close()"
+        >
+          <fui-icon icon="fa-solid fa-xmark" />
+        </button>
+      }
     </aside>
   `,
 })
-export class FlowNotificationComponent extends FlowComponentBase {
+export class FlowNotificationComponent
+  extends FlowComponentBase
+  implements OnChanges, OnDestroy, OnInit
+{
   @Input() open = true;
   @Input() title?: string;
   @Input() type: NotificationType = "info";
   @Input() horizontal: NotificationHorizontal = "right";
   @Input() vertical: NotificationVertical = "top";
+  @Input() duration?: number;
+  @Input() defaultDuration?: number;
   @Input() dismissible = true;
+  @Input() details?: TemplateRef<unknown>;
+  @Input() accept?: NotificationAction;
+  @Input() cancel?: NotificationAction;
   @Output() closed = new EventEmitter<void>();
+
+  private readonly changeDetector = inject(ChangeDetectorRef);
+  private timer?: ReturnType<typeof createNotificationTimer>;
+  private hovered = false;
+  private focused = false;
+  dismissed = false;
+  expanded = false;
+  pending = false;
+  error = "";
+
+  ngOnInit() {
+    if (!this.timer && this.open) this.resetTimer();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (
+      changes["open"] ||
+      changes["type"] ||
+      changes["duration"] ||
+      changes["defaultDuration"]
+    )
+      this.resetTimer();
+  }
+
+  private resetTimer() {
+    this.timer?.dispose();
+    this.timer = undefined;
+    this.dismissed = this.expanded = this.hovered = this.focused = false;
+    this.pending = false;
+    this.error = "";
+    if (this.open) {
+      this.timer = createNotificationTimer(
+        notificationDuration(this.type, this.duration, this.defaultDuration),
+        () => this.close(),
+      );
+      this.timer.resume();
+    }
+  }
+
+  ngOnDestroy() {
+    this.timer?.dispose();
+    this.timer = undefined;
+  }
+
+  close() {
+    this.timer?.dispose();
+    this.dismissed = true;
+    this.closed.emit();
+    this.changeDetector.markForCheck();
+  }
+
+  async choose(action: NotificationAction) {
+    if (this.pending) return;
+    const current = this.timer;
+    this.pending = true;
+    this.error = "";
+    try {
+      await action.onClick();
+      if (this.timer === current) this.close();
+    } catch {
+      if (this.timer === current)
+        this.error = "The action could not be completed. Please try again.";
+    } finally {
+      if (this.timer === current) {
+        this.pending = false;
+        this.changeDetector.markForCheck();
+      }
+    }
+  }
+
+  setHovered(value: boolean) {
+    this.hovered = value;
+    this.updateTimer();
+  }
+  setFocused(value: boolean) {
+    this.focused = value;
+    this.updateTimer();
+  }
+  toggleDetails() {
+    this.expanded = !this.expanded;
+    this.updateTimer();
+  }
+  onFocusOut(event: FocusEvent) {
+    if (
+      !(event.currentTarget as HTMLElement).contains(
+        event.relatedTarget as Node | null,
+      )
+    )
+      this.setFocused(false);
+  }
+  private updateTimer() {
+    if (this.hovered || this.focused || this.expanded) this.timer?.pause();
+    else this.timer?.resume();
+  }
 
   get icon(): string {
     const icons: Record<NotificationType, string> = {
@@ -886,6 +1049,7 @@ export class FlowNotificationComponent extends FlowComponentBase {
       error: "fa-circle-xmark",
       warning: "fa-triangle-exclamation",
       info: "fa-circle-info",
+      decision: "fa-circle-question",
     };
     return `fa-solid ${icons[this.type]}`;
   }

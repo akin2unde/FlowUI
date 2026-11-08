@@ -93,6 +93,10 @@ const dateModes = [
 export function HomeScreen() {
   const { colors, mode, setMode } = useFlowUITheme();
   const labels = useAsyncLabelStore();
+  const [notice, setNotice] = useState<
+    "success" | "info" | "warning" | "error" | "decision" | "accept-only" | null
+  >(null);
+  const [decisionResult, setDecisionResult] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [notes, setNotes] = useState("");
@@ -438,11 +442,104 @@ export function HomeScreen() {
             description="Progress, alerts, dialog and bottom sheet."
           >
             <ProgressBar value={68} />
-            <Notification
-              type="success"
-              title="Saved"
-              message="The product was saved successfully."
-            />
+            <HStack className="flex-wrap gap-2">
+              {(
+                [
+                  "success",
+                  "info",
+                  "warning",
+                  "error",
+                  "decision",
+                  "accept-only",
+                ] as const
+              ).map((kind) => (
+                <Button
+                  key={kind}
+                  variant="outline"
+                  onPress={() => {
+                    setNotice(kind);
+                    setDecisionResult("");
+                  }}
+                >
+                  {
+                    {
+                      success: "Success",
+                      info: "Info",
+                      warning: "Warning",
+                      error: "Long error",
+                      decision: "Decision",
+                      "accept-only": "Accept only",
+                    }[kind]
+                  }
+                </Button>
+              ))}
+            </HStack>
+            {notice && (
+              <Notification
+                key={notice}
+                type={notice === "accept-only" ? "decision" : notice}
+                title={
+                  {
+                    success: "Saved successfully",
+                    info: "Update available",
+                    warning: "Check required fields",
+                    error: "Could not save changes",
+                    decision: "Reassign ticket?",
+                    "accept-only": "Review required",
+                  }[notice]
+                }
+                message={
+                  {
+                    success: "Your changes have been saved.",
+                    info: "A new version is ready.",
+                    warning: "Two fields need your attention.",
+                    error:
+                      "Ticket #1042 changed while you were editing. Reload it and apply your changes again.",
+                    decision: "",
+                    "accept-only": "Read the handoff notes before continuing.",
+                  }[notice]
+                }
+                details={
+                  notice === "error" ? (
+                    <Text>
+                      Conflict detected. The ticket changed after this edit was
+                      opened.
+                    </Text>
+                  ) : undefined
+                }
+                accept={
+                  notice === "decision" || notice === "accept-only"
+                    ? {
+                        label:
+                          notice === "decision"
+                            ? "Reassign"
+                            : "Open handoff notes",
+                        onClick: () =>
+                          setDecisionResult(
+                            notice === "decision"
+                              ? "Ticket reassigned."
+                              : "Handoff notes opened.",
+                          ),
+                      }
+                    : undefined
+                }
+                cancel={
+                  notice === "decision"
+                    ? {
+                        label: "Cancel",
+                        onClick: () =>
+                          setDecisionResult("Reassignment cancelled."),
+                      }
+                    : undefined
+                }
+                onClose={() => setNotice(null)}
+              >
+                {notice === "decision" && (
+                  <Text>Ticket #1042 · Support → Development</Text>
+                )}
+              </Notification>
+            )}
+            {decisionResult ? <Text>{decisionResult}</Text> : null}
             <Divider />
             <HStack className="flex-wrap gap-3">
               <Button variant="outline" onPress={() => setDialog(true)}>

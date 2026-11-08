@@ -1,3 +1,4 @@
+import { NotificationDemoComponent } from "./notification-demo.component";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -51,7 +52,6 @@ import {
   FlowTreeMultiSelectComponent,
   FlowVStackComponent,
   FlowFileUploadComponent,
-  FlowNotificationComponent,
   FlowOTPInputComponent,
   FlowPhoneInputComponent,
   type BreadcrumbItem,
@@ -75,6 +75,7 @@ import { createTheme, themeToCSS } from "@akin2unde/flowui-core";
   selector: "app-docs",
   standalone: true,
   imports: [
+    NotificationDemoComponent,
     AppComponent,
     FlowAsyncLabelComponent,
     CommonModule,
@@ -120,8 +121,7 @@ import { createTheme, themeToCSS } from "@akin2unde/flowui-core";
     FlowTreeMultiSelectComponent,
     FlowVStackComponent,
     FlowFileUploadComponent,
-    FlowNotificationComponent,
-    FlowOTPInputComponent,
+      FlowOTPInputComponent,
     FlowPhoneInputComponent,
   ],
   templateUrl: "./docs.component.html",

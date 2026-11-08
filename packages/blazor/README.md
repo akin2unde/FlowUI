@@ -396,10 +396,17 @@ It dismisses on Escape, outside click, or focus leaving. `FlowTooltip` is a
 short noninteractive hint with Text and ChildContent, shown on hover/focus and
 hidden with Escape. Put hints close to the element they describe.
 
-`FlowToast` binds Open and accepts Title, Color, ChildContent and Duration
-(milliseconds; default 5000, zero stays open). Automatic dismissal pauses
-while hovered or focused and restarts afterward. A close button always remains
-available. It is one notification component, not a shared toast queue/service.
+`FlowToast` binds `Open` and accepts `Title` and templatable `ChildContent`.
+Set `Type` to Success, Info, Warning, Error, or Decision. Existing `Color`
+values are still accepted for timed notifications. The four timed types default
+to 4, 5, 7, and 8 seconds respectively. `Duration` overrides
+`DefaultDuration` in milliseconds when positive. Zero and negative values fall
+back to the defaults. The countdown pauses on hover, focus, and while the
+optional `Details` fragment is expanded.
+
+A Decision stays open until its action completes. Supply an `Accept`
+`FlowToastAction` with a label and async handler, and omit `Cancel` for an
+accept-only choice. Failed actions leave the message visible for retry.
 
 ## Navigation and data display
 

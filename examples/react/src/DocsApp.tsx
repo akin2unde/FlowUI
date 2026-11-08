@@ -1,3 +1,4 @@
+import NotificationDemo from "./NotificationDemo";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import * as F from "@akin2unde/flowui-react";
 import { componentDocs, type Framework } from "../../shared/docs-data";
@@ -641,18 +642,7 @@ function ComponentPreview({ name }: { name: string }) {
       );
       break;
     case "Notification":
-      preview = (
-        <>
-          <F.Button onClick={() => setOpen(true)}>Show notification</F.Button>
-          <F.Notification
-            open={open}
-            type="success"
-            onClose={() => setOpen(false)}
-          >
-            Saved successfully
-          </F.Notification>
-        </>
-      );
+      preview = <NotificationDemo />;
       break;
     default:
       preview = <p>See the usage and property reference below.</p>;

@@ -1,4 +1,9 @@
 import {
+  createNotificationTimer,
+  notificationDuration,
+  type NotificationAction,
+} from "@akin2unde/flowui-core";
+import {
   Children,
   cloneElement,
   isValidElement,
@@ -752,33 +757,94 @@ export function Breadcrumb({
 
 export interface NotificationProps extends PropsWithChildren<CoreNotificationProps> {
   title?: string;
+  details?: ReactNode;
+  accept?: NotificationAction;
+  cancel?: NotificationAction;
   onClose?: () => void;
 }
 
 export function Notification({
   children,
   title,
+  details,
+  accept,
+  cancel,
   open = true,
   type = "info",
   horizontal = "right",
   vertical = "top",
-  duration = 0,
+  duration,
+  defaultDuration,
   dismissible = true,
   onClose,
   ...props
 }: NotificationProps) {
   const flow = useFlowProps("fui-notification", props);
+  const [closed, setClosed] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [focused, setFocused] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState("");
+  const busy = useRef(false);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
+  const timer = useRef<ReturnType<typeof createNotificationTimer> | null>(null);
+  const decision = type === "decision";
+  const lifetime = notificationDuration(type, duration, defaultDuration);
+
+  function close() {
+    timer.current?.dispose();
+    setClosed(true);
+    onCloseRef.current?.();
+  }
+
   useEffect(() => {
-    if (!open || duration <= 0) return;
-    const timer = window.setTimeout(() => onClose?.(), duration);
-    return () => window.clearTimeout(timer);
-  }, [open, duration, onClose]);
-  if (!open) return null;
+    setClosed(false);
+    setHovered(false);
+    setFocused(false);
+    setExpanded(false);
+    setError("");
+    if (!open) return;
+    const current = createNotificationTimer(lifetime, close);
+    timer.current = current;
+    current.resume();
+    return () => {
+      current.dispose();
+      timer.current = null;
+    };
+  }, [open, lifetime, type]);
+
+  useEffect(() => {
+    if (hovered || focused || expanded) timer.current?.pause();
+    else timer.current?.resume();
+  }, [hovered, focused, expanded]);
+
+  async function choose(action: NotificationAction) {
+    if (busy.current) return;
+    const current = timer.current;
+    busy.current = true;
+    setPending(true);
+    setError("");
+    try {
+      await action.onClick();
+      if (timer.current === current) close();
+    } catch {
+      if (timer.current === current)
+        setError("The action could not be completed. Please try again.");
+    } finally {
+      busy.current = false;
+      setPending(false);
+    }
+  }
+
+  if (!open || closed) return null;
   const icons = {
     success: "fa-circle-check",
     error: "fa-circle-xmark",
     warning: "fa-triangle-exclamation",
     info: "fa-circle-info",
+    decision: "fa-circle-question",
   };
   return (
     <aside
@@ -786,15 +852,76 @@ export function Notification({
       data-type={type}
       data-horizontal={horizontal}
       data-vertical={vertical}
-      role={type === "error" ? "alert" : "status"}
+      role={decision ? "group" : type === "error" ? "alert" : "status"}
+      aria-label={decision ? title : undefined}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setFocused(true)}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget))
+          setFocused(false);
+      }}
     >
-      <Icon icon={`fa-solid ${icons[type]}`} />
-      <div>
+      <Icon
+        className="fui-notification-icon"
+        icon={`fa-solid ${icons[type]}`}
+      />
+      <div className="fui-notification-body">
         {title && <strong>{title}</strong>}
         {children}
+        {details != null && (
+          <>
+            <button
+              type="button"
+              className="fui-notification-details-toggle"
+              aria-expanded={expanded}
+              onClick={() => setExpanded(!expanded)}
+            >
+              {expanded ? "Hide details" : "View details"}
+            </button>
+            {expanded && (
+              <div className="fui-notification-details">{details}</div>
+            )}
+          </>
+        )}
+        {decision && (
+          <>
+            {error && (
+              <p role="alert" className="fui-notification-error">
+                {error}
+              </p>
+            )}
+            <div className="fui-notification-actions" aria-busy={pending}>
+              {cancel && (
+                <button
+                  type="button"
+                  disabled={pending}
+                  onClick={() => void choose(cancel)}
+                >
+                  {cancel.label}
+                </button>
+              )}
+              {accept && (
+                <button
+                  type="button"
+                  data-primary=""
+                  disabled={pending}
+                  onClick={() => void choose(accept)}
+                >
+                  {accept.label}
+                </button>
+              )}
+            </div>
+          </>
+        )}
       </div>
-      {dismissible && (
-        <button type="button" aria-label="Close notification" onClick={onClose}>
+      {!decision && dismissible && (
+        <button
+          type="button"
+          className="fui-notification-close"
+          aria-label="Close notification"
+          onClick={close}
+        >
           <Icon icon="fa-solid fa-xmark" />
         </button>
       )}

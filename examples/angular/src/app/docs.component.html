@@ -378,18 +378,7 @@
                 />
               }
               @case ("Notification") {
-                <fui-button (pressed)="noticeOpen = true"
-                  >Show notification</fui-button
-                ><fui-notification
-                  [open]="noticeOpen"
-                  title="Product saved"
-                  type="success"
-                  horizontal="center"
-                  vertical="top"
-                  (closed)="noticeOpen = false"
-                >
-                  <p>The product was saved successfully.</p>
-                </fui-notification>
+                <app-notification-demo />
               }
               @case ("Menu") {
                 <fui-menu

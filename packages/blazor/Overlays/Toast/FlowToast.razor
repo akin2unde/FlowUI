@@ -1,12 +1,34 @@
 @namespace FlowUI.Blazor.Overlays
-
 @inherits FlowComponentBase
-<div class="fui-toast-region" aria-live="polite" aria-atomic="true">
-    @if (Open)
-    {
-        <div @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-toast")" style="@Styles" data-color="@Color.ToString().ToLowerInvariant()" role="status" @onmouseenter="Pause" @onmouseleave="Resume" @onfocusin="Pause" @onfocusout="Resume">
-            <div>@if (!string.IsNullOrWhiteSpace(Title)) { <strong>@Title</strong> }@ChildContent</div>
-            <button type="button" aria-label="Dismiss notification" @onclick="Dismiss">×</button>
+
+@if (Open)
+{
+    <aside @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-toast")" style="@Styles"
+           data-type="@Kind.ToString().ToLowerInvariant()" role="@(Kind == FlowToastType.Decision ? "group" : Kind == FlowToastType.Error ? "alert" : "status")"
+           aria-label="@(Kind == FlowToastType.Decision ? Title : null)"
+           @onmouseenter="() => SetHover(true)" @onmouseleave="() => SetHover(false)"
+           @onfocusin="() => SetFocus(true)" @onfocusout="() => SetFocus(false)">
+        <span class="icon" aria-hidden="true">@Glyph</span>
+        <div class="body">
+            @if (!string.IsNullOrWhiteSpace(Title)) { <strong>@Title</strong> }
+            @ChildContent
+            @if (Details is not null)
+            {
+                <button class="details-toggle" type="button" aria-expanded="@expanded.ToString().ToLowerInvariant()" @onclick="ToggleDetails">@(expanded ? "Hide details" : "View details")</button>
+                @if (expanded) { <div class="details">@Details</div> }
+            }
+            @if (Kind == FlowToastType.Decision)
+            {
+                @if (actionError is not null) { <p class="error" role="alert">@actionError</p> }
+                <div class="actions" aria-busy="@pending.ToString().ToLowerInvariant()">
+                    @if (Cancel is { } cancel) { <button type="button" disabled="@pending" @onclick="() => Choose(cancel)">@cancel.Label</button> }
+                    @if (Accept is { } accept) { <button type="button" class="primary" disabled="@pending" @onclick="() => Choose(accept)">@accept.Label</button> }
+                </div>
+            }
         </div>
-    }
-</div>
+        @if (Kind != FlowToastType.Decision && Dismissible)
+        {
+            <button class="close" type="button" aria-label="Dismiss notification" @onclick="Dismiss">×</button>
+        }
+    </aside>
+}

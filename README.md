@@ -579,3 +579,21 @@ Existing npm builds/releases stay independent; explicit shortcuts are
 
 Blazor documentation: https://flowui-blazor-docs.tealwolf.chatgpt.site
 See `BLAZOR-RELEASE.md` for packaging, publishing and hosting.
+
+## Notifications and decisions
+
+Success, Info, Warning, and Error close after 4, 5, 7, and 8 seconds
+respectively. `duration` and `defaultDuration` are positive milliseconds.
+Zero, negative, and infinite durations fall back to a finite default. The
+countdown pauses on hover or keyboard focus where supported and while optional
+details are expanded.
+
+Decision is the persistent type. Provide custom content and an `accept` action
+with a label and handler. Add a `cancel` action when needed. While an action is
+running, both buttons are disabled. A rejected action leaves the card open for
+retry. Angular projects the body and accepts a details template. React and
+React Native use child content, and Blazor exposes these options on `FlowToast`
+with PascalCase parameter names.
+
+All platform samples show the four timed types, a long error with expandable
+details, and decisions with one or two buttons.

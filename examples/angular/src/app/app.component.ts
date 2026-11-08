@@ -1,3 +1,4 @@
+import { NotificationDemoComponent } from "./notification-demo.component";
 import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 import {
@@ -42,7 +43,6 @@ import {
   FlowTreeMultiSelectComponent,
   FlowVStackComponent,
   FlowFileUploadComponent,
-  FlowNotificationComponent,
   FlowOTPInputComponent,
   FlowPhoneInputComponent,
   type BreadcrumbItem,
@@ -61,6 +61,7 @@ import {
   selector: "app-root",
   standalone: true,
   imports: [
+    NotificationDemoComponent,
     CommonModule,
     FlowAutocompleteComponent,
     FlowBadgeComponent,
@@ -103,8 +104,7 @@ import {
     FlowTreeMultiSelectComponent,
     FlowVStackComponent,
     FlowFileUploadComponent,
-    FlowNotificationComponent,
-    FlowOTPInputComponent,
+      FlowOTPInputComponent,
     FlowPhoneInputComponent,
   ],
   templateUrl: "./app.component.html",
@@ -133,7 +133,6 @@ export class AppComponent {
   selectedProduct?: Record<string, unknown>;
   // Persist this value per user and restore it when the screen opens.
   visibleProductColumns = ["name", "price"];
-  noticeOpen = false;
   knob = 68;
   otp = "";
   phone: PhoneNumberValue = {

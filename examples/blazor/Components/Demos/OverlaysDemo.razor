@@ -1,3 +1,4 @@
+@using FlowUI.Blazor.Overlays
 <FlowVC Gap="1.5rem">
 <DemoBlock Title="Dialog" Markup="@Example0" Code="@ExampleCode">
 <FlowButton OnClick="() => dialogOpen = true">Open dialog</FlowButton>
@@ -20,8 +21,21 @@
     <FlowTooltip Text="Available to keyboard and mouse users" Location="bottom"><FlowBadge Color="FlowColor.Info">Hover or focus for a hint</FlowBadge></FlowTooltip>
 </FlowHC>
 </DemoBlock>
-<DemoBlock Title="Toast" Markup="@Example3" Code="@ExampleCode">
-<FlowButton Color="FlowColor.Success" OnClick="() => toastOpen = true">Show success notification</FlowButton>
-<FlowToast @bind-Open="toastOpen" Title="Saved" Color="FlowColor.Success" Duration="2500"><p>Your sample changes have been saved.</p></FlowToast>
+<DemoBlock Title="Notifications and decisions" Markup="@Example3" Code="@ExampleCode">
+<FlowHC Wrap="true">
+    <FlowButton OnClick="() => ShowNotice(FlowToastType.Success)">Success</FlowButton>
+    <FlowButton OnClick="() => ShowNotice(FlowToastType.Info)">Info</FlowButton>
+    <FlowButton OnClick="() => ShowNotice(FlowToastType.Warning)">Warning</FlowButton>
+    <FlowButton OnClick="() => ShowNotice(FlowToastType.Error)">Long error</FlowButton>
+    <FlowButton OnClick="() => ShowNotice(FlowToastType.Decision)">Decision</FlowButton>
+    <FlowButton OnClick="() => ShowNotice(FlowToastType.Decision, true)">Accept only</FlowButton>
+</FlowHC>
+<FlowToast @key="noticeId" @bind-Open="toastOpen" Title="@NoticeTitle" Type="@noticeType"
+           Details="@(noticeType == FlowToastType.Error ? ConflictDetails : null)"
+           Accept="@(noticeType == FlowToastType.Decision ? AcceptNotice : null)"
+           Cancel="@(noticeType == FlowToastType.Decision && !acceptOnly ? CancelNotice : null)">
+    <p>@NoticeBody</p>
+</FlowToast>
+<p role="status">@noticeResult</p>
 </DemoBlock>
 </FlowVC>
