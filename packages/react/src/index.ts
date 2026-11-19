@@ -19,7 +19,6 @@ export type {
   ResponsiveValue,
   SelectOption,
   SortState,
-  TableColumn,
   ThemeMode,
   TimelineItem,
   TooltipLocation,

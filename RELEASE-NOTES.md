@@ -1,3 +1,15 @@
+# FlowUI 1.0.2 — control customization
+
+- Added button `text` / `Text` fallback while preserving children and projected content.
+- Added visible field background, text, icon, placeholder and picker colour customization; retained React Native’s detailed style props.
+- Added input minimum, maximum, step and text-length constraints to the adapters. React Native reports range/minimum-length validation on blur through `onValidationChange`.
+- Improved native attributes/events and focus refs, dropdown form/keyboard behaviour, dialog focus handling, popover trigger composition, and table cell/header templates and stable row identities.
+- Updated all four frameworks’ documentation/examples. React examples use direct named imports and self-contained state where needed.
+- Aligned JavaScript packages and their FlowUI dependencies at 1.0.2. No packages have been published by this update.
+- See [Control customization](docs/CONTROL-CUSTOMIZATION.md) for exact APIs and platform differences.
+
+## Earlier notes
+
 # FlowUI 1.0.0
 
 - Updated the Angular adapter and example to Angular 22.2.5 and the Angular CLI and packaging tools to 22.2.6. The Angular adapter now declares Angular 22 as its peer requirement.

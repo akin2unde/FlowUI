@@ -104,7 +104,7 @@ import {
     FlowTreeMultiSelectComponent,
     FlowVStackComponent,
     FlowFileUploadComponent,
-      FlowOTPInputComponent,
+    FlowOTPInputComponent,
     FlowPhoneInputComponent,
   ],
   templateUrl: "./app.component.html",

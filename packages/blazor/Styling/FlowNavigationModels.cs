@@ -11,6 +11,7 @@ public sealed class FlowTableColumn<TItem>
     public required Func<TItem, object?> Value { get; init; }
     public Func<TItem, object?>? ExportValue { get; init; }
     public Microsoft.AspNetCore.Components.RenderFragment<TItem>? Template { get; init; }
+    public Microsoft.AspNetCore.Components.RenderFragment? HeaderTemplate { get; init; }
     public bool Sortable { get; init; } = true;
 }
 

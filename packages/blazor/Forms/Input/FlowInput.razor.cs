@@ -7,5 +7,6 @@ namespace FlowUI.Blazor.Forms;
 
 public partial class FlowInput : FlowTextFieldBase
 {
+    [Parameter] public string Type { get; set; } = "text";
 
 }

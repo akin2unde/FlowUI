@@ -1,5 +1,11 @@
 import type { FieldFocusStyle } from "@akin2unde/flowui-core";
-import { Directive, Input, inject } from "@angular/core";
+import {
+  Directive,
+  Input,
+  inject,
+  ElementRef,
+  afterEveryRender,
+} from "@angular/core";
 import {
   resolveFlowStyle,
   type AlignValue,
@@ -19,6 +25,53 @@ import { FlowUIThemeService } from "./theme";
 
 @Directive()
 export abstract class FlowComponentBase implements BaseUIProps {
+  private readonly flowHost: ElementRef<HTMLElement> | null = inject(
+    ElementRef,
+    { optional: true },
+  );
+  @Input() nativeAttributes: Record<
+    string,
+    string | number | boolean | null | undefined
+  > = {};
+  private previousNativeAttributes = new Set<string>();
+  constructor() {
+    if (!this.flowHost) return;
+    afterEveryRender(() => {
+      const node = this.nativeElement;
+      if (!node) return;
+      for (const key of this.previousNativeAttributes)
+        if (!(key in this.nativeAttributes)) node.removeAttribute(key);
+      for (const [key, value] of Object.entries(this.nativeAttributes)) {
+        if (/^on/i.test(key) || ["style", "class", "innerHTML"].includes(key))
+          continue;
+        if (value == null || (value === false && !key.startsWith("aria-")))
+          node.removeAttribute(key);
+        else
+          node.setAttribute(
+            key,
+            value === true && !key.startsWith("aria-") ? "" : String(value),
+          );
+      }
+      this.previousNativeAttributes = new Set(
+        Object.keys(this.nativeAttributes),
+      );
+    });
+  }
+  get nativeElement(): HTMLElement | null {
+    return (
+      this.flowHost?.nativeElement.querySelector<HTMLElement>(
+        ".fui-control,.fui-select-trigger",
+      ) ??
+      this.flowHost?.nativeElement.querySelector<HTMLElement>(
+        "button,input,textarea,select:not(.fui-native-validation)",
+      ) ??
+      this.flowHost?.nativeElement ??
+      null
+    );
+  }
+  focus(): void {
+    this.nativeElement?.focus();
+  }
   protected readonly fuiTheme = inject(FlowUIThemeService);
   @Input() id?: string;
   @Input() focusStyle?: FieldFocusStyle;
@@ -92,6 +145,13 @@ export abstract class FlowComponentBase implements BaseUIProps {
   >;
   @Input() borderColor?: ResponsiveValue<ColorValue>;
   @Input() cornerRadius?: ResponsiveValue<RadiusValue>;
+  @Input() iconColor?: ResponsiveValue<ColorValue>;
+  @Input() placeholderColor?: ResponsiveValue<ColorValue>;
+  @Input() panelBackgroundColor?: ResponsiveValue<ColorValue>;
+  @Input() panelTextColor?: ResponsiveValue<ColorValue>;
+  @Input() optionHoverBackgroundColor?: ResponsiveValue<ColorValue>;
+  @Input() selectedOptionBackgroundColor?: ResponsiveValue<ColorValue>;
+  @Input() selectedOptionTextColor?: ResponsiveValue<ColorValue>;
   @Input() backgroundColor?: ResponsiveValue<ColorValue>;
   @Input() opacity?: ResponsiveValue<number>;
   @Input() shadow?: ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">;

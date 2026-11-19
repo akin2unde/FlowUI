@@ -639,6 +639,16 @@ export class FlowPopoverComponent extends FlowComponentBase {
     }
   }
 
+  @HostListener("document:keydown", ["$event"])
+  keyboard(event: KeyboardEvent): void {
+    if (this.isOpen && event.key === "Escape" && !event.defaultPrevented) {
+      event.preventDefault();
+      this.setOpen(false);
+      this.element.nativeElement
+        .querySelector<HTMLElement>("button,[tabindex]")
+        ?.focus();
+    }
+  }
   view = () => this.resolved("fui-popover");
 }
 

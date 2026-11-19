@@ -80,7 +80,7 @@ for (const folder of [
   }
 }
 function properties(name, framework, seen = new Set()) {
-  if (name === "BaseUIProps" || seen.has(`${framework}:${name}`)) return [];
+  if (seen.has(`${framework}:${name}`)) return [];
   const item =
     interfaces.get(`${framework}:${name}`) ?? interfaces.get(`core:${name}`);
   if (!item) return [];
@@ -114,7 +114,11 @@ function properties(name, framework, seen = new Set()) {
 function angularProperties(name) {
   const node = classes.get(`Flow${name}Component`);
   if (!node) return [];
-  return node.members
+  const members = [
+    ...(classes.get("FlowComponentBase")?.members ?? []),
+    ...node.members,
+  ];
+  return members
     .filter(
       (member) =>
         ts.isPropertyDeclaration(member) &&
@@ -137,7 +141,8 @@ function angularProperties(name) {
     }));
 }
 const nativeExamples = {
-  DateTime: '<DateTime mode="datetime" value={date} onChange={setDate} />',
+  DateTime:
+    '<DateTime mode="datetime" value={date} onChange={setDate} backgroundColor="#faf5ff" textColor="#3b1760" iconColor="#8a16d1" />',
   Tooltip:
     '<Tooltip text="Save your changes" location="bottom"><Text>Long press for help</Text></Tooltip>',
   Breadcrumb: '<Breadcrumb items={crumbs} separator="/" onSelect={navigate} />',
@@ -165,8 +170,9 @@ const nativeExamples = {
   Label: "<Text>Customer name</Text>",
   Card: "<Card><Text>Content</Text></Card>",
   Badge: "<Badge>Ready</Badge>",
-  Button: "<Button onPress={save}>Save</Button>",
-  Input: "<Input value={value} onChangeText={setValue} />",
+  Button: '<Button text="Save" onPress={save} />',
+  Input:
+    '<Input value={value} onChangeText={setValue} min={1} max={100} keyboardType="numeric" onValidationChange={(valid, message) => setError(message)} />',
   PasswordInput:
     "<PasswordInput value={password} onChangeText={setPassword} />",
   TextArea: "<TextArea value={notes} onChangeText={setNotes} />",
@@ -180,6 +186,76 @@ const nativeExamples = {
     "<Dialog visible={open} onClose={close}><Text>Details</Text></Dialog>",
   Image: "<Image source={{ uri: imageUrl }} />",
 };
+const simpleReactExamples = {
+  Button: `import { Button } from "@akin2unde/flowui-react";
+
+export function ButtonExample() {
+  return <Button text="Save changes" onClick={() => alert("Saved")} />;
+}`,
+  Input: `import { useState } from "react";
+import { Input, Label, VStack } from "@akin2unde/flowui-react";
+
+export function InputExample() {
+  const [quantity, setQuantity] = useState("2");
+  return (
+    <VStack gap={8}>
+      <Label htmlFor="quantity">Quantity</Label>
+      <Input id="quantity" type="number" min={1} max={100} step={1}
+        value={quantity} onValueChange={setQuantity} />
+    </VStack>
+  );
+}`,
+  DateTime: `import { useState } from "react";
+import { DateTime } from "@akin2unde/flowui-react";
+
+export function DateTimeExample() {
+  const [value, setValue] = useState("2026-10-10T09:30");
+  return <DateTime value={value} onChange={setValue}
+    min="2026-01-01T00:00" max="2026-12-31T23:59"
+    backgroundColor="#faf5ff" textColor="#3b1760" iconColor="#8a16d1" />;
+}`,
+  Dropdown: `import { useState } from "react";
+import { Dropdown, Label, VStack } from "@akin2unde/flowui-react";
+
+const options = [
+  { value: "open", display: "Open", other: null },
+  { value: "closed", display: "Closed", other: null },
+];
+
+export function DropdownExample() {
+  const [status, setStatus] = useState("open");
+  return <VStack gap={8}>
+    <Label htmlFor="status">Status</Label>
+    <Dropdown id="status" name="status" options={options}
+      value={status} onChange={option => setStatus(String(option.value))}
+      placeholder="Choose a status" backgroundColor="#faf5ff"
+      textColor="#3b1760" iconColor="#8a16d1" />
+  </VStack>;
+}`,
+  Table: `import { Button, Table } from "@akin2unde/flowui-react";
+
+const rows = [{ Code: "TKT-001", Title: "Unable to load" }];
+
+export function TableExample() {
+  return <Table data={rows} rowKey="Code" columns={[
+    { field: "Title", header: "Ticket" },
+    { field: "Code", header: "Action", renderCell: (_, ticket) => (
+      <Button text="View" onClick={() => alert(ticket.Code)} />
+    ) },
+  ]} />;
+}`,
+};
+function reactExample(name, code) {
+  if (simpleReactExamples[name]) return simpleReactExamples[name];
+  const names = [
+    ...new Set(
+      [...code.matchAll(/<([A-Z][A-Za-z0-9]*)\b/g)].map((match) => match[1]),
+    ),
+  ];
+  return names.length
+    ? `import { ${names.join(", ")} } from "@akin2unde/flowui-react";\n\n${code}`
+    : code;
+}
 const rows = react.map(([group, name, description, code]) => {
   const interfaceName =
     name === "HC"
@@ -202,8 +278,15 @@ const rows = react.map(([group, name, description, code]) => {
     name,
     description,
     code: {
-      react: code,
-      angular: angular.get(name) ?? "",
+      react: reactExample(name, code),
+      angular:
+        name === "Button"
+          ? '<fui-button text="Save changes" (pressed)="save()" />'
+          : name === "DateTime"
+            ? '<fui-date-time [value]="date" (valueChange)="date = $event" min="2026-01-01T00:00" max="2026-12-31T23:59" backgroundColor="#faf5ff" textColor="#3b1760" iconColor="#8a16d1" />'
+            : name === "Input"
+              ? '<fui-input type="number" [min]="1" [max]="100" [step]="1" [value]="quantity" (valueChange)="quantity = $event" />'
+              : (angular.get(name) ?? ""),
       native: nativeExamples[name] ?? "",
     },
     props: {

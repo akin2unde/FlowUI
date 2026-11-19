@@ -363,6 +363,13 @@ const responsiveProperties: Record<string, string> = {
   borderStyle: "border-style",
   borderColor: "border-color",
   cornerRadius: "border-radius",
+  iconColor: "--fui-control-icon",
+  placeholderColor: "--fui-control-placeholder",
+  panelBackgroundColor: "--fui-panel-background",
+  panelTextColor: "--fui-panel-text",
+  optionHoverBackgroundColor: "--fui-option-hover-background",
+  selectedOptionBackgroundColor: "--fui-option-selected-background",
+  selectedOptionTextColor: "--fui-option-selected-text",
   backgroundColor: "background-color",
   opacity: "opacity",
   shadow: "box-shadow",
@@ -377,10 +384,12 @@ const responsiveProperties: Record<string, string> = {
 export function responsiveCSS(theme: FlowUITheme): string {
   const output: string[] = [];
   for (const [prop, css] of Object.entries(responsiveProperties)) {
-    output.push(`.fui-r-${prop}-default{${css}:var(--fui-${prop}-default)}`);
+    output.push(
+      `.fui-r-${prop}-default{${css}:var(--fui-${prop}-default)${prop === "backgroundColor" ? ";--fui-control-background:var(--fui-backgroundColor-default)" : prop === "textColor" ? ";--fui-control-text:var(--fui-textColor-default)" : ""}}`,
+    );
     for (const [breakpoint, width] of Object.entries(theme.breakpoints)) {
       output.push(
-        `@media(min-width:${width}){.fui-r-${prop}-${breakpoint}{${css}:var(--fui-${prop}-${breakpoint})}}`,
+        `@media(min-width:${width}){.fui-r-${prop}-${breakpoint}{${css}:var(--fui-${prop}-${breakpoint})${prop === "backgroundColor" ? `;--fui-control-background:var(--fui-backgroundColor-${breakpoint})` : prop === "textColor" ? `;--fui-control-text:var(--fui-textColor-${breakpoint})` : ""}}}`,
       );
     }
   }

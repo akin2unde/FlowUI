@@ -75,7 +75,7 @@ const align = (value: unknown) =>
 type Resolver = (value: never, theme: FlowUITheme) => string | number;
 const propertyMap: Record<
   string,
-  { css: keyof FlowUIStyle; resolve: Resolver }
+  { css: keyof ResolvedStyle; resolve: Resolver }
 > = {
   width: { css: "width", resolve: dimension as Resolver },
   minWidth: { css: "minWidth", resolve: dimension as Resolver },
@@ -131,6 +131,22 @@ const propertyMap: Record<
     css: "borderRadius",
     resolve: ((v: string | number, t: FlowUITheme) =>
       v in t.radius ? `var(--fui-radius-${v})` : length(v)) as Resolver,
+  },
+  iconColor: { css: "--fui-control-icon", resolve: color },
+  placeholderColor: { css: "--fui-control-placeholder", resolve: color },
+  panelBackgroundColor: { css: "--fui-panel-background", resolve: color },
+  panelTextColor: { css: "--fui-panel-text", resolve: color },
+  optionHoverBackgroundColor: {
+    css: "--fui-option-hover-background",
+    resolve: color,
+  },
+  selectedOptionBackgroundColor: {
+    css: "--fui-option-selected-background",
+    resolve: color,
+  },
+  selectedOptionTextColor: {
+    css: "--fui-option-selected-text",
+    resolve: color,
   },
   backgroundColor: { css: "backgroundColor", resolve: color as Resolver },
   opacity: { css: "opacity", resolve: String as unknown as Resolver },
@@ -200,6 +216,10 @@ export function resolveFlowStyle(
     style["--fui-field-focus-border"] = "var(--fui-color-borderStrong)";
     style["--fui-field-focus-shadow"] = "none";
   }
+  if (style.backgroundColor !== undefined)
+    style["--fui-control-background"] = String(style.backgroundColor);
+  if (style.color !== undefined)
+    style["--fui-control-text"] = String(style.color);
   Object.assign(style, userStyle);
   return { classNames, style };
 }

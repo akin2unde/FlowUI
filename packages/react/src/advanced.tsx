@@ -12,6 +12,9 @@ import {
   useRef,
   useState,
   type ChangeEvent,
+  type MouseEvent as ReactMouseEvent,
+  type ButtonHTMLAttributes,
+  type Ref,
   type PropsWithChildren,
   type ReactElement,
   type ReactNode,
@@ -535,24 +538,42 @@ export function Popover({
   const shown = open ?? internalOpen;
   const root = useRef<HTMLSpanElement>(null);
   const flow = useFlowProps("fui-popover", props);
-  const setShown = (next: boolean) => {
+  const change = useRef((next: boolean) => {});
+  change.current = (next) => {
     if (open === undefined) setInternalOpen(next);
     onOpenChange?.(next);
   };
-
   useEffect(() => {
-    if (!shown || !closeOnOutsideClick) return;
-    const close = (event: MouseEvent) => {
-      if (!root.current?.contains(event.target as Node)) setShown(false);
+    if (!shown) return;
+    const outside = (event: MouseEvent) => {
+      if (closeOnOutsideClick && !root.current?.contains(event.target as Node))
+        change.current(false);
     };
-    document.addEventListener("mousedown", close);
-    return () => document.removeEventListener("mousedown", close);
+    const keyboard = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && !event.defaultPrevented) {
+        event.preventDefault();
+        change.current(false);
+        root.current?.querySelector<HTMLElement>("button,[tabindex]")?.focus();
+      }
+    };
+    document.addEventListener("mousedown", outside);
+    document.addEventListener("keydown", keyboard);
+    return () => {
+      document.removeEventListener("mousedown", outside);
+      document.removeEventListener("keydown", keyboard);
+    };
   }, [shown, closeOnOutsideClick]);
-
   return (
     <span {...flow} ref={root} data-placement={placement}>
       {cloneElement(trigger, {
-        onClick: () => setShown(!shown),
+        onClick: (event: ReactMouseEvent<HTMLElement>) => {
+          (
+            trigger.props as {
+              onClick?: (event: ReactMouseEvent<HTMLElement>) => void;
+            }
+          ).onClick?.(event);
+          if (!event.defaultPrevented) change.current(!shown);
+        },
         "aria-expanded": shown,
       } as Record<string, unknown>)}
       {shown && <div className="fui-popover-content">{children}</div>}

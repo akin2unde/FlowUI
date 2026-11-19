@@ -7,10 +7,12 @@
             <FlowCard Class="selection-preview"><Header><h2>Selection</h2></Header><ChildContent>
                 <FlowVC Gap="1.5rem">
                     <FlowDropdown Label="Department" Items="departments" ValueSelector="i => i.Id" TextSelector="i => i.Name"
-                                  @bind-Value="department" Searchable="true" Clearable="true" HelperText="Search or choose a department." />
+                                  @bind-Value="department" Searchable="true" Clearable="true" BackgroundColor="#faf5ff" TextColor="#3b1760" IconColor="#8a16d1" HelperText="Search or choose a department." />
                     <FlowMultiSelect Label="Teams" Items="teams" ValueSelector="i => i.Id" TextSelector="i => i.Name"
                                      @bind-Values="selectedTeams" Searchable="true" Clearable="true" MaxVisibleTags="3"
                                      HelperText="Select multiple teams. Remove a chip to deselect." />
+                    <FlowInput Label="Quantity" Type="number" Min="1" Max="100" Step="1" Placeholder="1–100" />
+                    <FlowButton Text="Save changes" />
                     <div class="preview-note"><strong>One field, one outline.</strong><p>Selected teams and clear actions sit inside the control.</p></div>
                 </FlowVC>
             </ChildContent></FlowCard>

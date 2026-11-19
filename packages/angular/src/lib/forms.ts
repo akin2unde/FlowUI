@@ -1,6 +1,7 @@
 import { CommonModule } from "@angular/common";
 import {
   Component,
+  inject,
   ElementRef,
   EventEmitter,
   HostListener,
@@ -9,7 +10,7 @@ import {
   TemplateRef,
 } from "@angular/core";
 import type { DropdownModel, SelectOption } from "@akin2unde/flowui-core";
-import { sanitizeInputValue } from "@akin2unde/flowui-core";
+import { sanitizeInputValue, numericInputError } from "@akin2unde/flowui-core";
 import { FlowComponentBase } from "./base";
 import { FlowIconComponent } from "./primitives";
 
@@ -35,6 +36,16 @@ import { FlowIconComponent } from "./primitives";
     <ng-container *ngIf="inputMode !== 'money'" [ngTemplateOutlet]="control" />
     <ng-template #control
       ><input
+        [attr.min]="min"
+        [attr.max]="max"
+        [attr.step]="step"
+        [attr.minlength]="minLength"
+        [attr.maxlength]="maxLength"
+        [attr.pattern]="pattern"
+        [spellcheck]="spellCheck"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-labelledby]="ariaLabelledBy"
+        [attr.aria-describedby]="ariaDescribedBy"
         [attr.id]="id"
         [attr.autocomplete]="autoComplete"
         [class]="view().className"
@@ -54,6 +65,17 @@ import { FlowIconComponent } from "./primitives";
   `,
 })
 export class FlowInputComponent extends FlowComponentBase {
+  @Input() min?: string | number;
+  @Input() max?: string | number;
+  @Input() step?: string | number;
+  @Input() minLength?: number;
+  @Input() maxLength?: number;
+  @Input() pattern?: string;
+  @Input() spellCheck = false;
+  @Input() ariaLabel?: string;
+  @Input() ariaLabelledBy?: string;
+  @Input() ariaDescribedBy?: string;
+
   @Input() type:
     | "text"
     | "email"
@@ -88,7 +110,16 @@ export class FlowInputComponent extends FlowComponentBase {
   }
 
   handleInput(value: string): void {
-    this.valueChange.emit(sanitizeInputValue(value, this.inputMode));
+    const next = sanitizeInputValue(value, this.inputMode);
+    const numeric =
+      this.type === "number" ||
+      ["integer", "decimal", "money"].includes(this.inputMode);
+    (this.nativeElement as HTMLInputElement).setCustomValidity(
+      numeric
+        ? (numericInputError(next, this.min, this.max, this.step) ?? "")
+        : "",
+    );
+    this.valueChange.emit(next);
   }
 
   view = () => this.resolved("fui-control");
@@ -102,6 +133,16 @@ export class FlowInputComponent extends FlowComponentBase {
   template: `
     <div [class]="view().className" [ngStyle]="view().style">
       <input
+        [attr.min]="min"
+        [attr.max]="max"
+        [attr.step]="step"
+        [attr.minlength]="minLength"
+        [attr.maxlength]="maxLength"
+        [attr.pattern]="pattern"
+        [spellcheck]="spellCheck"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-labelledby]="ariaLabelledBy"
+        [attr.aria-describedby]="ariaDescribedBy"
         class="fui-control fui-password-control"
         [attr.id]="id"
         [attr.autocomplete]="autoComplete"
@@ -129,6 +170,17 @@ export class FlowInputComponent extends FlowComponentBase {
   `,
 })
 export class FlowPasswordInputComponent extends FlowComponentBase {
+  @Input() min?: string | number;
+  @Input() max?: string | number;
+  @Input() step?: string | number;
+  @Input() minLength?: number;
+  @Input() maxLength?: number;
+  @Input() pattern?: string;
+  @Input() spellCheck = false;
+  @Input() ariaLabel?: string;
+  @Input() ariaLabelledBy?: string;
+  @Input() ariaDescribedBy?: string;
+
   @Input() value = "";
   @Input() name?: string;
   @Input() autoComplete?: string;
@@ -167,6 +219,16 @@ export class FlowPasswordInputComponent extends FlowComponentBase {
   imports: [CommonModule],
   template: `
     <textarea
+      [attr.min]="min"
+      [attr.max]="max"
+      [attr.step]="step"
+      [attr.minlength]="minLength"
+      [attr.maxlength]="maxLength"
+      [attr.pattern]="pattern"
+      [spellcheck]="spellCheck"
+      [attr.aria-label]="ariaLabel"
+      [attr.aria-labelledby]="ariaLabelledBy"
+      [attr.aria-describedby]="ariaDescribedBy"
       [class]="view().className"
       [ngStyle]="view().style"
       [value]="value"
@@ -181,6 +243,17 @@ export class FlowPasswordInputComponent extends FlowComponentBase {
   `,
 })
 export class FlowTextAreaComponent extends FlowComponentBase {
+  @Input() min?: string | number;
+  @Input() max?: string | number;
+  @Input() step?: string | number;
+  @Input() minLength?: number;
+  @Input() maxLength?: number;
+  @Input() pattern?: string;
+  @Input() spellCheck = false;
+  @Input() ariaLabel?: string;
+  @Input() ariaLabelledBy?: string;
+  @Input() ariaDescribedBy?: string;
+
   @Input() value = "";
   @Input() name?: string;
   @Input() placeholder?: string;
@@ -317,16 +390,45 @@ export class FlowColorPickerComponent extends FlowComponentBase {
 @Component({
   selector: "fui-dropdown",
   standalone: true,
+  host: { "[attr.id]": "null", "(keydown)": "handleKeydown($event)" },
   imports: [CommonModule, FlowIconComponent],
   template: `
     <div [class]="view().className" [ngStyle]="view().style">
+      <select
+        *ngIf="name || required"
+        class="fui-native-validation"
+        [attr.name]="name"
+        (invalid)="focus()"
+        (change)="chooseNative($any($event.target).value)"
+        [required]="required"
+        [disabled]="disabled"
+        [value]="value ?? ''"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <option value="">{{ placeholder }}</option>
+        <option
+          *ngFor="let option of options"
+          [value]="option.value"
+          [disabled]="option.disabled"
+        >
+          {{ option.display }}
+        </option>
+      </select>
       <button
+        [id]="id"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-labelledby]="ariaLabelledBy"
+        [attr.aria-describedby]="ariaDescribedBy"
+        [attr.aria-required]="required"
+        [attr.aria-readonly]="readOnly"
+        aria-haspopup="listbox"
         class="fui-select-trigger"
         [attr.data-clearable]="clearable && !!selectedOption"
         type="button"
         [disabled]="disabled"
         [attr.aria-expanded]="open"
-        (click)="open = !open"
+        (click)="toggleDropdown()"
       >
         <span [class.fui-select-placeholder]="!selectedOption">
           <ng-container
@@ -342,7 +444,7 @@ export class FlowColorPickerComponent extends FlowComponentBase {
       </button>
 
       <button
-        *ngIf="clearable && !!selectedOption"
+        *ngIf="clearable && !!selectedOption && !readOnly"
         type="button"
         class="fui-select-clear fui-select-clear-single"
         aria-label="Clear selection"
@@ -409,9 +511,13 @@ export class FlowColorPickerComponent extends FlowComponentBase {
   `,
 })
 export class FlowDropdownComponent extends FlowComponentBase {
-  constructor(private readonly element: ElementRef<HTMLElement>) {
-    super();
-  }
+  private readonly element: ElementRef<HTMLElement> = inject(ElementRef);
+  @Input() name?: string;
+  @Input() required = false;
+  @Input() readOnly = false;
+  @Input() ariaLabel?: string;
+  @Input() ariaLabelledBy?: string;
+  @Input() ariaDescribedBy?: string;
   @Input() value?: string | number;
   @Input() options: DropdownModel[] = [];
   @Input() placeholder = "Select an option";
@@ -468,15 +574,62 @@ export class FlowDropdownComponent extends FlowComponentBase {
     this.searchChange.emit(query);
   }
 
+  chooseNative(value: string): void {
+    const option = this.options.find((item) => String(item.value) === value);
+    if (option) this.choose(option);
+  }
+
+  handleKeydown(event: KeyboardEvent): void {
+    if (this.disabled || this.readOnly) return;
+    if (event.key === "Escape" && this.open) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.open = false;
+      this.focus();
+    } else if (event.key === "Tab") {
+      this.open = false;
+    } else if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      this.open = true;
+      const reverse = event.key === "ArrowUp";
+      // Wait for Angular to render the menu, then move real keyboard focus.
+      setTimeout(() => {
+        if (!this.open) return;
+        const items = Array.from(
+          this.element.nativeElement.querySelectorAll<HTMLButtonElement>(
+            ".fui-select-option:not(:disabled)",
+          ),
+        );
+        if (!items.length) return;
+        const current = items.indexOf(
+          document.activeElement as HTMLButtonElement,
+        );
+        const next =
+          current < 0
+            ? reverse
+              ? items.length - 1
+              : 0
+            : (current + (reverse ? -1 : 1) + items.length) % items.length;
+        items[next].focus();
+      });
+    }
+  }
+
+  toggleDropdown(): void {
+    if (!this.disabled && !this.readOnly) this.open = !this.open;
+  }
   choose(model: DropdownModel): void {
+    if (this.disabled || this.readOnly || model.disabled) return;
     this.value = model.value;
     this.valueChange.emit(model.value);
     this.selected.emit(model);
     this.open = false;
     this.query = "";
+    this.focus();
   }
 
   clearSelection(): void {
+    if (this.disabled || this.readOnly) return;
     this.value = undefined;
     this.cleared.emit();
   }

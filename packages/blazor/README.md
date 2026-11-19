@@ -1,4 +1,4 @@
-# FlowUI.Blazor — component preview 1.0.0
+# FlowUI.Blazor — component preview 1.0.2
 
 A .NET 10 Razor Class Library added alongside the existing FlowUI npm packages.
 The library has no application render mode, database dependency, or JavaScript
@@ -73,30 +73,30 @@ in `Program.cs`; namespace imports do not register services.
 
 ## Component groups
 
-| Namespace                    | Components / types                                                             |
-| ---------------------------- | ------------------------------------------------------------------------------ |
-| `FlowUI.Blazor.Layout`       | `FlowHC`, `FlowVC`, `FlowCard`, `FlowDivider`                                  |
-| `FlowUI.Blazor.Presentation` | `FlowLabel`, `FlowImage`, `FlowBadge`, `FlowLoader`                            |
-| `FlowUI.Blazor.Buttons`      | `FlowButton`                                                                   |
-| `FlowUI.Blazor.Forms` | `FlowInput`, `FlowPasswordInput`, `FlowTextArea`, `FlowNumberInput`, `FlowCheckbox`, `FlowSwitch` |
-| `FlowUI.Blazor.Selection` | `FlowDropdown`, `FlowMultiSelect`, `FlowRadioGroup` |
-| `FlowUI.Blazor.Theming`      | `FlowThemeProvider`                                                            |
-| `FlowUI.Blazor.Styling`      | Theme definitions/tokens, typed enums, common component base and style builder |
+| Namespace                    | Components / types                                                                                |
+| ---------------------------- | ------------------------------------------------------------------------------------------------- |
+| `FlowUI.Blazor.Layout`       | `FlowHC`, `FlowVC`, `FlowCard`, `FlowDivider`                                                     |
+| `FlowUI.Blazor.Presentation` | `FlowLabel`, `FlowImage`, `FlowBadge`, `FlowLoader`                                               |
+| `FlowUI.Blazor.Buttons`      | `FlowButton`                                                                                      |
+| `FlowUI.Blazor.Forms`        | `FlowInput`, `FlowPasswordInput`, `FlowTextArea`, `FlowNumberInput`, `FlowCheckbox`, `FlowSwitch` |
+| `FlowUI.Blazor.Selection`    | `FlowDropdown`, `FlowMultiSelect`, `FlowRadioGroup`                                               |
+| `FlowUI.Blazor.Theming`      | `FlowThemeProvider`                                                                               |
+| `FlowUI.Blazor.Styling`      | Theme definitions/tokens, typed enums, common component base and style builder                    |
 
 Foundation controls live under `Foundation`, with one folder per control:
 
-| Folder | Files |
-| --- | --- |
-| `Foundation/Button/` | `FlowButton.razor`, `FlowButton.razor.cs`, `FlowButton.razor.css` |
-| `Foundation/HC/` | The three `FlowHC` files |
-| `Foundation/VC/` | The three `FlowVC` files |
-| `Foundation/Card/` | The three `FlowCard` files |
-| `Foundation/Divider/` | The three `FlowDivider` files |
-| `Foundation/Label/` | The three `FlowLabel` files |
-| `Foundation/Image/` | The three `FlowImage` files |
-| `Foundation/Badge/` | The three `FlowBadge` files |
-| `Foundation/Loader/` | The three `FlowLoader` files |
-| `Foundation/ThemeProvider/` | The three `FlowThemeProvider` files |
+| Folder                      | Files                                                             |
+| --------------------------- | ----------------------------------------------------------------- |
+| `Foundation/Button/`        | `FlowButton.razor`, `FlowButton.razor.cs`, `FlowButton.razor.css` |
+| `Foundation/HC/`            | The three `FlowHC` files                                          |
+| `Foundation/VC/`            | The three `FlowVC` files                                          |
+| `Foundation/Card/`          | The three `FlowCard` files                                        |
+| `Foundation/Divider/`       | The three `FlowDivider` files                                     |
+| `Foundation/Label/`         | The three `FlowLabel` files                                       |
+| `Foundation/Image/`         | The three `FlowImage` files                                       |
+| `Foundation/Badge/`         | The three `FlowBadge` files                                       |
+| `Foundation/Loader/`        | The three `FlowLoader` files                                      |
+| `Foundation/ThemeProvider/` | The three `FlowThemeProvider` files                               |
 
 The six form controls use `Forms/<Control>/`; the three selection controls use
 `Selection/<Control>/`. Each also has its own `.razor`, `.razor.cs`, and `.razor.css`.
@@ -340,7 +340,7 @@ should have sufficient contrast with their corresponding background colors.
 dotnet pack packages/blazor/FlowUI.Blazor.csproj -c Release -o artifacts/blazor
 ```
 
-Produces a `FlowUI.Blazor.1.0.0.nupkg` with compiled components, static/scoped
+Produces a `FlowUI.Blazor.1.0.2.nupkg` with compiled components, static/scoped
 styles and this README. The .NET package has its own initial version and does
 not change the version of any existing npm package.
 

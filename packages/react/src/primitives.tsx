@@ -1,7 +1,10 @@
 import {
+  forwardRef,
   createElement,
   useState,
   type HTMLAttributes,
+  type LabelHTMLAttributes,
+  type Ref,
   type PropsWithChildren,
   type ReactNode,
 } from "react";
@@ -16,38 +19,42 @@ import type {
 } from "@akin2unde/flowui-core";
 import { useFlowProps } from "./helpers";
 
-export interface StackProps extends PropsWithChildren<CoreHStackProps> {}
-export function HStack({
-  children,
-  as = "div",
-  inline,
-  direction = "row",
-  ...props
-}: StackProps) {
+export interface StackProps
+  extends
+    PropsWithChildren<CoreHStackProps>,
+    Omit<HTMLAttributes<HTMLElement>, keyof CoreHStackProps> {
+  ref?: Ref<HTMLElement>;
+}
+export const HStack = forwardRef<HTMLElement, StackProps>(function HStack(
+  { children, as = "div", inline, direction = "row", ...props }: StackProps,
+  forwardedRef,
+) {
   const flow = useFlowProps(
     "fui-h-stack",
     { ...props, direction },
     inline && "fui-inline",
   );
-  return createElement(as, flow, children);
-}
+  return createElement(as, { ...flow, ref: forwardedRef }, children);
+});
 export const HC = HStack;
 
-export interface VStackProps extends PropsWithChildren<CoreVStackProps> {}
-export function VStack({
-  children,
-  as = "div",
-  inline,
-  direction = "column",
-  ...props
-}: VStackProps) {
+export interface VStackProps
+  extends
+    PropsWithChildren<CoreVStackProps>,
+    Omit<HTMLAttributes<HTMLElement>, keyof CoreVStackProps> {
+  ref?: Ref<HTMLElement>;
+}
+export const VStack = forwardRef<HTMLElement, VStackProps>(function VStack(
+  { children, as = "div", inline, direction = "column", ...props }: VStackProps,
+  forwardedRef,
+) {
   const flow = useFlowProps(
     "fui-v-stack",
     { ...props, direction },
     inline && "fui-inline",
   );
-  return createElement(as, flow, children);
-}
+  return createElement(as, { ...flow, ref: forwardedRef }, children);
+});
 export const VC = VStack;
 
 export interface IconProps extends CoreIconProps {}
@@ -63,11 +70,19 @@ export function Icon({ icon, label, spin, ...props }: IconProps) {
   );
 }
 
-export interface LabelProps extends PropsWithChildren<CoreLabelProps> {}
-export function Label({ children, htmlFor, required, ...props }: LabelProps) {
+export interface LabelProps
+  extends
+    PropsWithChildren<CoreLabelProps>,
+    Omit<LabelHTMLAttributes<HTMLLabelElement>, keyof CoreLabelProps> {
+  ref?: Ref<HTMLLabelElement>;
+}
+export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
+  { children, htmlFor, required, ...props }: LabelProps,
+  forwardedRef,
+) {
   const flow = useFlowProps("fui-label", props);
   return (
-    <label {...flow} htmlFor={htmlFor}>
+    <label ref={forwardedRef} {...flow} htmlFor={htmlFor}>
       {children}
       {required && (
         <span className="fui-required" aria-hidden="true">
@@ -77,7 +92,7 @@ export function Label({ children, htmlFor, required, ...props }: LabelProps) {
       )}
     </label>
   );
-}
+});
 
 export interface BadgeProps extends PropsWithChildren<CoreBadgeProps> {}
 export function Badge({

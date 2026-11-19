@@ -164,6 +164,15 @@ export interface BorderProps {
 }
 
 export interface VisualProps {
+  textColor?: ResponsiveValue<ColorValue>;
+  iconColor?: ResponsiveValue<ColorValue>;
+  placeholderColor?: ResponsiveValue<ColorValue>;
+  panelBackgroundColor?: ResponsiveValue<ColorValue>;
+  panelTextColor?: ResponsiveValue<ColorValue>;
+  optionHoverBackgroundColor?: ResponsiveValue<ColorValue>;
+  selectedOptionBackgroundColor?: ResponsiveValue<ColorValue>;
+  selectedOptionTextColor?: ResponsiveValue<ColorValue>;
+
   backgroundColor?: ResponsiveValue<ColorValue>;
   opacity?: ResponsiveValue<number>;
   shadow?: ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">;

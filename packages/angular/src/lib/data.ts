@@ -57,9 +57,21 @@ import { FlowMultiSelectComponent } from "./selection";
                 type="button"
                 (click)="changeSort(column.field)"
               >
-                {{ column.header
-                }}<fui-icon [icon]="sortIcon(column.field)" /></button
-              ><ng-template #plain>{{ column.header }}</ng-template>
+                <ng-container
+                  *ngIf="headerTemplate; else sortableHeader"
+                  [ngTemplateOutlet]="headerTemplate"
+                  [ngTemplateOutletContext]="{ $implicit: column }"
+                /><ng-template #sortableHeader>{{ column.header }}</ng-template
+                ><fui-icon [icon]="sortIcon(column.field)" /></button
+              ><ng-template #plain
+                ><ng-container
+                  *ngIf="headerTemplate; else defaultHeader"
+                  [ngTemplateOutlet]="headerTemplate"
+                  [ngTemplateOutletContext]="{ $implicit: column }"
+                /><ng-template #defaultHeader>{{
+                  column.header
+                }}</ng-template></ng-template
+              >
             </th>
           </tr>
         </thead>
@@ -71,8 +83,9 @@ import { FlowMultiSelectComponent } from "./selection";
             <td [attr.colspan]="displayedColumns.length">{{ emptyText }}</td>
           </tr>
           <tr
-            *ngFor="let row of data"
-            [attr.data-selected]="selectionEnabled && selectedRow === row"
+            *ngFor="let row of data; let index = index; trackBy: trackRow"
+            [class]="rowClassName?.(row, index) ?? ''"
+            [attr.data-selected]="selectionEnabled && isSelected(row, index)"
             [tabIndex]="selectionEnabled ? 0 : -1"
             (click)="selectRow(row)"
             (keydown.enter)="selectRow(row)"
@@ -82,7 +95,19 @@ import { FlowMultiSelectComponent } from "./selection";
               *ngFor="let column of displayedColumns"
               [style.text-align]="column.align"
             >
-              {{ formatCell(row, column) }}
+              <ng-container
+                *ngIf="cellTemplate; else defaultCell"
+                [ngTemplateOutlet]="cellTemplate"
+                [ngTemplateOutletContext]="{
+                  $implicit: row[column.field],
+                  row: row,
+                  column: column,
+                  index: index,
+                }"
+              />
+              <ng-template #defaultCell>{{
+                formatCell(row, column)
+              }}</ng-template>
             </td>
           </tr>
         </tbody>
@@ -115,6 +140,32 @@ import { FlowMultiSelectComponent } from "./selection";
   </div>`,
 })
 export class FlowTableComponent extends FlowComponentBase {
+  @Input() rowKey?:
+    string | ((row: Record<string, unknown>, index: number) => string | number);
+  @Input() selectedRowKey?: string | number;
+  @Input() cellTemplate?: TemplateRef<{
+    $implicit: unknown;
+    row: Record<string, unknown>;
+    column: TableColumn<Record<string, unknown>>;
+    index: number;
+  }>;
+  @Input() headerTemplate?: TemplateRef<{
+    $implicit: TableColumn<Record<string, unknown>>;
+  }>;
+  @Input() rowClassName?: (
+    row: Record<string, unknown>,
+    index: number,
+  ) => string;
+  trackRow = (index: number, row: Record<string, unknown>) =>
+    typeof this.rowKey === "function"
+      ? this.rowKey(row, index)
+      : this.rowKey
+        ? String(row[this.rowKey])
+        : index;
+  isSelected = (row: Record<string, unknown>, index: number) =>
+    this.selectedRowKey !== undefined
+      ? this.selectedRowKey === this.trackRow(index, row)
+      : this.selectedRow === row;
   @Input() data: Record<string, unknown>[] = [];
   @Input() columns: TableColumn<Record<string, unknown>>[] = [];
   @Input() sort?: SortState;

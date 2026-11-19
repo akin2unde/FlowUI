@@ -6,6 +6,11 @@ namespace FlowUI.Blazor.Styling;
 public abstract class FlowTextFieldBase : FlowFieldBase<string?>
 {
     [Parameter] public string? Placeholder { get; set; }
+    [Parameter] public string? Min { get; set; }
+    [Parameter] public string? Max { get; set; }
+    [Parameter] public string? Step { get; set; }
+    [Parameter] public int? MinLength { get; set; }
+    [Parameter] public string? Pattern { get; set; }
     [Parameter] public int? MaxLength { get; set; }
     [Parameter] public string? AutoComplete { get; set; }
     protected string Text = "";

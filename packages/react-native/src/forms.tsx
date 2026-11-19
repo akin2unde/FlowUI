@@ -1,11 +1,18 @@
 import type { FieldFocusStyle } from "@akin2unde/flowui-core";
-import React, { type PropsWithChildren, type ReactNode, useState } from "react";
+import React, {
+  forwardRef,
+  type PropsWithChildren,
+  type ReactNode,
+  useRef,
+  useState,
+} from "react";
 import {
   Platform,
   Switch as RNSwitch,
   type StyleProp,
   type TextStyle,
   type TextInputProps,
+  type TextInput as NativeTextInput,
   type ViewStyle,
   type ViewProps,
 } from "react-native";
@@ -132,24 +139,45 @@ export function FormField({
 }
 
 export interface InputProps extends TextInputProps, ClassName {
+  min?: number;
+  max?: number;
+  step?: number;
+  minLength?: number;
+  backgroundColor?: string;
+  textColor?: string;
+  onValidationChange?: (valid: boolean, message?: string) => void;
+
   invalid?: boolean;
   focusStyle?: FieldFocusStyle;
 }
 
-export function Input({
-  className,
-  invalid,
-  style,
-  focusStyle,
-  onFocus,
-  onBlur,
-  ...props
-}: InputProps) {
+export const Input = forwardRef<NativeTextInput, InputProps>(function Input(
+  {
+    min,
+    max,
+    step,
+    minLength,
+    backgroundColor,
+    textColor,
+    onValidationChange,
+    className,
+    invalid,
+    style,
+    focusStyle,
+    onFocus,
+    onBlur,
+    onChangeText,
+    ...props
+  }: InputProps,
+  ref,
+) {
+  const currentText = useRef(props.value ?? props.defaultValue ?? "");
   const { colors, theme } = useFlowUITheme();
   const [focused, setFocused] = useState(false);
   const appearance = focusStyle ?? theme.focusStyle ?? "border";
   return (
     <TextInput
+      ref={ref}
       className={`border px-3 ${className ?? ""}`}
       placeholderTextColor={colors.textMuted}
       style={[
@@ -165,13 +193,17 @@ export function Input({
           shadowOpacity: focused && appearance === "ring" ? 0.22 : undefined,
           shadowRadius: focused && appearance === "ring" ? 2 : undefined,
           borderRadius: theme.components.controlRadius,
-          backgroundColor: colors.surface,
-          color: colors.text,
+          backgroundColor: backgroundColor ?? colors.surface,
+          color: textColor ?? colors.text,
         },
         webInputFocus,
         style,
       ]}
       {...props}
+      onChangeText={(text: string) => {
+        currentText.current = text;
+        onChangeText?.(text);
+      }}
       onFocus={(
         event: Parameters<NonNullable<TextInputProps["onFocus"]>>[0],
       ) => {
@@ -180,11 +212,35 @@ export function Input({
       }}
       onBlur={(event: Parameters<NonNullable<TextInputProps["onBlur"]>>[0]) => {
         setFocused(false);
+        const text = props.value ?? currentText.current;
+        const number = Number(text);
+        const numeric =
+          min !== undefined || max !== undefined || step !== undefined;
+        const stepBase = min ?? 0;
+        const remainder =
+          step && step > 0
+            ? Math.abs(
+                (number - stepBase) / step -
+                  Math.round((number - stepBase) / step),
+              )
+            : 0;
+        const valid =
+          (!minLength || text.length >= minLength) &&
+          (!numeric ||
+            text === "" ||
+            (Number.isFinite(number) &&
+              (min === undefined || number >= min) &&
+              (max === undefined || number <= max) &&
+              remainder < 1e-8));
+        onValidationChange?.(
+          valid,
+          valid ? undefined : "The value does not meet the configured limits.",
+        );
         onBlur?.(event);
       }}
     />
   );
-}
+});
 
 export interface PasswordInputProps extends InputProps {
   showLabel?: string;
@@ -194,53 +250,66 @@ export interface PasswordInputProps extends InputProps {
   toggleTextStyle?: StyleProp<TextStyle>;
 }
 
-export function PasswordInput({
-  showLabel = "Show",
-  hideLabel = "Hide",
-  containerStyle,
-  toggleStyle,
-  toggleTextStyle,
-  ...props
-}: PasswordInputProps) {
-  const [visible, setVisible] = useState(false);
-  const { colors } = useFlowUITheme();
-  return (
-    <View className="relative justify-center" style={containerStyle}>
-      <Input secureTextEntry={!visible} className="pr-16" {...props} />
-      <Pressable
-        accessibilityRole="button"
-        accessibilityLabel={visible ? hideLabel : showLabel}
-        className="absolute right-3 p-2"
-        style={toggleStyle}
-        onPress={() => setVisible((current) => !current)}
-      >
-        <RNText
-          style={[
-            { color: colors.primary, fontWeight: "600" },
-            toggleTextStyle,
-          ]}
+export const PasswordInput = forwardRef<NativeTextInput, PasswordInputProps>(
+  function PasswordInput(
+    {
+      showLabel = "Show",
+      hideLabel = "Hide",
+      containerStyle,
+      toggleStyle,
+      toggleTextStyle,
+      ...props
+    }: PasswordInputProps,
+    ref,
+  ) {
+    const [visible, setVisible] = useState(false);
+    const { colors } = useFlowUITheme();
+    return (
+      <View className="relative justify-center" style={containerStyle}>
+        <Input
+          ref={ref}
+          secureTextEntry={!visible}
+          className="pr-16"
+          {...props}
+        />
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={visible ? hideLabel : showLabel}
+          className="absolute right-3 p-2"
+          style={toggleStyle}
+          onPress={() => setVisible((current) => !current)}
         >
-          {visible ? hideLabel : showLabel}
-        </RNText>
-      </Pressable>
-    </View>
-  );
-}
+          <RNText
+            style={[
+              { color: colors.primary, fontWeight: "600" },
+              toggleTextStyle,
+            ]}
+          >
+            {visible ? hideLabel : showLabel}
+          </RNText>
+        </Pressable>
+      </View>
+    );
+  },
+);
 
 export function SearchInput(props: InputProps) {
   return <Input accessibilityRole="search" returnKeyType="search" {...props} />;
 }
 
-export function TextArea({ style, ...props }: InputProps) {
-  return (
-    <Input
-      multiline
-      textAlignVertical="top"
-      style={[{ minHeight: 110, paddingTop: 12 }, style]}
-      {...props}
-    />
-  );
-}
+export const TextArea = forwardRef<NativeTextInput, InputProps>(
+  function TextArea({ style, ...props }, ref) {
+    return (
+      <Input
+        ref={ref}
+        multiline
+        textAlignVertical="top"
+        style={[{ minHeight: 110, paddingTop: 12 }, style]}
+        {...props}
+      />
+    );
+  },
+);
 
 export interface RestrictedInputProps extends InputProps {
   onValueChange?: (value: string) => void;

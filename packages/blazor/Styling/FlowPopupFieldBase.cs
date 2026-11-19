@@ -18,6 +18,7 @@ public abstract class FlowPopupFieldBase<TItem, TField> : FlowFieldBase<TField>
     protected List<TItem> Source = [];
     protected List<TItem> Visible => string.IsNullOrWhiteSpace(search) ? Source : Source.Where(i => TextSelector(i).Contains(search, StringComparison.CurrentCultureIgnoreCase)).ToList();
     protected ElementReference RootElement, TriggerElement, PanelElement, SearchElement, AnchorElement;
+    public override ElementReference Element => TriggerElement;
     protected bool open;
     protected string search = "";
     protected int activeIndex = -1;

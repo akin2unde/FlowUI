@@ -1,10 +1,12 @@
 import {
+  forwardRef,
   Children,
   cloneElement,
   isValidElement,
   type ButtonHTMLAttributes,
   type PropsWithChildren,
   type ReactElement,
+  type Ref,
 } from "react";
 import type {
   ButtonGroupProps as CoreButtonGroupProps,
@@ -21,55 +23,64 @@ export interface ButtonProps
       "color" | "style" | "children"
     > {
   selected?: boolean;
+  ref?: Ref<HTMLButtonElement>;
 }
-export function Button({
-  children,
-  type = "button",
-  variant = "solid",
-  color = "primary",
-  size = "md",
-  icon,
-  iconPosition = "left",
-  badge,
-  loading,
-  loadingText,
-  ariaLabel,
-  disabled,
-  onClick,
-  selected,
-  ...props
-}: ButtonProps) {
-  const flow = useFlowProps("fui-button", props);
-  const iconOnly = iconPosition === "center";
-  return (
-    <button
-      {...flow}
-      type={type}
-      data-variant={variant}
-      data-color={color}
-      data-size={size}
-      data-selected={selected}
-      aria-pressed={selected}
-      disabled={disabled || loading}
-      aria-label={ariaLabel}
-      aria-busy={loading}
-      onClick={onClick}
-    >
-      {loading ? (
-        <Icon icon="fa-solid fa-spinner" spin />
-      ) : icon && iconPosition !== "right" ? (
-        <Icon icon={icon} />
-      ) : null}
-      {!iconOnly && (loading && loadingText ? loadingText : children)}
-      {!loading && icon && iconPosition === "right" && <Icon icon={icon} />}
-      {badge !== undefined && (
-        <Badge color="danger" size="xs">
-          {badge}
-        </Badge>
-      )}
-    </button>
-  );
-}
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  function Button(
+    {
+      children,
+      text,
+      type = "button",
+      variant = "solid",
+      color = "primary",
+      size = "md",
+      icon,
+      iconPosition = "left",
+      badge,
+      loading,
+      loadingText,
+      ariaLabel,
+      disabled,
+      onClick,
+      selected,
+      ...props
+    }: ButtonProps,
+    forwardedRef,
+  ) {
+    const flow = useFlowProps("fui-button", props);
+    const iconOnly = iconPosition === "center";
+    return (
+      <button
+        ref={forwardedRef}
+        {...flow}
+        type={type}
+        data-variant={variant}
+        data-color={color}
+        data-size={size}
+        data-selected={selected}
+        aria-pressed={selected ?? props["aria-pressed"]}
+        disabled={disabled || loading}
+        aria-label={ariaLabel ?? props["aria-label"]}
+        aria-busy={loading ?? props["aria-busy"]}
+        onClick={onClick}
+      >
+        {loading ? (
+          <Icon icon="fa-solid fa-spinner" spin />
+        ) : icon && iconPosition !== "right" ? (
+          <Icon icon={icon} />
+        ) : null}
+        {!iconOnly &&
+          (loading && loadingText ? loadingText : (children ?? text))}
+        {!loading && icon && iconPosition === "right" && <Icon icon={icon} />}
+        {badge !== undefined && (
+          <Badge color="danger" size="xs">
+            {badge}
+          </Badge>
+        )}
+      </button>
+    );
+  },
+);
 
 export interface ButtonGroupProps extends PropsWithChildren<CoreButtonGroupProps> {
   onChange?: (value: string | number) => void;

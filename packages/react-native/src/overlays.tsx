@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react";
+import React, { type ReactNode, type RefObject, useEffect } from "react";
 import {
   Modal,
   Platform,
@@ -17,6 +17,9 @@ import { useFlowUITheme } from "./theme";
 
 export interface DialogProps {
   visible: boolean;
+  accessibilityLabel?: string;
+  initialFocusRef?: RefObject<{ focus: () => void } | null>;
+  returnFocusRef?: RefObject<{ focus: () => void } | null>;
   onOpen?: () => void;
   onClose?: () => void;
   dismissOnBackdropPress?: boolean;
@@ -35,6 +38,9 @@ export interface DialogProps {
 
 export function Dialog({
   visible,
+  accessibilityLabel,
+  initialFocusRef,
+  returnFocusRef,
   onOpen,
   onClose,
   dismissOnBackdropPress = true,
@@ -50,6 +56,13 @@ export function Dialog({
   bodyStyle,
   footerStyle,
 }: DialogProps) {
+  useEffect(() => {
+    if (!visible) return;
+    initialFocusRef?.current?.focus();
+    return () => {
+      returnFocusRef?.current?.focus();
+    };
+  }, [visible, initialFocusRef, returnFocusRef]);
   const { colors, theme } = useFlowUITheme();
   const alignment =
     position === "top"
@@ -81,6 +94,7 @@ export function Dialog({
           onPress={dismissOnBackdropPress ? onClose : undefined}
         />
         <View
+          accessibilityLabel={accessibilityLabel}
           accessibilityViewIsModal
           className={`max-h-[90%] w-full overflow-hidden sm:max-w-xl ${className ?? ""}`}
           style={[

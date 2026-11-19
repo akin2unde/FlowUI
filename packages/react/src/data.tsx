@@ -1,8 +1,8 @@
-import { useState, type ReactNode } from "react";
+import { useState, type ReactNode, type Key, type HTMLAttributes } from "react";
 import type {
   BaseUIProps,
   SortState,
-  TableColumn,
+  TableColumn as CoreTableColumn,
   TableLoadMoreContext,
 } from "@akin2unde/flowui-core";
 import {
@@ -13,6 +13,12 @@ import {
 import { useFlowProps } from "./helpers";
 import { Icon } from "./primitives";
 import { MultiSelect } from "./selection";
+
+export interface TableColumn<T> extends CoreTableColumn<T> {
+  renderCell?: (value: unknown, row: T, rowIndex: number) => ReactNode;
+  renderHeader?: (column: CoreTableColumn<T>) => ReactNode;
+  cellClassName?: string;
+}
 
 export interface TableProps<
   T extends Record<string, unknown>,
@@ -37,6 +43,11 @@ export interface TableProps<
   exportFileName?: string;
   selectionEnabled?: boolean;
   selectedRow?: T;
+  rowKey?: (keyof T & string) | ((row: T, index: number) => Key);
+  selectedRowKey?: Key;
+  rowClassName?: string | ((row: T, index: number) => string | undefined);
+  rowProps?: (row: T, index: number) => HTMLAttributes<HTMLTableRowElement>;
+
   onSelectionChange?: (row: T) => void;
 }
 export function Table<T extends Record<string, unknown>>({
@@ -60,6 +71,10 @@ export function Table<T extends Record<string, unknown>>({
   exportFileName = "table",
   selectionEnabled = false,
   selectedRow,
+  rowKey,
+  selectedRowKey,
+  rowClassName,
+  rowProps,
   onSelectionChange,
   ...props
 }: TableProps<T>) {
@@ -95,6 +110,16 @@ export function Table<T extends Record<string, unknown>>({
             : "asc";
     onSortChange?.({ field, direction });
   };
+  const keyOf = (row: T, index: number): Key =>
+    typeof rowKey === "function"
+      ? rowKey(row, index)
+      : rowKey
+        ? String(row[rowKey])
+        : index;
+  const isSelected = (row: T, index: number) =>
+    selectedRowKey !== undefined
+      ? selectedRowKey === keyOf(row, index)
+      : selectedRow === row;
   return (
     <div {...flow}>
       {(columnsConfigurable || exportable) && (
@@ -165,7 +190,7 @@ export function Table<T extends Record<string, unknown>>({
                       type="button"
                       onClick={() => changeSort(column.field)}
                     >
-                      {column.header}
+                      {column.renderHeader?.(column) ?? column.header}
                       <Icon
                         icon={
                           sort?.field === column.field && sort.direction
@@ -175,7 +200,7 @@ export function Table<T extends Record<string, unknown>>({
                       />
                     </button>
                   ) : (
-                    column.header
+                    (column.renderHeader?.(column) ?? column.header)
                   )}
                 </th>
               ))}
@@ -195,14 +220,32 @@ export function Table<T extends Record<string, unknown>>({
             ) : (
               data.map((row, index) => (
                 <tr
-                  key={index}
-                  data-selected={selectionEnabled && selectedRow === row}
-                  tabIndex={selectionEnabled ? 0 : undefined}
-                  onClick={() => {
+                  key={keyOf(row, index)}
+                  {...rowProps?.(row, index)}
+                  className={
+                    [
+                      rowProps?.(row, index)?.className,
+                      typeof rowClassName === "function"
+                        ? rowClassName(row, index)
+                        : rowClassName,
+                    ]
+                      .filter(Boolean)
+                      .join(" ") || undefined
+                  }
+                  data-selected={selectionEnabled && isSelected(row, index)}
+                  tabIndex={
+                    rowProps?.(row, index)?.tabIndex ??
+                    (selectionEnabled ? 0 : undefined)
+                  }
+                  onClick={(event) => {
+                    rowProps?.(row, index)?.onClick?.(event);
+                    if (event.defaultPrevented) return;
                     onRowClick?.(row);
                     if (selectionEnabled) onSelectionChange?.(row);
                   }}
                   onKeyDown={(event) => {
+                    rowProps?.(row, index)?.onKeyDown?.(event);
+                    if (event.defaultPrevented) return;
                     if (
                       selectionEnabled &&
                       (event.key === "Enter" || event.key === " ")
@@ -217,11 +260,14 @@ export function Table<T extends Record<string, unknown>>({
                     return (
                       <td
                         key={column.field}
+                        className={column.cellClassName}
                         style={{ textAlign: column.align }}
                       >
-                        {column.format
-                          ? column.format(value, row)
-                          : String(value ?? "")}
+                        {column.renderCell
+                          ? column.renderCell(value, row, index)
+                          : column.format
+                            ? column.format(value, row)
+                            : String(value ?? "")}
                       </td>
                     );
                   })}

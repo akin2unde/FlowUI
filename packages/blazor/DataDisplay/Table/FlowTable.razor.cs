@@ -9,6 +9,10 @@ public partial class FlowTable<TItem> : FlowComponentBase, IAsyncDisposable
     [Parameter] public IEnumerable<TItem> Items { get; set; } = [];
     [Parameter] public IReadOnlyList<FlowTableColumn<TItem>> Columns { get; set; } = [];
     [Parameter] public Func<TItem, object>? RowKey { get; set; }
+    [Parameter] public Func<TItem, string?>? RowClass { get; set; }
+    [Parameter] public object? SelectedRowKey { get; set; }
+    [Parameter] public EventCallback<TItem> OnRowClick { get; set; }
+    protected bool IsSelected(TItem item) => SelectedRowKey is not null && Equals(SelectedRowKey, RowKey is null ? item : RowKey(item));
     [Parameter] public string Caption { get; set; } = "Data";
     [Parameter] public string EmptyText { get; set; } = "No rows available";
     [Parameter] public bool Loading { get; set; }

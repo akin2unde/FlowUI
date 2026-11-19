@@ -14,9 +14,10 @@ export function useFlowProps(
   const { theme } = useFlowTheme();
   const resolution = resolveFlowStyle(props, theme);
   return {
+    ...nativeProps(props),
     id: props.id,
     hidden: props.hidden,
-    "data-testid": props.testId,
+    "data-testid": props.testId ?? props["data-testid"],
     className: flowClass(base, props, resolution, ...extra),
     style: resolution.style as CSSProperties,
   };
@@ -44,3 +45,68 @@ export function useDismissableLayer<T extends HTMLElement>(
     };
   }, [open, onDismiss, ref]);
 }
+
+/** Native props only: FlowUI layout/theme props must never leak onto the DOM. */
+export function nativeProps(props: Record<string, unknown>) {
+  const result: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(props)) {
+    if (
+      /^(aria-|data-)/.test(key) ||
+      /^on[A-Z]/.test(key) ||
+      nativeKeys.has(key)
+    )
+      result[key] = value;
+  }
+  return result;
+}
+const nativeKeys = new Set([
+  "ref",
+  "role",
+  "title",
+  "tabIndex",
+  "lang",
+  "dir",
+  "draggable",
+  "contentEditable",
+  "translate",
+  "name",
+  "form",
+  "value",
+  "defaultValue",
+  "defaultChecked",
+  "required",
+  "readOnly",
+  "disabled",
+  "autoComplete",
+  "autoFocus",
+  "spellCheck",
+  "autoCapitalize",
+  "enterKeyHint",
+  "inputMode",
+  "maxLength",
+  "minLength",
+  "pattern",
+  "min",
+  "max",
+  "step",
+  "multiple",
+  "accept",
+  "capture",
+  "list",
+  "rows",
+  "cols",
+  "wrap",
+  "formAction",
+  "formMethod",
+  "formNoValidate",
+  "formTarget",
+  "formEncType",
+  "download",
+  "href",
+  "target",
+  "rel",
+  "type",
+  "alt",
+  "loading",
+  "src",
+]);

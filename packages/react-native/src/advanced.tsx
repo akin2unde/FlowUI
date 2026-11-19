@@ -7,6 +7,8 @@ import {
   useWindowDimensions,
   type LayoutChangeEvent,
   type View as NativeView,
+  type StyleProp,
+  type ViewStyle,
 } from "react-native";
 import {
   formatLocalDateTime,
@@ -14,7 +16,7 @@ import {
   tableToCsv,
   type DateTimeMode,
   type FieldFocusStyle,
-  type TableColumn,
+  type TableColumn as CoreTableColumn,
   type TableLoadMoreContext,
   type TabSelectedStyle,
   type TooltipLocation,
@@ -165,23 +167,36 @@ export function Tooltip({
 const dayKey = (date: Date) => formatLocalDateTime(date, "date");
 const pad = (value: number) => String(value).padStart(2, "0");
 
-export function DateTime({
-  value = "",
-  mode = "datetime",
-  onChange,
-  min,
-  max,
-  disabled,
-  showDayBoundaryButtons = true,
-}: {
+export interface DateTimeProps {
   value?: string;
+  backgroundColor?: string;
+  textColor?: string;
+  iconColor?: string;
+  panelBackgroundColor?: string;
+  panelTextColor?: string;
+  style?: StyleProp<ViewStyle>;
   mode?: DateTimeMode;
   onChange?: (value: string) => void;
   min?: string;
   max?: string;
   disabled?: boolean;
   showDayBoundaryButtons?: boolean;
-}) {
+}
+export function DateTime({
+  value = "",
+  backgroundColor,
+  textColor,
+  iconColor,
+  panelBackgroundColor,
+  panelTextColor,
+  style,
+  mode = "datetime",
+  onChange,
+  min,
+  max,
+  disabled,
+  showDayBoundaryButtons = true,
+}: DateTimeProps) {
   const { colors } = useFlowUITheme();
   const window = useWindowDimensions();
   const root = useRef<NativeView>(null);
@@ -251,27 +266,49 @@ export function DateTime({
       <View
         ref={root}
         collapsable={false}
-        style={{
-          alignSelf: "flex-start",
-          flexDirection: "row",
-          borderWidth: 1,
-          borderColor: colors.border,
-          borderRadius: 8,
-        }}
+        style={[
+          {
+            backgroundColor: backgroundColor ?? colors.surface,
+            alignSelf: "flex-start",
+            flexDirection: "row",
+            borderWidth: 1,
+            borderColor: colors.border,
+            borderRadius: 8,
+          },
+          style,
+        ]}
       >
         {mode !== "time" && (
           <Action
             label="Choose date"
             disabled={disabled}
             onPress={() => open("date")}
-          >{`▦  ${selectedDate || "Select date"}`}</Action>
+          >
+            <View style={{ flexDirection: "row", gap: 6 }}>
+              <Text style={{ color: iconColor ?? textColor ?? colors.text }}>
+                ▦
+              </Text>
+              <Text style={{ color: textColor ?? colors.text }}>
+                {selectedDate || "Select date"}
+              </Text>
+            </View>
+          </Action>
         )}
         {mode !== "date" && (
           <Action
             label="Choose time"
             disabled={disabled}
             onPress={() => open("time")}
-          >{`◷  ${value ? selectedTime.slice(0, 5) : "Select time"}`}</Action>
+          >
+            <View style={{ flexDirection: "row", gap: 6 }}>
+              <Text style={{ color: iconColor ?? textColor ?? colors.text }}>
+                ◷
+              </Text>
+              <Text style={{ color: textColor ?? colors.text }}>
+                {value ? selectedTime.slice(0, 5) : "Select time"}
+              </Text>
+            </View>
+          </Action>
         )}
       </View>
       <Modal
@@ -303,7 +340,7 @@ export function DateTime({
             borderRadius: 9,
             borderWidth: 1,
             borderColor: colors.border,
-            backgroundColor: colors.surfaceRaised,
+            backgroundColor: panelBackgroundColor ?? colors.surfaceRaised,
           }}
         >
           {active === "date" ? (
@@ -325,7 +362,7 @@ export function DateTime({
                 >
                   ‹
                 </Action>
-                <Text>
+                <Text style={{ color: panelTextColor ?? colors.text }}>
                   {month.toLocaleDateString(undefined, {
                     month: "long",
                     year: "numeric",
@@ -397,7 +434,7 @@ export function DateTime({
                 maxLength={2}
                 style={{ width: 58 }}
               />
-              <Text>:</Text>
+              <Text style={{ color: panelTextColor ?? colors.text }}>:</Text>
               <Input
                 accessibilityLabel="Minute"
                 value={minute}
@@ -591,8 +628,15 @@ export function Breadcrumb({
   );
 }
 
+export interface TableColumn<T> extends CoreTableColumn<T> {
+  renderCell?: (value: unknown, row: T, rowIndex: number) => ReactNode;
+  renderHeader?: (column: CoreTableColumn<T>) => ReactNode;
+}
 export function Table<T>({
   data,
+  rowKey,
+  selectedRowKey,
+  rowStyle,
   columns,
   columnsConfigurable = false,
   exportable = false,
@@ -604,6 +648,9 @@ export function Table<T>({
   renderLoadMore,
 }: {
   data: T[];
+  rowKey?: (keyof T & string) | ((row: T, index: number) => string | number);
+  selectedRowKey?: string | number;
+  rowStyle?: (row: T, index: number) => StyleProp<ViewStyle>;
   columns: TableColumn<T>[];
   columnsConfigurable?: boolean;
   exportable?: boolean;
@@ -646,6 +693,12 @@ export function Table<T>({
       setTimeout(() => URL.revokeObjectURL(url), 1000);
     } else void Share.share({ message: csv });
   }
+  const keyOf = (row: T, index: number) =>
+    typeof rowKey === "function"
+      ? rowKey(row, index)
+      : rowKey
+        ? String(row[rowKey])
+        : index;
   return (
     <View style={{ gap: 4 }}>
       {columnsConfigurable && (
@@ -664,28 +717,43 @@ export function Table<T>({
       <View style={{ flexDirection: "row", backgroundColor: colors.canvas }}>
         {visible.map((column) => (
           <View key={column.field} style={{ flex: 1, padding: 6 }}>
-            <Text>{column.header}</Text>
+            {column.renderHeader ? (
+              column.renderHeader(column)
+            ) : (
+              <Text>{column.header}</Text>
+            )}
           </View>
         ))}
       </View>
       {data.map((row, index) => (
         <View
-          key={index}
-          style={{
-            flexDirection: "row",
-            borderBottomWidth: 1,
-            borderColor: colors.border,
-          }}
+          key={keyOf(row, index)}
+          style={[
+            {
+              flexDirection: "row",
+              borderBottomWidth: 1,
+              borderColor: colors.border,
+              backgroundColor:
+                selectedRowKey === keyOf(row, index)
+                  ? colors.surfaceRaised
+                  : undefined,
+            },
+            rowStyle?.(row, index),
+          ]}
         >
           {visible.map((column) => (
             <View key={column.field} style={{ flex: 1, padding: 6 }}>
-              <Text>
-                {String(
-                  column.format
-                    ? column.format(row[column.field], row)
-                    : (row[column.field] ?? ""),
-                )}
-              </Text>
+              {column.renderCell ? (
+                column.renderCell(row[column.field], row, index)
+              ) : (
+                <Text>
+                  {String(
+                    column.format
+                      ? column.format(row[column.field], row)
+                      : (row[column.field] ?? ""),
+                  )}
+                </Text>
+              )}
             </View>
           ))}
         </View>

@@ -63,14 +63,6 @@ export default function NotificationDemo() {
           key={active}
           title={message.title}
           type={message.type}
-          details={
-            active === 3 ? (
-              <p>
-                Conflict detected. The ticket changed after this edit was
-                opened.
-              </p>
-            ) : undefined
-          }
           accept={
             message.type === "decision"
               ? {
@@ -97,6 +89,11 @@ export default function NotificationDemo() {
         >
           {active === 4 && <strong>Ticket #1042</strong>}
           <p>{message.body}</p>
+          {active === 3 && (
+            <p>
+              Conflict detected. The ticket changed after this edit was opened.
+            </p>
+          )}
         </Notification>
       )}
       <p role="status">{result}</p>

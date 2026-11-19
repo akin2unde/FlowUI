@@ -161,6 +161,9 @@ export function HomeScreen() {
             onValueChange={(next) => setDateMode(next as typeof dateMode)}
           />
           <DateTime
+            backgroundColor="#faf5ff"
+            textColor="#3b1760"
+            iconColor="#8a16d1"
             mode={dateMode}
             value={dateValues[dateMode]}
             onChange={(next) =>
@@ -357,7 +360,13 @@ export function HomeScreen() {
               </FormField>
               <HStack className="gap-3">
                 <FormField label="Quantity" className="flex-1">
-                  <NumberInput value={quantity} onValueChange={setQuantity} />
+                  <NumberInput
+                    value={quantity}
+                    onValueChange={setQuantity}
+                    min={1}
+                    max={100}
+                    step={1}
+                  />
                 </FormField>
                 <FormField label="Amount" className="flex-1">
                   <MoneyInput value={amount} onValueChange={setAmount} />

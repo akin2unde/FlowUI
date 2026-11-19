@@ -47,7 +47,10 @@ import { FlowBadgeComponent, FlowIconComponent } from "./primitives";
       [icon]="icon"
     /><span *ngIf="iconPosition !== 'center'"
       >{{ loading && loadingText ? loadingText : ""
-      }}<ng-content *ngIf="!loading || !loadingText" /></span
+      }}<span [hidden]="loading && !!loadingText" class="fui-button-content"
+        ><span class="fui-button-projected"><ng-content /></span
+        ><span class="fui-button-fallback">{{ text }}</span></span
+      ></span
     ><fui-icon
       *ngIf="!loading && icon && iconPosition === 'right'"
       [icon]="icon"
@@ -57,6 +60,7 @@ import { FlowBadgeComponent, FlowIconComponent } from "./primitives";
   </button>`,
 })
 export class FlowButtonComponent extends FlowComponentBase {
+  @Input() text?: string;
   @Input() type: "button" | "submit" | "reset" = "button";
   @Input() variant: ComponentVariant = "solid";
   @Input() color: PaletteColor = "primary";

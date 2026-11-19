@@ -1,18 +1,70 @@
 import NotificationDemo from "./NotificationDemo";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import * as F from "@akin2unde/flowui-react";
+import {
+  AsyncLabel,
+  AsyncLabelProvider,
+  Autocomplete,
+  Badge,
+  Breadcrumb,
+  Button,
+  ButtonGroup,
+  Card,
+  Carousel,
+  Chart,
+  Checkbox,
+  ColorPicker,
+  DateTime,
+  Dialog,
+  Divider,
+  Dropdown,
+  DropdownModel,
+  FileUpload,
+  FlowUIProvider,
+  HC,
+  Icon,
+  Image,
+  Input,
+  Knob,
+  Label,
+  LabelResolverContext,
+  Listbox,
+  Menu,
+  MultiSelect,
+  OTPInput,
+  PasswordInput,
+  PhoneInput,
+  Popover,
+  RadioButton,
+  RadioGroup,
+  Rating,
+  Section,
+  Slider,
+  Switch,
+  Tab,
+  Table,
+  Tabs,
+  TextArea,
+  Timeline,
+  Tooltip,
+  Tree,
+  TreeDropdown,
+  TreeModel,
+  TreeMultiSelect,
+  VC,
+  useAsyncLabelStore,
+} from "@akin2unde/flowui-react";
 import { componentDocs, type Framework } from "../../shared/docs-data";
 import "../../shared/docs.css";
 import {
   asyncLabelSetup as setupCode,
   themeSetup,
 } from "../../shared/docs-setup";
-const choices: F.DropdownModel[] = [
+const choices: DropdownModel[] = [
   { value: "active", display: "Active", other: null },
   { value: "low", display: "Low Stock", other: null },
   { value: "out", display: "Out Of Stock", other: null },
 ];
-const tree: F.TreeModel[] = [
+const tree: TreeModel[] = [
   {
     value: "ng",
     display: "Nigeria",
@@ -68,7 +120,7 @@ function CodeBlock({ code }: { code: string }) {
   );
 }
 function AsyncPreview() {
-  const store = F.useAsyncLabelStore();
+  const store = useAsyncLabelStore();
   return (
     <div>
       <table className="docs-demo-table">
@@ -89,11 +141,7 @@ function AsyncPreview() {
             <tr key={sale}>
               <td>{sale}</td>
               <td>
-                <F.AsyncLabel
-                  lookup="customerName"
-                  code={code}
-                  fallback={code}
-                />
+                <AsyncLabel lookup="customerName" code={code} fallback={code} />
               </td>
               <td>{total}</td>
             </tr>
@@ -105,20 +153,20 @@ function AsyncPreview() {
         resolver.
       </div>
       <div className="docs-demo-actions">
-        <F.Button
+        <Button
           variant="outline"
           onClick={() => store.invalidate("customerName")}
         >
           Resolve again
-        </F.Button>
-        <F.Button
+        </Button>
+        <Button
           variant="ghost"
           onClick={() =>
             store.prime("customerName", "CUS001", "Akintunde (updated)")
           }
         >
           Simulate customer edit
-        </F.Button>
+        </Button>
       </div>
     </div>
   );
@@ -158,39 +206,39 @@ function ComponentPreview({ name }: { name: string }) {
       return <AsyncPreview />;
     case "Button":
       preview = (
-        <F.HC gap="sm" wrap="wrap">
-          <F.Button onClick={() => setChecked(!checked)}>
+        <HC gap="sm" wrap="wrap">
+          <Button onClick={() => setChecked(!checked)}>
             {checked ? "Save" : "Saved"}
-          </F.Button>
-          <F.Button variant="outline">Outline</F.Button>
-          <F.Button variant="ghost">Ghost</F.Button>
-          <F.Button disabled>Disabled</F.Button>
-        </F.HC>
+          </Button>
+          <Button variant="outline" text="Outline" />
+          <Button variant="ghost">Ghost</Button>
+          <Button disabled>Disabled</Button>
+        </HC>
       );
       break;
     case "ButtonGroup":
       preview = (
-        <F.ButtonGroup selectable value={value} onChange={setValue}>
-          <F.Button value="active">Active</F.Button>
-          <F.Button value="low">Low stock</F.Button>
-        </F.ButtonGroup>
+        <ButtonGroup selectable value={value} onChange={setValue}>
+          <Button value="active">Active</Button>
+          <Button value="low">Low stock</Button>
+        </ButtonGroup>
       );
       break;
     case "Input":
       preview = (
-        <F.VC gap="md">
-          <F.Input
+        <VC gap="md">
+          <Input
             value={text}
             placeholder="Customer name"
             onValueChange={setText}
           />
-          <F.Input inputMode="money" currencySymbol="₦" placeholder="Amount" />
-        </F.VC>
+          <Input inputMode="money" currencySymbol="₦" placeholder="Amount" />
+        </VC>
       );
       break;
     case "PasswordInput":
       preview = (
-        <F.PasswordInput
+        <PasswordInput
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Password"
@@ -199,7 +247,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "TextArea":
       preview = (
-        <F.TextArea
+        <TextArea
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Notes"
@@ -209,8 +257,8 @@ function ComponentPreview({ name }: { name: string }) {
     case "Dropdown":
       preview = (
         <>
-          <F.Label required>Status</F.Label>
-          <F.Dropdown
+          <Label required>Status</Label>
+          <Dropdown
             value={dropdownValue}
             options={choices}
             searchable
@@ -227,7 +275,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "MultiSelect":
       preview = (
-        <F.MultiSelect
+        <MultiSelect
           options={choices}
           value={values}
           searchable
@@ -237,7 +285,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "TreeDropdown":
       preview = (
-        <F.TreeDropdown
+        <TreeDropdown
           options={tree}
           value={value}
           searchable
@@ -247,7 +295,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "TreeMultiSelect":
       preview = (
-        <F.TreeMultiSelect
+        <TreeMultiSelect
           nodes={tree}
           value={values}
           searchable
@@ -257,7 +305,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Tree":
       preview = (
-        <F.Tree
+        <Tree
           nodes={tree}
           value={value}
           defaultExpanded
@@ -267,7 +315,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Checkbox":
       preview = (
-        <F.Checkbox
+        <Checkbox
           checked={checked}
           label="Send receipt"
           onChange={(e) => setChecked(e.target.checked)}
@@ -276,7 +324,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "RadioButton":
       preview = (
-        <F.RadioButton
+        <RadioButton
           checked={checked}
           label="Active"
           onChange={(e) => setChecked(e.target.checked)}
@@ -285,7 +333,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "RadioGroup":
       preview = (
-        <F.RadioGroup
+        <RadioGroup
           name="docs-status"
           options={choices.map((c) => ({
             value: String(c.value),
@@ -298,25 +346,21 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Switch":
       preview = (
-        <F.Switch
-          checked={checked}
-          label="Notifications"
-          onChange={setChecked}
-        />
+        <Switch checked={checked} label="Notifications" onChange={setChecked} />
       );
       break;
     case "Slider":
-      preview = <F.Slider value={number} onChange={setNumber} showValue />;
+      preview = <Slider value={number} onChange={setNumber} showValue />;
       break;
     case "Knob":
-      preview = <F.Knob value={number} onChange={setNumber} valueSuffix="%" />;
+      preview = <Knob value={number} onChange={setNumber} valueSuffix="%" />;
       break;
     case "Rating":
-      preview = <F.Rating value={(number % 5) + 1} onChange={setNumber} />;
+      preview = <Rating value={(number % 5) + 1} onChange={setNumber} />;
       break;
     case "ColorPicker":
       preview = (
-        <F.ColorPicker
+        <ColorPicker
           value={text || "#2563eb"}
           onChange={(e) => setText(e.target.value)}
         />
@@ -324,7 +368,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "DateTime":
       preview = (
-        <F.VC gap="sm">
+        <VC gap="sm">
           <label>
             Mode{" "}
             <select
@@ -338,22 +382,25 @@ function ComponentPreview({ name }: { name: string }) {
               <option value="time">Time only</option>
             </select>
           </label>
-          <F.DateTime
+          <DateTime
+            backgroundColor="#faf5ff"
+            textColor="#3b1760"
+            iconColor="#8a16d1"
             mode={dateMode}
             value={dateValues[dateMode]}
             onChange={(next) =>
               setDateValues((previous) => ({ ...previous, [dateMode]: next }))
             }
           />
-        </F.VC>
+        </VC>
       );
       break;
     case "OTPInput":
-      preview = <F.OTPInput value={text} length={6} onChange={setText} />;
+      preview = <OTPInput value={text} length={6} onChange={setText} />;
       break;
     case "PhoneInput":
       preview = (
-        <F.PhoneInput
+        <PhoneInput
           countries={[
             { code: "NG", name: "Nigeria", dialCode: "+234", flag: "🇳🇬" },
             { code: "GB", name: "United Kingdom", dialCode: "+44", flag: "🇬🇧" },
@@ -363,7 +410,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Autocomplete":
       preview = (
-        <F.Autocomplete
+        <Autocomplete
           options={choices}
           value={value}
           onChange={(item) => setValue(item.value)}
@@ -372,7 +419,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Listbox":
       preview = (
-        <F.Listbox
+        <Listbox
           options={choices}
           value={value}
           onChange={(item) => setValue(item.value)}
@@ -380,76 +427,76 @@ function ComponentPreview({ name }: { name: string }) {
       );
       break;
     case "FileUpload":
-      preview = <F.FileUpload accept="image/*" preview />;
+      preview = <FileUpload accept="image/*" preview />;
       break;
     case "HC":
       preview = (
-        <F.HC gap="md" wrap="wrap">
+        <HC gap="md" wrap="wrap">
           {block("First")}
           {block("Second")}
           {block("Third")}
-        </F.HC>
+        </HC>
       );
       break;
     case "VC":
       preview = (
-        <F.VC gap="sm">
+        <VC gap="sm">
           {block("First")}
           {block("Second")}
           {block("Third")}
-        </F.VC>
+        </VC>
       );
       break;
     case "Divider":
       preview = (
-        <F.VC gap="md">
+        <VC gap="md">
           <span>First section</span>
-          <F.Divider label="or" />
+          <Divider label="or" />
           <span>Second section</span>
-        </F.VC>
+        </VC>
       );
       break;
     case "Card":
       preview = (
-        <F.Card
+        <Card
           header={<strong>Customer details</strong>}
           footer="Updated just now"
         >
           <p>Cards group related content.</p>
-        </F.Card>
+        </Card>
       );
       break;
     case "Label":
       preview = (
-        <F.VC gap="sm">
-          <F.Label htmlFor="docs-name" required>
+        <VC gap="sm">
+          <Label htmlFor="docs-name" required>
             Customer name
-          </F.Label>
-          <F.Input id="docs-name" placeholder="Enter a name" />
-        </F.VC>
+          </Label>
+          <Input id="docs-name" placeholder="Enter a name" />
+        </VC>
       );
       break;
     case "Badge":
       preview = (
-        <F.HC gap="sm">
-          <F.Badge color="success">Active</F.Badge>
-          <F.Badge color="warning">Low stock</F.Badge>
-          <F.Badge color="danger">Out of stock</F.Badge>
-        </F.HC>
+        <HC gap="sm">
+          <Badge color="success">Active</Badge>
+          <Badge color="warning">Low stock</Badge>
+          <Badge color="danger">Out of stock</Badge>
+        </HC>
       );
       break;
     case "Icon":
       preview = (
-        <F.HC gap="lg">
-          <F.Icon icon="fa-solid fa-check" label="Success" />
-          <F.Icon icon="fa-solid fa-house" label="Home" />
-          <F.Icon icon="fa-solid fa-spinner" spin label="Loading" />
-        </F.HC>
+        <HC gap="lg">
+          <Icon icon="fa-solid fa-check" label="Success" />
+          <Icon icon="fa-solid fa-house" label="Home" />
+          <Icon icon="fa-solid fa-spinner" spin label="Loading" />
+        </HC>
       );
       break;
     case "Image":
       preview = (
-        <F.Image
+        <Image
           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160'%3E%3Crect width='320' height='160' fill='%23eff6ff'/%3E%3Ctext x='100' y='88' fill='%232563eb' font-size='28'%3EFlowUI%3C/text%3E%3C/svg%3E"
           alt="FlowUI sample"
           width={320}
@@ -459,7 +506,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Tooltip":
       preview = (
-        <F.VC gap="md">
+        <VC gap="md">
           <label>
             Placement{" "}
             <select
@@ -474,25 +521,25 @@ function ComponentPreview({ name }: { name: string }) {
             </select>
           </label>
           <div>
-            <F.Tooltip text="Save your changes" location={placement}>
-              <F.Button>Hover or focus</F.Button>
-            </F.Tooltip>
+            <Tooltip text="Save your changes" location={placement}>
+              <Button>Hover or focus</Button>
+            </Tooltip>
           </div>
-        </F.VC>
+        </VC>
       );
       break;
     case "Carousel":
       preview = (
-        <F.Carousel>
+        <Carousel>
           {block("Slide one")}
           {block("Slide two")}
           {block("Slide three")}
-        </F.Carousel>
+        </Carousel>
       );
       break;
     case "Breadcrumb":
       preview = (
-        <F.Breadcrumb
+        <Breadcrumb
           items={[
             { id: 1, text: "Home" },
             { id: 2, text: "Customers" },
@@ -505,7 +552,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Chart":
       preview = (
-        <F.Chart
+        <Chart
           type="bar"
           data={{
             labels: ["Mon", "Tue", "Wed"],
@@ -518,7 +565,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Timeline":
       preview = (
-        <F.Timeline
+        <Timeline
           items={[
             { id: 1, title: "Created", description: "Sale recorded" },
             { id: 2, title: "Completed", description: "Receipt sent" },
@@ -528,7 +575,7 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Menu":
       preview = (
-        <F.Menu
+        <Menu
           items={[
             { id: "new", label: "New sale", icon: "fa-solid fa-plus" },
             { id: "reports", label: "Reports", icon: "fa-solid fa-chart-line" },
@@ -538,9 +585,9 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Tabs / Tab":
       preview = (
-        <F.VC gap="sm">
-          <F.HC gap="sm">
-            <F.Button
+        <VC gap="sm">
+          <HC gap="sm">
+            <Button
               variant="outline"
               onClick={() => {
                 setReport(!report);
@@ -548,7 +595,7 @@ function ComponentPreview({ name }: { name: string }) {
               }}
             >
               {report ? "Remove report tab" : "Add report tab"}
-            </F.Button>
+            </Button>
             <label>
               Selected style{" "}
               <select
@@ -561,33 +608,33 @@ function ComponentPreview({ name }: { name: string }) {
                 <option value="fill">Fill</option>
               </select>
             </label>
-          </F.HC>
-          <F.Tabs value={tab} onChange={setTab} selectedStyle={tabStyle}>
-            <F.Tab id="overview" label="Overview" icon="fa-solid fa-chart-line">
+          </HC>
+          <Tabs value={tab} onChange={setTab} selectedStyle={tabStyle}>
+            <Tab id="overview" label="Overview" icon="fa-solid fa-chart-line">
               Overview content
-            </F.Tab>
-            <F.Tab id="history" label="History">
+            </Tab>
+            <Tab id="history" label="History">
               History content
-            </F.Tab>
+            </Tab>
             {report && (
-              <F.Tab id="report" label="Report" icon="fa-solid fa-file">
+              <Tab id="report" label="Report" icon="fa-solid fa-file">
                 Report content
-              </F.Tab>
+              </Tab>
             )}
-          </F.Tabs>
-        </F.VC>
+          </Tabs>
+        </VC>
       );
       break;
     case "Section":
       preview = (
-        <F.Section title="Advanced settings" defaultOpen>
+        <Section title="Advanced settings" defaultOpen>
           Expand or collapse this content.
-        </F.Section>
+        </Section>
       );
       break;
     case "Table":
       preview = (
-        <F.Table
+        <Table
           data={[
             { name: "Rice", price: 24500 },
             { name: "Beans", price: 18000 },
@@ -623,8 +670,8 @@ function ComponentPreview({ name }: { name: string }) {
     case "Dialog":
       preview = (
         <>
-          <F.Button onClick={() => setOpen(true)}>Open details</F.Button>
-          <F.Dialog
+          <Button onClick={() => setOpen(true)}>Open details</Button>
+          <Dialog
             open={open}
             position="right"
             header="Sale details"
@@ -636,9 +683,9 @@ function ComponentPreview({ name }: { name: string }) {
       break;
     case "Popover":
       preview = (
-        <F.Popover trigger={<F.Button>Open popover</F.Button>}>
+        <Popover trigger={<Button>Open popover</Button>}>
           More information
-        </F.Popover>
+        </Popover>
       );
       break;
     case "Notification":
@@ -661,7 +708,7 @@ export function DocsApp() {
       customerName: {
         resolve: async (
           codes: readonly string[],
-          { signal }: F.LabelResolverContext,
+          { signal }: LabelResolverContext,
         ) => {
           setStats((previous) => ({
             calls: previous.calls + 1,
@@ -720,8 +767,8 @@ export function DocsApp() {
     `#/${framework}/${encodeURIComponent(name)}`;
   const gettingStarted = ["Introduction", "Installation", "Theming"];
   return (
-    <F.FlowUIProvider mode={dark ? "dark" : "light"}>
-      <F.AsyncLabelProvider lookups={lookups} scopeKey="documentation-demo">
+    <FlowUIProvider mode={dark ? "dark" : "light"}>
+      <AsyncLabelProvider lookups={lookups} scopeKey="documentation-demo">
         <div className="docs-shell">
           <a
             className="docs-skip"
@@ -832,7 +879,7 @@ export function DocsApp() {
                 ) && <p className="docs-muted">No matching components.</p>}
             </nav>
             <footer>
-              v1.0.0 <a href="#gallery">Original gallery</a>
+              v1.0.2 <a href="#gallery">Original gallery</a>
             </footer>
           </aside>
           <main className="docs-content" id="docs-content" tabIndex={-1}>
@@ -1048,7 +1095,7 @@ export function DocsApp() {
             ))}
           </aside>
         </div>
-      </F.AsyncLabelProvider>
-    </F.FlowUIProvider>
+      </AsyncLabelProvider>
+    </FlowUIProvider>
   );
 }

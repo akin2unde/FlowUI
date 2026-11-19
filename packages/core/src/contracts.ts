@@ -61,6 +61,8 @@ export interface ButtonProps
   iconPosition?: "left" | "right" | "center";
   badge?: string | number;
   ariaLabel?: string;
+  /** Label for a self-closing button. Children/content take precedence. */
+  text?: string;
 }
 export interface ButtonGroupProps extends BaseUIProps {
   orientation?: Orientation;
@@ -78,6 +80,11 @@ export interface InputProps
     RequiredProps,
     FocusableProps {
   name?: string;
+  min?: string | number;
+  max?: string | number;
+  step?: string | number;
+  minLength?: number;
+  maxLength?: number;
   value?: string | number;
   placeholder?: string;
   /** Controls which characters FlowUI accepts without changing the visual input type. */
@@ -310,7 +317,8 @@ export interface BreadcrumbProps extends BaseUIProps {
   items: BreadcrumbItem[];
   separatorIcon?: string;
 }
-export type NotificationType = "success" | "error" | "warning" | "info" | "decision";
+export type NotificationType =
+  "success" | "error" | "warning" | "info" | "decision";
 export type NotificationHorizontal = "left" | "center" | "right";
 export type NotificationVertical = "top" | "bottom";
 export interface NotificationProps extends BaseUIProps {

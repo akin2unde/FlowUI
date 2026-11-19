@@ -6,8 +6,8 @@
         <label class="fui-field-label" for="@InputId">@Label@if (Required) { <span class="fui-required" aria-hidden="true"> *</span> }</label>
     }
     <input @attributes="AdditionalAttributes" @ref="InputElement" id="@InputId" class="fui-control"
-           type="text" value="@Text" placeholder="@Placeholder" maxlength="@MaxLength" autocomplete="@AutoComplete"
-           disabled="@Disabled" readonly="@ReadOnly" aria-required="@Required.ToString().ToLowerInvariant()"
+           type="@Type" value="@Text" placeholder="@Placeholder" min="@Min" max="@Max" step="@Step" minlength="@MinLength" pattern="@Pattern" maxlength="@MaxLength" autocomplete="@AutoComplete"
+           disabled="@Disabled" readonly="@ReadOnly" required="@Required" aria-required="@Required.ToString().ToLowerInvariant()"
            aria-invalid="@Invalid" aria-describedby="@DescriptionId"
            @oninput="HandleInput" @onchange="HandleChange" @onfocus="FocusAsync" @onblur="BlurAsync" />
     @if (!string.IsNullOrEmpty(Message)) { <span id="@HelpId" class="fui-help @(HasErrors ? "fui-error" : "")">@Message</span> }

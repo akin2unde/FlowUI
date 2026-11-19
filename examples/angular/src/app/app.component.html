@@ -91,7 +91,13 @@
             also supported.</fui-label
           >
           <div class="fui-control-preview">
-            <fui-input inputMode="integer" placeholder="Quantity" />
+            <fui-input
+              inputMode="integer"
+              [min]="1"
+              [max]="100"
+              [step]="1"
+              placeholder="Quantity (1–100)"
+            />
           </div>
           <pre><code>&lt;fui-input inputMode="integer" /&gt;</code></pre>
         </fui-vc>
@@ -178,7 +184,7 @@
         </fui-label>
 
         <fui-hc wrap="wrap" gap="sm">
-          <fui-button icon="fa-solid fa-floppy-disk">Save</fui-button>
+          <fui-button icon="fa-solid fa-floppy-disk" text="Save" />
           <fui-button
             variant="outline"
             color="secondary"
@@ -235,6 +241,9 @@
         <fui-date-time
           [value]="dateTime"
           mode="datetime"
+          backgroundColor="#faf5ff"
+          textColor="#3b1760"
+          iconColor="#8a16d1"
           (valueChange)="dateTime = $event"
         />
 

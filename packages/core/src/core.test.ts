@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   createTheme,
+  defaultTheme,
+  responsiveCSS,
   formatLocalDateTime,
   resolveFlowStyle,
   resolveTooltipLocation,
@@ -118,4 +120,24 @@ describe("shared control behavior", () => {
       "right",
     );
   });
+});
+
+// Shared visual properties must reach the inner field through CSS variables.
+it("resolves field icon/panel colors and responsive field colors", () => {
+  const result = resolveFlowStyle(
+    {
+      backgroundColor: "#fff",
+      textColor: "#123",
+      iconColor: "#456",
+      panelBackgroundColor: "#eee",
+    },
+    defaultTheme,
+  );
+  expect(result.style["--fui-control-background"]).toBe("#fff");
+  expect(result.style["--fui-control-text"]).toBe("#123");
+  expect(result.style["--fui-control-icon"]).toBe("#456");
+  expect(result.style["--fui-panel-background"]).toBe("#eee");
+  expect(responsiveCSS(defaultTheme)).toContain(
+    "--fui-control-background:var(--fui-backgroundColor-md)",
+  );
 });

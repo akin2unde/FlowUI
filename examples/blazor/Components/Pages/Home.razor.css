@@ -206,4 +206,8 @@ pre {
   }
 }
 
-.theme-toolbar > .toolbar-field { display: block; min-width: 180px; flex: 0 1 240px; }
+.theme-toolbar > .toolbar-field {
+  display: block;
+  min-width: 180px;
+  flex: 0 1 240px;
+}

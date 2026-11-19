@@ -7,6 +7,7 @@ namespace FlowUI.Blazor.Buttons;
 public partial class FlowButton : FlowComponentBase
 {
 
+    [Parameter] public string? Text { get; set; }
     [Parameter] public FlowColor Color { get; set; } = FlowColor.Primary;
     [Parameter] public FlowVariant Variant { get; set; } = FlowVariant.Solid;
     [Parameter] public FlowSize Size { get; set; } = FlowSize.Md;

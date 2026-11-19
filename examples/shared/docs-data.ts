@@ -18,12 +18,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "HC",
     description: "Arranges children horizontally.",
     code: {
-      react: '<HC gap="sm">...</HC>',
+      react:
+        'import { HC } from "@akin2unde/flowui-react";\n\n<HC gap="sm">...</HC>',
       angular: '<fui-hc gap="sm">...</fui-hc>',
       native: "<HC><Text>First</Text><Text>Second</Text></HC>",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "direction",
           type: "ResponsiveValue<FlexDirection>",
@@ -69,8 +360,373 @@ export const componentDocs: ComponentDoc[] = [
           type: "boolean",
           optional: true,
         },
+        {
+          name: "ref",
+          type: "Ref<HTMLElement>",
+          optional: true,
+        },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "inline",
           type: "boolean",
@@ -85,12 +741,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "VC",
     description: "Arranges children vertically.",
     code: {
-      react: '<VC gap="sm">...</VC>',
+      react:
+        'import { VC } from "@akin2unde/flowui-react";\n\n<VC gap="sm">...</VC>',
       angular: '<fui-vc gap="sm">...</fui-vc>',
       native: "<VC><Text>First</Text><Text>Second</Text></VC>",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "direction",
           type: "ResponsiveValue<FlexDirection>",
@@ -136,8 +1083,373 @@ export const componentDocs: ComponentDoc[] = [
           type: "boolean",
           optional: true,
         },
+        {
+          name: "ref",
+          type: "Ref<HTMLElement>",
+          optional: true,
+        },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "inline",
           type: "boolean",
@@ -152,12 +1464,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Divider",
     description: "Separates content horizontally or vertically.",
     code: {
-      react: '<Divider orientation="horizontal" />',
+      react:
+        'import { Divider } from "@akin2unde/flowui-react";\n\n<Divider orientation="horizontal" />',
       angular: "<fui-divider />",
       native: "<Divider />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "orientation",
           type: "Orientation",
@@ -170,6 +1773,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "orientation",
           type: "Orientation",
@@ -195,12 +2158,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Card",
     description: "Groups related content with optional header and footer.",
     code: {
-      react: "<Card header={header}>...</Card>",
+      react:
+        'import { Card } from "@akin2unde/flowui-react";\n\n<Card header={header}>...</Card>',
       angular: "<fui-card>...</fui-card>",
       native: "<Card><Text>Content</Text></Card>",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "variant",
           type: '"outline" | "elevated" | "filled"',
@@ -218,6 +2472,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "header",
           type: "TemplateRef<unknown>",
@@ -259,6 +2873,296 @@ export const componentDocs: ComponentDoc[] = [
     props: {
       react: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
           name: "lookup",
           type: "string",
           optional: false,
@@ -285,6 +3189,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "lookup",
           type: "string",
@@ -365,15 +3629,301 @@ export const componentDocs: ComponentDoc[] = [
     name: "Label",
     description: "Displays styled or form-associated text.",
     code: {
-      react: '<Label htmlFor="name">Name</Label>',
+      react:
+        'import { Label } from "@akin2unde/flowui-react";\n\n<Label htmlFor="name">Name</Label>',
       angular: "<fui-label>Name</fui-label>",
       native: "<Text>Customer name</Text>",
     },
     props: {
       react: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
           name: "textColor",
           type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
           optional: true,
         },
         {
@@ -416,8 +3966,373 @@ export const componentDocs: ComponentDoc[] = [
           type: "boolean",
           optional: true,
         },
+        {
+          name: "ref",
+          type: "Ref<HTMLLabelElement>",
+          optional: true,
+        },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "htmlFor",
           type: "string",
@@ -448,15 +4363,301 @@ export const componentDocs: ComponentDoc[] = [
     name: "Badge",
     description: "Shows compact status or count information.",
     code: {
-      react: '<Badge color="success">Ready</Badge>',
+      react:
+        'import { Badge } from "@akin2unde/flowui-react";\n\n<Badge color="success">Ready</Badge>',
       angular: "<fui-badge>Ready</fui-badge>",
       native: "<Badge>Ready</Badge>",
     },
     props: {
       react: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
           name: "textColor",
           type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
           optional: true,
         },
         {
@@ -516,6 +4717,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "color",
           type: "PaletteColor",
@@ -576,15 +5137,301 @@ export const componentDocs: ComponentDoc[] = [
     name: "Icon",
     description: "Renders a Font Awesome icon.",
     code: {
-      react: '<Icon icon="fa-solid fa-check" />',
+      react:
+        'import { Icon } from "@akin2unde/flowui-react";\n\n<Icon icon="fa-solid fa-check" />',
       angular: '<fui-icon icon="fa-solid fa-check" />',
       native: "",
     },
     props: {
       react: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
           name: "textColor",
           type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
           optional: true,
         },
         {
@@ -635,6 +5482,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "icon",
           type: "string",
           optional: false,
@@ -652,8 +5859,293 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
           name: "textColor",
           type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
           optional: true,
         },
         {
@@ -709,12 +6201,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Image",
     description: "Displays an image with fit, lazy load, and fallback.",
     code: {
-      react: '<Image src={url} alt="Product" />',
+      react:
+        'import { Image } from "@akin2unde/flowui-react";\n\n<Image src={url} alt="Product" />',
       angular: '<fui-image [src]="url" alt="Product" />',
       native: "<Image source={{ uri: imageUrl }} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "src",
           type: "string",
@@ -743,6 +6526,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "src",
           type: "string",
           optional: false,
@@ -769,6 +6912,296 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       native: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "src",
           type: "string",
@@ -803,7 +7236,7 @@ export const componentDocs: ComponentDoc[] = [
     description: "Shows short guidance around a trigger.",
     code: {
       react:
-        '<Tooltip text="Save your changes" location="bottom"><Button>Save</Button></Tooltip>',
+        'import { Tooltip, Button } from "@akin2unde/flowui-react";\n\n<Tooltip text="Save your changes" location="bottom"><Button>Save</Button></Tooltip>',
       angular:
         '<fui-tooltip text="Save your changes" location="bottom"><fui-button>Save</fui-button></fui-tooltip>',
       native:
@@ -811,6 +7244,296 @@ export const componentDocs: ComponentDoc[] = [
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "text",
           type: "string",
@@ -829,6 +7552,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "text",
           type: "string",
           optional: false,
@@ -845,6 +7928,296 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       native: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "text",
           type: "string",
@@ -868,12 +8241,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Carousel",
     description: "Moves through templated slides.",
     code: {
-      react: "<Carousel>{slides}</Carousel>",
+      react:
+        'import { Carousel } from "@akin2unde/flowui-react";\n\n<Carousel>{slides}</Carousel>',
       angular: "<fui-carousel>...</fui-carousel>",
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "activeIndex",
           type: "number",
@@ -902,6 +8566,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "activeIndex",
           type: "number",
           optional: true,
@@ -928,6 +8952,296 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       native: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "activeIndex",
           type: "number",
@@ -957,13 +9271,303 @@ export const componentDocs: ComponentDoc[] = [
     description: "Shows image, icon, or text navigation ancestry.",
     code: {
       react:
-        '<Breadcrumb separator="/" items={[{ id: "home", text: "Home", href: "/" }, { id: "products", text: "Products" }]} />',
+        'import { Breadcrumb } from "@akin2unde/flowui-react";\n\n<Breadcrumb separator="/" items={[{ id: "home", text: "Home", href: "/" }, { id: "products", text: "Products" }]} />',
       angular:
         '<fui-breadcrumb [items]="items" separator="/" (selected)="navigate($event)" />',
       native: '<Breadcrumb items={crumbs} separator="/" onSelect={navigate} />',
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "separator",
           type: "string",
@@ -992,6 +9596,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "items",
           type: "BreadcrumbItem[]",
           optional: true,
@@ -1019,6 +9983,296 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
           name: "separator",
           type: "string",
           optional: true,
@@ -1041,12 +10295,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Chart",
     description: "Paints bar, line, pie, or doughnut series.",
     code: {
-      react: '<Chart type="bar" data={data} />',
+      react:
+        'import { Chart } from "@akin2unde/flowui-react";\n\n<Chart type="bar" data={data} />',
       angular: '<fui-chart type="bar" [data]="data" />',
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "type",
           type: "ChartType",
@@ -1056,11 +10601,6 @@ export const componentDocs: ComponentDoc[] = [
           name: "data",
           type: "ChartData",
           optional: false,
-        },
-        {
-          name: "height",
-          type: "number",
-          optional: true,
         },
         {
           name: "showLegend",
@@ -1079,6 +10619,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "type",
           type: "ChartType",
@@ -1112,6 +11012,296 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
           name: "type",
           type: "ChartType",
           optional: true,
@@ -1120,11 +11310,6 @@ export const componentDocs: ComponentDoc[] = [
           name: "data",
           type: "ChartData",
           optional: false,
-        },
-        {
-          name: "height",
-          type: "number",
-          optional: true,
         },
         {
           name: "showLegend",
@@ -1149,15 +11334,301 @@ export const componentDocs: ComponentDoc[] = [
     name: "Button",
     description: "Triggers an action with variants, icons, and badges.",
     code: {
-      react: '<Button icon="fa-solid fa-save">Save</Button>',
-      angular: "<fui-button>Save</fui-button>",
-      native: "<Button onPress={save}>Save</Button>",
+      react:
+        'import { Button } from "@akin2unde/flowui-react";\n\nexport function ButtonExample() {\n  return <Button text="Save changes" onClick={() => alert("Saved")} />;\n}',
+      angular: '<fui-button text="Save changes" (pressed)="save()" />',
+      native: '<Button text="Save" onPress={save} />',
     },
     props: {
       react: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
           name: "textColor",
           type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
           optional: true,
         },
         {
@@ -1256,12 +11727,387 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "text",
+          type: "string",
+          optional: true,
+        },
+        {
           name: "selected",
           type: "boolean",
           optional: true,
         },
+        {
+          name: "ref",
+          type: "Ref<HTMLButtonElement>",
+          optional: true,
+        },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "text",
+          type: "string",
+          optional: true,
+        },
         {
           name: "type",
           type: '"button" | "submit" | "reset"',
@@ -1337,7 +12183,27 @@ export const componentDocs: ComponentDoc[] = [
         {
           name: "children",
           type: "ReactNode",
-          optional: false,
+          optional: true,
+        },
+        {
+          name: "text",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "string",
+          optional: true,
         },
         {
           name: "className",
@@ -1387,13 +12253,304 @@ export const componentDocs: ComponentDoc[] = [
     name: "ButtonGroup",
     description: "Provides segmented single selection.",
     code: {
-      react: "<ButtonGroup selectable value={value}>...</ButtonGroup>",
+      react:
+        'import { ButtonGroup } from "@akin2unde/flowui-react";\n\n<ButtonGroup selectable value={value}>...</ButtonGroup>',
       angular: '<fui-button-group [selectable]="true">...</fui-button-group>',
       native:
         "<ButtonGroup options={periods} value={period} onValueChange={setPeriod} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "orientation",
           type: "Orientation",
@@ -1426,6 +12583,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "orientation",
           type: "Orientation",
@@ -1501,12 +13018,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Popover",
     description: "Shows templated floating content.",
     code: {
-      react: "<Popover trigger={<Button>Open</Button>}>...</Popover>",
+      react:
+        'import { Popover, Button } from "@akin2unde/flowui-react";\n\n<Popover trigger={<Button>Open</Button>}>...</Popover>',
       angular: '<fui-popover [content]="content">...</fui-popover>',
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "open",
           type: "boolean",
@@ -1535,6 +13343,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "open",
           type: "boolean",
           optional: true,
@@ -1562,6 +13730,296 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
           name: "open",
           type: "boolean",
           optional: true,
@@ -1584,13 +14042,304 @@ export const componentDocs: ComponentDoc[] = [
     name: "Notification",
     description: "Shows positioned success, error, warning, or info feedback.",
     code: {
-      react: '<Notification open type="success">Saved</Notification>',
+      react:
+        'import { Notification } from "@akin2unde/flowui-react";\n\n<Notification open type="success">Saved</Notification>',
       angular: '<fui-notification type="success">Saved</fui-notification>',
       native:
         '<Notification title="Saved" message="Customer updated" type="success" />',
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "open",
           type: "boolean",
@@ -1653,6 +14402,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "open",
           type: "boolean",
@@ -1813,15 +14922,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Input",
     description: "Accepts text, integer, decimal, money, or alphabet values.",
     code: {
-      react: '<Input inputMode="money" currencySymbol="₦" />',
-      angular: '<fui-input inputMode="money" currencySymbol="₦" />',
-      native: "<Input value={value} onChangeText={setValue} />",
+      react:
+        'import { useState } from "react";\nimport { Input, Label, VStack } from "@akin2unde/flowui-react";\n\nexport function InputExample() {\n  const [quantity, setQuantity] = useState("2");\n  return (\n    <VStack gap={8}>\n      <Label htmlFor="quantity">Quantity</Label>\n      <Input id="quantity" type="number" min={1} max={100} step={1}\n        value={quantity} onValueChange={setQuantity} />\n    </VStack>\n  );\n}',
+      angular:
+        '<fui-input type="number" [min]="1" [max]="100" [step]="1" [value]="quantity" (valueChange)="quantity = $event" />',
+      native:
+        '<Input value={value} onChangeText={setValue} min={1} max={100} keyboardType="numeric" onValidationChange={(valid, message) => setError(message)} />',
     },
     props: {
       react: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
           name: "textColor",
           type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
           optional: true,
         },
         {
@@ -1885,6 +15282,31 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "min",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "max",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "step",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "minLength",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "maxLength",
+          type: "number",
+          optional: true,
+        },
+        {
           name: "value",
           type: "string | number",
           optional: true,
@@ -1910,12 +15332,427 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "ref",
+          type: "Ref<HTMLInputElement>",
+          optional: true,
+        },
+        {
           name: "onValueChange",
           type: "(value: string) => void",
           optional: true,
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "min",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "max",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "step",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "minLength",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "maxLength",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "pattern",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "spellCheck",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "ariaLabel",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "ariaLabelledBy",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "ariaDescribedBy",
+          type: "string",
+          optional: true,
+        },
         {
           name: "type",
           type: '| "text"\n    | "email"\n    | "password"\n    | "number"\n    | "search"\n    | "tel"\n    | "url"\n    | "date"\n    | "time"',
@@ -1984,6 +15821,41 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "min",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "max",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "step",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "minLength",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "onValidationChange",
+          type: "(valid: boolean, message?: string) => void",
+          optional: true,
+        },
+        {
           name: "invalid",
           type: "boolean",
           optional: true,
@@ -2001,7 +15873,8 @@ export const componentDocs: ComponentDoc[] = [
     name: "PasswordInput",
     description: "Accepts passwords with an optional visibility toggle.",
     code: {
-      react: "<PasswordInput value={password} />",
+      react:
+        'import { PasswordInput } from "@akin2unde/flowui-react";\n\n<PasswordInput value={password} />',
       angular: '<fui-password-input [(value)]="password" />',
       native: "<PasswordInput value={password} onChangeText={setPassword} />",
     },
@@ -2018,12 +15891,432 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "ref",
+          type: "Ref<HTMLInputElement>",
+          optional: true,
+        },
+        {
+          name: "wrapperClassName",
+          type: "string",
+          optional: true,
+        },
+        {
           name: "onVisibilityChange",
           type: "(visible: boolean) => void",
           optional: true,
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "min",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "max",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "step",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "minLength",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "maxLength",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "pattern",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "spellCheck",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "ariaLabel",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "ariaLabelledBy",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "ariaDescribedBy",
+          type: "string",
+          optional: true,
+        },
         {
           name: "value",
           type: "string",
@@ -2082,6 +16375,41 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "min",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "max",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "step",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "minLength",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "onValidationChange",
+          type: "(valid: boolean, message?: string) => void",
+          optional: true,
+        },
+        {
           name: "invalid",
           type: "boolean",
           optional: true,
@@ -2124,12 +16452,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "OTPInput",
     description: "Captures an OTP using auto-advancing cells.",
     code: {
-      react: "<OTPInput length={6} value={otp} />",
+      react:
+        'import { OTPInput } from "@akin2unde/flowui-react";\n\n<OTPInput length={6} value={otp} />',
       angular: '<fui-otp-input [(value)]="otp" />',
       native: "<OTPInput value={otp} onValueChange={setOtp} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -2172,6 +16791,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "value",
           type: "string",
@@ -2237,13 +17216,304 @@ export const componentDocs: ComponentDoc[] = [
     name: "PhoneInput",
     description: "Captures country code, dial code, and phone number.",
     code: {
-      react: "<PhoneInput countries={countries} value={phone} />",
+      react:
+        'import { PhoneInput } from "@akin2unde/flowui-react";\n\n<PhoneInput countries={countries} value={phone} />',
       angular: '<fui-phone-input [countries]="countries" />',
       native:
         "<PhoneInput countryCode={countryCode} number={number}\n  onCountryCodeChange={setCountryCode} onNumberChange={setNumber} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -2281,6 +17551,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "value",
           type: "PhoneNumberValue",
@@ -2366,12 +17996,305 @@ export const componentDocs: ComponentDoc[] = [
     name: "DateTime",
     description: "Captures a local date, time, or both without UTC shifting.",
     code: {
-      react: '<DateTime mode="datetime" value={date} onChange={setDate} />',
-      angular: '<fui-date-time mode="datetime" [(value)]="date" />',
-      native: '<DateTime mode="datetime" value={date} onChange={setDate} />',
+      react:
+        'import { useState } from "react";\nimport { DateTime } from "@akin2unde/flowui-react";\n\nexport function DateTimeExample() {\n  const [value, setValue] = useState("2026-10-10T09:30");\n  return <DateTime value={value} onChange={setValue}\n    min="2026-01-01T00:00" max="2026-12-31T23:59"\n    backgroundColor="#faf5ff" textColor="#3b1760" iconColor="#8a16d1" />;\n}',
+      angular:
+        '<fui-date-time [value]="date" (valueChange)="date = $event" min="2026-01-01T00:00" max="2026-12-31T23:59" backgroundColor="#faf5ff" textColor="#3b1760" iconColor="#8a16d1" />',
+      native:
+        '<DateTime mode="datetime" value={date} onChange={setDate} backgroundColor="#faf5ff" textColor="#3b1760" iconColor="#8a16d1" />',
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -2415,6 +18338,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "value",
           type: "string",
           optional: true,
@@ -2457,13 +18740,38 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
-          name: "disabled",
-          type: "boolean",
+          name: "value",
+          type: "string",
           optional: true,
         },
         {
-          name: "value",
+          name: "backgroundColor",
           type: "string",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "StyleProp<ViewStyle>",
           optional: true,
         },
         {
@@ -2472,8 +18780,8 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
-          name: "name",
-          type: "string",
+          name: "onChange",
+          type: "(value: string) => void",
           optional: true,
         },
         {
@@ -2484,6 +18792,11 @@ export const componentDocs: ComponentDoc[] = [
         {
           name: "max",
           type: "string",
+          optional: true,
+        },
+        {
+          name: "disabled",
+          type: "boolean",
           optional: true,
         },
         {
@@ -2499,13 +18812,304 @@ export const componentDocs: ComponentDoc[] = [
     name: "Autocomplete",
     description: "Searches options while the user types.",
     code: {
-      react: "<Autocomplete options={options} />",
+      react:
+        'import { Autocomplete } from "@akin2unde/flowui-react";\n\n<Autocomplete options={options} />',
       angular: '<fui-autocomplete [options]="options" />',
       native:
         "<Autocomplete items={products} value={query} onChangeText={setQuery} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -2539,6 +19143,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "options",
           type: "DropdownModel[]",
           optional: true,
@@ -2570,6 +19534,296 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       native: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -2603,13 +19857,720 @@ export const componentDocs: ComponentDoc[] = [
     name: "TextArea",
     description: "Captures multiline text.",
     code: {
-      react: "<TextArea rows={4} />",
+      react:
+        'import { TextArea } from "@akin2unde/flowui-react";\n\n<TextArea rows={4} />',
       angular: '<fui-textarea [rows]="4" />',
       native: "<TextArea value={notes} onChangeText={setNotes} />",
     },
     props: {
-      react: [],
+      react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "ref",
+          type: "Ref<HTMLTextAreaElement>",
+          optional: true,
+        },
+      ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "min",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "max",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "step",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "minLength",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "maxLength",
+          type: "number",
+          optional: true,
+        },
+        {
+          name: "pattern",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "spellCheck",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "ariaLabel",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "ariaLabelledBy",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "ariaDescribedBy",
+          type: "string",
+          optional: true,
+        },
         {
           name: "value",
           type: "string",
@@ -2659,12 +20620,308 @@ export const componentDocs: ComponentDoc[] = [
     name: "Checkbox",
     description: "Toggles an independent boolean value.",
     code: {
-      react: '<Checkbox label="Active" checked={active} />',
+      react:
+        'import { Checkbox } from "@akin2unde/flowui-react";\n\n<Checkbox label="Active" checked={active} />',
       angular: '<fui-checkbox label="Active" />',
       native: "<Checkbox checked={checked} onCheckedChange={setChecked} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "ref",
+          type: "Ref<HTMLInputElement>",
+          optional: true,
+        },
         {
           name: "checked",
           type: "boolean",
@@ -2697,6 +20954,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "checked",
           type: "boolean",
@@ -2782,12 +21399,308 @@ export const componentDocs: ComponentDoc[] = [
     name: "RadioButton",
     description: "Selects one native radio choice.",
     code: {
-      react: '<RadioButton name="status" value="active" />',
+      react:
+        'import { RadioButton } from "@akin2unde/flowui-react";\n\n<RadioButton name="status" value="active" />',
       angular: '<fui-radio name="status" />',
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "ref",
+          type: "Ref<HTMLInputElement>",
+          optional: true,
+        },
         {
           name: "checked",
           type: "boolean",
@@ -2820,6 +21733,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "checked",
           type: "boolean",
@@ -2859,13 +22132,304 @@ export const componentDocs: ComponentDoc[] = [
     name: "RadioGroup",
     description: "Selects one choice from several radio options.",
     code: {
-      react: '<RadioGroup name="status" options={options} />',
+      react:
+        'import { RadioGroup } from "@akin2unde/flowui-react";\n\n<RadioGroup name="status" options={options} />',
       angular: '<fui-radio-group [options]="options" />',
       native:
         "<RadioGroup options={options} value={value} onValueChange={setValue} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "direction",
           type: "ResponsiveValue<FlexDirection>",
@@ -2928,6 +22492,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "name",
           type: "string",
@@ -3013,12 +22937,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "ColorPicker",
     description: "Selects a browser-supported colour.",
     code: {
-      react: "<ColorPicker value={color} />",
+      react:
+        'import { ColorPicker } from "@akin2unde/flowui-react";\n\n<ColorPicker value={color} />',
       angular: '<fui-color-picker [(value)]="color" />',
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "value",
           type: "string",
@@ -3041,6 +23256,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "value",
           type: "string",
@@ -3070,12 +23645,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Slider",
     description: "Selects a numeric value along a linear range.",
     code: {
-      react: "<Slider value={volume} />",
+      react:
+        'import { Slider } from "@akin2unde/flowui-react";\n\n<Slider value={volume} />',
       angular: '<fui-slider [(value)]="volume" />',
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -3119,6 +23985,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "min",
           type: "See component source",
           optional: true,
@@ -3161,6 +24387,296 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
           name: "disabled",
           type: "boolean",
           optional: true,
@@ -3198,12 +24714,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Switch",
     description: "Toggles a boolean setting.",
     code: {
-      react: '<Switch label="Enabled" checked={enabled} />',
+      react:
+        'import { Switch } from "@akin2unde/flowui-react";\n\n<Switch label="Enabled" checked={enabled} />',
       angular: '<fui-switch label="Enabled" />',
       native: "<Switch value={enabled} onValueChange={setEnabled} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -3231,6 +25038,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "checked",
           type: "boolean",
@@ -3306,12 +25473,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Knob",
     description: "Selects a numeric value on a circular range.",
     code: {
-      react: '<Knob value={capacity} valueSuffix="%" />',
+      react:
+        'import { Knob } from "@akin2unde/flowui-react";\n\n<Knob value={capacity} valueSuffix="%" />',
       angular: '<fui-knob [(value)]="capacity" />',
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -3374,6 +25832,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "value",
           type: "See component source",
@@ -3437,6 +26255,296 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
           name: "disabled",
           type: "boolean",
           optional: true,
@@ -3499,12 +26607,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Rating",
     description: "Captures whole or half-step ratings.",
     code: {
-      react: "<Rating value={4} maximum={5} />",
+      react:
+        'import { Rating } from "@akin2unde/flowui-react";\n\n<Rating value={4} maximum={5} />',
       angular: '<fui-rating [(value)]="rating" />',
       native: "<Rating value={rating} onValueChange={setRating} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -3537,6 +26936,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "value",
           type: "See component source",
@@ -3612,12 +27371,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "Listbox",
     description: "Shows a templatable single or multi-selection list.",
     code: {
-      react: "<Listbox options={options} multiple />",
+      react:
+        'import { Listbox } from "@akin2unde/flowui-react";\n\n<Listbox options={options} multiple />',
       angular: '<fui-listbox [options]="options" />',
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -3661,6 +27711,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "options",
           type: "DropdownModel[]",
           optional: true,
@@ -3703,6 +28113,296 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
           name: "disabled",
           type: "boolean",
           optional: true,
@@ -3730,12 +28430,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "FileUpload",
     description: "Selects files and optionally previews them.",
     code: {
-      react: '<FileUpload accept="image/*" preview />',
+      react:
+        'import { FileUpload } from "@akin2unde/flowui-react";\n\n<FileUpload accept="image/*" preview />',
       angular: '<fui-file-upload [preview]="true" />',
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -3769,6 +28760,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "accept",
           type: "string",
           optional: true,
@@ -3800,6 +29151,296 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       native: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -3833,13 +29474,304 @@ export const componentDocs: ComponentDoc[] = [
     name: "Menu",
     description: "Displays actions with icons, badges, and separators.",
     code: {
-      react: "<Menu items={items} />",
+      react:
+        'import { Menu } from "@akin2unde/flowui-react";\n\n<Menu items={items} />',
       angular: '<fui-menu [items]="items" />',
       native:
         "<Menu trigger={props => <Button {...props}>Actions</Button>}><MenuItem onPress={openDetails}><MenuItemLabel>Details</MenuItemLabel></MenuItem></Menu>",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "items",
           type: "MenuItem[]",
@@ -3852,6 +29784,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "items",
           type: "MenuItem[]",
@@ -3927,7 +30219,8 @@ export const componentDocs: ComponentDoc[] = [
     name: "Dropdown",
     description: "Provides searchable grouped single selection.",
     code: {
-      react: "<Dropdown options={options} searchable />",
+      react:
+        'import { useState } from "react";\nimport { Dropdown, Label, VStack } from "@akin2unde/flowui-react";\n\nconst options = [\n  { value: "open", display: "Open", other: null },\n  { value: "closed", display: "Closed", other: null },\n];\n\nexport function DropdownExample() {\n  const [status, setStatus] = useState("open");\n  return <VStack gap={8}>\n    <Label htmlFor="status">Status</Label>\n    <Dropdown id="status" name="status" options={options}\n      value={status} onChange={option => setStatus(String(option.value))}\n      placeholder="Choose a status" backgroundColor="#faf5ff"\n      textColor="#3b1760" iconColor="#8a16d1" />\n  </VStack>;\n}',
       angular: '<fui-dropdown [options]="options" />',
       native:
         "<Select items={options} value={code} clearable\n  onClear={() => setCode(undefined)} onValueChange={setCode} />",
@@ -3935,12 +30228,307 @@ export const componentDocs: ComponentDoc[] = [
     props: {
       react: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
           name: "clearable",
           type: "boolean",
           optional: true,
         },
         {
           name: "value",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "defaultValue",
           type: "string | number",
           optional: true,
         },
@@ -3957,6 +30545,26 @@ export const componentDocs: ComponentDoc[] = [
         {
           name: "disabled",
           type: "boolean",
+          optional: true,
+        },
+        {
+          name: "readOnly",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "name",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "required",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "form",
+          type: "string",
           optional: true,
         },
         {
@@ -3995,6 +30603,16 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "triggerRef",
+          type: "Ref<HTMLButtonElement>",
+          optional: true,
+        },
+        {
+          name: "searchInputRef",
+          type: "Ref<HTMLInputElement>",
+          optional: true,
+        },
+        {
           name: "renderOption",
           type: "(model: DropdownModel, selected: boolean) => ReactNode",
           optional: true,
@@ -4020,12 +30638,407 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "onOpenChange",
+          type: "(open: boolean) => void",
+          optional: true,
+        },
+        {
           name: "onChange",
           type: "(model: DropdownModel) => void",
           optional: true,
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "name",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "required",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "readOnly",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "ariaLabel",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "ariaLabelledBy",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "ariaDescribedBy",
+          type: "string",
+          optional: true,
+        },
         {
           name: "value",
           type: "string | number",
@@ -4123,6 +31136,31 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       native: [
+        {
+          name: "triggerRef",
+          type: "React.Ref<NativeView>",
+          optional: true,
+        },
+        {
+          name: "accessibilityLabel",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "string",
+          optional: true,
+        },
         {
           name: "menuHeaderStyle",
           type: "StyleProp<ViewStyle>",
@@ -4256,13 +31294,304 @@ export const componentDocs: ComponentDoc[] = [
     name: "MultiSelect",
     description: "Selects multiple options using checkboxes and chips.",
     code: {
-      react: "<MultiSelect options={options} value={values} />",
+      react:
+        'import { MultiSelect } from "@akin2unde/flowui-react";\n\n<MultiSelect options={options} value={values} />',
       angular: '<fui-multi-select [options]="options" />',
       native:
         "<MultiSelect items={options} value={codes} clearable\n  onValueChange={setCodes} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -4375,6 +31704,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "options",
           type: "DropdownModel[]",
@@ -4515,12 +32204,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "TreeDropdown",
     description: "Selects one nested value without chips.",
     code: {
-      react: "<TreeDropdown options={tree} searchable />",
+      react:
+        'import { TreeDropdown } from "@akin2unde/flowui-react";\n\n<TreeDropdown options={tree} searchable />',
       angular: '<fui-tree-dropdown [options]="tree" />',
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "clearable",
           type: "boolean",
@@ -4574,6 +32554,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "value",
           type: "string | number",
           optional: true,
@@ -4626,6 +32966,296 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
           name: "disabled",
           type: "boolean",
           optional: true,
@@ -4673,12 +33303,303 @@ export const componentDocs: ComponentDoc[] = [
     name: "TreeMultiSelect",
     description: "Selects nested values with cascading checkboxes.",
     code: {
-      react: "<TreeMultiSelect nodes={tree} searchable />",
+      react:
+        'import { TreeMultiSelect } from "@akin2unde/flowui-react";\n\n<TreeMultiSelect nodes={tree} searchable />',
       angular: '<fui-tree-multi-select [nodes]="tree" />',
       native: "",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "disabled",
           type: "boolean",
@@ -4781,6 +33702,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "nodes",
           type: "TreeModel[]",
@@ -4889,6 +34170,296 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
           name: "disabled",
           type: "boolean",
           optional: true,
@@ -4966,7 +34537,8 @@ export const componentDocs: ComponentDoc[] = [
     name: "Tree",
     description: "Displays expandable hierarchical content.",
     code: {
-      react: "<Tree nodes={tree} />",
+      react:
+        'import { Tree } from "@akin2unde/flowui-react";\n\n<Tree nodes={tree} />',
       angular: '<fui-tree [nodes]="tree" />',
       native: "",
     },
@@ -4984,6 +34556,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "nodes",
           type: "TreeModel[]",
@@ -5006,6 +34938,296 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       native: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "nodes",
           type: "TreeModel[]",
@@ -5030,13 +35252,303 @@ export const componentDocs: ComponentDoc[] = [
     description: "Switches between named content panels.",
     code: {
       react:
-        '<Tabs value={activeTab} onChange={setActiveTab}>\n  <Tab id="one" label="Overview" icon="fa-solid fa-chart-line">Overview</Tab>\n  {showReport && <Tab id="report" label="Report">Report</Tab>}\n</Tabs>',
+        'import { Tabs, Tab } from "@akin2unde/flowui-react";\n\n<Tabs value={activeTab} onChange={setActiveTab}>\n  <Tab id="one" label="Overview" icon="fa-solid fa-chart-line">Overview</Tab>\n  {showReport && <Tab id="report" label="Report">Report</Tab>}\n</Tabs>',
       angular:
         '<fui-tabs [(value)]="activeTab">\n  <fui-tab id="one" label="Overview" icon="fa-solid fa-chart-line">Overview</fui-tab>\n  @if (showReport) { <fui-tab id="report" label="Report">Report</fui-tab> }\n</fui-tabs>',
       native: "<Tabs tabs={tabs} value={activeTab} onChange={setActiveTab} />",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "tabs",
           type: "TabDefinition[]",
@@ -5065,6 +35577,366 @@ export const componentDocs: ComponentDoc[] = [
       ],
       angular: [
         {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
           name: "value",
           type: "string",
           optional: true,
@@ -5088,13 +35960,304 @@ export const componentDocs: ComponentDoc[] = [
     name: "Section",
     description: "Expands and collapses accordion content.",
     code: {
-      react: '<Section title="Settings">...</Section>',
+      react:
+        'import { Section } from "@akin2unde/flowui-react";\n\n<Section title="Settings">...</Section>',
       angular: '<fui-section title="Settings">...</fui-section>',
       native:
         '<Section title="Advanced settings"><Text>Content</Text></Section>',
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "title",
           type: "ReactNode",
@@ -5117,6 +36280,366 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
         {
           name: "title",
           type: "string",
@@ -5178,7 +36701,7 @@ export const componentDocs: ComponentDoc[] = [
     description: "Sorts, selects, configures, and exports tabular data.",
     code: {
       react:
-        "<Table data={rows} columns={columns} columnsConfigurable exportable\n  totalCount={total} onLoadMore={fetchNextPage}\n  renderLoadMore={({ loadedCount, totalCount, hasMore, loading, loadMore }) => (\n    <div>\n      <span>{loadedCount} of {totalCount} records loaded</span>\n      {hasMore && <Button disabled={loading} onClick={loadMore}>Show more</Button>}\n    </div>\n  )} />",
+        'import { Button, Table } from "@akin2unde/flowui-react";\n\nconst rows = [{ Code: "TKT-001", Title: "Unable to load" }];\n\nexport function TableExample() {\n  return <Table data={rows} rowKey="Code" columns={[\n    { field: "Title", header: "Ticket" },\n    { field: "Code", header: "Action", renderCell: (_, ticket) => (\n      <Button text="View" onClick={() => alert(ticket.Code)} />\n    ) },\n  ]} />;\n}',
       angular:
         '<fui-table [data]="rows" [columns]="columns" [columnsConfigurable]="true" [exportable]="true"\n  [totalCount]="total" [loadMoreTemplate]="footer" (loadMore)="fetchNextPage()" />\n<ng-template #footer let-page>\n  <span>{{ page.loadedCount }} of {{ page.totalCount }} records loaded</span>\n  @if (page.hasMore) { <fui-button [disabled]="page.loading" (click)="page.loadMore()">Show more</fui-button> }\n</ng-template>',
       native:
@@ -5186,6 +36709,296 @@ export const componentDocs: ComponentDoc[] = [
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
         {
           name: "data",
           type: "T[]",
@@ -5287,12 +37100,417 @@ export const componentDocs: ComponentDoc[] = [
           optional: true,
         },
         {
+          name: "rowKey",
+          type: "(keyof T & string) | ((row: T, index: number) => Key)",
+          optional: true,
+        },
+        {
+          name: "selectedRowKey",
+          type: "Key",
+          optional: true,
+        },
+        {
+          name: "rowClassName",
+          type: "string | ((row: T, index: number) => string | undefined)",
+          optional: true,
+        },
+        {
+          name: "rowProps",
+          type: "(row: T, index: number) => HTMLAttributes<HTMLTableRowElement>",
+          optional: true,
+        },
+        {
           name: "onSelectionChange",
           type: "(row: T) => void",
           optional: true,
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "rowKey",
+          type: "string | ((row: Record<string, unknown>, index: number) => string | number)",
+          optional: true,
+        },
+        {
+          name: "selectedRowKey",
+          type: "string | number",
+          optional: true,
+        },
+        {
+          name: "cellTemplate",
+          type: "TemplateRef<{\n    $implicit: unknown;\n    row: Record<string, unknown>;\n    column: TableColumn<Record<string, unknown>>;\n    index: number;\n  }>",
+          optional: true,
+        },
+        {
+          name: "headerTemplate",
+          type: "TemplateRef<{\n    $implicit: TableColumn<Record<string, unknown>>;\n  }>",
+          optional: true,
+        },
+        {
+          name: "rowClassName",
+          type: "(\n    row: Record<string, unknown>,\n    index: number,\n  ) => string",
+          optional: true,
+        },
         {
           name: "data",
           type: "Record<string, unknown>[]",
@@ -5412,13 +37630,334 @@ export const componentDocs: ComponentDoc[] = [
     name: "Dialog",
     description: "Shows a positioned modal with templatable regions.",
     code: {
-      react: '<Dialog open position="right" onClose={close} />',
+      react:
+        'import { Dialog } from "@akin2unde/flowui-react";\n\n<Dialog open position="right" onClose={close} />',
       angular: '<fui-dialog [open]="open" position="right" />',
       native:
         "<Dialog visible={open} onClose={close}><Text>Details</Text></Dialog>",
     },
     props: {
       react: [
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue< | "none" | "block" | "inline" | "inline-block" | "flex" | "inline-flex" | "grid" >',
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<"visible" | "hidden" | "clip" | "scroll" | "auto">',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue< "visible" | "hidden" | "clip" | "scroll" | "auto" >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue< "none" | "solid" | "dashed" | "dotted" | "double" >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "contentRef",
+          type: "Ref<HTMLElement>",
+          optional: true,
+        },
+        {
+          name: "initialFocusRef",
+          type: "RefObject<HTMLElement | null>",
+          optional: true,
+        },
+        {
+          name: "returnFocusRef",
+          type: "RefObject<HTMLElement | null>",
+          optional: true,
+        },
+        {
+          name: "trapFocus",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "restoreFocus",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "ariaLabel",
+          type: "string",
+          optional: true,
+        },
         {
           name: "open",
           type: "boolean",
@@ -5476,6 +38015,396 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       angular: [
+        {
+          name: "nativeAttributes",
+          type: "Record<\n    string,\n    string | number | boolean | null | undefined\n  >",
+          optional: true,
+        },
+        {
+          name: "id",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "focusStyle",
+          type: "FieldFocusStyle",
+          optional: true,
+        },
+        {
+          name: "hidden",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "testId",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "style",
+          type: "Readonly<FlowUIStyle>",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minWidth",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxWidth",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "height",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "minHeight",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "maxHeight",
+          type: 'ResponsiveValue<DimensionValue | "none">',
+          optional: true,
+        },
+        {
+          name: "display",
+          type: 'ResponsiveValue<\n    | "none"\n    | "block"\n    | "inline"\n    | "inline-block"\n    | "flex"\n    | "inline-flex"\n    | "grid"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflow",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowX",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "overflowY",
+          type: 'ResponsiveValue<\n    "visible" | "hidden" | "clip" | "scroll" | "auto"\n  >',
+          optional: true,
+        },
+        {
+          name: "positionType",
+          type: "ResponsiveValue<PositionValue>",
+          optional: true,
+        },
+        {
+          name: "absolute",
+          type: "ResponsiveValue<boolean>",
+          optional: true,
+        },
+        {
+          name: "top",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "right",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "bottom",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "left",
+          type: 'ResponsiveValue<CSSLength | "auto">',
+          optional: true,
+        },
+        {
+          name: "zIndex",
+          type: 'ResponsiveValue<number | "auto">',
+          optional: true,
+        },
+        {
+          name: "flex",
+          type: "ResponsiveValue<number | string>",
+          optional: true,
+        },
+        {
+          name: "flexGrow",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexShrink",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "flexBasis",
+          type: "ResponsiveValue<DimensionValue>",
+          optional: true,
+        },
+        {
+          name: "selfAlign",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "order",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "direction",
+          type: "ResponsiveValue<FlexDirection>",
+          optional: true,
+        },
+        {
+          name: "wrap",
+          type: "ResponsiveValue<FlexWrap>",
+          optional: true,
+        },
+        {
+          name: "justify",
+          type: 'ResponsiveValue<\n    "start" | "end" | "center" | "between" | "around" | "evenly"\n  >',
+          optional: true,
+        },
+        {
+          name: "align",
+          type: "ResponsiveValue<AlignValue>",
+          optional: true,
+        },
+        {
+          name: "gap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "rowGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "columnGap",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "margin",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginX",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginY",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginTop",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginRight",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginBottom",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "marginLeft",
+          type: 'ResponsiveValue<SpacingValue | "auto">',
+          optional: true,
+        },
+        {
+          name: "padding",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingX",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingY",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingTop",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingRight",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingBottom",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "paddingLeft",
+          type: "ResponsiveValue<SpacingValue>",
+          optional: true,
+        },
+        {
+          name: "borderWidth",
+          type: "ResponsiveValue<CSSLength>",
+          optional: true,
+        },
+        {
+          name: "borderStyle",
+          type: 'ResponsiveValue<\n    "none" | "solid" | "dashed" | "dotted" | "double"\n  >',
+          optional: true,
+        },
+        {
+          name: "borderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "cornerRadius",
+          type: "ResponsiveValue<RadiusValue>",
+          optional: true,
+        },
+        {
+          name: "iconColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "placeholderColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "panelTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "optionHoverBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionBackgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "selectedOptionTextColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "backgroundColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "opacity",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "shadow",
+          type: 'ResponsiveValue<"none" | "xs" | "sm" | "md" | "lg" | "xl">',
+          optional: true,
+        },
+        {
+          name: "textColor",
+          type: "ResponsiveValue<ColorValue>",
+          optional: true,
+        },
+        {
+          name: "fontFamily",
+          type: "ResponsiveValue<string>",
+          optional: true,
+        },
+        {
+          name: "fontSize",
+          type: 'ResponsiveValue<\n    "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | SpacingValue\n  >',
+          optional: true,
+        },
+        {
+          name: "fontWeight",
+          type: 'ResponsiveValue<\n    | "thin"\n    | "extraLight"\n    | "light"\n    | "normal"\n    | "medium"\n    | "semiBold"\n    | "bold"\n    | "extraBold"\n    | "black"\n    | number\n  >',
+          optional: true,
+        },
+        {
+          name: "textAlign",
+          type: 'ResponsiveValue<\n    "left" | "center" | "right" | "justify" | "start" | "end"\n  >',
+          optional: true,
+        },
+        {
+          name: "textTransform",
+          type: 'ResponsiveValue<\n    "none" | "uppercase" | "lowercase" | "capitalize"\n  >',
+          optional: true,
+        },
+        {
+          name: "lines",
+          type: "ResponsiveValue<number>",
+          optional: true,
+        },
+        {
+          name: "ariaLabel",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "ariaLabelledBy",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "ariaDescribedBy",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "initialFocus",
+          type: "HTMLElement",
+          optional: true,
+        },
+        {
+          name: "trapFocus",
+          type: "boolean",
+          optional: true,
+        },
+        {
+          name: "restoreFocus",
+          type: "boolean",
+          optional: true,
+        },
         {
           name: "position",
           type: "DialogPosition",
@@ -5537,6 +38466,21 @@ export const componentDocs: ComponentDoc[] = [
           name: "visible",
           type: "boolean",
           optional: false,
+        },
+        {
+          name: "accessibilityLabel",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "initialFocusRef",
+          type: "RefObject<{ focus: () => void } | null>",
+          optional: true,
+        },
+        {
+          name: "returnFocusRef",
+          type: "RefObject<{ focus: () => void } | null>",
+          optional: true,
         },
         {
           name: "onOpen",

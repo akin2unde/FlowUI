@@ -1,4 +1,9 @@
-import React, { type ReactNode } from "react";
+import React, {
+  forwardRef,
+  cloneElement,
+  isValidElement,
+  type ReactNode,
+} from "react";
 import {
   ActivityIndicator,
   type GestureResponderEvent,
@@ -7,6 +12,7 @@ import {
   type StyleProp,
   type TextStyle,
   type ViewStyle,
+  type View as NativeView,
 } from "react-native";
 import { Pressable, Text as RNText, View } from "./nativewind";
 import { useFlowUITheme } from "./theme";
@@ -15,7 +21,11 @@ export type ButtonVariant =
   "primary" | "secondary" | "outline" | "ghost" | "danger";
 
 export interface ButtonProps extends Omit<PressableProps, "children"> {
-  children: ReactNode;
+  children?: ReactNode;
+  text?: string;
+  backgroundColor?: string;
+  textColor?: string;
+  iconColor?: string;
   className?: string;
   textClassName?: string;
   textStyle?: StyleProp<TextStyle>;
@@ -26,34 +36,47 @@ export interface ButtonProps extends Omit<PressableProps, "children"> {
   fullWidth?: boolean;
 }
 
-export function Button({
-  children,
-  className,
-  textClassName,
-  textStyle,
-  variant = "primary",
-  icon,
-  iconPosition = "left",
-  loading,
-  disabled,
-  fullWidth,
-  style,
-  ...props
-}: ButtonProps) {
+export const Button = forwardRef<NativeView, ButtonProps>(function Button(
+  {
+    children,
+    text,
+    backgroundColor: customBackground,
+    textColor,
+    iconColor,
+    className,
+    textClassName,
+    textStyle,
+    variant = "primary",
+    icon,
+    iconPosition = "left",
+    loading,
+    disabled,
+    fullWidth,
+    style,
+    ...props
+  }: ButtonProps,
+  ref,
+) {
   const { colors, theme } = useFlowUITheme();
   const filled = variant === "primary" || variant === "danger";
   const backgroundColor =
-    variant === "primary"
+    customBackground ??
+    (variant === "primary"
       ? colors.primary
       : variant === "danger"
         ? colors.danger
         : variant === "secondary"
           ? colors.surfaceRaised
-          : "transparent";
-  const color = filled ? colors.primaryText : colors.text;
+          : "transparent");
+  const color = textColor ?? (filled ? colors.primaryText : colors.text);
 
+  const renderedIcon =
+    iconColor && isValidElement<{ color?: string }>(icon)
+      ? cloneElement(icon, { color: iconColor })
+      : icon;
   return (
     <Pressable
+      ref={ref}
       accessibilityRole="button"
       disabled={disabled || loading}
       className={`flex-row items-center justify-center gap-2 px-4 active:opacity-80 ${className ?? ""}`}
@@ -72,17 +95,17 @@ export function Button({
       {...props}
     >
       {loading ? <ActivityIndicator color={color} /> : null}
-      {!loading && icon && iconPosition === "left" ? icon : null}
+      {!loading && icon && iconPosition === "left" ? renderedIcon : null}
       <RNText
         className={`font-semibold ${textClassName ?? ""}`}
         style={[{ color }, textStyle]}
       >
-        {children}
+        {children ?? text}
       </RNText>
-      {!loading && icon && iconPosition === "right" ? icon : null}
+      {!loading && icon && iconPosition === "right" ? renderedIcon : null}
     </Pressable>
   );
-}
+});
 
 export interface IconButtonProps extends Omit<ButtonProps, "children"> {
   icon: ReactNode;

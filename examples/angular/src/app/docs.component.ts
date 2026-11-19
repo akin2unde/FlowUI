@@ -121,7 +121,7 @@ import { createTheme, themeToCSS } from "@akin2unde/flowui-core";
     FlowTreeMultiSelectComponent,
     FlowVStackComponent,
     FlowFileUploadComponent,
-      FlowOTPInputComponent,
+    FlowOTPInputComponent,
     FlowPhoneInputComponent,
   ],
   templateUrl: "./docs.component.html",

@@ -29,6 +29,8 @@ public abstract class FlowFieldBase<TValue> : FlowComponentBase, IDisposable, IA
     protected string FieldClasses => Classes("fui-field" + (HasErrors ? " fui-invalid" : ""));
     protected string Invalid => HasErrors.ToString().ToLowerInvariant();
     protected ElementReference InputElement;
+    public virtual ElementReference Element => InputElement;
+    public ValueTask FocusAsync() => Element.FocusAsync();
     protected IJSObjectReference? Module;
     private EditContext? subscribedContext;
     private FieldIdentifier? boundField;

@@ -15,6 +15,10 @@ public abstract class FlowComponentBase : ComponentBase
     [Parameter] public string? Padding { get; set; }
     [Parameter] public string? Margin { get; set; }
     [Parameter] public string? BackgroundColor { get; set; }
+    [Parameter] public string? IconColor { get; set; }
+    [Parameter] public string? PlaceholderColor { get; set; }
+    [Parameter] public string? PanelBackgroundColor { get; set; }
+    [Parameter] public string? PanelTextColor { get; set; }
     [Parameter] public string? TextColor { get; set; }
     [Parameter] public string? CornerRadius { get; set; }
     [Parameter] public RenderFragment? ChildContent { get; set; }
@@ -24,6 +28,9 @@ public abstract class FlowComponentBase : ComponentBase
     protected virtual FlowStyleBuilder BuildStyle() => new FlowStyleBuilder()
         .Add("width", Width).Add("height", Height).Add("max-width", MaxWidth)
         .Add("padding", Padding).Add("margin", Margin).Add("background-color", BackgroundColor)
+        .Add("--fui-control-background", BackgroundColor).Add("--fui-control-text", TextColor)
+        .Add("--fui-control-icon", IconColor).Add("--fui-control-placeholder", PlaceholderColor)
+        .Add("--fui-panel-background", PanelBackgroundColor).Add("--fui-panel-text", PanelTextColor)
         .Add("color", TextColor).Add("border-radius", CornerRadius)
         .Add("--fui-field-focus-border", FocusStyle == "none" ? "var(--fui-color-border, #e2e8f0)" : null)
         .Add("--fui-field-focus-shadow", FocusStyle == "ring" ? "0 0 0 2px color-mix(in srgb, var(--fui-color-focus, #2563eb) 22%, transparent)" : FocusStyle is "border" or "none" ? "none" : null);

@@ -1,6 +1,6 @@
 # FlowUI
 
-Development version: **1.0.0** across all adapters (not yet published).
+Development version: **1.0.2** across all adapters (not yet published).
 
 FlowUI is a component library for React, Angular, React Native, and Blazor. The JavaScript adapters share a framework-independent TypeScript core. FlowUI.Blazor is a .NET 10 Razor Class Library with its own C# implementation and isolated CSS.
 
@@ -16,6 +16,8 @@ FlowUI is a component library for React, Angular, React Native, and Blazor. The 
 React and Angular applications do **not** need Tailwind to use FlowUI because their packages ship compiled CSS. React Native applications install NativeWind when they want Tailwind `className` styling.
 
 ## Framework guides
+
+- [Control customization, constraints and framework differences](docs/CONTROL-CUSTOMIZATION.md)
 
 - [Blazor setup, component APIs, themes, and debugging](packages/blazor/README.md)
 - [Blazor sample application](examples/blazor/README.md)
@@ -136,7 +138,7 @@ use `--ignore-scripts` for publishing. npm versions cannot be overwritten, so
 publish the new patch versions and then update the consuming application:
 
 ```bash
-npm install @akin2unde/flowui-react@0.2.1
+npm install @akin2unde/flowui-react@1.0.2
 ```
 
 ## React setup

@@ -6,6 +6,7 @@ import {
   type StyleProp,
   type TextStyle,
   type ViewStyle,
+  type View as NativeView,
 } from "react-native";
 import { Chip } from "./actions";
 import { Checkbox, SearchInput } from "./forms";
@@ -15,6 +16,12 @@ import { useFlowUITheme } from "./theme";
 import type { SelectOption } from "./types";
 
 export interface SelectProps<T = unknown> {
+  triggerRef?: React.Ref<NativeView>;
+  accessibilityLabel?: string;
+  backgroundColor?: string;
+  textColor?: string;
+  iconColor?: string;
+
   /** Style for the header area inside the dropdown menu. */
   menuHeaderStyle?: StyleProp<ViewStyle>;
   /** Style for the dropdown heading. */
@@ -238,10 +245,15 @@ function PickerModal<T>({
 }
 
 export function Select<T>({
+  triggerRef,
+  accessibilityLabel,
   items,
   value,
   onValueChange,
   placeholder = "Select...",
+  backgroundColor,
+  textColor,
+  iconColor,
   searchable,
   searchPlaceholder,
   disabled,
@@ -272,6 +284,8 @@ export function Select<T>({
     <>
       <View style={{ position: "relative" }}>
         <Pressable
+          ref={triggerRef}
+          accessibilityLabel={accessibilityLabel}
           accessibilityRole="button"
           accessibilityState={{ disabled, expanded: open }}
           disabled={disabled}
@@ -281,21 +295,29 @@ export function Select<T>({
             {
               borderColor: colors.border,
               borderRadius: theme.components.controlRadius,
-              backgroundColor: colors.surface,
+              backgroundColor: backgroundColor ?? colors.surface,
               opacity: disabled ? 0.5 : 1,
               paddingRight: canClear ? 48 : undefined,
             },
             style,
           ]}
         >
-          <Text muted={!selected} style={textStyle}>
+          <Text
+            muted={!selected}
+            style={[
+              {
+                color: textColor ?? (selected ? colors.text : colors.textMuted),
+              },
+              textStyle,
+            ]}
+          >
             {selected?.display ?? placeholder}
           </Text>
           {chevron ?? (
             <Text
               style={[
                 {
-                  color: colors.textMuted,
+                  color: iconColor ?? colors.textMuted,
                   fontSize: 22,
                   lineHeight: 22,
                   transform: [{ translateY: -2 }],
@@ -369,6 +391,9 @@ export function MultiSelect<T>({
   value,
   onValueChange,
   placeholder = "Select...",
+  backgroundColor,
+  textColor,
+  iconColor,
   searchable,
   searchPlaceholder,
   disabled,
@@ -416,7 +441,7 @@ export function MultiSelect<T>({
             {
               borderColor: colors.border,
               borderRadius: theme.components.controlRadius,
-              backgroundColor: colors.surface,
+              backgroundColor: backgroundColor ?? colors.surface,
               opacity: disabled ? 0.5 : 1,
               paddingRight: canClear ? 40 : undefined,
             },
@@ -424,7 +449,10 @@ export function MultiSelect<T>({
           ]}
         >
           {visibleItems.length === 0 ? (
-            <Text muted style={textStyle}>
+            <Text
+              muted
+              style={[{ color: textColor ?? colors.textMuted }, textStyle]}
+            >
               {placeholder}
             </Text>
           ) : null}

@@ -12,6 +12,10 @@ public abstract class FlowModalBase : FlowComponentBase, IAsyncDisposable
     [Parameter] public FlowSize Size { get; set; } = FlowSize.Md;
     [Parameter] public bool CloseOnEscape { get; set; } = true;
     [Parameter] public bool CloseOnBackdrop { get; set; } = true;
+    [Parameter] public string? InitialFocusId { get; set; }
+    [Parameter] public string? ReturnFocusId { get; set; }
+    [Parameter] public string? AriaDescribedBy { get; set; }
+    private bool wasOpen;
     [Parameter] public bool ShowCloseButton { get; set; } = true;
     [Parameter] public EventCallback<string> OnClose { get; set; }
     protected string TitleId = "fui-modal-" + Guid.NewGuid().ToString("N");
@@ -29,6 +33,9 @@ public abstract class FlowModalBase : FlowComponentBase, IAsyncDisposable
         module ??= await JS.InvokeAsync<IJSObjectReference>("import", "./_content/FlowUI.Blazor/overlays.js");
         receiver ??= DotNetObjectReference.Create(this);
         await module.InvokeVoidAsync("syncModal", DialogElement, Open, CloseOnEscape, CloseOnBackdrop, receiver);
+        if (Open && !wasOpen && InitialFocusId is not null) await module.InvokeVoidAsync("focusId", InitialFocusId);
+        if (!Open && wasOpen && ReturnFocusId is not null) await module.InvokeVoidAsync("focusId", ReturnFocusId);
+        wasOpen = Open;
     }
     public async ValueTask DisposeAsync()
     {
