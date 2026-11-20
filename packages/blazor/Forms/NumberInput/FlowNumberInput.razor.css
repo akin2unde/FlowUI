@@ -77,6 +77,8 @@
   background: var(--fui-color-surface, #fff);
 }
 .fui-number-row .fui-control {
+  flex: 1;
+  min-width: 0;
   border: 0;
   background: transparent;
 }

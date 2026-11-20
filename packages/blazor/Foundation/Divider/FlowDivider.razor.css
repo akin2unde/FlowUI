@@ -5,15 +5,19 @@
   color: var(--fui-color-textMuted, #64748b);
   font-size: 0.8rem;
 }
-.fui-divider[aria-orientation="horizontal"]::before,
-.fui-divider[aria-orientation="horizontal"]::after {
+.fui-divider[aria-orientation="horizontal"][data-labeled="false"] {
+  height: 1px;
+  background: var(--fui-control-background, var(--fui-color-border, #e2e8f0));
+}
+.fui-divider[aria-orientation="horizontal"][data-labeled="true"]::before,
+.fui-divider[aria-orientation="horizontal"][data-labeled="true"]::after {
   content: "";
   height: 1px;
-  background: var(--fui-color-border, #e2e8f0);
+  background: var(--fui-control-background, var(--fui-color-border, #e2e8f0));
   flex: 1;
 }
 .fui-divider[aria-orientation="vertical"] {
   width: 1px;
   align-self: stretch;
-  background: var(--fui-color-border, #e2e8f0);
+  background: var(--fui-control-background, var(--fui-color-border, #e2e8f0));
 }

@@ -22,13 +22,8 @@ import { FlowIconComponent } from "./primitives";
   template: `
     <span
       *ngIf="inputMode === 'money'"
-      class="fui-money-input"
-      [style.--fui-field-focus-border]="
-        view().style['--fui-field-focus-border']
-      "
-      [style.--fui-field-focus-shadow]="
-        view().style['--fui-field-focus-shadow']
-      "
+      [class]="view().className"
+      [ngStyle]="view().style"
     >
       <span class="fui-money-symbol">{{ currencySymbol }}</span>
       <ng-container *ngTemplateOutlet="control" />
@@ -48,8 +43,8 @@ import { FlowIconComponent } from "./primitives";
         [attr.aria-describedby]="ariaDescribedBy"
         [attr.id]="id"
         [attr.autocomplete]="autoComplete"
-        [class]="view().className"
-        [ngStyle]="view().style"
+        [class]="inputMode === 'money' ? 'fui-control' : view().className"
+        [ngStyle]="inputMode === 'money' ? null : view().style"
         [type]="inputMode === 'text' ? type : 'text'"
         [attr.inputmode]="nativeInputMode"
         [value]="value ?? ''"
@@ -122,7 +117,10 @@ export class FlowInputComponent extends FlowComponentBase {
     this.valueChange.emit(next);
   }
 
-  view = () => this.resolved("fui-control");
+  view = () =>
+    this.resolved(
+      this.inputMode === "money" ? "fui-money-input" : "fui-control",
+    );
 }
 
 @Component({

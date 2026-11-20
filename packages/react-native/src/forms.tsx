@@ -336,11 +336,19 @@ export function NumberInput({
 export function MoneyInput({
   onValueChange,
   onChangeText,
+  width,
+  style,
   ...props
-}: RestrictedInputProps) {
+}: RestrictedInputProps & { width?: TextStyle["width"] | "full" }) {
   return (
     <Input
       keyboardType="decimal-pad"
+      style={[
+        width === undefined
+          ? undefined
+          : { width: width === "full" ? "100%" : width },
+        style,
+      ]}
       onChangeText={(value) => {
         const cleaned = value.replace(/[^0-9.]/g, "");
         const [whole = "", ...decimal] = cleaned.split(".");

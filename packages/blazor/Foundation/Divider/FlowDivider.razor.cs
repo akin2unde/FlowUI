@@ -10,4 +10,8 @@ public partial class FlowDivider : FlowComponentBase
     [Parameter] public FlowOrientation Orientation { get; set; }
     [Parameter] public string? Label { get; set; }
 
+    protected override FlowStyleBuilder BuildStyle() => base.BuildStyle()
+        .Add("background-color", Orientation == FlowOrientation.Horizontal && !string.IsNullOrEmpty(Label)
+            ? "transparent" : null);
+
 }

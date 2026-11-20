@@ -49,17 +49,23 @@ export const WorkflowStepper = ({
         popup.current?.querySelector<HTMLButtonElement>("button:not(:disabled)")
       )?.focus();
   }, [openId]);
-  const flow = useFlowProps("fui-workflow", props);
+  const { className, style, hidden, ...listProps } = useFlowProps(
+    "fui-workflow-scroll",
+    props,
+  );
   useDismissableLayer(root, openId !== undefined, () => setOpenId(undefined));
 
   return (
     <div
-      className="fui-workflow-scroll"
+      className={className}
+      style={style}
+      hidden={hidden}
       data-direction={direction}
       onScroll={() => setOpenId(undefined)}
     >
       <ol
-        {...flow}
+        {...listProps}
+        className="fui-workflow"
         ref={root}
         data-direction={direction}
         data-label-position={labelPosition}

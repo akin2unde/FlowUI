@@ -484,15 +484,23 @@
   .fui-divider[data-orientation="horizontal"] {
     @apply w-full gap-3;
   }
-  .fui-divider[data-orientation="horizontal"]::before,
-  .fui-divider[data-orientation="horizontal"]::after {
+  .fui-divider[data-orientation="horizontal"][data-labeled="false"] {
+    @apply h-px;
+    background-color: var(--fui-control-background, var(--fui-color-border));
+  }
+  .fui-divider[data-orientation="horizontal"]:not(
+      [data-labeled="false"]
+    )::before,
+  .fui-divider[data-orientation="horizontal"]:not(
+      [data-labeled="false"]
+    )::after {
     @apply h-px flex-1;
     content: "";
-    background: var(--fui-color-border);
+    background: var(--fui-control-background, var(--fui-color-border));
   }
   .fui-divider[data-orientation="vertical"] {
     @apply h-full w-px self-stretch;
-    background: var(--fui-color-border);
+    background: var(--fui-control-background, var(--fui-color-border));
   }
   .fui-image {
     @apply block max-w-full;
@@ -1023,10 +1031,11 @@
   .fui-money-input {
     @apply flex w-full items-stretch overflow-hidden rounded-lg border;
     border-color: var(--fui-color-border);
-    background: var(--fui-color-surface);
+    background: var(--fui-control-background, var(--fui-color-surface));
   }
   .fui-money-input .fui-control {
-    @apply rounded-none border-0;
+    @apply min-w-0 flex-1 rounded-none border-0 bg-transparent;
+    color: var(--fui-control-text, var(--fui-color-text));
   }
   .fui-money-symbol {
     @apply grid min-w-11 place-items-center border-r px-3 text-sm font-semibold;
@@ -1303,16 +1312,15 @@
   .fui-date-time {
     gap: 0.25rem;
   }
-  .fui-date-time[data-mode] {
+  :where(.fui-date-time[data-mode]) {
     width: fit-content;
     max-width: 100%;
   }
   .fui-date-time[data-mode] .fui-date-time-field {
-    width: fit-content;
-    max-width: 100%;
+    align-self: stretch;
+    min-width: 0;
   }
   .fui-date-time[data-mode] .fui-date-display {
-    flex: none;
     white-space: nowrap;
   }
   .fui-date-time[data-mode] .fui-calendar {

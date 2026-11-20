@@ -1,3 +1,9 @@
+# FlowUI 1.0.4
+
+- Fixed width handling for web DateTime, money inputs and Workflow Stepper.
+- Added direct background color support for Divider across React, Angular, React Native and Blazor.
+- Added a width prop for React Native DateTime, MoneyInput and Workflow Stepper, and aligned Blazor DateTime, NumberInput and Workflow Stepper sizing with their visible containers.
+
 # FlowUI 1.0.3
 
 - Added the horizontal and vertical Workflow Stepper with an action picker, stage events and scroll overflow.

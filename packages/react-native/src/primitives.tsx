@@ -6,6 +6,7 @@ import {
   type TextStyle,
   type TextProps,
   type ViewProps,
+  type ViewStyle,
 } from "react-native";
 import {
   Image as RNImage,
@@ -91,11 +92,13 @@ export function Card({ className, elevated, style, ...props }: CardProps) {
 }
 
 export interface DividerProps extends ViewProps, ClassName {
+  backgroundColor?: ViewStyle["backgroundColor"];
   orientation?: "horizontal" | "vertical";
 }
 
 export function Divider({
   orientation = "horizontal",
+  backgroundColor,
   className,
   style,
   ...props
@@ -108,7 +111,7 @@ export function Divider({
         orientation === "horizontal"
           ? { height: 1, width: "100%" }
           : { height: "100%", width: 1 },
-        { backgroundColor: colors.border },
+        { backgroundColor: backgroundColor ?? colors.border },
         style,
       ]}
       {...props}

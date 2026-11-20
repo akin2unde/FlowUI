@@ -1,8 +1,8 @@
 @namespace FlowUI.Blazor.Navigation
 @inherits FlowComponentBase
 
-<div @ref="root" class="fui-workflow-scroll" data-direction="@Direction" @onscroll="Close">
-    <ol @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-workflow")" style="@Styles"
+<div @ref="root" class="@Classes("fui-workflow-scroll")" style="@Styles" data-direction="@Direction" @onscroll="Close">
+    <ol @attributes="AdditionalAttributes" id="@Id" class="fui-workflow"
         data-direction="@Direction" data-label-position="@LabelPosition">
         @for (var i = 0; i < Stages.Count; i++)
         {

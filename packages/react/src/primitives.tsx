@@ -121,9 +121,19 @@ export function Divider({
   ...props
 }: DividerProps) {
   const flow = useFlowProps("fui-divider", props);
+  const { backgroundColor, ...style } = flow.style;
+  const lineStyle =
+    backgroundColor === undefined
+      ? style
+      : {
+          ...style,
+          "--fui-control-background": backgroundColor,
+        };
   return (
     <div
       {...flow}
+      style={lineStyle}
+      data-labeled={Boolean(label)}
       data-orientation={orientation}
       role="separator"
       aria-orientation={orientation}

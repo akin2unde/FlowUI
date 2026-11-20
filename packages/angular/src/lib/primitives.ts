@@ -122,6 +122,7 @@ export class FlowBadgeComponent extends FlowComponentBase {
   template: `<div
     [class]="view().className"
     [ngStyle]="view().style"
+    [attr.data-labeled]="!!label"
     [attr.data-orientation]="orientation"
     role="separator"
     [attr.aria-orientation]="orientation"
@@ -132,7 +133,20 @@ export class FlowBadgeComponent extends FlowComponentBase {
 export class FlowDividerComponent extends FlowComponentBase {
   @Input() orientation: Orientation = "horizontal";
   @Input() label?: string;
-  view = () => this.resolved("fui-divider");
+  view = () => {
+    const view = this.resolved("fui-divider");
+    const { backgroundColor, ...style } = view.style;
+    return {
+      ...view,
+      style:
+        backgroundColor === undefined
+          ? style
+          : {
+              ...style,
+              "--fui-control-background": backgroundColor,
+            },
+    };
+  };
 }
 
 @Component({

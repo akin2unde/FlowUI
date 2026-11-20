@@ -6,8 +6,8 @@ import {
   StyleSheet,
   Text,
   useWindowDimensions,
-  View,
   type ViewProps,
+  type ViewStyle,
 } from "react-native";
 import type {
   FlowAction,
@@ -15,11 +15,14 @@ import type {
   FlowStage,
   WorkflowStepperProps as CoreProps,
 } from "@akin2unde/flowui-core";
+import { View } from "./nativewind";
 
 export interface WorkflowStepperProps
   extends
     Omit<CoreProps, keyof import("@akin2unde/flowui-core").BaseUIProps>,
     ViewProps {
+  className?: string;
+  width?: ViewStyle["width"] | "full";
   onStageClick?: (stage: FlowStage) => void;
   onActionChange?: (stage: FlowStage, action: FlowAction) => void;
   renderIcon?: (icon: string, style?: FlowIconStyle) => ReactNode;
@@ -41,6 +44,7 @@ export const WorkflowStepper = ({
   onStageClick,
   onActionChange,
   renderIcon,
+  width,
   style,
   ...props
 }: WorkflowStepperProps) => {
@@ -62,7 +66,19 @@ export const WorkflowStepper = ({
     );
 
   return (
-    <View {...props} style={[{ minWidth: 0, maxWidth: "100%" }, style]}>
+    <View
+      {...props}
+      style={[
+        {
+          minWidth: 0,
+          maxWidth: "100%",
+          ...(width === undefined
+            ? {}
+            : { width: width === "full" ? "100%" : width }),
+        },
+        style,
+      ]}
+    >
       <ScrollView
         horizontal={horizontal}
         contentContainerStyle={{

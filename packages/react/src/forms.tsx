@@ -56,10 +56,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   forwardedRef,
 ) {
   const actualInput = useRef<HTMLInputElement>(null);
-  const flow = useFlowProps("fui-control", props);
-  const moneyField = useFlowProps("fui-money-input", {
-    focusStyle: props.focusStyle,
-  });
+  const isMoney = inputMode === "money";
+  const flow = useFlowProps(isMoney ? "fui-money-input" : "fui-control", props);
+  const { className, style, hidden, ...inputAttributes } = flow;
   const [currentValue, setCurrentValue] = useControllableValue<string | number>(
     value,
     Array.isArray(defaultValue)
@@ -85,7 +84,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         if (typeof forwardedRef === "function") forwardedRef(node);
         else if (forwardedRef) forwardedRef.current = node;
       }}
-      {...flow}
+      {...inputAttributes}
+      className={isMoney ? "fui-control" : className}
+      style={isMoney ? undefined : style}
+      hidden={isMoney ? undefined : hidden}
       type={inputMode === "text" ? type : "text"}
       inputMode={
         inputMode === "integer"
@@ -113,9 +115,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
       }}
     />
   );
-  if (inputMode !== "money") return control;
+  if (!isMoney) return control;
   return (
-    <span {...moneyField}>
+    <span className={className} style={style} hidden={hidden}>
       <span className="fui-money-symbol">{currencySymbol}</span>
       {control}
     </span>

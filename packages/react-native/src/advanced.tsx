@@ -168,6 +168,8 @@ const dayKey = (date: Date) => formatLocalDateTime(date, "date");
 const pad = (value: number) => String(value).padStart(2, "0");
 
 export interface DateTimeProps {
+  width?: ViewStyle["width"] | "full";
+  className?: string;
   value?: string;
   backgroundColor?: string;
   textColor?: string;
@@ -184,6 +186,8 @@ export interface DateTimeProps {
 }
 export function DateTime({
   value = "",
+  width: fieldWidth,
+  className,
   backgroundColor,
   textColor,
   iconColor,
@@ -265,11 +269,16 @@ export function DateTime({
     <>
       <View
         ref={root}
+        className={className}
         collapsable={false}
         style={[
           {
             backgroundColor: backgroundColor ?? colors.surface,
             alignSelf: "flex-start",
+            ...(fieldWidth === undefined
+              ? {}
+              : { width: fieldWidth === "full" ? "100%" : fieldWidth }),
+            maxWidth: "100%",
             flexDirection: "row",
             borderWidth: 1,
             borderColor: colors.border,

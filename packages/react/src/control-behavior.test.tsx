@@ -2,7 +2,14 @@
 import { act } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
-import { DateTime, FlowUIProvider, Table } from "./index";
+import {
+  DateTime,
+  Divider,
+  FlowUIProvider,
+  Input,
+  Table,
+  WorkflowStepper,
+} from "./index";
 
 (
   globalThis as typeof globalThis & { IS_REACT_ACT_ENVIRONMENT: boolean }
@@ -111,4 +118,28 @@ it("renders a custom load-more footer with its own action", async () => {
   expect(host.querySelector(".fui-table-load-more")).toBeNull();
   await click("footer button");
   expect(handleClick).toHaveBeenCalledOnce();
+});
+
+it("applies layout styles to the visible control and divider color to the line", async () => {
+  await act(async () =>
+    root.render(
+      <FlowUIProvider>
+        <Input inputMode="money" width="50%" aria-label="Amount" />
+        <WorkflowStepper stages={[]} width="50%" />
+        <Divider backgroundColor="#e5d8f2" />
+      </FlowUIProvider>,
+    ),
+  );
+
+  const amount = host.querySelector<HTMLElement>(".fui-money-input");
+  expect(amount?.style.width).toBe("50%");
+  expect(amount?.querySelector("input")?.style.width).toBe("");
+  expect(
+    host.querySelector<HTMLElement>(".fui-workflow-scroll")?.style.width,
+  ).toBe("50%");
+  const divider = host.querySelector<HTMLElement>('[role="separator"]');
+  expect(divider?.dataset.labeled).toBe("false");
+  expect(divider?.style.getPropertyValue("--fui-control-background")).toBe(
+    "#e5d8f2",
+  );
 });

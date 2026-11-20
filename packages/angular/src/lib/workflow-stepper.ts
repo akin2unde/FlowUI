@@ -24,13 +24,13 @@ import { FlowIconComponent } from "./primitives";
   imports: [CommonModule, FlowIconComponent],
   template: `
     <div
-      class="fui-workflow-scroll"
+      [class]="view().className"
+      [ngStyle]="view().style"
       [attr.data-direction]="stepperDirection"
       (scroll)="close()"
     >
       <ol
-        [class]="view().className"
-        [ngStyle]="view().style"
+        class="fui-workflow"
         [attr.data-direction]="stepperDirection"
         [attr.data-label-position]="labelPosition"
       >
@@ -165,7 +165,7 @@ export class FlowWorkflowStepperComponent extends FlowComponentBase {
   top = 0;
   right = 0;
   stageId = (_: number, stage: FlowStage) => stage.Id;
-  view = () => this.resolved("fui-workflow");
+  view = () => this.resolved("fui-workflow-scroll");
   canPick = (stage: FlowStage) =>
     !!stage.IsCurrent && !stage.IsDisabled && (stage.Actions?.length ?? 0) > 1;
   stateStyle = (stage: FlowStage) =>
