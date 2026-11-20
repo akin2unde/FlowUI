@@ -1,3 +1,7 @@
+# FlowUI 1.0.5
+
+- Aligns the React DateTime date and time chevrons with the trailing edge of their triggers.
+
 # FlowUI 1.0.4
 
 - Fixed width handling for web DateTime, money inputs and Workflow Stepper.

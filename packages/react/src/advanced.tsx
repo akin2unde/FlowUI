@@ -175,6 +175,7 @@ export function DateTime({
             <Icon icon="fa-regular fa-calendar" />
             <span>{selectedDate || "Select date"}</span>
             <Icon
+              className="fui-date-trigger-chevron"
               icon={`fa-solid fa-chevron-${active === "date" ? "up" : "down"}`}
             />
           </button>
@@ -198,6 +199,7 @@ export function DateTime({
                 : selectedTime.slice(0, 5)}
             </span>
             <Icon
+              className="fui-date-trigger-chevron"
               icon={`fa-solid fa-chevron-${active === "time" ? "up" : "down"}`}
             />
           </button>

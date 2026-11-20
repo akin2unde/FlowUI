@@ -578,6 +578,10 @@
     background: transparent;
     padding-inline: 1rem;
   }
+  .fui-date-trigger-chevron {
+    margin-inline-start: auto;
+    flex-shrink: 0;
+  }
   .fui-time-select {
     position: relative;
   }

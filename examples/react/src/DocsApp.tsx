@@ -942,7 +942,7 @@ export function DocsApp() {
                 ) && <p className="docs-muted">No matching components.</p>}
             </nav>
             <footer>
-              v1.0.4 <a href="#gallery">Original gallery</a>
+              v1.0.5 <a href="#gallery">Original gallery</a>
             </footer>
           </aside>
           <main className="docs-content" id="docs-content" tabIndex={-1}>
