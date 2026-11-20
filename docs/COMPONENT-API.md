@@ -131,3 +131,42 @@ branches without changing the node model.
 ## AsyncLabel
 
 See [AsyncLabel usage and backend integration](./ASYNC-LABEL.md) for shared batching, inline loading indicators, provider setup and cache controls.
+
+## Workflow Stepper
+
+Pass an ordered list of stages using `FlowStage`. `Id` identifies the stage, `Label` supplies its initial text, and `IsCompleted` or `IsCurrent` determines the marker. `IsDisabled` disables the whole stage. Supply `Actions` as `FlowAction` objects with a `Label`, optional `Icon`, and optional `IsReadonly`. Read-only actions remain visible in the picker.
+
+```tsx
+import { WorkflowStepper, type FlowStage } from "@akin2unde/flowui-react";
+
+const stages: FlowStage[] = [
+  { Id: "oil", Label: "Oil checked", IsCompleted: true },
+  { Id: "repair", Label: "Repair", IsCurrent: true, Actions: [
+    { Label: "Start repair" }, { Label: "Send for inspection" },
+    { Label: "Request cancellation", IsReadonly: true },
+  ] },
+];
+
+<WorkflowStepper
+  stages={stages}
+  direction="horizontal"
+  onStageClick={(stage) => openStageForm(stage.Id)}
+  onActionChange={(stage, action) => recordSelection(stage.Id, action)}
+  stageTextStyle={{ fontSize: 14, fontWeight: "600" }}
+  actionMenuStyle={{ backgroundColor: "#fff", borderRadius: 8 }}
+  actionItemStyle={{ selected: { backgroundColor: "#fff0ca" } }}
+/>
+```
+
+- Horizontal stages scroll within the stepper when they exceed its width. Use `direction="vertical"` to stack them.
+- The current-stage chevron opens the built-in menu when multiple choices exist. Selecting an item changes the label and marks that item when the menu reopens. Provide `SelectedAction` on the stage to control the selected value from the app.
+- Clicking the stage itself emits a separate event. The app can open a form or dialog and controls when the workflow advances.
+- Use `completedStyle`, `currentStyle`, `disabledStyle`, `stageTextStyle`, `lineColor`, and `labelPosition` to style stages. Use `actionMenuStyle`, `actionItemStyle`, `checkmarkStyle`, and `chevronStyle` to style the picker. Each stage supports `TextStyle`. Each action supports `TextStyle` and `IconStyle`.
+- Angular uses `FlowWorkflowStepperComponent`, `(stageClick)` and `(actionChange)`. React Native uses `WorkflowStepper` and accepts `renderIcon` for the app’s icon set. Blazor uses `FlowWorkflowStepper`, `Stages`, `OnStageClick`, and `OnActionChange`.
+
+## Tree, table and chart options in 1.0.3
+
+- Enable `showCheckboxes` on Tree to show checked, unchecked and mixed states. Checking a parent selects its eligible leaf nodes. Use `checkedValues` to control checked values. Node `icon` is optional. Blazor uses `ShowCheckboxes`, `CheckedValues` and `IconSelector`.
+- Use `showRowDividers={false}` on Table to hide row dividers. In Blazor, use `ShowRowDividers="false"`.
+- Chart types include `column`, `horizontal-bar`, `line`, `pie`, `doughnut`, `area` and `combo`. Existing `bar` charts retain their vertical orientation. In combo charts, specify a series type of `column` or `line` to control its rendering.
+- For React Native Chart, install a compatible `react-native-svg` version. With Expo, run `npx expo install react-native-svg`.

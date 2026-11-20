@@ -1,3 +1,5 @@
+import { buildChart } from "./chart";
+import { treeCheckState, toggleTreeCheck } from "./selection";
 import { describe, expect, it } from "vitest";
 import {
   createTheme,
@@ -140,4 +142,28 @@ it("resolves field icon/panel colors and responsive field colors", () => {
   expect(responsiveCSS(defaultTheme)).toContain(
     "--fui-control-background:var(--fui-backgroundColor-md)",
   );
+});
+
+it("derives mixed tree branches and toggles their enabled leaves", () => {
+  const node = {
+    value: "movies",
+    display: "Movies",
+    other: null,
+    children: [
+      { value: "first", display: "First", other: null },
+      { value: "second", display: "Second", other: null },
+      { value: "disabled", display: "Disabled", other: null, disabled: true },
+    ],
+  };
+  expect(treeCheckState(node, new Set(["first"]))).toBe("mixed");
+  expect(toggleTreeCheck(node, ["first"])).toEqual(["first", "second"]);
+  expect(toggleTreeCheck(node, ["first", "second"])).toEqual([]);
+});
+
+it("aligns grouped chart labels and produces a complete single-slice pie", () => {
+  const data = { labels: ["Mon"], series: [{ name: "Sales", data: [12] }] };
+  const column = buildChart(data, "column", 240, false);
+  const rect = column.marks.find((mark) => mark.width !== undefined)!;
+  expect(column.labels[0].x).toBeCloseTo(rect.x! + (rect.width! + 3) / 2);
+  expect(buildChart(data, "pie", 240, false).marks[0].path).toContain(" A ");
 });

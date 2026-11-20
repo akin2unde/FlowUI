@@ -509,3 +509,21 @@ body {
   color: var(--fui-palette-primary-600, #2563eb);
   font-weight: 600;
 }
+
+.docs-chart-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 1rem;
+  width: 100%;
+}
+.docs-chart-gallery h3 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+}
+.docs-stage-details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}

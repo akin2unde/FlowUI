@@ -1,0 +1,38 @@
+.fui-workflow { display: flex; list-style: none; padding: 0; margin: 0; min-width: 0; }
+.fui-workflow-stage { flex: 1; min-width: 0; position: relative; text-align: center; display: flex; justify-content: center; }
+.fui-workflow-line { position: absolute; top: 1rem; left: 50%; width: 100%; height: 2px; background: #b98216; }
+.fui-workflow-box { position: relative; display: flex; align-items: start; justify-content: center; min-width: 0; }
+.fui-workflow-main { border: 0; background: none; padding: 0; font: inherit; color: inherit; display: flex; flex-direction: column; align-items: center; gap: .4rem; min-width: 0; }
+button.fui-workflow-main:hover .fui-workflow-label { text-decoration: underline; }
+.fui-workflow-stage:not([data-current="true"]) .fui-workflow-main::before { content: ""; display: block; width: 2rem; height: 2rem; border: 1px solid #b98216; border-radius: 50%; background: var(--fui-workflow-marker-bg, white); }
+.fui-workflow-stage[data-completed="true"]:not([data-current="true"]) .fui-workflow-main::before { background: var(--fui-workflow-marker-bg, #b98216); }
+.fui-workflow-stage:not([data-current="true"]) .fui-workflow-main > i { position: absolute; top: .5rem; color: white; }
+.fui-workflow-stage[data-current="true"] .fui-workflow-box { align-items: stretch; align-self: start; border: 1px solid #e5b857; border-radius: .4rem; background: #fff0ca; color: #653a09; }
+.fui-workflow-stage[data-current="true"] .fui-workflow-main { min-height: 2rem; flex-direction: row; padding: .25rem .65rem; }
+.fui-workflow-label { overflow-wrap: anywhere; }
+.fui-workflow-stage[data-disabled="true"][data-current="true"] .fui-workflow-box { background: #edf0f3; color: #64748b; border-color: #cbd5e1; }
+.fui-workflow-chevron { align-self: stretch; padding: 0 .5rem; border-inline-start: 1px solid currentColor; }
+.fui-workflow-menu { position: absolute; top: calc(100% + .25rem); inset-inline-end: 0; z-index: 20; min-width: max(100%, 12rem); background: white; border: 1px solid #d8dee8; border-radius: .5rem; box-shadow: 0 6px 16px #17233a22; padding: .25rem; }
+.fui-workflow-option { display: flex; align-items: center; gap: .55rem; width: 100%; text-align: start; padding: .4rem .5rem; border-radius: .25rem; }
+.fui-workflow-option:hover:not(:disabled), .fui-workflow-option[aria-pressed="true"] { background: #fff0ca; }
+.fui-workflow-option:disabled { opacity: .55; cursor: default; }
+.fui-workflow-check { margin-inline-start: auto; }
+.fui-workflow button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.fui-workflow[data-label-position="above"] .fui-workflow-stage:not([data-current="true"]) .fui-workflow-label { position: absolute; bottom: calc(100% + .4rem); }
+.fui-workflow[data-label-position="above"] { margin-block-start: 2.5rem; }
+.fui-workflow[data-label-position="beside"] .fui-workflow-stage:not([data-current="true"]) .fui-workflow-main { flex-direction: row; }
+.fui-workflow[data-direction="vertical"] { flex-direction: column; }
+.fui-workflow[data-direction="vertical"] .fui-workflow-stage { justify-content: start; padding-bottom: .75rem; text-align: start; }
+.fui-workflow[data-direction="vertical"] .fui-workflow-line { left: 1rem; width: 2px; height: 100%; }
+.fui-workflow[data-direction="vertical"] .fui-workflow-main { flex-direction: row; }
+.fui-workflow[data-direction="vertical"] .fui-workflow-stage:not([data-current="true"]) .fui-workflow-main > i { inset-inline-start: .55rem; }
+.fui-workflow-scroll[data-direction="horizontal"] { overflow-x: auto; max-width: 100%; }
+.fui-workflow-scroll[data-direction="horizontal"] .fui-workflow-stage { min-width: 9rem; }
+.fui-workflow-scroll[data-direction="horizontal"] .fui-workflow { width: max-content; min-width: 100%; }
+.fui-workflow-stage:not([data-current="true"]) .fui-workflow-stage-icon { position: absolute; top: .35rem; color: white; }
+.fui-workflow[data-direction="vertical"] .fui-workflow-stage:not([data-current="true"]) .fui-workflow-stage-icon { inset-inline-start: .55rem; }
+
+.fui-workflow button { font: inherit; color: inherit; background-color: transparent; cursor: pointer; }
+.fui-workflow-chevron { border: 0; border-inline-start: 1px solid currentColor; }
+.fui-workflow-option { border: 0; }
+.fui-workflow-menu { position: fixed; inset: auto; min-width: 12rem; max-width: calc(100vw - 1rem); }

@@ -21,6 +21,7 @@ public partial class FlowTable<TItem> : FlowComponentBase, IAsyncDisposable
     [Parameter] public EventCallback<int> PageChanged { get; set; }
     [Inject] private IJSRuntime JS { get; set; } = default!;
     [Parameter] public bool ColumnsConfigurable { get; set; }
+    [Parameter] public bool ShowRowDividers { get; set; } = true;
     [Parameter] public bool Exportable { get; set; }
     [Parameter] public string ExportFileName { get; set; } = "table";
     [Parameter] public IReadOnlyList<string>? VisibleColumnKeys { get; set; }

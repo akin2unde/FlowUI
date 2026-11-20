@@ -12,3 +12,5 @@ export * from "./async-label";
 export * from "./tooltip";
 
 export * from "./notification";
+export * from "./workflow";
+export * from "./chart";

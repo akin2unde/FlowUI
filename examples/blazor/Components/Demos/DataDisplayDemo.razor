@@ -6,7 +6,7 @@
 </DemoBlock>
 <DemoBlock Title="Table" Markup="@Example1" Code="@ExampleCode">
 <FlowTable TItem="Product" Items="@products.Take(loadedProducts).ToArray()" Columns="columns" RowKey="p => p.Id"
-                   Caption="Product inventory" PageSize="0" ColumnsConfigurable="true" Exportable="true" TotalCount="@products.Length" OnLoadMore="LoadProducts">
+                   ShowRowDividers="false" Caption="Product inventory" PageSize="0" ColumnsConfigurable="true" Exportable="true" TotalCount="@products.Length" OnLoadMore="LoadProducts">
             <LoadMoreTemplate Context="footer">
                 <p role="status">@($"{footer.LoadedCount} of {footer.TotalCount} products loaded")</p>
                 @if (footer.HasMore)
@@ -18,7 +18,31 @@
 </DemoBlock>
 <DemoBlock Title="Tree" Markup="@Example2" Code="@ExampleCode">
 <FlowTree Items="nodes" ValueSelector="n => n.Id" TextSelector="n => n.Name" ChildrenSelector="n => n.Children"
-          @bind-Value="selectedNode" @bind-ExpandedValues="expanded" Label="Project folders" />
+          ShowCheckboxes="true" @bind-Value="selectedNode" @bind-ExpandedValues="expanded" Label="Project folders" />
 <p role="status">Selected node: @(selectedNode ?? "none")</p>
 </DemoBlock>
+<h2>Workflow stepper</h2>
+<FlowWorkflowStepper Stages="workflow" OnStageClick="stage => openedStage = stage" />
+@if (openedStage is not null)
+{
+    <p role="status">@openedStage.Label</p>
+}
+<h2>Sales and target</h2>
+<FlowChart Type="combo" Labels="chartLabels" Series="chartSeries" />
 </FlowVC>
+
+@code {
+    private FlowStage? openedStage;
+    private readonly FlowStage[] workflow = [
+        new("truck", "Truck assigned", IsCompleted: true),
+        new("oil", "Oil checked", IsCompleted: true),
+        new("safety", "Safety passed", IsCompleted: true),
+        new("repair", "Repair", IsCurrent: true, Actions: [
+            new("Start repair"), new("Send for inspection"), new("Request cancellation", IsReadonly: true)
+        ])
+    ];
+    private readonly string[] chartLabels = ["Mon", "Tue", "Wed"];
+    private readonly FlowChartSeries[] chartSeries = [
+        new("Sales", [20, 34, 27]), new("Target", [30, 25, 35])
+    ];
+}

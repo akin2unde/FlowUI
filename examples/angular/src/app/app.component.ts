@@ -230,7 +230,7 @@ export class AppComponent {
     [
       "Display",
       "Chart",
-      "Paints bar, line, pie, or doughnut series.",
+      "Displays column, bar, line, pie, doughnut, area, and combined column–line charts.",
       `<fui-chart type="bar" [data]="data" />`,
     ],
     [
@@ -388,6 +388,12 @@ export class AppComponent {
       "TreeMultiSelect",
       "Selects nested values with checkboxes.",
       `<fui-tree-multi-select [nodes]="tree" />`,
+    ],
+    [
+      "Navigation",
+      "WorkflowStepper",
+      "Shows workflow stages and lets users select available actions.",
+      `<fui-workflow-stepper [stages]="stages" (stageClick)="handleStageClick($event)" (actionChange)="handleActionChange($event)" />`,
     ],
     [
       "Navigation",

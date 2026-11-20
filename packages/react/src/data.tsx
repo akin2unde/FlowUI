@@ -31,6 +31,7 @@ export interface TableProps<
   onSortChange?: (sort: SortState) => void;
   onRowClick?: (row: T) => void;
   alternateRows?: boolean;
+  showRowDividers?: boolean;
   columnsConfigurable?: boolean;
   visibleColumnFields?: string[];
   onVisibleColumnsChange?: (fields: string[]) => void;
@@ -59,6 +60,7 @@ export function Table<T extends Record<string, unknown>>({
   onSortChange,
   onRowClick,
   alternateRows = true,
+  showRowDividers = true,
   columnsConfigurable = false,
   visibleColumnFields,
   onVisibleColumnsChange,
@@ -174,6 +176,7 @@ export function Table<T extends Record<string, unknown>>({
       <div className="fui-table-scroll">
         <table
           className="fui-table"
+          data-row-dividers={showRowDividers}
           data-alternate-rows={alternateRows}
           data-selection-enabled={selectionEnabled}
         >

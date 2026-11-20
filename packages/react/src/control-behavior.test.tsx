@@ -33,11 +33,24 @@ it("opens only the selected date/time mode and dismisses it on an outside click"
   await act(async () =>
     root.render(
       <FlowUIProvider>
-        <DateTime mode="time" value="09:30" />
+        <DateTime mode="time" value="09:30" backgroundColor="#faf5ff" />
       </FlowUIProvider>,
     ),
   );
   expect(host.querySelector('[aria-label="Choose date"]')).toBeNull();
+  expect(
+    host.querySelector<HTMLElement>(".fui-date-time")?.style.backgroundColor,
+  ).toBe("");
+  expect(
+    host.querySelector<HTMLElement>(".fui-date-time-field")?.style
+      .backgroundColor,
+  ).toBe("rgb(250, 245, 255)");
+  const trigger = host.querySelector('button[aria-label="Choose time"]');
+  expect(trigger?.querySelector(".fa-chevron-down")).toBeTruthy();
+  await click('button[aria-label="Choose time"]');
+  expect(trigger?.querySelector(".fa-chevron-up")).toBeTruthy();
+  await click('button[aria-label="Choose time"]');
+  expect(host.querySelector(".fui-time-panel")).toBeNull();
   await click('button[aria-label="Choose time"]');
   expect(host.querySelector(".fui-time-panel")).not.toBeNull();
   await outsideClick();

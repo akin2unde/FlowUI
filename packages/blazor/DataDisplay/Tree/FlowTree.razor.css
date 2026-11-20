@@ -46,3 +46,6 @@ button {
   font-size: 0.85rem;
   color: var(--fui-color-textMuted);
 }
+
+[role="treeitem"] button.fui-tree-check { width: 1.15rem; height: 1.15rem; padding: 0; border: 1px solid #94a3b8; border-radius: .25rem; }
+[role="treeitem"] button.fui-tree-check:is([aria-checked="true"],[aria-checked="mixed"]) { background: var(--fui-color-primary, #2563eb); color: white; }

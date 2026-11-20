@@ -1,0 +1,66 @@
+@namespace FlowUI.Blazor.Navigation
+@inherits FlowComponentBase
+
+<div @ref="root" class="fui-workflow-scroll" data-direction="@Direction" @onscroll="Close">
+    <ol @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-workflow")" style="@Styles"
+        data-direction="@Direction" data-label-position="@LabelPosition">
+        @for (var i = 0; i < Stages.Count; i++)
+        {
+            var stage = Stages[i];
+            var state = stage.IsCurrent ? CurrentStyle : stage.IsCompleted ? CompletedStyle : null;
+            var disabled = stage.IsDisabled ? DisabledStyle : null;
+            var icon = disabled?.Icon ?? state?.Icon;
+            var selected = FindSelection(stage);
+            var label = stage.IsCurrent ? selected?.Label ?? stage.Label : stage.Label;
+            RenderFragment<object?> contents = _ => @<text>
+                @if (icon is not null) { <i class="@($"fui-workflow-stage-icon {icon}")" style="@FormatIcon(disabled?.IconStyle ?? state?.IconStyle)" aria-hidden="true"></i> }
+                else if (stage.IsCompleted && !stage.IsCurrent) { <span class="fui-workflow-stage-icon" style="@FormatIcon(disabled?.IconStyle ?? state?.IconStyle)" aria-hidden="true">✓</span> }
+                <span class="fui-workflow-label" style="@FormatText(StageTextStyle, state?.TextStyle, disabled?.TextStyle, stage.TextStyle)">@label</span>
+            </text>;
+            <li @key="stage.Id" class="fui-workflow-stage" data-current="@Flag(stage.IsCurrent)"
+                data-completed="@Flag(stage.IsCompleted)" data-disabled="@Flag(stage.IsDisabled)" aria-current="@(stage.IsCurrent ? "step" : null)">
+                @if (i < Stages.Count - 1) { <span class="fui-workflow-line" style="@Declaration("background-color", LineColor)" aria-hidden="true"></span> }
+                <div class="fui-workflow-box" style="@Declaration(stage.IsCurrent ? "background-color" : "--fui-workflow-marker-bg", disabled?.BackgroundColor ?? state?.BackgroundColor)">
+                    @if (OnStageClick.HasDelegate && !stage.IsDisabled)
+                    {
+                        <button type="button" class="fui-workflow-main" @onclick="() => ClickStage(stage)">@contents(null)</button>
+                    }
+                    else
+                    {
+                        <span class="fui-workflow-main">@contents(null)</span>
+                    }
+                    @if (CanPick(stage))
+                    {
+                        <button type="button" class="fui-workflow-chevron" aria-expanded="@Flag(openId == stage.Id)"
+                                aria-label="@($"Actions for {stage.Label}")" @onclick="() => Toggle(stage.Id)">
+                            <span aria-hidden="true" style="@FormatIcon(ChevronStyle)">⌄</span>
+                        </button>
+                        @if (openId == stage.Id)
+                        {
+                            <div class="fui-workflow-menu" role="group" aria-label="@($"Actions for {stage.Label}")" style="@MenuStyles">
+                                @foreach (var action in stage.Actions!)
+                                {
+                                    var active = ReferenceEquals(action, selected);
+                                    var chosen = active ? ActionItemStyle?.Selected : null;
+                                    var readOnly = action.IsReadonly ? ActionItemStyle?.Readonly : null;
+                                    var hovered = !action.IsReadonly && ReferenceEquals(action, hoverAction) ? ActionItemStyle?.Hover : null;
+                                    <button type="button" class="fui-workflow-option" aria-pressed="@Flag(active)" disabled="@action.IsReadonly"
+                                            style="@FormatRow(action, chosen, readOnly, hovered)"
+                                            @onmouseenter="() => hoverAction = action" @onmouseleave="() => hoverAction = null"
+                                            @onclick="() => Select(stage, action)">
+                                        @if (action.Icon is not null || action.IsReadonly)
+                                        {
+                                            <i class="@(action.Icon ?? "fa-solid fa-lock")" style="@FormatIcon(ActionItemStyle?.IconStyle, chosen?.IconStyle, readOnly?.IconStyle, hovered?.IconStyle, action.IconStyle)" aria-hidden="true"></i>
+                                        }
+                                        <span>@action.Label</span>
+                                        @if (active) { <span class="fui-workflow-check" style="@FormatIcon(CheckmarkStyle)" aria-hidden="true">✓</span> }
+                                    </button>
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </li>
+        }
+    </ol>
+</div>

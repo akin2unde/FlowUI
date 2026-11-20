@@ -392,3 +392,5 @@
 .fui-multi-shell button {
   color: var(--fui-control-icon, inherit);
 }
+
+.fui-multi-shell .fui-chip { padding-inline-end: .55rem; }

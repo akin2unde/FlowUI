@@ -16,6 +16,30 @@ public partial class FlowTree<TNode, TValue> : FlowComponentBase, IAsyncDisposab
     [Parameter] public IReadOnlyList<TValue> ExpandedValues { get; set; } = [];
     [Parameter] public EventCallback<IReadOnlyList<TValue>> ExpandedValuesChanged { get; set; }
     [Parameter] public RenderFragment<TNode>? ItemTemplate { get; set; }
+    [Parameter] public Func<TNode, string?>? IconSelector { get; set; }
+    [Parameter] public Func<TNode, bool>? CanCheck { get; set; }
+    [Parameter] public bool ShowCheckboxes { get; set; }
+    [Parameter] public IReadOnlyList<TValue>? CheckedValues { get; set; }
+    [Parameter] public EventCallback<IReadOnlyList<TValue>> CheckedValuesChanged { get; set; }
+    private IReadOnlyList<TValue> checkedDraft = [];
+    private IEnumerable<TValue> CheckableLeaves(Row row) =>
+        row.Children.Count == 0 ? (CanCheck?.Invoke(row.Item) != false ? [row.Value] : []) : row.Children.SelectMany(CheckableLeaves);
+    private string CheckState(Row row)
+    {
+        var leaves = CheckableLeaves(row).ToArray();
+        var checkedCount = leaves.Count(value => (CheckedValues ?? checkedDraft).Contains(value));
+        return checkedCount == 0 ? "false" : checkedCount == leaves.Length ? "true" : "mixed";
+    }
+    private async Task ToggleCheck(Row row)
+    {
+        var checkedValues = (CheckedValues ?? checkedDraft).ToHashSet();
+        var leaves = CheckableLeaves(row);
+        if (CheckState(row) == "true") checkedValues.ExceptWith(leaves);
+        else checkedValues.UnionWith(leaves);
+        var next = checkedValues.ToArray();
+        if (CheckedValues is null) checkedDraft = next;
+        await CheckedValuesChanged.InvokeAsync(next);
+    }
     [Parameter] public string Label { get; set; } = "Tree";
     [Parameter] public string EmptyText { get; set; } = "No nodes available";
     private sealed record Row(TNode Item, TValue Value, int Level, int Position, int SiblingCount, Row? Parent, List<Row> Children);

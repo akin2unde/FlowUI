@@ -253,7 +253,7 @@ export function Chip({
         <Pressable
           accessibilityLabel={removeLabel}
           hitSlop={8}
-          style={removeStyle}
+          style={[{ marginRight: 2 }, removeStyle]}
           onPress={(event: GestureResponderEvent) => {
             event.stopPropagation();
             onRemove();

@@ -135,6 +135,7 @@ export interface DropdownModel {
   group?: string | number;
 }
 export interface TreeModel extends DropdownModel {
+  icon?: string;
   children?: TreeModel[];
   selectable?: boolean;
   hasChildren?: boolean;
@@ -228,6 +229,8 @@ export interface PasswordInputProps extends Omit<InputProps, "type"> {
   visible?: boolean;
 }
 export interface TreeProps extends BaseUIProps {
+  showCheckboxes?: boolean;
+  checkedValues?: readonly (string | number)[];
   nodes: TreeModel[];
   value?: string | number;
   defaultExpanded?: boolean;
@@ -373,9 +376,18 @@ export interface PhoneInputProps extends BaseUIProps, DisableableProps {
   name?: string;
 }
 
-export type ChartType = "bar" | "line" | "pie" | "doughnut";
+export type ChartType =
+  | "bar"
+  | "column"
+  | "horizontal-bar"
+  | "line"
+  | "area"
+  | "combo"
+  | "pie"
+  | "doughnut";
 
 export interface ChartSeries {
+  type?: "column" | "line";
   name: string;
   data: number[];
   color?: ColorValue;

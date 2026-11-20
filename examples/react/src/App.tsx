@@ -319,7 +319,7 @@ const componentCatalog = [
   [
     "Display",
     "Chart",
-    "Paints bar, line, pie, or doughnut series.",
+    "Displays column, bar, line, pie, doughnut, area, and combined column–line charts.",
     `<Chart type="bar" data={data} />`,
   ],
   [
@@ -472,6 +472,12 @@ const componentCatalog = [
     "TreeMultiSelect",
     "Selects nested values with cascading checkboxes.",
     `<TreeMultiSelect nodes={tree} searchable />`,
+  ],
+  [
+    "Navigation",
+    "WorkflowStepper",
+    "Shows workflow stages and lets users select available actions.",
+    `<WorkflowStepper stages={stages} onStageClick={handleStageClick} onActionChange={handleActionChange} />`,
   ],
   [
     "Navigation",

@@ -18,7 +18,7 @@
         }
     </div>
 }
-<div class="fui-table-scroll"><table><caption>@Caption</caption><thead><tr>
+<div class="fui-table-scroll"><table data-row-dividers="@ShowRowDividers.ToString().ToLowerInvariant()"><caption>@Caption</caption><thead><tr>
 @foreach (var column in VisibleColumns) { <th scope="col" aria-sort="@(sortColumn == column ? descending ? "descending" : "ascending" : "none")">@if (column.Sortable) { <button type="button" @onclick="() => Sort(column)">@if (column.HeaderTemplate is not null) { @column.HeaderTemplate } else { @column.Title }<span aria-hidden="true">@(sortColumn == column ? descending ? " ↓" : " ↑" : " ↕")</span></button> } else { @if (column.HeaderTemplate is not null) { @column.HeaderTemplate } else { @column.Title } }</th> }
 </tr></thead><tbody>
 @if (Loading) { <tr><td colspan="@Math.Max(1, VisibleColumns.Count)" role="status">Loading rows…</td></tr> }

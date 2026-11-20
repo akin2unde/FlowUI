@@ -33,3 +33,27 @@ export function selectedTreeModels(
   const selected = new Set(values);
   return flattenTree(nodes).filter((node) => selected.has(node.value));
 }
+
+export function treeCheckState(
+  node: TreeModel,
+  selected: ReadonlySet<SelectionValue>,
+): boolean | "mixed" {
+  const leaves = enabledSelectableDescendants(node);
+  const checked = leaves.filter((leaf) => selected.has(leaf.value)).length;
+  if (!checked) return false;
+  return checked === leaves.length ? true : "mixed";
+}
+
+export function toggleTreeCheck(
+  node: TreeModel,
+  values: readonly SelectionValue[],
+): SelectionValue[] {
+  const selected = new Set(values);
+  if (node.disabled || node.selectable === false) return [...selected];
+  const remove = treeCheckState(node, selected) === true;
+  for (const leaf of enabledSelectableDescendants(node)) {
+    if (remove) selected.delete(leaf.value);
+    else selected.add(leaf.value);
+  }
+  return [...selected];
+}

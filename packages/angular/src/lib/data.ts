@@ -41,6 +41,7 @@ import { FlowMultiSelectComponent } from "./selection";
     <div class="fui-table-scroll">
       <table
         class="fui-table"
+        [attr.data-row-dividers]="showRowDividers"
         [attr.data-alternate-rows]="alternateRows"
         [attr.data-selection-enabled]="selectionEnabled"
       >
@@ -172,6 +173,7 @@ export class FlowTableComponent extends FlowComponentBase {
   @Input() loading = false;
   @Input() emptyText = "No records found";
   @Input() alternateRows = true;
+  @Input() showRowDividers = true;
   @Input() columnsConfigurable = false;
   @Input() visibleColumnFields?: string[];
   @Input() exportable = false;

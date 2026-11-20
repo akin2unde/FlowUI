@@ -1,4 +1,9 @@
-import { resolveTooltipLocation } from "@akin2unde/flowui-core";
+import {
+  enabledSelectableDescendants,
+  resolveTooltipLocation,
+  toggleTreeCheck,
+  treeCheckState,
+} from "@akin2unde/flowui-core";
 import {
   useRef,
   useState,
@@ -114,6 +119,8 @@ interface TreeNodeProps {
   node: TreeModel;
   value?: string | number;
   expanded: Set<string | number>;
+  checked?: ReadonlySet<string | number>;
+  onCheck?: (node: TreeModel) => void;
   onToggle: (value: string | number) => void;
   onSelect?: (node: TreeModel) => void;
 }
@@ -122,11 +129,14 @@ function TreeNode({
   node,
   value,
   expanded,
+  checked,
+  onCheck,
   onToggle,
   onSelect,
 }: TreeNodeProps) {
   const hasChildren = Boolean(node.children?.length);
   const isExpanded = expanded.has(node.value);
+  const checkState = checked && treeCheckState(node, checked);
 
   return (
     <li
@@ -150,6 +160,24 @@ function TreeNode({
             />
           )}
         </button>
+        {checked && (
+          <input
+            type="checkbox"
+            aria-label={String(node.display)}
+            aria-checked={checkState}
+            ref={(input) => {
+              if (input) input.indeterminate = checkState === "mixed";
+            }}
+            checked={checkState === true}
+            disabled={
+              node.disabled ||
+              node.selectable === false ||
+              !enabledSelectableDescendants(node).length
+            }
+            onChange={() => onCheck?.(node)}
+          />
+        )}
+        {node.icon && <Icon icon={node.icon} />}
         <button
           className="fui-tree-select"
           type="button"
@@ -166,6 +194,8 @@ function TreeNode({
               node={child}
               value={value}
               expanded={expanded}
+              checked={checked}
+              onCheck={onCheck}
               onToggle={onToggle}
               onSelect={onSelect}
             />
@@ -178,6 +208,7 @@ function TreeNode({
 
 export interface TreeProps extends Omit<CoreTreeProps, "nodes"> {
   nodes: TreeModel[];
+  onCheckedValuesChange?: (values: (string | number)[]) => void;
   onSelect?: (node: TreeModel) => void;
 }
 
@@ -185,6 +216,9 @@ export function Tree({
   nodes,
   value,
   defaultExpanded = false,
+  showCheckboxes = false,
+  checkedValues,
+  onCheckedValuesChange,
   onSelect,
   ...props
 }: TreeProps) {
@@ -192,6 +226,13 @@ export function Tree({
   const [expanded, setExpanded] = useState<Set<string | number>>(
     new Set(initialValues),
   );
+  const [draft, setDraft] = useState<(string | number)[]>([]);
+  const checked = new Set(checkedValues ?? draft);
+  const toggleCheck = (node: TreeModel) => {
+    const next = toggleTreeCheck(node, [...checked]);
+    if (checkedValues === undefined) setDraft(next);
+    onCheckedValuesChange?.(next);
+  };
   const flow = useFlowProps("fui-tree fui-tree-view", props);
 
   const toggle = (nodeValue: string | number) => {
@@ -211,6 +252,8 @@ export function Tree({
           node={node}
           value={value}
           expanded={expanded}
+          checked={showCheckboxes ? checked : undefined}
+          onCheck={toggleCheck}
           onToggle={toggle}
           onSelect={onSelect}
         />

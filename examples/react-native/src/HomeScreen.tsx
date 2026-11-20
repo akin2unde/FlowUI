@@ -5,6 +5,9 @@ import {
   Autocomplete,
   Breadcrumb,
   DateTime,
+  Chart,
+  Tree,
+  WorkflowStepper,
   Table,
   Tabs,
   Tooltip,
@@ -152,6 +155,63 @@ export function HomeScreen() {
             ]}
           />
         </VStack>
+
+        <Card className="gap-4">
+          <Text className="text-lg font-bold">Workflow stepper</Text>
+          <WorkflowStepper
+            stages={[
+              { Id: "truck", Label: "Truck assigned", IsCompleted: true },
+              { Id: "oil", Label: "Oil checked", IsCompleted: true },
+              { Id: "safety", Label: "Safety passed", IsCompleted: true },
+              {
+                Id: "repair",
+                Label: "Repair",
+                IsCurrent: true,
+                Actions: [
+                  { Label: "Start repair" },
+                  { Label: "Send for inspection" },
+                  { Label: "Request cancellation", IsReadonly: true },
+                ],
+              },
+            ]}
+          />
+          <Tree
+            defaultExpanded
+            showCheckboxes
+            nodes={[
+              {
+                value: "movies",
+                display: "Movies",
+                icon: "★",
+                other: null,
+                children: [
+                  {
+                    value: "scarface",
+                    display: "Scarface",
+                    icon: "▣",
+                    other: null,
+                  },
+                  {
+                    value: "serpico",
+                    display: "Serpico",
+                    icon: "▣",
+                    other: null,
+                  },
+                ],
+              },
+            ]}
+          />
+          <Chart
+            type="combo"
+            data={{
+              labels: ["Mon", "Tue", "Wed"],
+              series: [
+                { name: "Sales", data: [20, 35, 28] },
+                { name: "Target", data: [25, 25, 32] },
+              ],
+            }}
+          />
+        </Card>
 
         <Card className="gap-4">
           <Text className="text-lg font-bold">Date and time</Text>

@@ -1,3 +1,4 @@
+import { buildChart } from "@akin2unde/flowui-core";
 import { CommonModule } from "@angular/common";
 import {
   Component,
@@ -229,15 +230,18 @@ export class FlowPhoneInputComponent extends FlowComponentBase {
   @Output() valueChange = new EventEmitter<PhoneNumberValue>();
   open = false;
   query = "";
+  private draft?: PhoneNumberValue;
   get selectedCountry(): PhoneCountry | undefined {
     return (
-      this.countries.find((item) => item.code === this.value?.countryCode) ??
-      this.countries[0]
+      this.countries.find(
+        (item) => item.code === (this.value ?? this.draft)?.countryCode,
+      ) ?? this.countries[0]
     );
   }
   get current(): PhoneNumberValue {
     return (
-      this.value ?? {
+      this.value ??
+      this.draft ?? {
         countryCode: this.selectedCountry?.code ?? "",
         dialCode: this.selectedCountry?.dialCode ?? "",
         number: "",
@@ -252,8 +256,12 @@ export class FlowPhoneInputComponent extends FlowComponentBase {
         .includes(query),
     );
   }
+  private update(value: PhoneNumberValue): void {
+    if (this.value === undefined) this.draft = value;
+    this.valueChange.emit(value);
+  }
   choose(country: PhoneCountry): void {
-    this.valueChange.emit({
+    this.update({
       ...this.current,
       countryCode: country.code,
       dialCode: country.dialCode,
@@ -262,7 +270,7 @@ export class FlowPhoneInputComponent extends FlowComponentBase {
     this.query = "";
   }
   setNumber(number: string): void {
-    this.valueChange.emit({
+    this.update({
       ...this.current,
       number: number.replace(/[^0-9\s()-]/g, ""),
     });
@@ -276,17 +284,6 @@ export class FlowPhoneInputComponent extends FlowComponentBase {
   view = () => this.resolved("fui-phone");
 }
 
-interface ChartPoint {
-  x: number;
-  y: number;
-  value: number;
-}
-interface ChartSlice {
-  length: number;
-  offset: number;
-  color: string;
-}
-
 @Component({
   selector: "fui-chart",
   standalone: true,
@@ -297,94 +294,47 @@ interface ChartSlice {
       [ngStyle]="view().style"
       [attr.data-animated]="animated"
     >
-      <svg
-        [attr.viewBox]="'0 0 640 ' + height"
-        [attr.aria-label]="type + ' chart'"
-        role="img"
-      >
-        <ng-container *ngIf="type === 'bar'">
-          <ng-container
-            *ngFor="let series of data.series; let seriesIndex = index"
-          >
-            <g *ngFor="let item of series.data; let index = index">
-              <rect
-                [attr.x]="barX(index, seriesIndex)"
-                [attr.y]="barY(item)"
-                [attr.width]="barWidth - 4"
-                [attr.height]="barHeight(item)"
-                rx="5"
-                [attr.fill]="seriesColor(seriesIndex)"
-              />
-              <text
-                *ngIf="showValues"
-                [attr.x]="barX(index, seriesIndex) + barWidth / 2"
-                [attr.y]="barY(item) - 7"
-              >
-                {{ item }}
-              </text>
-            </g>
-          </ng-container>
-        </ng-container>
-        <ng-container *ngIf="type === 'line'">
-          <g *ngFor="let series of data.series; let seriesIndex = index">
-            <polyline
-              fill="none"
-              [attr.stroke]="seriesColor(seriesIndex)"
-              stroke-width="4"
-              [attr.points]="linePoints(series.data)"
+      <ng-container *ngIf="chart as geometry">
+        <svg
+          [attr.viewBox]="'0 0 ' + geometry.width + ' ' + geometry.height"
+          role="img"
+          [attr.aria-label]="type + ' chart'"
+        >
+          <ng-container *ngFor="let mark of geometry.marks">
+            <path
+              *ngIf="mark.path; else bar"
+              [attr.d]="mark.path"
+              [attr.fill]="mark.fill"
+              [attr.fill-opacity]="mark.opacity"
+              [attr.stroke]="mark.stroke"
+              stroke-width="2.5"
             />
-            <g *ngFor="let point of points(series.data)">
-              <circle
-                [attr.cx]="point.x"
-                [attr.cy]="point.y"
-                r="5"
-                [attr.fill]="seriesColor(seriesIndex)"
+            <ng-template #bar>
+              <rect
+                [attr.x]="mark.x"
+                [attr.y]="mark.y"
+                [attr.width]="mark.width"
+                [attr.height]="mark.height"
+                rx="3"
+                [attr.fill]="mark.fill"
               />
-              <text
-                *ngIf="showValues"
-                [attr.x]="point.x"
-                [attr.y]="point.y - 10"
-              >
-                {{ point.value }}
-              </text>
-            </g>
-          </g>
-        </ng-container>
-        <g
-          *ngIf="type === 'pie' || type === 'doughnut'"
-          [attr.transform]="'rotate(-90 320 ' + height / 2 + ')'"
-        >
-          <circle
-            *ngFor="let slice of pieSlices"
-            [attr.cx]="320"
-            [attr.cy]="height / 2"
-            [attr.r]="pieRadius"
-            fill="none"
-            [attr.stroke]="slice.color"
-            [attr.stroke-width]="
-              type === 'doughnut' ? pieRadius * 0.55 : pieRadius * 2
-            "
-            [attr.stroke-dasharray]="slice.length + ' ' + pieCircumference"
-            [attr.stroke-dashoffset]="-slice.offset"
-          />
-        </g>
-        <ng-container *ngIf="type !== 'pie' && type !== 'doughnut'">
+            </ng-template>
+          </ng-container>
           <text
-            *ngFor="let label of data.labels; let index = index"
-            class="fui-chart-label"
-            [attr.x]="labelX(index)"
-            [attr.y]="height - 15"
+            *ngFor="let label of geometry.labels"
+            [attr.x]="label.x"
+            [attr.y]="label.y"
+            [attr.text-anchor]="label.anchor"
           >
-            {{ label }}
+            {{ label.text }}
           </text>
-        </ng-container>
-      </svg>
-      <figcaption *ngIf="showLegend">
-        <span *ngFor="let series of data.series; let index = index"
-          ><i [style.background]="seriesColor(index)"></i
-          >{{ series.name }}</span
-        >
-      </figcaption>
+        </svg>
+        <figcaption *ngIf="showLegend">
+          <span *ngFor="let item of geometry.legend"
+            ><i [style.background]="item.color"></i>{{ item.label }}</span
+          >
+        </figcaption>
+      </ng-container>
     </figure>
   `,
 })
@@ -395,75 +345,8 @@ export class FlowChartComponent extends FlowComponentBase {
   @Input() showLegend = true;
   @Input() showValues = false;
   @Input() animated = true;
-  readonly width = 640;
-  readonly palette = ["#6d28d9", "#0ea5e9", "#10b981", "#f59e0b", "#ef4444"];
-  get maximum(): number {
-    return Math.max(
-      1,
-      ...this.data.series.reduce<number[]>(
-        (values, series) => values.concat(series.data),
-        [],
-      ),
-    );
-  }
-  get groupWidth(): number {
-    return (this.width - 80) / Math.max(this.data.labels.length, 1);
-  }
-  get barWidth(): number {
-    return this.groupWidth / Math.max(this.data.series.length + 1, 2);
-  }
-  get pieRadius(): number {
-    return Math.min(this.width, this.height) * 0.28;
-  }
-  get pieCircumference(): number {
-    return 2 * Math.PI * this.pieRadius;
-  }
-  get pieSlices(): ChartSlice[] {
-    const values = this.data.series[0]?.data ?? [];
-    const total = values.reduce((sum, value) => sum + value, 0) || 1;
-    let offset = 0;
-    return values.map((value, index) => {
-      const length = (value / total) * this.pieCircumference;
-      const slice = {
-        length,
-        offset,
-        color: this.palette[index % this.palette.length],
-      };
-      offset += length;
-      return slice;
-    });
-  }
-  seriesColor(index: number): string {
-    const color = this.data.series[index]?.color;
-    return color
-      ? resolveColorValue(color)
-      : this.palette[index % this.palette.length];
-  }
-  barHeight(value: number): number {
-    return (value / this.maximum) * (this.height - 80);
-  }
-  barX(index: number, seriesIndex: number): number {
-    return 48 + index * this.groupWidth + seriesIndex * this.barWidth;
-  }
-  barY(value: number): number {
-    return this.height - 42 - this.barHeight(value);
-  }
-  points(values: number[]): ChartPoint[] {
-    return values.map((value, index) => ({
-      x: 48 + index * ((this.width - 80) / Math.max(values.length - 1, 1)),
-      y: this.height - 42 - (value / this.maximum) * (this.height - 80),
-      value,
-    }));
-  }
-  linePoints(values: number[]): string {
-    return this.points(values)
-      .map((point) => `${point.x},${point.y}`)
-      .join(" ");
-  }
-  labelX(index: number): number {
-    return (
-      48 + index * ((this.width - 80) / Math.max(this.data.labels.length, 1))
-    );
+  get chart() {
+    return buildChart(this.data, this.type, this.height, this.showValues);
   }
   view = () => this.resolved("fui-chart");
 }

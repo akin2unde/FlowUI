@@ -13,3 +13,12 @@ export * from "./lib/selection";
 export * from "./lib/controls";
 
 export * from "./lib/async-label";
+export type {
+  FlowStage,
+  FlowAction,
+  FlowTextStyle,
+  FlowIconStyle,
+  FlowStageStyle,
+  FlowActionItemStyle,
+} from "@akin2unde/flowui-core";
+export * from "./lib/workflow-stepper";

@@ -12,6 +12,7 @@ import {
   useRef,
   useState,
   type ChangeEvent,
+  type CSSProperties,
   type MouseEvent as ReactMouseEvent,
   type ButtonHTMLAttributes,
   type Ref,
@@ -67,6 +68,8 @@ export function DateTime({
   ...props
 }: DateTimeProps) {
   const flow = useFlowProps("fui-date-time", props);
+  const { backgroundColor, ...wrapperStyle } = flow.style;
+  const fieldStyle = { backgroundColor } satisfies CSSProperties;
   const selectedDate = mode === "time" ? "" : (value?.split("T")[0] ?? "");
   const selectedTime =
     (mode === "time" ? value : value?.split("T")[1]) || "00:00";
@@ -136,13 +139,6 @@ export function DateTime({
           </button>
         </>
       )}
-      <button
-        type="button"
-        aria-label="Close picker"
-        onClick={() => setOpen(null)}
-      >
-        <Icon icon="fa-solid fa-xmark" />
-      </button>
     </div>
   );
   const active =
@@ -152,14 +148,18 @@ export function DateTime({
       ? null
       : open;
   return (
-    <div {...flow} ref={root} data-mode={mode}>
+    <div {...flow} ref={root} style={wrapperStyle} data-mode={mode}>
       <input
         type="hidden"
         name={name}
         value={value ?? ""}
         disabled={disabled}
       />
-      <div className="fui-date-time-field">
+      <div
+        className="fui-date-time-field"
+        data-trigger-chevron
+        style={fieldStyle}
+      >
         {mode !== "time" && (
           <button
             className="fui-date-display"
@@ -174,6 +174,9 @@ export function DateTime({
           >
             <Icon icon="fa-regular fa-calendar" />
             <span>{selectedDate || "Select date"}</span>
+            <Icon
+              icon={`fa-solid fa-chevron-${active === "date" ? "up" : "down"}`}
+            />
           </button>
         )}
         {mode !== "date" && (
@@ -194,6 +197,9 @@ export function DateTime({
                 ? "Select time"
                 : selectedTime.slice(0, 5)}
             </span>
+            <Icon
+              icon={`fa-solid fa-chevron-${active === "time" ? "up" : "down"}`}
+            />
           </button>
         )}
       </div>
@@ -206,33 +212,39 @@ export function DateTime({
           <div className="fui-time-fields">
             <label>
               Hour
-              <select
-                value={draftTime.slice(0, 2)}
-                onChange={(event) =>
-                  setDraftTime(`${event.target.value}:${draftTime.slice(3)}`)
-                }
-              >
-                {Array.from({ length: 24 }, (_, i) =>
-                  String(i).padStart(2, "0"),
-                ).map((item) => (
-                  <option key={item}>{item}</option>
-                ))}
-              </select>
+              <span className="fui-time-select">
+                <select
+                  value={draftTime.slice(0, 2)}
+                  onChange={(event) =>
+                    setDraftTime(`${event.target.value}:${draftTime.slice(3)}`)
+                  }
+                >
+                  {Array.from({ length: 24 }, (_, i) =>
+                    String(i).padStart(2, "0"),
+                  ).map((item) => (
+                    <option key={item}>{item}</option>
+                  ))}
+                </select>
+              </span>
             </label>
             <label>
               Minute
-              <select
-                value={draftTime.slice(3)}
-                onChange={(event) =>
-                  setDraftTime(`${draftTime.slice(0, 2)}:${event.target.value}`)
-                }
-              >
-                {Array.from({ length: 60 }, (_, i) =>
-                  String(i).padStart(2, "0"),
-                ).map((item) => (
-                  <option key={item}>{item}</option>
-                ))}
-              </select>
+              <span className="fui-time-select">
+                <select
+                  value={draftTime.slice(3)}
+                  onChange={(event) =>
+                    setDraftTime(
+                      `${draftTime.slice(0, 2)}:${event.target.value}`,
+                    )
+                  }
+                >
+                  {Array.from({ length: 60 }, (_, i) =>
+                    String(i).padStart(2, "0"),
+                  ).map((item) => (
+                    <option key={item}>{item}</option>
+                  ))}
+                </select>
+              </span>
             </label>
             <button
               type="button"
@@ -245,7 +257,7 @@ export function DateTime({
               Done
             </button>
           </div>
-          {footer}
+          {(mode === "datetime" || showDayBoundaryButtons) && footer}
         </div>
       )}
       {active === "date" && (

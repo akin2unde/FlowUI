@@ -11,6 +11,8 @@ import {
   Card,
   Carousel,
   Chart,
+  WorkflowStepper,
+  type FlowStage,
   Checkbox,
   ColorPicker,
   DateTime,
@@ -75,6 +77,26 @@ const tree: TreeModel[] = [
     ],
   },
 ];
+const workflow: FlowStage[] = [
+  { Id: "truck", Label: "Truck assigned", IsCompleted: true },
+  { Id: "oil", Label: "Oil checked", IsCompleted: true },
+  { Id: "safety", Label: "Safety passed", IsCompleted: true },
+  {
+    Id: "repair",
+    Label: "Repair",
+    IsCurrent: true,
+    Actions: [
+      { Label: "Start repair", Icon: "fa-solid fa-play" },
+      { Label: "Send for inspection", Icon: "fa-solid fa-arrow-right" },
+      {
+        Label: "Request cancellation",
+        Icon: "fa-solid fa-lock",
+        IsReadonly: true,
+      },
+    ],
+  },
+];
+
 const frameworkNames = {
   react: "React",
   angular: "Angular",
@@ -196,6 +218,8 @@ function ComponentPreview({ name }: { name: string }) {
   const [values, setValues] = useState<Array<string | number>>(["active"]);
   const [checked, setChecked] = useState(true);
   const [number, setNumber] = useState(40);
+  const [rating, setRating] = useState(2);
+  const [stageDetails, setStageDetails] = useState<FlowStage>();
   const [open, setOpen] = useState(false);
   const block = (label: string) => (
     <div className="docs-layout-item">{label}</div>
@@ -306,8 +330,16 @@ function ComponentPreview({ name }: { name: string }) {
     case "Tree":
       preview = (
         <Tree
-          nodes={tree}
+          nodes={tree.map((node) => ({
+            ...node,
+            icon: "fa-solid fa-folder",
+            children: node.children?.map((child) => ({
+              ...child,
+              icon: "fa-solid fa-location-dot",
+            })),
+          }))}
           value={value}
+          showCheckboxes
           defaultExpanded
           onSelect={(option) => setValue(option.value)}
         />
@@ -356,7 +388,7 @@ function ComponentPreview({ name }: { name: string }) {
       preview = <Knob value={number} onChange={setNumber} valueSuffix="%" />;
       break;
     case "Rating":
-      preview = <Rating value={(number % 5) + 1} onChange={setNumber} />;
+      preview = <Rating value={rating} onChange={setRating} />;
       break;
     case "ColorPicker":
       preview = (
@@ -383,9 +415,6 @@ function ComponentPreview({ name }: { name: string }) {
             </select>
           </label>
           <DateTime
-            backgroundColor="#faf5ff"
-            textColor="#3b1760"
-            iconColor="#8a16d1"
             mode={dateMode}
             value={dateValues[dateMode]}
             onChange={(next) =>
@@ -550,17 +579,51 @@ function ComponentPreview({ name }: { name: string }) {
         />
       );
       break;
+    case "WorkflowStepper":
+      preview = (
+        <>
+          <WorkflowStepper stages={workflow} onStageClick={setStageDetails} />
+          {stageDetails && (
+            <div role="status" className="docs-stage-details">
+              <strong>{stageDetails.Label}</strong>
+              {stageDetails.Id === "oil" && <p>Oil level · Normal</p>}
+              <Button onClick={() => setStageDetails(undefined)}>Close</Button>
+            </div>
+          )}
+        </>
+      );
+      break;
     case "Chart":
       preview = (
-        <Chart
-          type="bar"
-          data={{
-            labels: ["Mon", "Tue", "Wed"],
-            series: [
-              { name: "Sales", data: [20, 35, 28], color: "primary.600" },
-            ],
-          }}
-        />
+        <div className="docs-chart-gallery">
+          {(
+            [
+              ["column", "Column"],
+              ["pie", "Pie"],
+              ["line", "Line"],
+              ["horizontal-bar", "Bar"],
+              ["area", "Area"],
+              ["combo", "Column and line"],
+            ] as const
+          ).map(([type, title]) => (
+            <section key={type}>
+              <h3>{title}</h3>
+              <Chart
+                type={type}
+                height={230}
+                data={{
+                  labels: ["Mon", "Tue", "Wed", "Thu"],
+                  series: [
+                    { name: "Sales", data: [20, 34, 27, 41] },
+                    ...(["line", "area", "combo"].includes(type)
+                      ? [{ name: "Target", data: [30, 23, 37, 31] }]
+                      : []),
+                  ],
+                }}
+              />
+            </section>
+          ))}
+        </div>
       );
       break;
     case "Timeline":
@@ -879,7 +942,7 @@ export function DocsApp() {
                 ) && <p className="docs-muted">No matching components.</p>}
             </nav>
             <footer>
-              v1.0.2 <a href="#gallery">Original gallery</a>
+              v1.0.3 <a href="#gallery">Original gallery</a>
             </footer>
           </aside>
           <main className="docs-content" id="docs-content" tabIndex={-1}>

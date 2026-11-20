@@ -13,3 +13,16 @@ export * from "./menu";
 export * from "./async-label";
 
 export * from "./advanced";
+export type {
+  FlowStage,
+  FlowAction,
+  FlowTextStyle,
+  FlowIconStyle,
+  FlowStageStyle,
+  FlowActionItemStyle,
+  TreeModel,
+} from "@akin2unde/flowui-core";
+export * from "./workflow-stepper";
+export * from "./tree";
+export type { ChartType, ChartData, ChartSeries } from "@akin2unde/flowui-core";
+export * from "./chart";

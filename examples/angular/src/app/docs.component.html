@@ -357,13 +357,36 @@
                   (selected)="breadcrumbDepth = +$event.id"
                 />
               }
-              @case ("Chart") {
-                <fui-chart
-                  type="bar"
-                  [data]="salesChart"
-                  [showValues]="true"
-                  [height]="220"
+              @case ("WorkflowStepper") {
+                <fui-workflow-stepper
+                  [stages]="workflow"
+                  (stageClick)="stageDetails = $event"
                 />
+                @if (stageDetails) {
+                  <div role="status" class="docs-stage-details">
+                    <strong>{{ stageDetails.Label }}</strong>
+                    @if (stageDetails.Id === "oil") {
+                      <p>Oil level · Normal</p>
+                    }
+                    <fui-button (click)="stageDetails = undefined"
+                      >Close</fui-button
+                    >
+                  </div>
+                }
+              }
+              @case ("Chart") {
+                <div class="docs-chart-gallery">
+                  @for (type of chartTypes; track type) {
+                    <section>
+                      <h3>{{ type }}</h3>
+                      <fui-chart
+                        [type]="type"
+                        [data]="salesChart"
+                        [height]="220"
+                      />
+                    </section>
+                  }
+                </div>
               }
               @case ("Knob") {
                 <fui-knob [(value)]="knob" valueSuffix="%" />
@@ -430,6 +453,7 @@
               @case ("Tree") {
                 <fui-tree
                   [nodes]="tree"
+                  [showCheckboxes]="true"
                   [value]="treeValue"
                   [defaultExpanded]="true"
                   (selected)="treeValue = $event.value"

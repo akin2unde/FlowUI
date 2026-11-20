@@ -1,3 +1,8 @@
+import {
+  enabledSelectableDescendants,
+  toggleTreeCheck,
+  treeCheckState,
+} from "@akin2unde/flowui-core";
 import { resolveTooltipLocation } from "@akin2unde/flowui-core";
 import { CommonModule } from "@angular/common";
 import {
@@ -152,6 +157,17 @@ interface VisibleTreeNode {
             />
           </button>
 
+          <input
+            *ngIf="showCheckboxes"
+            type="checkbox"
+            [attr.aria-label]="item.node.display"
+            [attr.aria-checked]="checkState(item.node)"
+            [checked]="checkState(item.node) === true"
+            [indeterminate]="checkState(item.node) === 'mixed'"
+            [disabled]="checkDisabled(item.node)"
+            (change)="check(item.node)"
+          />
+          <fui-icon *ngIf="item.node.icon" [icon]="item.node.icon" />
           <button
             class="fui-tree-select"
             type="button"
@@ -168,6 +184,28 @@ export class FlowTreeComponent extends FlowComponentBase {
   @Input() nodes: TreeModel[] = [];
   @Input() value?: string | number;
   @Input() defaultExpanded = false;
+  @Input() showCheckboxes = false;
+  @Input() checkedValues?: readonly (string | number)[];
+  @Output() checkedValuesChange = new EventEmitter<(string | number)[]>();
+  private draft: (string | number)[] = [];
+
+  checkState(node: TreeModel) {
+    return treeCheckState(node, new Set(this.checkedValues ?? this.draft));
+  }
+
+  checkDisabled(node: TreeModel) {
+    return (
+      !!node.disabled ||
+      node.selectable === false ||
+      !enabledSelectableDescendants(node).length
+    );
+  }
+
+  check(node: TreeModel) {
+    const next = toggleTreeCheck(node, this.checkedValues ?? this.draft);
+    if (this.checkedValues === undefined) this.draft = next;
+    this.checkedValuesChange.emit(next);
+  }
 
   @Output() selected = new EventEmitter<TreeModel>();
 

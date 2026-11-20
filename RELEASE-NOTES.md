@@ -1,3 +1,9 @@
+# FlowUI 1.0.3
+
+- Added the horizontal and vertical Workflow Stepper with an action picker, stage events and scroll overflow.
+- Added optional tri-state tree checkboxes, node icons and table divider controls.
+- Expanded chart types and refined chip spacing, phone entry and date/time and rating previews.
+
 # FlowUI 1.0.2 — control customization
 
 - Added button `text` / `Text` fallback while preserving children and projected content.

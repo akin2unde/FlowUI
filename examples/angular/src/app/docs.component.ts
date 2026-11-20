@@ -1,3 +1,4 @@
+import type { FlowStage } from "@akin2unde/flowui-angular";
 import { NotificationDemoComponent } from "./notification-demo.component";
 import { CommonModule } from "@angular/common";
 import {
@@ -18,6 +19,7 @@ import {
   FlowCardComponent,
   FlowCarouselComponent,
   FlowChartComponent,
+  FlowWorkflowStepperComponent,
   FlowCheckboxComponent,
   FlowColorPickerComponent,
   FlowDateTimeComponent,
@@ -87,6 +89,7 @@ import { createTheme, themeToCSS } from "@akin2unde/flowui-core";
     FlowCardComponent,
     FlowCarouselComponent,
     FlowChartComponent,
+    FlowWorkflowStepperComponent,
     FlowCheckboxComponent,
     FlowColorPickerComponent,
     FlowDateTimeComponent,
@@ -127,6 +130,30 @@ import { createTheme, themeToCSS } from "@akin2unde/flowui-core";
   templateUrl: "./docs.component.html",
 })
 export class DocsComponent extends AppComponent {
+  readonly workflow: FlowStage[] = [
+    { Id: "truck", Label: "Truck assigned", IsCompleted: true },
+    { Id: "oil", Label: "Oil checked", IsCompleted: true },
+    { Id: "safety", Label: "Safety passed", IsCompleted: true },
+    {
+      Id: "repair",
+      Label: "Repair",
+      IsCurrent: true,
+      Actions: [
+        { Label: "Start repair" },
+        { Label: "Send for inspection" },
+        { Label: "Request cancellation", IsReadonly: true },
+      ],
+    },
+  ];
+  stageDetails?: FlowStage;
+  readonly chartTypes = [
+    "column",
+    "pie",
+    "line",
+    "horizontal-bar",
+    "area",
+    "combo",
+  ] as const;
   dateMode: "date" | "time" | "datetime" = "datetime";
   dateValues = {
     date: "2026-10-10",

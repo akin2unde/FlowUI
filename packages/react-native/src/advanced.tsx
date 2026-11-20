@@ -638,6 +638,7 @@ export function Table<T>({
   selectedRowKey,
   rowStyle,
   columns,
+  showRowDividers = true,
   columnsConfigurable = false,
   exportable = false,
   onExport,
@@ -652,6 +653,7 @@ export function Table<T>({
   selectedRowKey?: string | number;
   rowStyle?: (row: T, index: number) => StyleProp<ViewStyle>;
   columns: TableColumn<T>[];
+  showRowDividers?: boolean;
   columnsConfigurable?: boolean;
   exportable?: boolean;
   onExport?: (csv: string) => void;
@@ -731,7 +733,7 @@ export function Table<T>({
           style={[
             {
               flexDirection: "row",
-              borderBottomWidth: 1,
+              borderBottomWidth: showRowDividers ? 1 : 0,
               borderColor: colors.border,
               backgroundColor:
                 selectedRowKey === keyOf(row, index)

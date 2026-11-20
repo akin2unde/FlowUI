@@ -37,3 +37,12 @@ export * from "./selection";
 export * from "./controls";
 
 export * from "./async-label";
+export type {
+  FlowStage,
+  FlowAction,
+  FlowTextStyle,
+  FlowIconStyle,
+  FlowStageStyle,
+  FlowActionItemStyle,
+} from "@akin2unde/flowui-core";
+export * from "./workflow-stepper";

@@ -397,3 +397,5 @@
   );
   color: var(--fui-panel-text, inherit);
 }
+
+.fui-multi-shell .fui-chip { padding-inline-end: .55rem; }

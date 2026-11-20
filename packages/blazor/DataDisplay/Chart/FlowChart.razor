@@ -1,0 +1,31 @@
+@namespace FlowUI.Blazor.DataDisplay
+@inherits FlowComponentBase
+
+<figure @attributes="AdditionalAttributes" id="@Id" class="@Classes("fui-chart")" style="@Styles">
+    <svg viewBox="0 0 640 @ChartHeight" role="img" aria-label="@($"{Type} chart")">
+        @foreach (var mark in Geometry.Marks)
+        {
+            if (mark.Path is not null)
+            {
+                <path d="@mark.Path" fill="@mark.Fill" fill-opacity="@mark.Opacity" stroke="@mark.Stroke" stroke-width="2.5" />
+            }
+            else
+            {
+                <rect x="@Number(mark.X)" y="@Number(mark.Y)" width="@Number(mark.Width)" height="@Number(mark.Height)" fill="@mark.Fill" rx="3" />
+            }
+        }
+        @foreach (var label in Geometry.Labels)
+        {
+            <text><tspan x="@Number(label.X)" y="@Number(label.Y)" text-anchor="@label.Anchor">@label.Text</tspan></text>
+        }
+    </svg>
+    @if (ShowLegend)
+    {
+        <figcaption>
+            @foreach (var item in Geometry.Legend)
+            {
+                <span><i style="@($"background:{item.Color}")"></i>@item.Label</span>
+            }
+        </figcaption>
+    }
+</figure>

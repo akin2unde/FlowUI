@@ -13,6 +13,10 @@ a:focus-visible,
   outline: 2px solid var(--fui-color-focus, #2563eb);
   outline-offset: 3px;
 }
+.fui-table-wrap > :is(.fui-table-tools, .fui-table-scroll):first-child {
+  border-start-start-radius: inherit;
+  border-start-end-radius: inherit;
+}
 .fui-table-scroll {
   overflow-x: auto;
 }
@@ -60,3 +64,5 @@ th button {
   gap: 0.5rem;
   padding: 0.5rem;
 }
+
+table[data-row-dividers="false"] tbody td { border-top-width: 0; }
