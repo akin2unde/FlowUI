@@ -1,3 +1,7 @@
+# FlowUI 1.0.6
+
+- React and Angular tables accept model interfaces directly while checking column fields against the row type.
+
 # FlowUI 1.0.5
 
 - Aligns the React DateTime date and time chevrons with the trailing edge of their triggers.

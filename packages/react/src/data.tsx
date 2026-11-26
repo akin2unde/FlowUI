@@ -20,9 +20,7 @@ export interface TableColumn<T> extends CoreTableColumn<T> {
   cellClassName?: string;
 }
 
-export interface TableProps<
-  T extends Record<string, unknown>,
-> extends BaseUIProps {
+export interface TableProps<T extends object> extends BaseUIProps {
   data: T[];
   columns: TableColumn<T>[];
   sort?: SortState;
@@ -51,7 +49,7 @@ export interface TableProps<
 
   onSelectionChange?: (row: T) => void;
 }
-export function Table<T extends Record<string, unknown>>({
+export function Table<T extends object>({
   data,
   columns,
   sort,

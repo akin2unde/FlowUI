@@ -175,6 +175,35 @@ React and Angular Dropdown support keyboard arrows, disabled-option skipping, En
 
 ## Tables and popovers
 
+FlowUI 1.0.6 accepts typed model rows directly in React and Angular. React Native and Blazor also accept typed model rows.
+
+```tsx
+import { Table, type TableColumn } from "@akin2unde/flowui-react";
+
+interface AppraisalRating {
+  Code: string;
+  Description: string;
+  Rating: number;
+}
+
+const ratings: AppraisalRating[] = [
+  { Code: "R-5", Description: "Outstanding", Rating: 5 },
+];
+
+const columns: TableColumn<AppraisalRating>[] = [
+  { field: "Description", header: "Description" },
+  { field: "Rating", header: "Rating" },
+];
+
+export const RatingsTable = () => (
+  <Table data={ratings} columns={columns} rowKey="Code" />
+);
+```
+
+- **Angular** binds the typed rows and columns with `<fui-table [data]="ratings" [columns]="columns" rowKey="Code" />`. The model type is inferred from the inputs.
+- **React Native** uses `Table` and `TableColumn` from `@akin2unde/flowui-react-native` with the same typed rows and columns.
+- **Blazor** passes the typed collection as `Items` on `FlowTable` and declares columns as `FlowTableColumn<AppraisalRating>`.
+
 | Feature           | React                      | Angular          | React Native          | Blazor                  |
 | ----------------- | -------------------------- | ---------------- | --------------------- | ----------------------- |
 | Cell UI           | column `renderCell`        | `cellTemplate`   | column `renderCell`   | column `Template`       |

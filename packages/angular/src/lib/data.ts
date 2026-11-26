@@ -140,35 +140,37 @@ import { FlowMultiSelectComponent } from "./selection";
     </ng-container>
   </div>`,
 })
-export class FlowTableComponent extends FlowComponentBase {
+export class FlowTableComponent<
+  T extends object = Record<string, unknown>,
+> extends FlowComponentBase {
   @Input() rowKey?:
-    string | ((row: Record<string, unknown>, index: number) => string | number);
+    string | ((row: T, index: number) => string | number);
   @Input() selectedRowKey?: string | number;
   @Input() cellTemplate?: TemplateRef<{
     $implicit: unknown;
-    row: Record<string, unknown>;
-    column: TableColumn<Record<string, unknown>>;
+    row: T;
+    column: TableColumn<T>;
     index: number;
   }>;
   @Input() headerTemplate?: TemplateRef<{
-    $implicit: TableColumn<Record<string, unknown>>;
+    $implicit: TableColumn<T>;
   }>;
   @Input() rowClassName?: (
-    row: Record<string, unknown>,
+    row: T,
     index: number,
   ) => string;
-  trackRow = (index: number, row: Record<string, unknown>) =>
+  trackRow = (index: number, row: T) =>
     typeof this.rowKey === "function"
       ? this.rowKey(row, index)
       : this.rowKey
-        ? String(row[this.rowKey])
+        ? String(row[this.rowKey as keyof T])
         : index;
-  isSelected = (row: Record<string, unknown>, index: number) =>
+  isSelected = (row: T, index: number) =>
     this.selectedRowKey !== undefined
       ? this.selectedRowKey === this.trackRow(index, row)
       : this.selectedRow === row;
-  @Input() data: Record<string, unknown>[] = [];
-  @Input() columns: TableColumn<Record<string, unknown>>[] = [];
+  @Input() data: T[] = [];
+  @Input() columns: TableColumn<T>[] = [];
   @Input() sort?: SortState;
   @Input() loading = false;
   @Input() emptyText = "No records found";
@@ -186,10 +188,10 @@ export class FlowTableComponent extends FlowComponentBase {
   private internalFields?: string[];
   @Input() exportFileName = "table";
   @Input() selectionEnabled = false;
-  @Input() selectedRow?: Record<string, unknown>;
+  @Input() selectedRow?: T;
   @Output() sortChange = new EventEmitter<SortState>();
-  @Output() rowSelected = new EventEmitter<Record<string, unknown>>();
-  @Output() selectionChange = new EventEmitter<Record<string, unknown>>();
+  @Output() rowSelected = new EventEmitter<T>();
+  @Output() selectionChange = new EventEmitter<T>();
   @Output() visibleColumnFieldsChange = new EventEmitter<string[]>();
 
   get selectedFields(): string[] {
@@ -202,7 +204,7 @@ export class FlowTableComponent extends FlowComponentBase {
     );
   }
 
-  get displayedColumns(): TableColumn<Record<string, unknown>>[] {
+  get displayedColumns(): TableColumn<T>[] {
     return this.columns.filter((column) =>
       this.selectedFields.includes(column.field),
     );
@@ -251,7 +253,7 @@ export class FlowTableComponent extends FlowComponentBase {
     exportTableToPdf(this.data, this.displayedColumns, this.exportFileName);
   }
 
-  selectRow(row: Record<string, unknown>): void {
+  selectRow(row: T): void {
     this.rowSelected.emit(row);
     if (this.selectionEnabled) this.selectionChange.emit(row);
   }
@@ -272,8 +274,8 @@ export class FlowTableComponent extends FlowComponentBase {
       : "fa-solid fa-sort";
   }
   formatCell(
-    row: Record<string, unknown>,
-    column: TableColumn<Record<string, unknown>>,
+    row: T,
+    column: TableColumn<T>,
   ) {
     const value = row[column.field];
     return column.format ? column.format(value, row) : String(value ?? "");

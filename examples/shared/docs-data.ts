@@ -2146,6 +2146,11 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "backgroundColor",
+          type: 'ViewStyle["backgroundColor"]',
+          optional: true,
+        },
+        {
           name: "orientation",
           type: '"horizontal" | "vertical"',
           optional: true,
@@ -18424,6 +18429,16 @@ export const componentDocs: ComponentDoc[] = [
         },
       ],
       native: [
+        {
+          name: "width",
+          type: 'ViewStyle["width"] | "full"',
+          optional: true,
+        },
+        {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
         {
           name: "value",
           type: "string",
@@ -35026,6 +35041,16 @@ export const componentDocs: ComponentDoc[] = [
       ],
       native: [
         {
+          name: "className",
+          type: "string",
+          optional: true,
+        },
+        {
+          name: "width",
+          type: 'ViewStyle["width"] | "full"',
+          optional: true,
+        },
+        {
           name: "onStageClick",
           type: "(stage: FlowStage) => void",
           optional: true,
@@ -37759,7 +37784,7 @@ export const componentDocs: ComponentDoc[] = [
         },
         {
           name: "rowKey",
-          type: "string | ((row: Record<string, unknown>, index: number) => string | number)",
+          type: "string | ((row: T, index: number) => string | number)",
           optional: true,
         },
         {
@@ -37769,27 +37794,27 @@ export const componentDocs: ComponentDoc[] = [
         },
         {
           name: "cellTemplate",
-          type: "TemplateRef<{\n    $implicit: unknown;\n    row: Record<string, unknown>;\n    column: TableColumn<Record<string, unknown>>;\n    index: number;\n  }>",
+          type: "TemplateRef<{\n    $implicit: unknown;\n    row: T;\n    column: TableColumn<T>;\n    index: number;\n  }>",
           optional: true,
         },
         {
           name: "headerTemplate",
-          type: "TemplateRef<{\n    $implicit: TableColumn<Record<string, unknown>>;\n  }>",
+          type: "TemplateRef<{\n    $implicit: TableColumn<T>;\n  }>",
           optional: true,
         },
         {
           name: "rowClassName",
-          type: "(\n    row: Record<string, unknown>,\n    index: number,\n  ) => string",
+          type: "(\n    row: T,\n    index: number,\n  ) => string",
           optional: true,
         },
         {
           name: "data",
-          type: "Record<string, unknown>[]",
+          type: "T[]",
           optional: true,
         },
         {
           name: "columns",
-          type: "TableColumn<Record<string, unknown>>[]",
+          type: "TableColumn<T>[]",
           optional: true,
         },
         {
@@ -37874,7 +37899,7 @@ export const componentDocs: ComponentDoc[] = [
         },
         {
           name: "selectedRow",
-          type: "Record<string, unknown>",
+          type: "T",
           optional: true,
         },
         {

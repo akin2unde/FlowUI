@@ -65,12 +65,18 @@ it("opens only the selected date/time mode and dismisses it on an outside click"
 });
 
 it("lets a user hide and restore a table column and dismiss the picker", async () => {
+  interface ProductRow {
+    name: string;
+    price: number;
+  }
+
+  const products: ProductRow[] = [{ name: "Rice", price: 10 }];
   const loadMore = vi.fn();
   await act(async () =>
     root.render(
       <FlowUIProvider>
         <Table
-          data={[{ name: "Rice", price: 10 }]}
+          data={products}
           columns={[
             { field: "name", header: "Product" },
             { field: "price", header: "Price" },
